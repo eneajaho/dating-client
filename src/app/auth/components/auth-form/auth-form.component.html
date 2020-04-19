@@ -1,23 +1,29 @@
-<form [formGroup]="form" (ngSubmit)="submit()">
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
   <div class="form-group">
     <input type="text" formControlName="username"
            placeholder="Email address" class="form-control">
-    <div class="alert alert-danger" *ngIf="isRequired('username')">
+    <div class="alert alert-danger mt-1" *ngIf="isRequired('username')">
       Email is required!
     </div>
   </div>
   <div class="form-group">
-    <input type="text" formControlName="password"
+    <input type="password" formControlName="password"
            placeholder="Password" class="form-control">
-    <div class="alert alert-danger" *ngIf="isRequired('password')">
+    <div class="alert alert-danger mt-1" *ngIf="isRequired('password')">
       Password is required!
     </div>
+  </div>
+
+  <div class="form-group">
+    <ng-content select=".error"></ng-content>
   </div>
 
   <div class="submit">
     <button [disabled]="form.invalid" type="submit"
             class="btn btn-primary btn-block">
-      <span *ngIf="!loading">Login Now</span>
+      <span *ngIf="!loading">
+        <ng-content select="#type"></ng-content>
+      </span>
       <span *ngIf="loading">Signing in...</span>
     </button>
   </div>

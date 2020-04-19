@@ -1,4 +1,4 @@
-import { AuthState } from "../auth/auth-store";
+import { AuthState } from "./auth-store";
 
 export interface State {
   auth: AuthState.State

@@ -5,27 +5,24 @@ import { AppComponent } from './app.component';
 import { SharedModule } from "./shared/shared.module";
 import { HttpClientModule } from "@angular/common/http";
 import { environment } from "../environments/environment";
-import { API_URL } from "./configs/api.token";
+import { API_URL } from "./core/configs/api.token";
 
+import { AppRoutingModule } from './app-routing.module';
 import { RootStoreModule } from './root-store';
 import { LayoutModule } from './layout/layout.module';
-import { RouterModule, Routes } from "@angular/router";
-import { AuthModule } from "./auth/auth.module";
+import { CoreModule } from './core/core.module';
 
-const ROUTES: Routes = [
-  { path: '**', redirectTo: '', pathMatch: 'full' }
-];
 
 @NgModule({
   declarations: [ AppComponent ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(ROUTES),
     HttpClientModule,
+    AppRoutingModule,
     RootStoreModule,
     SharedModule,
     LayoutModule,
-    AuthModule
+    CoreModule,
   ],
   providers: [
     { provide: API_URL, useValue: environment.api }

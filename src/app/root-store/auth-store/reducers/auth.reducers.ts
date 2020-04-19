@@ -1,5 +1,13 @@
 import { Action, createReducer, on } from '@ngrx/store';
-import { LOGIN_FAILURE, LOGIN_SUCCESS, LOGIN_REQUEST, LOGOUT } from '../actions/login.actions';
+import {
+  LOGIN_FAILURE,
+  LOGIN_SUCCESS,
+  LOGIN_REQUEST,
+  LOGOUT,
+  REGISTER_REQUEST,
+  REGISTER_SUCCESS,
+  REGISTER_FAILURE
+} from '../actions/auth.actions';
 import { State, initialState } from "../auth-state";
 
 const authReducers = createReducer(initialState,
@@ -12,6 +20,12 @@ const authReducers = createReducer(initialState,
     (state, { error }) => ({ ...state, user: null, loading: false, error })),
 
   // register reducers
+  on(REGISTER_REQUEST,
+    (state) => ({ ...state, loading: true })),
+  on(REGISTER_SUCCESS,
+    (state, { user }) => ({ ...state, user, loading: false, error: null })),
+  on(REGISTER_FAILURE,
+    (state, { error }) => ({ ...state, user: null, loading: false, error })),
 
 
   // logout reducer

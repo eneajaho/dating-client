@@ -1,1 +1,13 @@
-<p>register works!</p>
+<h3 class="mb-3">Register in Dating</h3>
+
+<app-auth-form [loading]="isLoading$ | async" (submit)="handleRegister($event)">
+  <span id="type">Register now</span>
+  <div *ngIf="error$ | async as error" class="error alert alert-danger">
+    {{ error.title }}
+  </div>
+</app-auth-form>
+
+<div class="text-center mt-3">
+  <a routerLink="/auth/login">Already have an account? Login now!</a>
+</div>
+

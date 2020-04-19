@@ -1,18 +1,12 @@
-<div class="row justify-content-center">
-  <div class="col-xs-12 col-sm-10 col-md-8 col-lg-6 col-xl-4">
-    <div class="card">
-      <div class="card-body">
-        <h4 class="text-center mb-3">Login</h4>
-        <app-login-form
-          [loading]="isLoading$ | async"
-          (login)="handleLogin($event)">
-        </app-login-form>
+<h3 class="mb-3">Login in Dating</h3>
 
-        <div *ngIf="error$ | async as error" class="alert alert-danger mt-2">
-          {{ error | json }}
-        </div>
-      </div>
-    </div>
+<app-auth-form [loading]="isLoading$ | async" (submit)="handleLogin($event)">
+  <span id="type">Login now</span>
+  <div *ngIf="error$ | async as error" class="error alert alert-danger">
+    {{ error.title }}
   </div>
-</div>
+</app-auth-form>
 
+<div class="text-center mt-3">
+  <a routerLink="/auth/register">Don't have an account? Register now!</a>
+</div>

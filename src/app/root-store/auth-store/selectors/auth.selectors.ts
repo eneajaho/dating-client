@@ -1,7 +1,7 @@
 import { createFeatureSelector, createSelector, MemoizedSelector } from '@ngrx/store';
 
 import { State } from "../auth-state";
-import { User } from "../../models/User.model";
+import { User } from "../../../auth/models/User.model";
 
 const getUser = (state: State): any => state.user;
 const getIsLoading = (state: State): boolean => state.loading;
@@ -18,3 +18,6 @@ export const selectAuthLoading: MemoizedSelector<object, boolean>
 
 export const selectAuthError: MemoizedSelector<object, any>
   = createSelector(selectAuthState, getError);
+
+export const selectIsAuthenticated: MemoizedSelector<object, any>
+  = createSelector(selectAuthUser, user => !!user);

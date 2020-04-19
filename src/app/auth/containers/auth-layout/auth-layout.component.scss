@@ -1,0 +1,14 @@
+.auth-image {
+  color: white;
+  background-image: linear-gradient(60deg, #0000001f 10%, #05091c17 70%), url(/assets/images/auth-img.jpg);
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100vh;
+}
+
+@media (max-width: 767px) {
+  .auth-image {
+    display: none;
+  }
+}
