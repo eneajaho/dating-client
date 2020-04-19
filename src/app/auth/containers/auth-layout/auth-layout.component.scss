@@ -7,8 +7,23 @@
   min-height: 100vh;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 500px) {
   .auth-image {
     display: none;
   }
+}
+
+.unsplash {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  background-color: black;
+  color: white;
+  text-decoration: none;
+  padding: 4px 6px;
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 1.2;
+  display: inline-block;
+  border-radius: 3px;
 }
