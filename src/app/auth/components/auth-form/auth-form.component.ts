@@ -10,7 +10,7 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 export class AuthFormComponent {
 
   @Input() loading: boolean;
-  @Output() submit = new EventEmitter<Login>();
+  @Output() submitted = new EventEmitter<Login>();
 
   form: FormGroup;
 
@@ -22,7 +22,7 @@ export class AuthFormComponent {
   }
 
   onSubmit() {
-    this.submit.emit(this.form.value);
+    this.submitted.emit(this.form.value);
   }
 
   isRequired(control: string) {

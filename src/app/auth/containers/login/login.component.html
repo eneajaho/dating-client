@@ -1,9 +1,9 @@
 <h3 class="mb-3">Login in Dating</h3>
 
-<app-auth-form [loading]="isLoading$ | async" (submit)="handleLogin($event)">
+<app-auth-form [loading]="isLoading$ | async" (submitted)="handleLogin($event)">
   <span id="type">Login now</span>
   <div *ngIf="error$ | async as error" class="error alert alert-danger">
-    {{ error.title }}
+    {{ error }}
   </div>
 </app-auth-form>
 

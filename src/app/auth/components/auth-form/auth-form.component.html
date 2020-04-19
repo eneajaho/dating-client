@@ -1,6 +1,7 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
   <div class="form-group">
     <input type="text" formControlName="username"
+           autocomplete="username"
            placeholder="Email address" class="form-control">
     <div class="alert alert-danger mt-1" *ngIf="isRequired('username')">
       Email is required!
@@ -8,6 +9,7 @@
   </div>
   <div class="form-group">
     <input type="password" formControlName="password"
+           autocomplete="current-password"
            placeholder="Password" class="form-control">
     <div class="alert alert-danger mt-1" *ngIf="isRequired('password')">
       Password is required!

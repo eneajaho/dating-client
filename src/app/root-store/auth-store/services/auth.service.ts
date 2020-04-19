@@ -17,6 +17,6 @@ export class AuthService {
 
   login(credentials: Login) {
     const path = this.api + 'auth/login';
-    return this.http.post<User>(path, credentials);
+    return this.http.post<User>(path, credentials)
   }
 }

@@ -22,10 +22,10 @@ import { CoreModule } from './core/core.module';
     RootStoreModule,
     SharedModule,
     LayoutModule,
-    CoreModule,
+    CoreModule.forRoot(),
   ],
   providers: [
-    { provide: API_URL, useValue: environment.api }
+    { provide: API_URL, useValue: environment.api },
   ],
   bootstrap: [ AppComponent ]
 })
