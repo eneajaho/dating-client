@@ -1,12 +1,14 @@
 import { ModuleWithProviders, NgModule, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ErrorInterceptorProvider } from "./interceptors/error.interceptor";
+import { ToastrModule } from "ngx-toastr";
 
 
 @NgModule({
   declarations: [],
   imports: [
-    CommonModule
+    CommonModule,
+    ToastrModule.forRoot()
   ]
 })
 

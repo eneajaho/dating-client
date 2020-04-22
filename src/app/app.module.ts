@@ -11,6 +11,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { RootStoreModule } from './root-store';
 import { LayoutModule } from './layout/layout.module';
 import { CoreModule } from './core/core.module';
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { CoreModule } from './core/core.module';
   imports: [
     BrowserModule,
     HttpClientModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     RootStoreModule,
     SharedModule,
