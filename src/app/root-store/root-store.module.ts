@@ -4,7 +4,8 @@ import { EffectsModule } from "@ngrx/effects";
 import { StoreModule } from "@ngrx/store";
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from "../../environments/environment";
-import { AuthStoreModule } from "./auth-store";
+import { AuthStoreModule } from "./auth-store/auth-store.module";
+
 
 @NgModule({
   declarations: [],
@@ -14,10 +15,13 @@ import { AuthStoreModule } from "./auth-store";
     EffectsModule.forRoot([]),
 
     StoreDevtoolsModule.instrument({
-      maxAge: 10, // Retains last 25 states
-      logOnly: environment.production, // Restrict extension to log-only mode
+      maxAge: 10,
+      logOnly: environment.production,
     }),
 
+    /** AuthStoreModule will be eagerly loaded,
+     * so we can have access to authenticated user.
+     * AuthModule will be lazy loaded.  **/
     AuthStoreModule
   ]
 })

@@ -1,7 +1,6 @@
 import * as AuthActions from './actions/auth.actions';
 import * as AuthSelectors from './selectors/auth.selectors';
-import * as AuthState from './auth-state';
+import * as AuthReducers from './reducers/auth.reducers';
+import { AuthState } from './auth-state';
 
-export { AuthStoreModule } from './auth-store.module';
-
-export { AuthActions, AuthSelectors, AuthState };
+export { AuthActions, AuthReducers, AuthSelectors, AuthState };

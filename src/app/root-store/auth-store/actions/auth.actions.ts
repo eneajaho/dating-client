@@ -1,14 +1,14 @@
 import { createAction, props } from '@ngrx/store';
-import { Login } from "../../../auth/models/Login.model";
-import { User } from "../../../auth/models/User.model";
+import { Credentials } from "@pages/auth/models/Credentials";
+import { LoginResponse } from "@pages/auth/models/LoginResponse";
 
 
 // login actions
 export const LOGIN_REQUEST = createAction(
-  '[Login Page] Login Request', props<{ credentials: Login }>());
+  '[Login Page] Login Request', props<{ credentials: Credentials }>());
 
 export const LOGIN_SUCCESS = createAction(
-  '[Login Page] Login Success', props<{ user: User }>());
+  '[Login Page] Login Success', props<{ user: LoginResponse }>());
 
 export const LOGIN_FAILURE = createAction(
   '[Login Page] Login Failure', props<{ error }>());
@@ -16,10 +16,10 @@ export const LOGIN_FAILURE = createAction(
 
 // register actions
 export const REGISTER_REQUEST = createAction(
-  '[Register Page] Register Request', props<{ credentials: Login }>());
+  '[Register Page] Register Request', props<{ credentials: Credentials }>());
 
 export const REGISTER_SUCCESS = createAction(
-  '[Register Page] Register Success', props<{ user: User }>());
+  '[Register Page] Register Success', props<{ user: LoginResponse }>());
 
 export const REGISTER_FAILURE = createAction(
   '[Register Page] Register Failure', props<{ error }>());

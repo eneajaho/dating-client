@@ -1,5 +1,7 @@
 import { AuthState } from "./auth-store";
+import { MembersState } from "@pages/members/members-store";
 
-export interface State {
-  auth: AuthState.State
+export interface AppState {
+  auth: AuthState,
+  members: MembersState
 }

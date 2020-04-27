@@ -1,13 +1,14 @@
-import { User } from "../../auth/models/User.model";
 
-export interface State {
-  user: User | null;
+export interface AuthState {
+  user: any | null;
   loading: boolean;
-  error: any;
+  loginError: any;
+  registerError: any;
 }
 
-export const initialState: State = {
+export const initialState: AuthState = {
   user: null,
   loading: false,
-  error: null
+  loginError: null,
+  registerError: null
 };

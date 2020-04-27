@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
-import { Login } from "../../models/Login.model";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 
 @Component({
@@ -10,7 +9,7 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 export class AuthFormComponent {
 
   @Input() loading: boolean;
-  @Output() submitted = new EventEmitter<Login>();
+  @Output() submitted = new EventEmitter<{ username: string, password: string }>();
 
   form: FormGroup;
 

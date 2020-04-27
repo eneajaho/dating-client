@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
-import { User } from "../../../auth/models/User.model";
+import { User } from "@models/User";
 
 @Component({
   selector: 'app-navigation',
@@ -8,7 +8,7 @@ import { User } from "../../../auth/models/User.model";
 })
 export class NavigationComponent {
 
-  @Input() user: User;
+  @Input() user: User | any;
 
   @Output() logout = new EventEmitter<boolean>();
 

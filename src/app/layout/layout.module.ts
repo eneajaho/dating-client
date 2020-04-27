@@ -7,8 +7,12 @@ import { MainLayoutComponent } from './containers/main-layout/main-layout.compon
 import { EmptyLayoutComponent } from './containers/empty-layout/empty-layout.component';
 
 @NgModule({
-  declarations: [ NavigationComponent, MainLayoutComponent, EmptyLayoutComponent ],
+  declarations: [
+    NavigationComponent,
+    MainLayoutComponent,
+    EmptyLayoutComponent
+  ],
   imports: [ CommonModule, RouterModule ],
   exports: [ NavigationComponent ]
 })
-export class LayoutModule { }
+export class LayoutModule {}

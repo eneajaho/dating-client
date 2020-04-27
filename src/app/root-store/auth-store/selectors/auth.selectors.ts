@@ -1,23 +1,28 @@
 import { createFeatureSelector, createSelector, MemoizedSelector } from '@ngrx/store';
 
-import { State } from "../auth-state";
-import { User } from "../../../auth/models/User.model";
+import { AuthState } from "../auth-state";
+import { User } from "@models/User";
+import { LoginResponse } from "@pages/auth/models/LoginResponse";
 
-const getUser = (state: State): any => state.user;
-const getIsLoading = (state: State): boolean => state.loading;
-const getError = (state: State): any => state.error;
+const getUser = (state: AuthState): any => state.user;
+const getIsLoading = (state: AuthState): boolean => state.loading;
+const getLoginError = (state: AuthState): any => state.loginError;
+const getRegisterError = (state: AuthState): any => state.registerError;
 
-export const selectAuthState: MemoizedSelector<object, State>
-  = createFeatureSelector<State>('auth');
+export const selectAuthState: MemoizedSelector<object, AuthState>
+  = createFeatureSelector<AuthState>('auth');
 
-export const selectAuthUser: MemoizedSelector<object, User>
+export const selectAuthUser: MemoizedSelector<object, any | User | LoginResponse>
   = createSelector(selectAuthState, getUser);
 
 export const selectAuthLoading: MemoizedSelector<object, boolean>
   = createSelector(selectAuthState, getIsLoading);
 
-export const selectAuthError: MemoizedSelector<object, any>
-  = createSelector(selectAuthState, getError);
+export const selectAuthLoginError: MemoizedSelector<object, any>
+  = createSelector(selectAuthState, getLoginError);
+
+export const selectAuthRegisterError: MemoizedSelector<object, any>
+  = createSelector(selectAuthState, getRegisterError);
 
 export const selectIsAuthenticated: MemoizedSelector<object, any>
   = createSelector(selectAuthUser, user => !!user);

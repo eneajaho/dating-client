@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 
-import { map, catchError, exhaustMap, tap, mergeMap, switchMap } from 'rxjs/operators';
+import { map, catchError, tap, mergeMap } from 'rxjs/operators';
 import { of } from "rxjs";
 
 import * as AuthActions from '../actions/auth.actions';
@@ -19,13 +19,16 @@ export class AuthEffects {
       mergeMap(action =>
         this.auth.login(action.credentials).pipe(
           map(user => AuthActions.LOGIN_SUCCESS({ user })),
-          catchError(error => of(AuthActions.LOGIN_FAILURE({ error }))),
+          catchError(error => {
+            console.log(error);
+            return of(AuthActions.LOGIN_FAILURE({ error }))
+          }),
         ))));
 
   register$ = createEffect(() =>
     this.actions$.pipe(
       ofType(AuthActions.REGISTER_REQUEST),
-      switchMap(action =>
+      mergeMap(action =>
         this.auth.register(action.credentials).pipe(
           map(user => AuthActions.REGISTER_SUCCESS({ user })),
           catchError(error => of(AuthActions.REGISTER_FAILURE({ error })))

@@ -1,22 +1,22 @@
 import { Inject, Injectable } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
-import { API_URL } from "../../../core/configs/api.token";
-import { Login } from "../../../auth/models/Login.model";
-import { User } from "../../../auth/models/User.model";
+import { HttpClient } from '@angular/common/http';
+import { API_URL } from "@core/configs/api.token";
+import { Observable } from 'rxjs';
+import { Credentials } from '@pages/auth/models/Credentials';
+import { LoginResponse } from '@pages/auth/models/LoginResponse';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
 
-  constructor(@Inject(API_URL) private api: string,
-              private http: HttpClient) { }
+  constructor(@Inject(API_URL) private api: string, private http: HttpClient) { }
 
-  register(credentials: Login) {
+  register(credentials: Credentials) {
     const path = this.api + 'auth/register';
-    return this.http.post<User>(path, credentials);
+    return this.http.post<LoginResponse>(path, credentials);
   }
 
-  login(credentials: Login) {
+  login(credentials: Credentials): Observable<LoginResponse> {
     const path = this.api + 'auth/login';
-    return this.http.post<User>(path, credentials)
+    return this.http.post<LoginResponse>(path, credentials)
   }
 }
