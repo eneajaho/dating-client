@@ -4,6 +4,8 @@ import { CommonModule } from '@angular/common';
 import { MembersRoutingModule } from './members-routing.module';
 import { MembersStoreModule } from "./members-store/members-store.module";
 import { MembersComponent } from './containers/members/members.component';
+import { MemberCardComponent } from './components/member-card/member-card.component';
+import { SharedModule } from "../../shared/shared.module";
 
 /**
  * MembersModule and MembersStoreModule will be lazy loaded.
@@ -12,12 +14,14 @@ import { MembersComponent } from './containers/members/members.component';
 
 @NgModule({
   declarations: [
-    MembersComponent
+    MembersComponent,
+    MemberCardComponent
   ],
   imports: [
     CommonModule,
     MembersRoutingModule,
-    MembersStoreModule
+    MembersStoreModule,
+    SharedModule
   ]
 })
 export class MembersModule { }

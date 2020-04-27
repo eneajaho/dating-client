@@ -1,0 +1,14 @@
+<div class="card">
+  <img [src]="user.photoUrl" class="card-img-top" [alt]="user.knownAs">
+  <div class="card-body">
+    <h5 class="card-title text-capitalize">{{ user.knownAs }}, {{ user.age }}</h5>
+    <p class="card-text">
+      <fa-icon [icon]="locationIcon" class="mr-2"></fa-icon>
+      {{ user.city }}
+    </p>
+    <button class="btn btn-warning">
+      <fa-icon [icon]="sendIcon" class="mr-2"></fa-icon>
+      Send message</button>
+  </div>
+</div>
+
