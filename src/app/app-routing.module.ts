@@ -4,12 +4,14 @@ import { RouterModule, Routes } from "@angular/router";
 import { MainLayoutComponent } from "./layout/containers/main-layout/main-layout.component";
 import { EmptyLayoutComponent } from "./layout/containers/empty-layout/empty-layout.component";
 import { AuthGuard } from "@core/guards/auth.guard";
+import { NotFoundComponent } from "./layout/components/not-found/not-found.component";
 
 const ROUTES: Routes = [
   {
-    path: '', canActivate: [ AuthGuard ], component: MainLayoutComponent, children: [
+    path: '', component: MainLayoutComponent, children: [
       {
         path: 'members',
+        canActivate: [ AuthGuard ],
         loadChildren: () => import('./pages/members/members.module').then(m => m.MembersModule)
       }
     ]
@@ -23,7 +25,7 @@ const ROUTES: Routes = [
     ]
   },
   {
-    path: '**', redirectTo: '', pathMatch: 'full'
+    path: '**',  component: NotFoundComponent
   }
 ];
 

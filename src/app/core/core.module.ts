@@ -3,13 +3,14 @@ import { CommonModule } from '@angular/common';
 import { ToastrModule } from "ngx-toastr";
 import { ErrorInterceptorProvider } from "./interceptors/error.interceptor";
 import { AuthInterceptorProvider } from "./interceptors/auth.interceptor";
-
+import { RouterModule } from "@angular/router";
 
 @NgModule({
   declarations: [],
   imports: [
     CommonModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    RouterModule
   ]
 })
 
