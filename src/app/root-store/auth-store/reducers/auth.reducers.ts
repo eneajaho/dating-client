@@ -6,26 +6,44 @@ import {
   LOGOUT,
   REGISTER_REQUEST,
   REGISTER_SUCCESS,
-  REGISTER_FAILURE
+  REGISTER_FAILURE, GET_USER_COOKIE,
 } from '../actions/auth.actions';
 import { AuthState, initialState } from "../auth-state";
 
 const authReducers = createReducer(initialState,
+
   // login reducers
-  on(LOGIN_REQUEST,
-    (state) => ({ ...state, loading: true })),
-  on(LOGIN_SUCCESS,
-    (state, { user }) => ({ ...state, user, loading: false, loginError: null })),
-  on(LOGIN_FAILURE,
-    (state, { error }) => ({ ...state, user: null, loading: false, loginError: error })),
+  on(LOGIN_REQUEST, (state) => ({ ...state, loading: true })),
+  on(LOGIN_SUCCESS, (state, { user }) => ({
+    ...state,
+    user,
+    loading: false,
+    loginError: null
+  })),
+  on(LOGIN_FAILURE, (state, { error }) => ({
+    ...state,
+    user: null,
+    loading: false,
+    loginError: error
+  })),
 
   // register reducers
-  on(REGISTER_REQUEST,
-    (state) => ({ ...state, loading: true })),
-  on(REGISTER_SUCCESS,
-    (state, { user }) => ({ ...state, user, loading: false, registerError: null })),
-  on(REGISTER_FAILURE,
-    (state, { error }) => ({ ...state, user: null, loading: false, registerError: error })),
+  on(REGISTER_REQUEST, (state) => ({ ...state, loading: true })),
+  on(REGISTER_SUCCESS, (state, { user }) => ({
+    ...state,
+    user,
+    loading: false,
+    registerError: null
+  })),
+  on(REGISTER_FAILURE, (state, { error }) => ({
+    ...state,
+    user: null,
+    loading: false,
+    registerError: error
+  })),
+
+  // get cookies
+  on(GET_USER_COOKIE, (state, { user }) => ({ ...state, user })),
 
   // logout reducer
   on(LOGOUT, (state) => ({ ...state, user: null }))

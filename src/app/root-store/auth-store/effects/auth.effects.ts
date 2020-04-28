@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { Actions, createEffect, ofType, ROOT_EFFECTS_INIT } from '@ngrx/effects';
 
 import { map, catchError, tap, switchMap } from 'rxjs/operators';
 import { of } from "rxjs";
@@ -7,22 +7,26 @@ import { of } from "rxjs";
 import * as AuthActions from '../actions/auth.actions';
 import { AuthService } from "../services/auth.service";
 import { Router } from "@angular/router";
+import { CookieService } from "ngx-cookie-service";
 
 @Injectable()
 export class AuthEffects {
 
-  constructor(private actions$: Actions, private auth: AuthService, private router: Router) {}
+  constructor(private actions$: Actions,
+              private auth: AuthService,
+              private router: Router,
+              private cookies: CookieService) {}
 
   login$ = createEffect(() =>
     this.actions$.pipe(
       ofType(AuthActions.LOGIN_REQUEST),
       switchMap(action =>
         this.auth.login(action.credentials).pipe(
-          map(user => AuthActions.LOGIN_SUCCESS({ user })),
-          catchError(error => {
-            console.log(error);
-            return of(AuthActions.LOGIN_FAILURE({ error }))
+          map(user => {
+            this.cookies.set('user', JSON.stringify(user), null, '/')
+            return AuthActions.LOGIN_SUCCESS({ user })
           }),
+          catchError(error => of(AuthActions.LOGIN_FAILURE({ error }))),
         ))));
 
   register$ = createEffect(() =>
@@ -49,7 +53,8 @@ export class AuthEffects {
   logoutRedirect$ = createEffect(() =>
     this.actions$.pipe(
       ofType(AuthActions.LOGOUT),
-      tap(() => this.router.navigate([ '/auth/login' ]))
-    ), { dispatch: false });
-
+      tap(() => {
+        this.cookies.delete('user');
+        this.router.navigate([ '/auth/login' ])
+      })), { dispatch: false });
 }

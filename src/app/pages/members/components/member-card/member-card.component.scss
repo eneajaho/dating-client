@@ -17,7 +17,7 @@
     flex: none;
     padding: 12px;
     background: #ffffff;
-    margin: 14px;
+    margin: 12px;
     border-radius: 10px;
     transition: 0.2s all ease-out;
 
@@ -50,27 +50,27 @@
 .loveBtn {
   background-color: #6b0fc0;
   border-color: #93c7ff00;
-  color: #a9d3ff;
+ // color: #a9d3ff;
+  color: white;
   transition: 0.2s all;
 
 
   &:hover {
     transform: translateY(-2px);
-    background-color: rgba(169, 211, 255, 0.73);
-    color: #6b0fc0;
+   // background-color: rgba(169, 211, 255, 0.73);
+   // color: #6b0fc0;
   }
 }
 
 .sendBtn {
-  background-color: rgba(169, 211, 255, 0.73);
+  background-color: #ba70ff47;
   border-color: #93c7ff00;
   color: #6b0fc0;
   transition: 0.2s all;
 
-
   &:hover {
     transform: translateY(-2px);
-    background-color: #6b0fc0;
-    color: #a9d3ff;
+   // background-color: #6b0fc0;
+   // color: #a9d3ff;
   }
 }

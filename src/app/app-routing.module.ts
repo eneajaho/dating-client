@@ -5,6 +5,7 @@ import { MainLayoutComponent } from "./layout/containers/main-layout/main-layout
 import { EmptyLayoutComponent } from "./layout/containers/empty-layout/empty-layout.component";
 import { AuthGuard } from "@core/guards/auth.guard";
 import { NotFoundComponent } from "./layout/components/not-found/not-found.component";
+import { NonAuthGuard } from "@core/guards/non-auth.guard";
 
 const ROUTES: Routes = [
   {
@@ -12,7 +13,8 @@ const ROUTES: Routes = [
       {
         path: 'members',
         canActivate: [ AuthGuard ],
-        loadChildren: () => import('./pages/members/members.module').then(m => m.MembersModule)
+        loadChildren: () => import('./pages/members/members.module')
+          .then(m => m.MembersModule)
       }
     ]
   },
@@ -20,7 +22,9 @@ const ROUTES: Routes = [
     path: '', component: EmptyLayoutComponent, children: [
       {
         path: 'auth',
-        loadChildren: () => import('./pages/auth/auth.module').then(m => m.AuthModule)
+        canActivate: [NonAuthGuard],
+        loadChildren: () => import('./pages/auth/auth.module')
+          .then(m => m.AuthModule)
       }
     ]
   },

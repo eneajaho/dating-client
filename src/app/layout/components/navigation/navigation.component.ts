@@ -12,6 +12,7 @@ export class NavigationComponent {
 
   logoutIcon = faSignOutAlt;
   heartIcon = faHeart;
+  showMenu = false;
 
   @Input() user: User | any;
 
@@ -19,6 +20,10 @@ export class NavigationComponent {
 
   onLogout() {
     this.logout.emit(true);
+  }
+
+  show() {
+    this.showMenu = !this.showMenu;
   }
 
 }

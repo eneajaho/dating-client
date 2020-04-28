@@ -6,6 +6,7 @@ import { MembersStoreModule } from "./members-store/members-store.module";
 import { MembersComponent } from './containers/members/members.component';
 import { MemberCardComponent } from './components/member-card/member-card.component';
 import { SharedModule } from "../../shared/shared.module";
+import { MemberDetailsComponent } from './containers/member-details/member-details.component';
 
 /**
  * MembersModule and MembersStoreModule will be lazy loaded.
@@ -15,7 +16,8 @@ import { SharedModule } from "../../shared/shared.module";
 @NgModule({
   declarations: [
     MembersComponent,
-    MemberCardComponent
+    MemberCardComponent,
+    MemberDetailsComponent
   ],
   imports: [
     CommonModule,

@@ -12,6 +12,7 @@ import { RootStoreModule } from './root-store';
 import { LayoutModule } from './layout/layout.module';
 import { CoreModule } from '@core/core.module';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { CookieService } from "ngx-cookie-service";
 
 
 @NgModule({
@@ -27,6 +28,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
     CoreModule.forRoot(),
   ],
   providers: [
+    CookieService,
     { provide: API_URL, useValue: environment.api },
   ],
   bootstrap: [ AppComponent ]

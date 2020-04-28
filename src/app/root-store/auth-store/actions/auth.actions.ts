@@ -25,6 +25,11 @@ export const REGISTER_FAILURE = createAction(
   '[Register Page] Register Failure', props<{ error }>());
 
 
+// add user + token to cookies
+export const GET_USER_COOKIE = createAction(
+  '[INIT_ACTION] Get User Cookie', props<{ user }>());
+
+
 // logout action
 export const LOGOUT = createAction('[Navigation] Logout');
 

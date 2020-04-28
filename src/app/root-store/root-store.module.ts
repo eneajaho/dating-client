@@ -5,6 +5,7 @@ import { StoreModule } from "@ngrx/store";
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from "../../environments/environment";
 import { AuthStoreModule } from "./auth-store/auth-store.module";
+import { RootEffects } from "@root-store/effects/root.effects";
 
 
 @NgModule({
@@ -12,7 +13,7 @@ import { AuthStoreModule } from "./auth-store/auth-store.module";
   imports: [
     CommonModule,
     StoreModule.forRoot({}),
-    EffectsModule.forRoot([]),
+    EffectsModule.forRoot([RootEffects]),
 
     StoreDevtoolsModule.instrument({
       maxAge: 10,

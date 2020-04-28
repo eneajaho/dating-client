@@ -22,7 +22,6 @@ export class MembersGuard implements CanActivate {
     return this.store.select(MembersSelectors.selectMembers).pipe(
       tap(members => {
         if (!members) { this.store.dispatch(MembersActions.LOAD_MEMBERS()); }
-        console.log(members);
       }),
       map(members => !!members),
       filter((loaded: boolean) => loaded),
