@@ -1,5 +1,8 @@
-<nav class="navbar navbar-expand-md navbar-light bg-light p-3 shadow">
-  <a class="navbar-brand" routerLink="/">Dating App</a>
+<nav class="navbar navbar-dark navbar-expand-md fixed-top bg-primary py-1 px-3 shadow">
+  <a class="navbar-brand" routerLink="/">
+    <fa-icon [icon]="heartIcon" [classes]="['text-danger mr-1']"></fa-icon>
+    Dating App
+  </a>
   <button class="navbar-toggler" type="button">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -20,14 +23,19 @@
       </li>
     </ul>
 
+    <input style="width: 300px" type="text" class="form-control form-control-primary ml-5" placeholder="Search..." >
+
     <ul class="navbar-nav ml-auto">
-      <li *ngIf="user" class="nav-item active">
-          <span class="nav-link text-dark">
+      <li *ngIf="user" class="nav-item">
+          <span class="nav-link text-white">
             Hello {{ user.name | titlecase }}
           </span>
       </li>
       <li *ngIf="user" class="nav-item active">
-        <button class="btn btn-outline-warning ml-2" (click)="onLogout()">Logout</button>
+        <button class="btn btn-outline-light ml-2" (click)="onLogout()">
+          <fa-icon [icon]="logoutIcon"></fa-icon>
+          Logout
+        </button>
       </li>
       <li *ngIf="!user" class="nav-item" routerLinkActive="active">
         <a class="nav-link" routerLink="/auth/login">Login</a>

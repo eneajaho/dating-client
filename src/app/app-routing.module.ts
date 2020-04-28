@@ -25,8 +25,12 @@ const ROUTES: Routes = [
     ]
   },
   {
-    path: '**',  component: NotFoundComponent
-  }
+    path: '**', component: MainLayoutComponent, children: [
+      {
+        path: '',  component: NotFoundComponent
+      }
+    ]
+  },
 ];
 
 @NgModule({
