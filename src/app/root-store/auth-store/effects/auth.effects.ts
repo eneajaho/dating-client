@@ -7,7 +7,7 @@ import { of } from "rxjs";
 import * as AuthActions from '../actions/auth.actions';
 import { AuthService } from "../services/auth.service";
 import { Router } from "@angular/router";
-import { CookieService } from "ngx-cookie-service";
+import { LocalStorageService } from "@core/services/local-storage.service";
 
 @Injectable()
 export class AuthEffects {
@@ -15,7 +15,7 @@ export class AuthEffects {
   constructor(private actions$: Actions,
               private auth: AuthService,
               private router: Router,
-              private cookies: CookieService) {}
+              private localStorage: LocalStorageService) {}
 
   login$ = createEffect(() =>
     this.actions$.pipe(
@@ -23,7 +23,7 @@ export class AuthEffects {
       switchMap(action =>
         this.auth.login(action.credentials).pipe(
           map(user => {
-            this.cookies.set('user', JSON.stringify(user), null, '/')
+            this.localStorage.set('user', JSON.stringify(user))
             return AuthActions.LOGIN_SUCCESS({ user })
           }),
           catchError(error => of(AuthActions.LOGIN_FAILURE({ error }))),
@@ -54,7 +54,7 @@ export class AuthEffects {
     this.actions$.pipe(
       ofType(AuthActions.LOGOUT),
       tap(() => {
-        this.cookies.delete('user');
+        this.localStorage.remove('user');
         this.router.navigate([ '/auth/login' ])
       })), { dispatch: false });
 }

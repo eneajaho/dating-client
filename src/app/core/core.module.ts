@@ -4,6 +4,7 @@ import { ToastrModule } from "ngx-toastr";
 import { ErrorInterceptorProvider } from "./interceptors/error.interceptor";
 import { AuthInterceptorProvider } from "./interceptors/auth.interceptor";
 import { RouterModule } from "@angular/router";
+import { LocalStorageService } from "@core/services/local-storage.service";
 
 @NgModule({
   declarations: [],
@@ -26,7 +27,8 @@ export class CoreModule {
       ngModule: CoreModule,
       providers: [
         ErrorInterceptorProvider,
-        AuthInterceptorProvider
+        AuthInterceptorProvider,
+        LocalStorageService
       ]
     };
   }
