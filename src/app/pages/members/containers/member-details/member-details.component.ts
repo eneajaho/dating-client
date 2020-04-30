@@ -18,8 +18,6 @@ export class MemberDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.details$ = this.store.select(selectSelectedMember);
-
-    this.details$.subscribe(data => console.log(data));
   }
 
 }

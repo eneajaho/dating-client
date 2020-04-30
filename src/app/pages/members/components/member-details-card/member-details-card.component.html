@@ -1,0 +1,13 @@
+<div class="card shadow border-0">
+  <div class="card-body">
+    <div class="cover-photo"
+         style="background-image: url(https://images.unsplash.com/photo-1588193187976-7d9b97904278?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1868&q=80)">
+      <div class="profile-photo"
+           style="background-image: url({{ user.photoUrl }})">
+      </div>
+    </div>
+    <h3>{{ user.knownAs }}, {{ user.age }}</h3>
+    <h4>{{ user.gender }}</h4>
+    <h4>Lives in {{ user.city }}, {{ user.country }}</h4>
+  </div>
+</div>

@@ -2,11 +2,18 @@ import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { catchError, concatMap, map, switchMap, withLatestFrom } from "rxjs/operators";
 import { of } from "rxjs";
 import { Injectable } from "@angular/core";
-import { LOAD_MEMBERS, LOAD_MEMBERS_FAILURE, LOAD_MEMBERS_SUCCESS } from "../actions/members.actions";
 import { MemberService } from "../services/member.service";
 import { AppState } from "@root-store/root-state";
-import { selectMembers } from "@pages/members/members-store/selectors/members.selectors";
 import { Store } from "@ngrx/store";
+import {
+  LOAD_MEMBER_DETAILS,
+  LOAD_MEMBER_DETAILS_FAILURE,
+  LOAD_MEMBER_DETAILS_SUCCESS,
+  LOAD_MEMBERS,
+  LOAD_MEMBERS_FAILURE,
+  LOAD_MEMBERS_SUCCESS
+} from "../actions";
+import { selectMembers } from "../selectors";
 
 @Injectable()
 export class MembersEffects {
@@ -26,6 +33,16 @@ export class MembersEffects {
         return this.memberService.getMembers().pipe(
           map(members => LOAD_MEMBERS_SUCCESS({ members })),
           catchError(error => of(LOAD_MEMBERS_FAILURE({ error }))),
+        )
+      })));
+
+  loadMember$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(LOAD_MEMBER_DETAILS),
+      switchMap(({ id }) => {
+        return this.memberService.getMemberDetails(id).pipe(
+          map(user => LOAD_MEMBER_DETAILS_SUCCESS({ user })),
+          catchError(error => of(LOAD_MEMBER_DETAILS_FAILURE({ error }))),
         )
       })));
 }

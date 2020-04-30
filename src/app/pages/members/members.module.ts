@@ -7,6 +7,7 @@ import { MembersComponent } from './containers/members/members.component';
 import { MemberCardComponent } from './components/member-card/member-card.component';
 import { SharedModule } from "../../shared/shared.module";
 import { MemberDetailsComponent } from './containers/member-details/member-details.component';
+import { MemberDetailsCardComponent } from './components/member-details-card/member-details-card.component';
 
 /**
  * MembersModule and MembersStoreModule will be lazy loaded.
@@ -17,7 +18,8 @@ import { MemberDetailsComponent } from './containers/member-details/member-detai
   declarations: [
     MembersComponent,
     MemberCardComponent,
-    MemberDetailsComponent
+    MemberDetailsComponent,
+    MemberDetailsCardComponent
   ],
   imports: [
     CommonModule,

@@ -14,9 +14,9 @@ export class MemberService {
     return this.http.get<User[]>(path);
   }
 
-  getMemberDetails(id: number): Observable<User[]> {
+  getMemberDetails(id: number): Observable<User> {
     const path = this.api + 'users/' + id;
-    return this.http.get<User[]>(path);
+    return this.http.get<User>(path);
   }
 
 }

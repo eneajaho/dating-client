@@ -4,18 +4,19 @@ import { AppState } from "@root-store/index";
 import { Store } from "@ngrx/store";
 import { Observable, of } from "rxjs";
 import { catchError, filter, map, switchMap, take, tap } from "rxjs/operators";
-import { MembersActions, MembersSelectors } from "@pages/members/members-store";
+import { MemberActions, MembersActions, MembersSelectors } from "@pages/members/members-store";
 
 @Injectable({ providedIn: 'root' })
 export class MembersGuard implements CanActivate {
 
   constructor(private store: Store<AppState>) {}
 
-  canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-      return this.checkStore().pipe(
-        switchMap(() => of(true)),
-        catchError(() => of(false))
-      );
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+    return this.checkStore().pipe(
+      tap(() => this.checkMember(+route.params.memberId)),
+      switchMap(() => of(true)),
+      catchError(() => of(false))
+    );
   }
 
   checkStore(): Observable<boolean> {
@@ -27,6 +28,12 @@ export class MembersGuard implements CanActivate {
       filter((loaded: boolean) => loaded),
       take(1)
     );
+  }
+
+  checkMember(id: number) {
+    if (id){
+      this.store.dispatch(MemberActions.LOAD_MEMBER_DETAILS({ id }))
+    }
   }
 
 }
