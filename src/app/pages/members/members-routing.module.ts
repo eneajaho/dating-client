@@ -17,7 +17,7 @@ const routes: Routes = [
     component: MembersComponent
   },
   {
-    path: ':id',
+    path: ':memberId',
     canActivate: [ MembersGuard ],
     component: MemberDetailsComponent
   }

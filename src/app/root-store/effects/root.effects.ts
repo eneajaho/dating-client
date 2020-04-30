@@ -4,7 +4,6 @@ import { Actions, createEffect, ofType, ROOT_EFFECTS_INIT } from '@ngrx/effects'
 import { switchMap } from 'rxjs/operators';
 import { of } from "rxjs";
 
-import { CookieService } from "ngx-cookie-service";
 import { AuthActions } from "@root-store/auth-store";
 import { LocalStorageService } from "@core/services/local-storage.service";
 
