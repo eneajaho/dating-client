@@ -18,11 +18,11 @@ const membersReducers = createReducer(initialMembersState,
     loading: true
   })),
   on(LOAD_MEMBERS_SUCCESS, (state, { members }) => ({
-      ...state,
-      members,
-      loading: false,
-      error: null
-    })),
+    ...state,
+    members,
+    loading: false,
+    error: null
+  })),
   on(LOAD_MEMBERS_FAILURE, (state, { error }) => ({
     ...state,
     members: null,
@@ -40,12 +40,10 @@ const membersReducers = createReducer(initialMembersState,
     })
   })),
   on(LOAD_MEMBER_DETAILS_SUCCESS, (state, { user }) => ({
-      ...state,
-      members: state.members?.map(member => {
-        if (member.id === user.id) { return user; }
-        return member;
-      })
-    })),
+    ...state,
+    members: updateObjectInArray(state.members, user, 'id')
+  })),
+
   on(LOAD_MEMBER_DETAILS_FAILURE, (state, { error }) => ({
     ...state,
     members: state.members?.map(member => {
@@ -53,10 +51,14 @@ const membersReducers = createReducer(initialMembersState,
       return member;
     })
   }))
-
 );
 
 export function reducer(state: MembersState | undefined, action: Action): MembersState {
   return membersReducers(state, action);
 }
 
+
+function updateObjectInArray(array: any[], object: object, key: string): any[] {
+  const newArray = array.filter(item => item[key] !== object[key]);
+  return [ ...newArray, object ];
+}

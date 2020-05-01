@@ -1,23 +1,63 @@
-.profile-photo {
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-  padding-top: 100px;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  position: absolute;
-  top: 90px;
-  left: 40px;
-}
-
 .cover-photo {
   width: 100%;
-  height: 200px;
+  height: 250px;
 
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
 
   position: relative;
+
+  .profile-photo {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    padding-top: 100px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: absolute;
+    top: 130px;
+    left: 40px;
+    box-shadow: 0 0 20px #6a6a6aba;
+  }
+
+  .username {
+    position: absolute;
+    left: 280px;
+    font-size: 20px;
+    color: #e5deeb;
+    font-weight: 600;
+    top: 150px;
+  }
+
+  .name {
+    position: absolute;
+    top: 185px;
+    left: 270px;
+    color: #e5deeb;
+    font-size: 32px;
+    font-weight: 600;
+  }
+
+  .location {
+    position: absolute;
+    top: 255px;
+    left: 270px;
+    font-size: 18px;
+    color: #4c4c4c;
+  }
+
+
+  .memberSince {
+    position: absolute;
+    left: 270px;
+    font-size: 18px;
+    color: #4c4c4c;
+    top: 290px;
+  }
+}
+
+fa-icon {
+  color: #6b0fc0;
 }

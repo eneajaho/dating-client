@@ -1,7 +1,15 @@
-
-<div class="row justify-content-center">
+<div class="row justify-content-center mb-5" [style.paddingBottom]="'300px'">
   <div class="col-xs-12 col-sm-10 col-md-8 col-lg-7">
-    <button routerLink="/members" class="btn btn-light mb-4">Go back</button>
+    <div class="d-flex justify-content-between">
+      <button routerLink="/members" class="btn btn-light mb-4">
+        <fa-icon [icon]="backIcon" class="mr-1"></fa-icon>
+        Go back
+      </button>
+      <button routerLink="/members" class="btn btn-primary mb-4">
+        <fa-icon [icon]="sendIcon" class="mr-1"></fa-icon>
+        Send Message
+      </button>
+    </div>
 
     <div *ngIf="details$ | async as user">
       <app-member-details-card [user]="user"></app-member-details-card>

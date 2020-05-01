@@ -15,13 +15,10 @@ export class MembersComponent implements OnInit {
 
   members$: Observable<User[]>;
 
-  constructor(private store: Store<AppState>, private router: Router) { }
+  constructor(private store: Store<AppState>) { }
 
   ngOnInit() {
     this.members$ = this.store.select(MembersSelectors.selectMembers);
   }
 
-  goToMember(id: number) {
-    this.router.navigate(['/members', id]);
-  }
 }

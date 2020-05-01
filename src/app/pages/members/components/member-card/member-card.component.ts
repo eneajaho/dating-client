@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { User } from "@models/User";
 import { faMapMarkerAlt, } from '@fortawesome/free-solid-svg-icons';
 import { faComment, faHeart } from '@fortawesome/free-regular-svg-icons';
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-member-card',
@@ -10,9 +11,17 @@ import { faComment, faHeart } from '@fortawesome/free-regular-svg-icons';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MemberCardComponent {
+
   @Input() user: User;
+
+  constructor(private router: Router) {}
 
   locationIcon = faMapMarkerAlt;
   sendIcon = faComment;
   loveIcon = faHeart;
+
+
+  goToMember() {
+    this.router.navigate(['/members', this.user.id]);
+  }
 }

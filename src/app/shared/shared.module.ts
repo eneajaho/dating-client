@@ -7,10 +7,10 @@ import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
   declarations: [],
   imports: [
     CommonModule,
-    FontAwesomeModule
+    FontAwesomeModule,
   ],
   exports: [
-    FontAwesomeModule
+    FontAwesomeModule,
   ]
 })
 export class SharedModule { }

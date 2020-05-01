@@ -8,6 +8,8 @@ import { MemberCardComponent } from './components/member-card/member-card.compon
 import { SharedModule } from "../../shared/shared.module";
 import { MemberDetailsComponent } from './containers/member-details/member-details.component';
 import { MemberDetailsCardComponent } from './components/member-details-card/member-details-card.component';
+import { CarouselModule } from 'ngx-bootstrap/carousel';
+import { TabsModule } from "ngx-bootstrap/tabs";
 
 /**
  * MembersModule and MembersStoreModule will be lazy loaded.
@@ -25,7 +27,9 @@ import { MemberDetailsCardComponent } from './components/member-details-card/mem
     CommonModule,
     MembersRoutingModule,
     MembersStoreModule,
-    SharedModule
+    SharedModule,
+    CarouselModule.forRoot(),
+    TabsModule.forRoot()
   ]
 })
 export class MembersModule { }

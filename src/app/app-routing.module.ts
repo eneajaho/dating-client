@@ -9,6 +9,9 @@ import { NonAuthGuard } from "@core/guards/non-auth.guard";
 
 const ROUTES: Routes = [
   {
+    path: '', redirectTo: 'members', pathMatch: 'full'
+  },
+  {
     path: '', component: MainLayoutComponent, children: [
       {
         path: 'members',
