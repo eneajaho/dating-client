@@ -2,9 +2,6 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Observable } from "rxjs";
 import { Store } from "@ngrx/store";
 import { User } from "@models/User";
-import { AppState } from "@root-store/root-state";
-import { MembersSelectors } from "@pages/members/members-store";
-import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-members',

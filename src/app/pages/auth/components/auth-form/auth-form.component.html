@@ -1,17 +1,15 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
   <div class="form-group">
-    <input type="text" formControlName="username"
-           autocomplete="username"
+    <input type="text" formControlName="username" autocomplete="username"
            placeholder="Email address" class="form-control">
-    <div class="alert alert-danger mt-1" *ngIf="isRequired('username')">
+    <div class="alert alert-danger mt-1" *ngIf="required('username')">
       Email is required!
     </div>
   </div>
   <div class="form-group">
-    <input type="password" formControlName="password"
-           autocomplete="current-password"
+    <input type="password" formControlName="password" autocomplete="current-password"
            placeholder="Password" class="form-control">
-    <div class="alert alert-danger mt-1" *ngIf="isRequired('password')">
+    <div class="alert alert-danger mt-1" *ngIf="required('password')">
       Password is required!
     </div>
   </div>
@@ -23,10 +21,16 @@
   <div class="submit">
     <button [disabled]="loading" type="submit"
             class="btn btn-primary btn-block">
-      <span *ngIf="!loading">
+
+      <span *ngIf="!loading; else loader">
         <ng-content select="#type"></ng-content>
       </span>
-      <span *ngIf="loading">Signing in...</span>
+
+      <ng-template #loader>
+        <spinner></spinner>
+        Signing in...
+      </ng-template>
+
     </button>
   </div>
 </form>

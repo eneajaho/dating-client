@@ -2,9 +2,15 @@ import { Injectable } from '@angular/core';
 import { HttpRequest, HttpHandler, HttpInterceptor, HttpErrorResponse, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { throwError } from 'rxjs';
 import { catchError } from "rxjs/operators";
+import { Store } from "@ngrx/store";
+
+import * as fromAuth from '@auth/store/reducers';
+import { AuthActions } from "@auth/store/actions";
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
+
+  constructor(private store: Store<fromAuth.State>) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler) {
     return next.handle(request).pipe(
@@ -15,6 +21,9 @@ export class ErrorInterceptor implements HttpInterceptor {
         }
 
         if (error.status === 401) {
+          if (error.statusText === "Unauthorized") {
+            this.store.dispatch(AuthActions.logout());
+          }
           return throwError(error.error);
         }
 

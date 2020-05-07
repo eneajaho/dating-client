@@ -1,9 +1,10 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Observable } from "rxjs";
 import { Store } from "@ngrx/store";
-import { AppState } from "@root-store/index";
-import { AuthActions, AuthSelectors } from "@root-store/auth-store";
-import { Credentials } from "@pages/auth/models/Credentials";
+import { Credentials } from "@auth/models";
+
+import * as fromAuth from '@auth/store/reducers';
+import { RegisterPageActions } from "@auth/store/actions";
 
 @Component({
   selector: 'app-register',
@@ -13,17 +14,17 @@ import { Credentials } from "@pages/auth/models/Credentials";
 export class RegisterComponent implements OnInit {
 
   error$: Observable<any>;
-  isLoading$: Observable<boolean>;
+  loading$: Observable<boolean>;
 
-  constructor(private store: Store<AppState>) { }
+  constructor(private store: Store<fromAuth.State>) { }
 
   ngOnInit() {
-    this.error$ = this.store.select(AuthSelectors.selectAuthRegisterError);
-    this.isLoading$ = this.store.select(AuthSelectors.selectAuthLoading);
+    this.error$ = this.store.select(fromAuth.selectRegisterPageError);
+    this.loading$ = this.store.select(fromAuth.selectRegisterPagePending);
   }
 
   handleRegister(credentials: Credentials) {
-    this.store.dispatch(AuthActions.REGISTER_REQUEST({ credentials }));
+    this.store.dispatch(RegisterPageActions.register({ credentials }));
   }
 
 

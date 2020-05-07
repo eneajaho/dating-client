@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { Credentials } from "@auth/models";
 
 @Component({
   selector: 'app-auth-form',
@@ -9,7 +10,7 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 export class AuthFormComponent {
 
   @Input() loading: boolean;
-  @Output() submitted = new EventEmitter<{ username: string, password: string }>();
+  @Output() submitted = new EventEmitter<Credentials>();
 
   form: FormGroup;
 
@@ -21,10 +22,12 @@ export class AuthFormComponent {
   }
 
   onSubmit() {
-    this.submitted.emit(this.form.value);
+    if (this.form.valid) {
+      this.submitted.emit(this.form.value);
+    }
   }
 
-  isRequired(control: string) {
+  required(control: string): boolean {
     return this.form.get(control).touched && this.form.get(control).invalid;
   }
 

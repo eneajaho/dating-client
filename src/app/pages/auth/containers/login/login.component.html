@@ -1,6 +1,6 @@
 <h3 class="mb-3">Login in Dating</h3>
 
-<app-auth-form [loading]="isLoading$ | async" (submitted)="handleLogin($event)">
+<app-auth-form [loading]="loading$ | async" (submitted)="handleLogin($event)">
   <span id="type">Login now</span>
   <div *ngIf="error$ | async as error" class="error alert alert-danger">
     {{ error }}
@@ -8,5 +8,7 @@
 </app-auth-form>
 
 <div class="text-center mt-3">
-  <a routerLink="/auth/register">Don't have an account? Register now!</a>
+  <a routerLink="/auth/register">
+    Don't have an account? Register now!
+  </a>
 </div>

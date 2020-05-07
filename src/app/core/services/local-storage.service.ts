@@ -14,4 +14,6 @@ export class LocalStorageService {
   remove(key: string) {
     localStorage.removeItem(key);
   }
+
+  // to be added - check for expired items
 }

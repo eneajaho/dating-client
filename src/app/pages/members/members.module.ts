@@ -10,6 +10,7 @@ import { MemberDetailsComponent } from './containers/member-details/member-detai
 import { MemberDetailsCardComponent } from './components/member-details-card/member-details-card.component';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { TabsModule } from "ngx-bootstrap/tabs";
+import { MemberEditComponent } from './containers/member-edit/member-edit.component';
 
 /**
  * MembersModule and MembersStoreModule will be lazy loaded.
@@ -21,7 +22,8 @@ import { TabsModule } from "ngx-bootstrap/tabs";
     MembersComponent,
     MemberCardComponent,
     MemberDetailsComponent,
-    MemberDetailsCardComponent
+    MemberDetailsCardComponent,
+    MemberEditComponent
   ],
   imports: [
     CommonModule,

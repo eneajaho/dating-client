@@ -1,16 +1,18 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { User } from "@models/User";
-import { faHeart, faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
+import { faHeart, faSignOutAlt, faUser, faUserCog } from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   selector: 'app-navigation',
   templateUrl: './navigation.component.html',
   styleUrls: ['./navigation.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavigationComponent {
 
   logoutIcon = faSignOutAlt;
+  userEditIcon = faUserCog;
+  userIcon = faUser;
   heartIcon = faHeart;
   showMenu = false;
 

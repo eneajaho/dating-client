@@ -1,9 +1,10 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Observable } from "rxjs";
 import { Store } from "@ngrx/store";
-import { Credentials } from "../../models/Credentials";
-import { AppState } from "@root-store/index";
-import { AuthActions, AuthSelectors } from '@root-store/auth-store';
+import { Credentials } from "@auth/models";
+
+import * as fromAuth from '@auth/store/reducers';
+import { LoginPageActions } from "@auth/store/actions";
 
 @Component({
   selector: 'auth-login',
@@ -13,17 +14,17 @@ import { AuthActions, AuthSelectors } from '@root-store/auth-store';
 export class LoginComponent implements OnInit {
 
   error$: Observable<any>;
-  isLoading$: Observable<boolean>;
+  loading$: Observable<boolean>;
 
-  constructor(private store: Store<AppState>) { }
+  constructor(private store: Store<fromAuth.State>) { }
 
   ngOnInit() {
-    this.error$ = this.store.select(AuthSelectors.selectAuthLoginError);
-    this.isLoading$ = this.store.select(AuthSelectors.selectAuthLoading);
+    this.error$ = this.store.select(fromAuth.selectLoginPageError);
+    this.loading$ = this.store.select(fromAuth.selectLoginPagePending);
   }
 
   handleLogin(credentials: Credentials) {
-    this.store.dispatch(AuthActions.LOGIN_REQUEST({ credentials }));
+    this.store.dispatch(LoginPageActions.login({ credentials }));
   }
 
 }

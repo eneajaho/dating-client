@@ -22,7 +22,7 @@ export class MembersGuard implements CanActivate {
   checkStore(): Observable<boolean> {
     return this.store.select(MembersSelectors.selectMembers).pipe(
       tap(members => {
-        if (!members) { this.store.dispatch(MembersActions.LOAD_MEMBERS()); }
+        if (!members || members?.length <= 1) { this.store.dispatch(MembersActions.LOAD_MEMBERS()); }
       }),
       map(members => !!members),
       filter((loaded: boolean) => loaded),

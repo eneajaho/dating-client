@@ -1,12 +1,11 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
-import { NavigationComponent } from './components/navigation/navigation.component';
 import { RouterModule } from "@angular/router";
-import { MainLayoutComponent } from './containers/main-layout/main-layout.component';
-import { EmptyLayoutComponent } from './containers/empty-layout/empty-layout.component';
-import { NotFoundComponent } from "./components/not-found/not-found.component";
-import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
+
+import { MainLayoutComponent, EmptyLayoutComponent } from '@layout/containers';
+import { NavigationComponent, NotFoundComponent } from '@layout/components';
+
+import { SharedModule } from "@shared/index";
 
 @NgModule({
   declarations: [
@@ -16,10 +15,11 @@ import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
     NotFoundComponent,
   ],
   imports: [
-    CommonModule,
+    SharedModule,
     RouterModule,
-    FontAwesomeModule
   ],
-  exports: [ NavigationComponent ]
+  exports: [
+    NavigationComponent
+  ]
 })
 export class LayoutModule {}

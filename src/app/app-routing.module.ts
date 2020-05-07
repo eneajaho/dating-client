@@ -1,11 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from "@angular/router";
-import { MainLayoutComponent } from "./layout/containers/main-layout/main-layout.component";
-import { EmptyLayoutComponent } from "./layout/containers/empty-layout/empty-layout.component";
-import { AuthGuard } from "@core/guards/auth.guard";
-import { NotFoundComponent } from "./layout/components/not-found/not-found.component";
-import { NonAuthGuard } from "@core/guards/non-auth.guard";
+import { MainLayoutComponent, EmptyLayoutComponent } from "@layout/containers";
+import { NotFoundComponent } from "@layout/components";
+import { AuthGuard, NonAuthGuard } from "@core/guards";
 
 const ROUTES: Routes = [
   {
@@ -16,7 +14,7 @@ const ROUTES: Routes = [
       {
         path: 'members',
         canActivate: [ AuthGuard ],
-        loadChildren: () => import('./pages/members/members.module')
+        loadChildren: () => import('@pages/members/members.module')
           .then(m => m.MembersModule)
       }
     ]
@@ -26,7 +24,7 @@ const ROUTES: Routes = [
       {
         path: 'auth',
         canActivate: [NonAuthGuard],
-        loadChildren: () => import('./pages/auth/auth.module')
+        loadChildren: () => import('@auth/auth.module')
           .then(m => m.AuthModule)
       }
     ]

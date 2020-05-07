@@ -1,9 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { AuthLayoutComponent } from "./containers/auth-layout/auth-layout.component";
-import { LoginComponent } from "./containers/login/login.component";
-import { RegisterComponent } from "./containers/register/register.component";
+import { AuthLayoutComponent, LoginComponent, RegisterComponent } from "@auth/containers";
 
 const routes: Routes = [
   {
@@ -18,6 +16,9 @@ const routes: Routes = [
         path: 'register', component: RegisterComponent
       }
     ]
+  },
+  {
+    path: '**', redirectTo: 'login', pathMatch: 'full'
   }
 ];
 
@@ -25,5 +26,4 @@ const routes: Routes = [
   imports: [ RouterModule.forChild(routes) ],
   exports: [ RouterModule ]
 })
-export class AuthRoutingModule {
-}
+export class AuthRoutingModule { }
