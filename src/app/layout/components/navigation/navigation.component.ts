@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { User } from "@models/User";
-import { faHeart, faSignOutAlt, faUser, faUserCog } from "@fortawesome/free-solid-svg-icons";
+import { faCog, faHeart, faSignOutAlt, faUser, faUserCog } from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   selector: 'app-navigation',
@@ -11,7 +11,7 @@ import { faHeart, faSignOutAlt, faUser, faUserCog } from "@fortawesome/free-soli
 export class NavigationComponent {
 
   logoutIcon = faSignOutAlt;
-  userEditIcon = faUserCog;
+  settingsIcon = faCog;
   userIcon = faUser;
   heartIcon = faHeart;
   showMenu = false;

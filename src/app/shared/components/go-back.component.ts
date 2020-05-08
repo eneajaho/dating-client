@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import {Location} from '@angular/common';
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'go-back',
@@ -15,10 +16,16 @@ export class GoBackComponent {
 
   backIcon = faArrowLeft;
 
-  constructor(private location: Location) { }
+  @Input() route: string;
+
+  constructor(private location: Location, private router: Router) { }
 
   back() {
-    this.location.back();
+    if (this.route) {
+      this.router.navigate([this.route]);
+    } else {
+      this.location.back();
+    }
   }
 
 }

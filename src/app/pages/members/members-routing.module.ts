@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { MembersComponent } from "./containers/members/members.component";
-import { MemberDetailsComponent } from "@pages/members/containers/member-details/member-details.component";
-import { MemberEditGuard, MembersGuard } from "@pages/members/guards";
-import { MemberEditComponent } from "@pages/members/containers/member-edit/member-edit.component";
+import { MembersComponent, MemberDetailsComponent, MemberEditComponent }
+  from "@members/containers";
+import { MembersGuard } from "@members/guards";
+import { MemberEditAccountComponent, MemberEditProfileComponent } from "@members/components";
+import { NotFoundComponent } from "@layout/components";
 
 const routes: Routes = [
   {
@@ -18,8 +19,22 @@ const routes: Routes = [
   },
   {
     path: 'edit',
-    canActivate: [ MemberEditGuard ],
-    component: MemberEditComponent
+    canActivate: [ MembersGuard ],
+    component: MemberEditComponent,
+    children: [
+      {
+        path: '', redirectTo: 'profile', pathMatch: 'full'
+      },
+      {
+        path: 'account', component: MemberEditAccountComponent
+      },
+      {
+        path: 'profile', component: MemberEditProfileComponent
+      },
+      {
+        path: '**', component: NotFoundComponent
+      }
+    ]
   },
   {
     path: ':memberId',

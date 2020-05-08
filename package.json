@@ -25,6 +25,7 @@
     "@fortawesome/free-regular-svg-icons": "^5.13.0",
     "@fortawesome/free-solid-svg-icons": "^5.13.0",
     "@ngrx/effects": "^9.1.0",
+    "@ngrx/entity": "^9.1.2",
     "@ngrx/router-store": "^9.1.0",
     "@ngrx/store": "^9.1.0",
     "@ngrx/store-devtools": "^9.1.0",

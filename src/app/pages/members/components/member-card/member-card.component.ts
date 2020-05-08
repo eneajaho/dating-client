@@ -20,8 +20,14 @@ export class MemberCardComponent {
   sendIcon = faComment;
   loveIcon = faHeart;
 
-
   goToMember() {
     this.router.navigate(['/members', this.user.id]);
+  }
+
+  getBackground() {
+    if (this.user && this.user.photoUrl) {
+      return { 'background-image': `url(${ this.user.photoUrl })` };
+    }
+    return { 'background-color': 'grey' };
   }
 }

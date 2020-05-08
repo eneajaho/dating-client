@@ -1,16 +1,20 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 import { MembersRoutingModule } from './members-routing.module';
-import { MembersStoreModule } from "./members-store/members-store.module";
-import { MembersComponent } from './containers/members/members.component';
-import { MemberCardComponent } from './components/member-card/member-card.component';
-import { SharedModule } from "../../shared/shared.module";
-import { MemberDetailsComponent } from './containers/member-details/member-details.component';
-import { MemberDetailsCardComponent } from './components/member-details-card/member-details-card.component';
+import { SharedModule } from "@shared/shared.module";
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { TabsModule } from "ngx-bootstrap/tabs";
-import { MemberEditComponent } from './containers/member-edit/member-edit.component';
+
+import { MembersStoreModule } from "@members/store/members-store.module";
+
+import { MemberDetailsComponent, MembersComponent, MemberEditComponent } from '@members/containers';
+import { MemberCardComponent, MemberDetailsCardComponent } from '@members/components';
+
+import { MemberEditNavigationComponent } from '@members/components';
+import { MemberEditHeaderComponent } from '@members/components';
+import { MemberEditAccountComponent } from '@members/components';
+import { MemberEditProfileComponent } from './components/member-edit-components/member-edit-profile/member-edit-profile.component';
+import { ReactiveFormsModule } from "@angular/forms";
 
 /**
  * MembersModule and MembersStoreModule will be lazy loaded.
@@ -20,20 +24,24 @@ import { MemberEditComponent } from './containers/member-edit/member-edit.compon
 @NgModule({
   declarations: [
     MembersComponent,
+    MemberEditComponent,
     MemberCardComponent,
     MemberDetailsComponent,
     MemberDetailsCardComponent,
-    MemberEditComponent
+    MemberEditNavigationComponent,
+    MemberEditHeaderComponent,
+    MemberEditAccountComponent,
+    MemberEditProfileComponent,
   ],
   imports: [
-    CommonModule,
+    SharedModule,
     MembersRoutingModule,
     MembersStoreModule,
-    SharedModule,
     CarouselModule.forRoot(),
-    TabsModule.forRoot()
+    TabsModule.forRoot(),
+    ReactiveFormsModule
   ]
 })
-export class MembersModule { }
+export class MembersModule {}
 
 

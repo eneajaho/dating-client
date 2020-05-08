@@ -1,12 +1,13 @@
 <div class="shadow border-0 rounded overflow-hidden">
-  <div class="cover-photo" [ngStyle]="getBackground()">
-    <div class="profile-photo" style="background-image: url({{ user.photoUrl }})">
+  <div class="cover-photo" [ngStyle]="getCover()">
+    <div class="profile-photo" [ngStyle]="getProfilePicture()">
     </div>
     <!--      <div class="username">@{{ user.username }}</div>-->
     <div class="name">{{ user.knownAs }}, {{ user.age }}</div>
     <div class="location">
       <fa-icon [icon]="locationIcon" class="mr-1"></fa-icon>
-      Lives in {{ user.city }}, {{ user.country }}
+      Lives in
+      {{ user.city }}, {{ user.country }}
     </div>
 
     <div class="memberSince">

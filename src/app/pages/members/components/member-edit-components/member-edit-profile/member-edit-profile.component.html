@@ -1,0 +1,54 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label for="knownAs">Known As</label>
+    <input type="text" formControlName="knownAs"
+           placeholder="Known as..." class="form-control" id="knownAs">
+    <div class="alert alert-danger mt-1" *ngIf="required('knownAs')">
+      You should enter a default name!
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-6">
+      <div class="form-group">
+        <label for="city">City</label>
+        <input type="text" formControlName="city"
+               placeholder="City" class="form-control" id="city">
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="form-group">
+        <label for="country">Country</label>
+        <input type="text" formControlName="country"
+               placeholder="Country" class="form-control" id="country">
+      </div>
+    </div>
+  </div>
+
+
+  <div class="form-group">
+    <label for="interests">Interests</label>
+    <input type="text" formControlName="interests"
+           placeholder="Interests" class="form-control" id="interests">
+  </div>
+
+  <div class="form-group">
+    <label for="introduction">Introduction</label>
+    <textarea placeholder="Introduction" class="form-control" rows="5"
+              id="introduction" formControlName="introduction"></textarea>
+  </div>
+
+  <div class="submit mt-3">
+    <button type="submit" class="btn btn-primary px-4">
+
+      <span *ngIf="true; else loader">
+        Save changes
+      </span>
+
+      <ng-template #loader>
+        <spinner size="small"></spinner>
+      </ng-template>
+
+    </button>
+  </div>
+</form>

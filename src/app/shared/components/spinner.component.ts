@@ -4,6 +4,7 @@ import { Component, Input } from '@angular/core';
   selector: 'spinner',
   template: `
     <div class="spinner-grow {{ color ? 'text-'+color : '' }}"
+         [class.small]="size === 'small'"
          [class.medium]="size === 'medium'"
          [class.big]="size === 'big'"
          role="status">
@@ -11,13 +12,14 @@ import { Component, Input } from '@angular/core';
     </div>
   `,
   styles: [
+    '.small { width: 1.5rem; height: 1.5rem; }',
     '.medium { width: 5rem; height: 5rem; }',
     '.big { width: 10rem; height: 10rem; }'
   ]
 })
 export class SpinnerComponent {
 
-  @Input() size: 'medium' | 'big' | '' = '';
+  @Input() size: 'small' | 'medium' | 'big' | '' = '';
   @Input() color: string;
 
 }

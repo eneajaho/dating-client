@@ -1,6 +1,8 @@
-<div class="card cp" style="background-image: url({{ user.photoUrl }})">
+<div class="card cp" [ngStyle]="getBackground()">
   <div class="card-body">
-    <h5 class="card-title text-capitalize">{{ user.knownAs }}, {{ user.age }}</h5>
+    <h5 class="card-title text-capitalize">
+      {{ user.knownAs }}, {{ user.age }}
+    </h5>
     <p class="card-text">
       <fa-icon [icon]="locationIcon" class="mr-1"></fa-icon>
       {{ user.city }}

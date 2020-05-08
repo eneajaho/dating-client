@@ -32,11 +32,15 @@ export class MemberDetailsCardComponent implements OnChanges {
     this.interests = cleanStr?.split(' ');
   }
 
-  getBackground() {
+  getCover() {
     return {
       'background-image': `linear-gradient(0, #000000e8 10%, #6b0fc02b 50%),
                                   url(${ this.covers[this.user.id % 4] })`
     };
+  }
+
+  getProfilePicture() {
+    return { 'background-image':  `url(${ this.user.photoUrl })` };
   }
 
 }

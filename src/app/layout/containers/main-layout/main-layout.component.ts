@@ -1,23 +1,27 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Observable } from "rxjs";
 import { Store } from "@ngrx/store";
-import { AppState } from "@root-store/index";
-import { AuthActions, AuthSelectors } from "@root-store/auth-store";
-import { User } from "@models/User";
+
+import * as fromAuth from '@auth/store/reducers';
+import { AuthActions } from "@auth/store/actions";
 
 @Component({
   selector: 'main-layout',
   templateUrl: './main-layout.component.html',
   styleUrls: ['./main-layout.component.scss']
 })
-export class MainLayoutComponent {
+export class MainLayoutComponent implements OnInit {
 
-  user$: Observable<User> = this.store.select(AuthSelectors.selectAuthUser);
+  user$: Observable<any>;
 
-  constructor(private store: Store<AppState>) {}
+  constructor(private store: Store<fromAuth.State>) {}
+
+  ngOnInit() {
+    this.user$ = this.store.select(fromAuth.selectUser);
+  }
 
   handleLogout() {
-    this.store.dispatch(AuthActions.LOGOUT());
+    this.store.dispatch(AuthActions.logout());
   }
 
 }

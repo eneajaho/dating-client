@@ -1,20 +1,25 @@
-<div class="row justify-content-center mb-5" [style.paddingBottom]="'300px'">
-  <div class="col-xs-12 col-sm-10 col-md-8 col-lg-7">
-    <div class="d-flex justify-content-between mb-4">
-      <go-back></go-back>
-<!--      <button *ngIf="!(isMyProfile$ | async)" routerLink="/members" class="btn btn-primary">-->
-<!--        <fa-icon [icon]="sendIcon" class="mr-1"></fa-icon>-->
-<!--        Send Message-->
-<!--      </button>-->
-<!--      <button *ngIf="isMyProfile$ | async" routerLink="/members/edit" class="btn btn-primary">-->
-<!--        <fa-icon [icon]="userEditIcon" class="mr-1"></fa-icon>-->
-<!--        Edit Profile-->
-<!--      </button>-->
+<div class="row justify-content-center mb-5" [style.paddingBottom]="'100px'">
+
+  <div class="col-xs-12 col-sm-10 col-lg-10">
+
+    <app-member-edit-header
+      [page]="page$ | async"
+      [user]="details$ | async">
+    </app-member-edit-header>
+
+    <div class="row justify-content-center mt-4">
+      <div class="col-md-3">
+        <app-member-edit-navigation></app-member-edit-navigation>
+      </div>
+      <div class="col-md-7">
+        <div class="card shadow border-0 rounded overflow-hidden">
+          <div class="card-body">
+            <router-outlet></router-outlet>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <div *ngIf="details$ | async as user">
-      <app-member-details-card [user]="user"></app-member-details-card>
-    </div>
   </div>
 </div>
 

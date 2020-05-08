@@ -1,0 +1,35 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label for="username">Username</label>
+    <input type="text" formControlName="username" autocomplete="username"
+           placeholder="Username" class="form-control" id="username">
+    <div class="alert alert-danger mt-1" *ngIf="required('username')">
+      Username is required!
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="photoUrl">Profile picture</label>
+    <input type="text" formControlName="photoUrl" autocomplete="photoUrl"
+           placeholder="Username" class="form-control" id="photoUrl">
+    <div class="alert alert-danger mt-1" *ngIf="required('photoUrl')">
+      Photo Url is required!
+    </div>
+  </div>
+  <img [src]="getPhotoUrl()" class="img-fluid rounded" style="width: 200px; height: auto">
+
+
+  <div class="submit mt-3">
+    <button type="submit" class="btn btn-primary px-4">
+
+      <span *ngIf="true; else loader">
+        Save changes
+      </span>
+
+      <ng-template #loader>
+        <spinner size="small"></spinner>
+      </ng-template>
+
+    </button>
+  </div>
+</form>
