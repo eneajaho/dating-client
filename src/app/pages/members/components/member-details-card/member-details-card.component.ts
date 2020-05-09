@@ -28,8 +28,7 @@ export class MemberDetailsCardComponent implements OnChanges {
   @Input() user: User;
 
   ngOnChanges() {
-    const cleanStr = this.user.interests?.replace(/[^a-zA-Z ]/g, '');
-    this.interests = cleanStr?.split(' ');
+    this.interests = this.user.interests?.split(',');
   }
 
   getCover() {

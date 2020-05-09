@@ -7,10 +7,13 @@ import { Store } from "@ngrx/store";
 
 import * as fromMembers from '@members/store/reducers';
 import { MemberActions, MemberEditPageActions, MembersApiActions } from "@members/store/actions";
+import { ToastrService } from "ngx-toastr";
 
 @Injectable()
 export class MemberEffects {
-  constructor(private actions$: Actions, private memberService: MemberService,
+  constructor(private actions$: Actions,
+              private toast: ToastrService,
+              private memberService: MemberService,
               private store: Store<fromMembers.State>) {}
 
   loadMember$ = createEffect(() => this.actions$.pipe(
@@ -27,8 +30,14 @@ export class MemberEffects {
     ofType(MemberEditPageActions.editMember),
     switchMap(({ user }) => {
       return this.memberService.editMember(user).pipe(
-        map(user => MembersApiActions.editMemberSuccess({ user })),
-        catchError(error => of(MembersApiActions.editMemberFailure({ error, id: user.id }))),
+        map(user => {
+          this.toast.success('', 'Profile updated successfully!');
+          return MembersApiActions.editMemberSuccess({ user })
+        }),
+        catchError(error => {
+          this.toast.error('', error);
+          return of(MembersApiActions.editMemberFailure({ error, id: user.id }))
+        }),
       )
     })
   ));

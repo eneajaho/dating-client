@@ -35,15 +35,15 @@
     <tag-input id="interests" formControlName="interests"
                [editable]="true" theme='foundation-theme'></tag-input>
 
-    <div class="mt-2">
-      <span *ngFor="let interest of interests" (click)="addInterest(interest)"
-            class="badge badge-pill py-2 px-4 badge-primary cp">{{ interest.display }}</span>
-    </div>
+<!--    <div class="mt-2">-->
+<!--      <span *ngFor="let interest of interests" (click)="addInterest(interest)"-->
+<!--            class="badge badge-pill py-2 px-4 badge-primary cp">{{ interest.display }}</span>-->
+<!--    </div>-->
   </div>
 
   <div class="form-group">
     <label for="introduction">Introduction</label>
-    <textarea placeholder="Introduction" class="form-control" rows="8"
+    <textarea placeholder="Introduction" class="form-control" rows="4"
               id="introduction" formControlName="introduction"></textarea>
   </div>
 

@@ -20,8 +20,8 @@ export class MemberService {
   }
 
   editMember(user: User): Observable<User> {
-    const path = this.api + 'users/';
-    return this.http.post<User>(path, user);
+    const path = this.api + 'users/' + user.id;
+    return this.http.put<User>(path, user);
   }
 
 }

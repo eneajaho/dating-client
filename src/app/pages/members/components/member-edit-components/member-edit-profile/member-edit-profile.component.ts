@@ -44,6 +44,8 @@ export class MemberEditProfileComponent implements OnInit, OnDestroy {
   }
 
   patchForm(user: User) {
+    this.form.reset();
+
     const interests = user.interests?.split(/[\s,]+/);
 
     this.form.patchValue({
@@ -55,7 +57,7 @@ export class MemberEditProfileComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
-    if (this.form.valid) {
+    if (this.form.valid && this.formChanged) {
       const interests = this.joinInterests(this.form.get('interests').value);
       const user = { ...this.details, ...this.form.value, interests };
       this.store.dispatch(MemberEditPageActions.editMember({ user }))
@@ -75,17 +77,17 @@ export class MemberEditProfileComponent implements OnInit, OnDestroy {
     return newArray.join(',');
   }
 
-  interests = [
-    { display: 'Dancing', value: 'Danging' },
-    { display: 'Singing', value: 'Singing' },
-    { display: 'Sexting', value: 'Sexting' },
-  ]
-
-  addInterest(interest) {
-    const interests = [ ...this.form.get('interests').value, interest ];
-    this.interests = this.interests.filter(item => item.value !== interest.value);
-    this.form.patchValue({ interests: interests });
-  }
+  // interests = [
+  //   { display: 'Dancing', value: 'Danging' },
+  //   { display: 'Singing', value: 'Singing' },
+  //   { display: 'Sexting', value: 'Sexting' },
+  // ]
+  //
+  // addInterest(interest) {
+  //   const interests = [ ...this.form.get('interests').value, interest ];
+  //   this.interests = this.interests.filter(item => item.value !== interest.value);
+  //   this.form.patchValue({ interests: interests });
+  // }
 
   required(control: string): boolean {
     return this.form.get(control).touched && this.form.get(control).invalid;
