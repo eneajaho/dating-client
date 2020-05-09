@@ -1,0 +1,52 @@
+
+$primary-color: #6b0fc0;
+$primary: $primary-color;
+$secondary-color: #ba70ff47;
+$third-color: #dff1ff;
+$forth-color: #657899;
+$theme-colors: ("primary":#6b0fc0);
+$base-color: $primary-color;
+
+
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
+
+
+$btn-border-width: 2px;
+$btn-font-weight: 500;
+$btn-padding-x: 1rem;
+$btn-box-shadow: 0 0 10px rgba(141, 137, 137, 0.91);
+
+$input-bg: #f4f4f4;
+$input-color: #4c4c4c;
+$input-border-color: #dddddd80;
+$input-border-width: 2px;
+
+
+@import "~bootstrap/scss/custom-forms";
+@import "~bootstrap/scss/input-group";
+@import "~bootstrap/scss/buttons";
+@import "~bootstrap/scss/forms";
+@import "~bootstrap/scss/bootstrap-grid";
+@import "~bootstrap/scss/grid";
+@import "~bootstrap/scss/alert";
+@import "~bootstrap/scss/type";
+@import "~bootstrap/scss/reboot";
+@import "~bootstrap/scss/pagination";
+@import "~bootstrap/scss/modal";
+@import "~bootstrap/scss/tables";
+@import "~bootstrap/scss/spinners";
+@import "~bootstrap/scss/button-group";
+@import "~bootstrap/scss/dropdown";
+@import "~bootstrap/scss/navbar";
+@import "~bootstrap/scss/nav";
+@import "~bootstrap/scss/list-group";
+@import "~bootstrap/scss/badge";
+@import "~bootstrap/scss/utilities";
+@import "~bootstrap/scss/carousel";
+@import "~bootstrap/scss/card";
+@import "~bootstrap/scss/transitions";
+
+
+.cp { cursor: pointer; }

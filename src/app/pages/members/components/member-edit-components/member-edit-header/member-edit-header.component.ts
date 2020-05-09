@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { User } from "@core/models";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   selector: 'app-member-edit-header',
@@ -8,6 +9,8 @@ import { User } from "@core/models";
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MemberEditHeaderComponent {
+
+  userIcon = faUser;
 
   @Input() user: User;
 

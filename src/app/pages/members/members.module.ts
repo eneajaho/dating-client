@@ -4,6 +4,7 @@ import { MembersRoutingModule } from './members-routing.module';
 import { SharedModule } from "@shared/shared.module";
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { TabsModule } from "ngx-bootstrap/tabs";
+import { TagInputModule } from 'ngx-chips';
 
 import { MembersStoreModule } from "@members/store/members-store.module";
 
@@ -13,8 +14,8 @@ import { MemberCardComponent, MemberDetailsCardComponent } from '@members/compon
 import { MemberEditNavigationComponent } from '@members/components';
 import { MemberEditHeaderComponent } from '@members/components';
 import { MemberEditAccountComponent } from '@members/components';
-import { MemberEditProfileComponent } from './components/member-edit-components/member-edit-profile/member-edit-profile.component';
-import { ReactiveFormsModule } from "@angular/forms";
+import { MemberEditProfileComponent } from '@members/components';
+import { FormsModule } from "@angular/forms";
 
 /**
  * MembersModule and MembersStoreModule will be lazy loaded.
@@ -37,9 +38,10 @@ import { ReactiveFormsModule } from "@angular/forms";
     SharedModule,
     MembersRoutingModule,
     MembersStoreModule,
+    TagInputModule,
     CarouselModule.forRoot(),
     TabsModule.forRoot(),
-    ReactiveFormsModule
+    FormsModule,
   ]
 })
 export class MembersModule {}

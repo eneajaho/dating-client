@@ -1,0 +1,63 @@
+@import "~ngx-chips/core/styles/core/_core.scss";
+
+
+$foundation-primary: #ba70ff47;
+$foundation-primary-text: #6b0fc0;
+$foundation-primary-dark: darken($foundation-primary, 10%);
+
+// this is the container's theme
+$foundation-theme: (
+  container-border-bottom: 1px solid $foundation-primary
+);
+
+// this is the tag's theme
+$foundation-tag-theme: (
+  background: $foundation-primary,
+  background-focused: $foundation-primary-dark,
+  background-active: $foundation-primary-dark,
+  background-hover: $foundation-primary-dark,
+  color: $foundation-primary-text,
+  border-radius: 25px,
+  margin: .1rem 0.4rem .2rem 0,
+  padding: 0px 12px 0px 15px,
+  height: 32px,
+  line-height: 32px,
+);
+
+// this is the delete icon's theme
+$foundation-icon-theme: (
+  fill: $foundation-primary-text,
+  fill-focus: $foundation-primary-text,
+  transition: all 0.2s
+);
+
+// apply theme to the container
+tag-input .ng2-tag-input.foundation-theme {
+  @include tag-input-theme($foundation-theme);
+
+  &--focused {
+    border-bottom: 2px solid $foundation-primary-text;
+  }
+}
+
+.ng2-tag-input {
+  &--focused {
+    border-bottom: 2px solid $foundation-primary-text!important;
+  }
+}
+
+// apply theme to the tags
+tag-input .ng2-tag-input.foundation-theme tag {
+  @include tag-theme($foundation-tag-theme);
+
+  &:hover {
+    box-shadow: none !important;
+    transform: translateY(-2px);
+    color: $foundation-primary-text!important;
+  }
+}
+
+// apply theme to the delete icon
+tag-input .ng2-tag-input.foundation-theme tag delete-icon {
+  @include icon-theme($foundation-icon-theme);
+}

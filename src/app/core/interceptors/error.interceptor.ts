@@ -17,6 +17,7 @@ export class ErrorInterceptor implements HttpInterceptor {
       catchError(error => {
 
         if (error.status === 0) {
+          this.store.dispatch(AuthActions.logout());
           return throwError(error.statusText);
         }
 

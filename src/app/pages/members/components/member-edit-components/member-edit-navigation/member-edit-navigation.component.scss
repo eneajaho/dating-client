@@ -1,3 +1,15 @@
 .list-group-item {
   border-color: transparent;
+  border-left-width: 2px;
+
+  &:hover {
+    color: #4a008f;
+    border-left: 2px solid #6b0fc095!important;
+  }
+
+  &.active {
+    color: #4a008f;
+    border-left: 2px solid #6b0fc0!important;
+    background: #f4f4f4;
+  }
 }

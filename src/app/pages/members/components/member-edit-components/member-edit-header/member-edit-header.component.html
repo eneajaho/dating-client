@@ -1,5 +1,5 @@
 <div class="row justify-content-center align-items-center">
-  <div class="col-2">
+  <div class="col-3">
     <div class="profile-photo" [ngStyle]="getProfilePicture()">
     </div>
   </div>
@@ -13,8 +13,9 @@
       {{ _page.description }}
     </p>
   </div>
-  <div class="col-2">
+  <div class="col-3 text-right">
     <button [routerLink]="['/members', user.id]" class="btn btn-outline-primary">
+      <fa-icon [icon]="userIcon" class="mr-1"></fa-icon>
       View Profile
     </button>
   </div>

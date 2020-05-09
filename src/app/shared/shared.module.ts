@@ -5,6 +5,7 @@ import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
 import { GoBackComponent, SpinnerComponent } from '@shared/components';
+import { ReactiveFormsModule } from "@angular/forms";
 
 export const COMPONENTS = [
   GoBackComponent,
@@ -18,6 +19,7 @@ export const COMPONENTS = [
   imports: [
     CommonModule,
     FontAwesomeModule,
+    ReactiveFormsModule,
     BsDropdownModule.forRoot({
       isAnimated: true,
       autoClose: true
@@ -26,6 +28,7 @@ export const COMPONENTS = [
   exports: [
     CommonModule,
     FontAwesomeModule,
+    ReactiveFormsModule,
     BsDropdownModule,
     ...COMPONENTS
   ]

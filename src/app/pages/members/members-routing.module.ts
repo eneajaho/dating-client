@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { MembersComponent, MemberDetailsComponent, MemberEditComponent }
   from "@members/containers";
-import { MembersGuard } from "@members/guards";
+import { MembersGuard, PreventUnsavedChangesGuard } from "@members/guards";
 import { MemberEditAccountComponent, MemberEditProfileComponent } from "@members/components";
 import { NotFoundComponent } from "@layout/components";
 
@@ -26,10 +26,14 @@ const routes: Routes = [
         path: '', redirectTo: 'profile', pathMatch: 'full'
       },
       {
-        path: 'account', component: MemberEditAccountComponent
+        path: 'account',
+        canDeactivate: [ PreventUnsavedChangesGuard ],
+        component: MemberEditAccountComponent
       },
       {
-        path: 'profile', component: MemberEditProfileComponent
+        path: 'profile',
+        canDeactivate: [ PreventUnsavedChangesGuard ],
+        component: MemberEditProfileComponent
       },
       {
         path: '**', component: NotFoundComponent
