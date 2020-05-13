@@ -4,17 +4,20 @@ import { CommonModule } from '@angular/common';
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
-import { GoBackComponent, SpinnerComponent } from '@shared/components';
+import { GoBackComponent, SpinnerComponent, FileUploaderComponent } from '@shared/components';
 import { ReactiveFormsModule } from "@angular/forms";
+import { DropzoneDirective } from './directives/dropzone.directive';
 
 export const COMPONENTS = [
   GoBackComponent,
-  SpinnerComponent
+  SpinnerComponent,
+  FileUploaderComponent
 ]
 
 @NgModule({
   declarations: [
-    ...COMPONENTS
+    ...COMPONENTS,
+    DropzoneDirective
   ],
   imports: [
     CommonModule,

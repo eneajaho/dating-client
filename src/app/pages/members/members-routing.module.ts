@@ -5,6 +5,7 @@ import { MembersComponent, MemberDetailsComponent, MemberEditComponent }
 import { MembersGuard, PreventUnsavedChangesGuard } from "@members/guards";
 import { MemberEditAccountComponent, MemberEditProfileComponent } from "@members/components";
 import { NotFoundComponent } from "@layout/components";
+import { MemberEditPhotosComponent } from "@members/components/member-edit-components/member-edit-photos/member-edit-photos.component";
 
 const routes: Routes = [
   {
@@ -34,6 +35,11 @@ const routes: Routes = [
         path: 'profile',
         canDeactivate: [ PreventUnsavedChangesGuard ],
         component: MemberEditProfileComponent
+      },
+      {
+        path: 'photos',
+        canDeactivate: [ ],
+        component: MemberEditPhotosComponent
       },
       {
         path: '**', component: NotFoundComponent

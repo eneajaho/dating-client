@@ -17,7 +17,7 @@ $foundation-tag-theme: (
   background-active: $foundation-primary-dark,
   background-hover: $foundation-primary-dark,
   color: $foundation-primary-text,
-  border-radius: 25px,
+  border-radius: 5px,
   margin: .1rem 0.4rem .2rem 0,
   padding: 0px 12px 0px 15px,
   height: 32px,
@@ -34,15 +34,15 @@ $foundation-icon-theme: (
 // apply theme to the container
 tag-input .ng2-tag-input.foundation-theme {
   @include tag-input-theme($foundation-theme);
-
-  &--focused {
-    border-bottom: 2px solid $foundation-primary-text;
-  }
 }
 
 .ng2-tag-input {
+  border: 2px solid #dddddd80!important;
+  border-radius: 5px;
+  padding: 6px 0 3px 5px!important;
+
   &--focused {
-    border-bottom: 2px solid $foundation-primary-text!important;
+    border-color: $foundation-primary-text!important;
   }
 }
 

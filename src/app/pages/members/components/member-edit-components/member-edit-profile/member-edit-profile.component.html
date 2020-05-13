@@ -1,6 +1,5 @@
-<div *ngIf="formChanged" class="alert alert-info text-center">
-  <fa-icon [icon]="infoIcon" class="mr-2"></fa-icon>
-  You have made changes. Any unsaved changes will be lost!
+<div *ngIf="formChanged" class="text-right text-secondary">
+  *Unsaved changes
 </div>
 
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
@@ -33,6 +32,9 @@
   <div class="form-group">
     <label for="interests">Interests</label>
     <tag-input id="interests" formControlName="interests"
+               [secondaryPlaceholder]="'Add your interests..'"
+               [placeholder]="'+ Add another interest..'"
+               (change)="onChipChange()"
                [editable]="true" theme='foundation-theme'></tag-input>
 
 <!--    <div class="mt-2">-->
@@ -48,9 +50,10 @@
   </div>
 
   <div class="submit mt-3">
-    <button type="submit" class="btn btn-primary px-4">
+    <button [disabled]="!formChanged" type="submit"
+            class="btn btn-primary px-4">
 
-      <span *ngIf="true; else loader">
+      <span *ngIf="!(loading$ | async); else loader">
         Save changes
       </span>
 

@@ -31,6 +31,7 @@ export class MemberEditHeaderComponent {
     email: 'Change your email or add recovery email.',
     password: 'Update your account password.',
     chat: 'Modify your chat settings, ex. chat requests, chat blocking...',
+    photos: 'View, add or remove your photos...'
   }
 
   getProfilePicture() {

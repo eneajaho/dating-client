@@ -4,10 +4,10 @@
 
 @import '~ngx-toastr/toastr-bs4-alert';
 
-.toast-top-right {
-  top: 70px;
-}
+.toast-top-right {  top: 70px; }
 
 @import "./src/assets/scss/ngx-chips-theme";
 
 @import "./src/assets/scss/tabset-custom-theme";
+
+@import "./src/assets/scss/animations";

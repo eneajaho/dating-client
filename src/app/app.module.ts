@@ -8,8 +8,8 @@ import { SharedModule } from "@shared/shared.module";
 import { environment } from "../environments/environment";
 import { API_URL } from "@core/configs/api.token";
 
-import { RootStoreModule } from '@store/root-store.module';
 import { AppRoutingModule } from './app-routing.module';
+import { RootStoreModule } from '@store/root-store.module';
 import { LayoutModule } from '@layout/layout.module';
 import { CoreModule } from '@core/core.module';
 

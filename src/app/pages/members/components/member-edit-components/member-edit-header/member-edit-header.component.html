@@ -3,20 +3,22 @@
     <div class="profile-photo" [ngStyle]="getProfilePicture()">
     </div>
   </div>
-  <div class="col-6">
+  <div class="col-7">
     <h4 class="text-capitalize">
-      <span class="text-primary cp" [routerLink]="['/members', user.id]">{{ user.knownAs }}</span>
+      <span class="text-primary">
+        {{ user.knownAs }}
+      </span>
       /
       {{ _page.name }} settings
     </h4>
-    <p class="mb-0 text-secondary">
+    <p class="mb-0 text-muted">
       {{ _page.description }}
     </p>
   </div>
-  <div class="col-3 text-right">
+  <div class="col-2 text-right">
     <button [routerLink]="['/members', user.id]" class="btn btn-outline-primary">
       <fa-icon [icon]="userIcon" class="mr-1"></fa-icon>
-      View Profile
+      View
     </button>
   </div>
 

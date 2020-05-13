@@ -4,24 +4,30 @@ $primary: $primary-color;
 $secondary-color: #ba70ff47;
 $third-color: #dff1ff;
 $forth-color: #657899;
-$theme-colors: ("primary":#6b0fc0);
+$theme-colors: ("primary": $primary-color);
+$theme-colors: ("secondary": #ba70ff);
 $base-color: $primary-color;
-
 
 @import "~bootstrap/scss/functions";
 @import "~bootstrap/scss/variables";
 @import "~bootstrap/scss/mixins";
 
+/** Buttons **/
+$btn-border-width:                  2px;
+$btn-font-weight:                   500;
+$btn-padding-x:                     1rem;
+$btn-box-shadow:                    0 0 10px rgba(141, 137, 137, 0.91);
 
-$btn-border-width: 2px;
-$btn-font-weight: 500;
-$btn-padding-x: 1rem;
-$btn-box-shadow: 0 0 10px rgba(141, 137, 137, 0.91);
 
-$input-bg: #f4f4f4;
-$input-color: #4c4c4c;
-$input-border-color: #dddddd80;
-$input-border-width: 2px;
+/** Inputs **/
+$input-bg:                          #f4f4f4;
+$input-color:                       #4c4c4c;
+$input-border-color:                #dddddd80;
+$input-border-width:                2px;
+
+
+/** Alerts **/
+$alert-border-width:                2px;
 
 
 @import "~bootstrap/scss/custom-forms";

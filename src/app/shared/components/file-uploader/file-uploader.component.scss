@@ -1,0 +1,35 @@
+.drop-zone {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  font-weight: 200;
+  height: 200px;
+  border: 2px dashed #6b0fc0;
+  border-radius: 5px;
+  background: white;
+  margin: 10px 0;
+
+  .icon {
+    color: #6b0fc0;
+  }
+
+  &.hovering {
+    border: 2px solid #6b0fc0;
+    color: #dadada !important;
+  }
+
+  .file-label {
+    font-size: 1.2em;
+  }
+}
+
+
+#file {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}

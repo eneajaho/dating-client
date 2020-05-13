@@ -1,4 +1,13 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output
+} from '@angular/core';
 import { Credentials } from "@auth/models";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { User } from "@core/models";
@@ -9,12 +18,12 @@ import * as fromRoot from "@store/reducers";
 import { map, takeUntil } from "rxjs/operators";
 import validate = WebAssembly.validate;
 import { MemberEditPageActions } from "@members/store/actions";
+import { faInfo } from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   selector: 'app-member-edit-account',
   templateUrl: './member-edit-account.component.html',
-  styleUrls: ['./member-edit-account.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: [ './member-edit-account.component.scss' ],
 })
 export class MemberEditAccountComponent implements OnInit, OnDestroy {
 
@@ -23,7 +32,10 @@ export class MemberEditAccountComponent implements OnInit, OnDestroy {
 
   private destroy$ = new Subject<boolean>();
 
-  constructor(private store: Store<fromMembers.State>, private fb: FormBuilder) {}
+  loading$: Observable<boolean>;
+
+  constructor(private store: Store<fromMembers.State>,
+              private fb: FormBuilder) {}
 
   ngOnInit() {
     this.form = this.fb.group({
@@ -32,19 +44,22 @@ export class MemberEditAccountComponent implements OnInit, OnDestroy {
     });
 
     this.store.select(fromMembers.selectSelectedMember)
-      .pipe(takeUntil(this.destroy$))
-      .subscribe(data => {
-        this.details = data;
-        this.patchForm(data);
-      });
+      .pipe(takeUntil(this.destroy$)).subscribe(data => {
+      this.details = data;
+      this.patchForm(data);
+    });
 
+    this.loading$ = this.store.select(fromMembers.selectMemberLoading);
   }
 
   patchForm(user: User) {
-    this.form.setValue({
+    this.form.reset();
+
+    this.form.patchValue({
+      ...user,
       username: user.username,
       photoUrl: user.photoUrl
-    })
+    });
   }
 
   getPhotoUrl() {
@@ -54,13 +69,16 @@ export class MemberEditAccountComponent implements OnInit, OnDestroy {
   onSubmit() {
     if (this.form.valid) {
       const user = { ...this.details, ...this.form.value };
-      console.log(user);
       this.store.dispatch(MemberEditPageActions.editMember({ user }))
     }
   }
 
   required(control: string): boolean {
     return this.form.get(control).touched && this.form.get(control).invalid;
+  }
+
+  get formChanged() {
+    return this.form.touched && this.form.dirty;
   }
 
   ngOnDestroy() {

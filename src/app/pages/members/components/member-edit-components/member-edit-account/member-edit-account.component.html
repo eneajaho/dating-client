@@ -1,3 +1,7 @@
+<div *ngIf="formChanged" class="text-right text-secondary">
+  *Unsaved changes
+</div>
+
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
   <div class="form-group">
     <label for="username">Username</label>
@@ -9,7 +13,7 @@
   </div>
 
   <div class="form-group">
-    <label for="photoUrl">Profile picture</label>
+    <label for="photoUrl">Profile picture *Doesnt work for the moment!</label>
     <input type="text" formControlName="photoUrl" autocomplete="photoUrl"
            placeholder="Username" class="form-control" id="photoUrl">
     <div class="alert alert-danger mt-1" *ngIf="required('photoUrl')">
@@ -20,7 +24,7 @@
 
 
   <div class="submit mt-3">
-    <button type="submit" class="btn btn-primary px-4">
+    <button [disabled]="!formChanged" type="submit" class="btn btn-primary px-4">
 
       <span *ngIf="true; else loader">
         Save changes

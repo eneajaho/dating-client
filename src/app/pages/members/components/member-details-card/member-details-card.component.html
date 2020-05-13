@@ -1,29 +1,26 @@
 <div class="shadow border-0 rounded overflow-hidden">
   <div class="cover-photo" [ngStyle]="getCover()">
-    <div class="profile-photo" [ngStyle]="getProfilePicture()">
-    </div>
-    <!--      <div class="username">@{{ user.username }}</div>-->
+    <div class="profile-photo" [ngStyle]="getProfilePicture()"></div>
     <div class="name">{{ user.knownAs }}, {{ user.age }}</div>
+
     <div class="location">
       <fa-icon [icon]="locationIcon" class="mr-1"></fa-icon>
-      Lives in
-      {{ user.city }}, {{ user.country }}
+      Lives in {{ user.city }}, {{ user.country }}
     </div>
 
     <div class="memberSince">
       <fa-icon [icon]="calendarIcon" class="mr-1"></fa-icon>
-      Member since
-      {{ user.createdAt | date: 'dd/MM/yyyy'}}
+      Member since {{ user.createdAt | date: 'dd/MM/yyyy'}}
     </div>
 
   </div>
   <div class="p-3 pt-5 mt-5">
     <tabset [justified]="true" class="member-tabset">
+
       <tab heading="Introduction">
-        <p class="text-secondary">
-          {{ user.introduction }}
-        </p>
+        <p class="text-muted">{{ user.introduction }}</p>
       </tab>
+
       <tab heading="Interests">
         <div class="text-center">
             <span *ngFor="let interest of interests; let i=index"
@@ -32,17 +29,19 @@
             </span>
         </div>
       </tab>
+
       <tab heading="Photos">
         <carousel>
           <slide *ngFor="let photo of user.photos">
-            <img [src]="photo.url" alt="first slide" style="display: block; width: 100%;">
-            <div class="carousel-caption d-none d-md-block px-4 py-2" style="background: #570257">
+            <img [src]="photo.url" [alt]="photo.description" class="d-block photo-img margin-auto">
+            <div class="carousel-caption d-none d-md-block px-4 py-2 photo-img">
               <h4>{{ photo.dateAdded | date: 'dd/MM/yyyy'}}</h4>
               <p>{{ photo.description }}</p>
             </div>
           </slide>
         </carousel>
       </tab>
+
     </tabset>
 
   </div>

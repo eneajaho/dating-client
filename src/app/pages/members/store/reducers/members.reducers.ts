@@ -1,7 +1,13 @@
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 import { Action, createReducer, on } from "@ngrx/store";
 
-import { MemberActions, MemberEditPageActions, MembersApiActions, MembersPageActions } from "@members/store/actions";
+import {
+  MemberActions,
+  MemberEditPageActions,
+  MembersApiActions,
+  MembersPageActions,
+  MembersPhotoActions
+} from "@members/store/actions";
 import { User } from "@core/models";
 
 
@@ -91,6 +97,30 @@ export const reducer = createReducer(initialState,
   on(MembersApiActions.editMemberFailure, (state, { error, id }) => {
     return adapter.updateOne({
       id: id, changes: { error: error, loaded: false, loading: false }
+    }, state);
+  }),
+
+
+
+  /**  Photo Reducers  **/
+  on(MembersPhotoActions.uploadPhoto, (state, { payload, userId }) => {
+    return adapter.updateOne({
+      id: userId,
+      changes: { loading: true, error: null }
+    }, state);
+  }),
+
+  on(MembersPhotoActions.uploadPhotoSuccess, (state, { photo, userId }) => {
+    return adapter.updateOne({
+      id: userId,
+      changes: { photos: [ ...state.entities[userId].photos, photo], loading: false }
+    }, state);
+  }),
+
+  on(MembersPhotoActions.uploadPhotoFailure, (state, { error, userId }) => {
+    return adapter.updateOne({
+      id: userId,
+      changes: { error, loading: false }
     }, state);
   }),
 )

@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { User } from "@core/models";
-import { Subject } from "rxjs";
+import { Observable, Subject } from "rxjs";
 import { Store } from "@ngrx/store";
 import * as fromMembers from "@members/store/reducers";
 import { takeUntil } from "rxjs/operators";
@@ -12,26 +12,24 @@ import { faInfo } from "@fortawesome/free-solid-svg-icons";
   selector: 'app-member-edit-profile',
   templateUrl: './member-edit-profile.component.html',
   styleUrls: [ './member-edit-profile.component.scss' ],
-  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MemberEditProfileComponent implements OnInit, OnDestroy {
 
   form: FormGroup;
   details: User;
 
-  infoIcon = faInfo;
+  loading$: Observable<boolean>;
 
   private destroy$ = new Subject<boolean>();
 
   constructor(private store: Store<fromMembers.State>,
-              private fb: FormBuilder, private cd: ChangeDetectorRef) {}
+              private fb: FormBuilder) {}
 
   ngOnInit() {
     this.form = this.fb.group({
       knownAs: [ '', Validators.required ],
       city: '',
       country: '',
-      gender: [ '', Validators.required ],
       interests: '',
       introduction: ''
     });
@@ -41,26 +39,32 @@ export class MemberEditProfileComponent implements OnInit, OnDestroy {
       this.details = data;
       this.patchForm(data);
     });
+
+    this.loading$ = this.store.select(fromMembers.selectMemberLoading);
   }
 
   patchForm(user: User) {
     this.form.reset();
 
-    const interests = user.interests?.split(/[\s,]+/);
+    let interests = [];
+    if (user.interests?.length > 0) {
+      interests = user.interests?.split(/[\s,]+/);
+    }
 
     this.form.patchValue({
       ...user,
       interests: interests,
     });
-
-    this.cd.detectChanges();
   }
+
+  onChipChange() { this.form.markAsDirty(); }
 
   onSubmit() {
     if (this.form.valid && this.formChanged) {
+
       const interests = this.joinInterests(this.form.get('interests').value);
       const user = { ...this.details, ...this.form.value, interests };
-      this.store.dispatch(MemberEditPageActions.editMember({ user }))
+      this.store.dispatch(MemberEditPageActions.editMember({ user }));
     }
   }
 

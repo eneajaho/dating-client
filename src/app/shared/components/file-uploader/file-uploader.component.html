@@ -1,0 +1,16 @@
+<div class="drop-zone" dropzone
+     (hovered)="toggleHover($event)"
+     (dropped)="onDrop($event)"
+     [class.hovering]="isHovering">
+
+  <h2 class="icon"><fa-icon [icon]="uploadIcon" class="mr-1"></fa-icon></h2>
+  <h4 class="">Drag & drop your photos here</h4>
+  <h5 class="text-center mb-2">or</h5>
+  <input type="file"  id="file"
+         (change)="handleFileInput($event.target.files)">
+  <label for="file" class="btn btn-primary">
+    <fa-icon [icon]="uploadIcon" class="mr-1"></fa-icon>
+    Choose a file
+  </label>
+
+</div>

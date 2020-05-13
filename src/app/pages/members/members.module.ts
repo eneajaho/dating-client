@@ -8,13 +8,22 @@ import { TagInputModule } from 'ngx-chips';
 
 import { MembersStoreModule } from "@members/store/members-store.module";
 
-import { MemberDetailsComponent, MembersComponent, MemberEditComponent } from '@members/containers';
-import { MemberCardComponent, MemberDetailsCardComponent } from '@members/components';
+import {
+  MembersComponent,
+  MemberEditComponent,
+  MemberDetailsComponent,
+} from '@members/containers';
 
-import { MemberEditNavigationComponent } from '@members/components';
-import { MemberEditHeaderComponent } from '@members/components';
-import { MemberEditAccountComponent } from '@members/components';
-import { MemberEditProfileComponent } from '@members/components';
+import {
+  MemberCardComponent,
+  MemberDetailsCardComponent,
+  MemberEditAccountComponent,
+  MemberEditNavigationComponent,
+  MemberEditHeaderComponent,
+  MemberEditProfileComponent,
+  MemberEditPhotosComponent
+} from '@members/components';
+
 import { FormsModule } from "@angular/forms";
 
 /**
@@ -33,6 +42,7 @@ import { FormsModule } from "@angular/forms";
     MemberEditHeaderComponent,
     MemberEditAccountComponent,
     MemberEditProfileComponent,
+    MemberEditPhotosComponent,
   ],
   imports: [
     SharedModule,

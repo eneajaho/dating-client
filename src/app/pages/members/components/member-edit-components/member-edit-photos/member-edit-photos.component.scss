@@ -1,0 +1,17 @@
+.photo {
+  position: relative;
+  padding: 5px;
+
+  & > .buttons {
+    display: none;
+    position: absolute;
+    bottom: 20px;
+    left: 23%;
+    transition: 0.2s all;
+    animation: scale-up-center 0.2s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+  }
+
+  &:hover .buttons {
+    display: block;
+  }
+}
