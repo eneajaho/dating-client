@@ -3,9 +3,7 @@ import { catchError, map, switchMap } from "rxjs/operators";
 import { of } from "rxjs";
 import { Injectable } from "@angular/core";
 import { MemberService } from "../services/member.service";
-import { Store } from "@ngrx/store";
 
-import * as fromMembers from '@members/store/reducers';
 import { MemberActions, MemberEditPageActions, MembersApiActions } from "@members/store/actions";
 import { ToastrService } from "ngx-toastr";
 
@@ -13,8 +11,7 @@ import { ToastrService } from "ngx-toastr";
 export class MemberEffects {
   constructor(private actions$: Actions,
               private toast: ToastrService,
-              private memberService: MemberService,
-              private store: Store<fromMembers.State>) {}
+              private memberService: MemberService) {}
 
   loadMember$ = createEffect(() => this.actions$.pipe(
     ofType(MemberActions.loadMember),

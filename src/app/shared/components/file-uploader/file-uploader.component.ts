@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { faCloudUploadAlt } from "@fortawesome/free-solid-svg-icons";
 
 @Component({
@@ -7,6 +7,8 @@ import { faCloudUploadAlt } from "@fortawesome/free-solid-svg-icons";
   styleUrls: ['./file-uploader.component.scss']
 })
 export class FileUploaderComponent {
+
+  @Input() uploading: boolean;
 
   @Output() uploaded = new EventEmitter<FileList>();
 

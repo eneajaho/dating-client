@@ -13,8 +13,14 @@ export class PhotoService {
     return this.http.post(path, payload);
   }
 
-  deletePhoto(id: number): Observable<boolean> {
-    return of(true)
+  setMainPhoto(userId: number, photoId: number) {
+    const path = `${this.api}users/${userId}/photos/${photoId}/setMain`;
+    return this.http.post(path, {});
+  }
+
+  deletePhoto(userId: number, photoId: number): Observable<any> {
+    const path = `${this.api}users/${userId}/photos/${photoId}`;
+    return this.http.delete(path);
   }
 
 }

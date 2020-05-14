@@ -6,12 +6,13 @@ import { Actions, createEffect, ofType } from "@ngrx/effects";
 
 import { MembersPhotoActions } from "@members/store/actions";
 import { PhotoService } from "@members/store/services/photo.service";
+import { ToastrService } from "ngx-toastr";
 
 @Injectable()
 export class PhotosEffects {
-  constructor(private actions$: Actions, private photoService: PhotoService) {}
+  constructor(private actions$: Actions, private photoService: PhotoService, private toast: ToastrService) {}
 
-  loadMembers$ = createEffect(() =>
+  uploadPhoto$ = createEffect(() =>
     this.actions$.pipe(
       ofType(MembersPhotoActions.uploadPhoto),
       switchMap(({ payload, userId }) => {
@@ -21,5 +22,31 @@ export class PhotosEffects {
         )
       })
     ));
+
+  setMainPhoto$ = createEffect(() => this.actions$.pipe(
+    ofType(MembersPhotoActions.setMainPhoto),
+    switchMap(({ userId, photoId }) => {
+      return this.photoService.setMainPhoto(userId, photoId).pipe(
+        map(res => MembersPhotoActions.setMainPhotoSuccess({ userId, photoId })),
+        catchError(error => {
+          this.toast.warning('', error);
+          return of(MembersPhotoActions.setMainPhotoFailure({ userId, error }))
+        })
+      )
+    })
+  ))
+
+  deletePhoto$ = createEffect(() => this.actions$.pipe(
+    ofType(MembersPhotoActions.deletePhoto),
+    switchMap(({ userId, photoId }) => {
+      return this.photoService.deletePhoto(userId, photoId).pipe(
+        map(res => MembersPhotoActions.deletePhotoSuccess({ userId, photoId })),
+        catchError(error => {
+          this.toast.warning('', error);
+          return of(MembersPhotoActions.deletePhotoFailure({ userId, error }))
+        })
+      )
+    })
+  ))
 
 }

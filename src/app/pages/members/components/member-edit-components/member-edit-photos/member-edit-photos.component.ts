@@ -33,10 +33,21 @@ export class MemberEditPhotosComponent implements OnInit {
   }
 
   handlePhotos(photos: FileList) {
+    if (!photos.item(0)?.name) {
+      return false;
+    }
     const formData = new FormData();
     formData.append('File', photos.item(0), photos.item(0).name);
 
     this.store.dispatch(MembersPhotoActions.uploadPhoto({ payload: formData, userId: this.userId }))
+  }
+
+  setMainPhoto(id: number) {
+    this.store.dispatch(MembersPhotoActions.setMainPhoto({ userId: this.userId, photoId: id }));
+  }
+
+  deletePhoto(id: number) {
+    this.store.dispatch(MembersPhotoActions.deletePhoto({ userId: this.userId, photoId: id }));
   }
 
 }

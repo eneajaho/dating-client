@@ -1,17 +1,25 @@
 .photo {
   position: relative;
   padding: 5px;
+  opacity: 0.9;
+  transition: 0.3s all;
 
   & > .buttons {
     display: none;
     position: absolute;
-    bottom: 20px;
-    left: 23%;
-    transition: 0.2s all;
+    bottom: 15px;
+    width: 90%;
+    transition: 0.3s all;
     animation: scale-up-center 0.2s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+    justify-content: center;
   }
 
-  &:hover .buttons {
-    display: block;
+  &:hover {
+    opacity: 1;
+
+    .buttons {
+      display: flex;
+    }
   }
+
 }

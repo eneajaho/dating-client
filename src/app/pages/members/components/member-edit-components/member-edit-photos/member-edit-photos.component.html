@@ -1,22 +1,25 @@
-<div class="row">
-  <div *ngFor="let photo of photos$ | async" class="col-xs-12 col-sm-6 mb-2">
-    <div class="card">
+<app-file-uploader
+  [uploading]="loading$ | async"
+  (uploaded)="handlePhotos($event)">
+</app-file-uploader>
+
+<div class="row mt-4">
+  <div *ngFor="let photo of photos$ | async" class="col-xs-12 col-sm-4 mb-4">
+    <div class="card rounded" [class.border-primary]="photo.isMain" style="border-width: 2px">
       <div class="card-body photo">
         <img [src]="photo.url" [alt]="photo.description" class="w-100 rounded">
         <div class="buttons">
-          <button class="btn btn-primary mx-1" title="Make Profile Picture">
+          <button (click)="setMainPhoto(photo.id)" class="btn btn-sm btn-primary mx-1"
+                  title="Make Profile Picture">
             <fa-icon [icon]="checkIcon"></fa-icon>
           </button>
-          <button class="btn btn-danger mx-1" title="Delete photo">
+          <button (click)="deletePhoto(photo.id)" class="btn btn-sm btn-danger mx-1"
+                  title="Delete photo">
             <fa-icon [icon]="deleteIcon"></fa-icon>
           </button>
         </div>
       </div>
     </div>
   </div>
-  <div class="col-12 py-4 d-flex justify-content-center align-items-center">
-    <spinner size="medium" color="primary" *ngIf="loading$ | async"></spinner>
-  </div>
 </div>
 
-<app-file-uploader (uploaded)="handlePhotos($event)"></app-file-uploader>

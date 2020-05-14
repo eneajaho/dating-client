@@ -111,9 +111,10 @@ export const reducer = createReducer(initialState,
   }),
 
   on(MembersPhotoActions.uploadPhotoSuccess, (state, { photo, userId }) => {
+    const updatedPhotos = [ ...state.entities[userId].photos, photo];
     return adapter.updateOne({
       id: userId,
-      changes: { photos: [ ...state.entities[userId].photos, photo], loading: false }
+      changes: { photos: updatedPhotos, loading: false }
     }, state);
   }),
 
@@ -122,6 +123,36 @@ export const reducer = createReducer(initialState,
       id: userId,
       changes: { error, loading: false }
     }, state);
+  }),
+
+  on(MembersPhotoActions.setMainPhotoSuccess, (state, { userId, photoId }) => {
+    const updatedPhotos = state.entities[userId].photos.map(photo => {
+      return { ...photo, isMain: photo.id === photoId };
+    });
+    return adapter.updateOne({
+      id: userId,
+      changes: {
+        photoUrl: updatedPhotos.find(p => p.id === photoId).url,
+        photos: updatedPhotos,
+        error: null
+      }
+    }, state);
+  }),
+
+  on(MembersPhotoActions.setMainPhotoFailure, (state, { userId, error }) => {
+    return state;
+  }),
+
+  on(MembersPhotoActions.deletePhotoSuccess, (state, { userId, photoId }) => {
+    const updatedPhotos = state.entities[userId].photos.filter(photo => photo.id !== photoId);
+    return adapter.updateOne({
+      id: userId,
+      changes: { photos: updatedPhotos, error: null }
+    }, state);
+  }),
+
+  on(MembersPhotoActions.deletePhotoFailure, (state, { userId, error }) => {
+    return state;
   }),
 )
 

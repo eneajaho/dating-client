@@ -29,8 +29,9 @@ export class ErrorInterceptor implements HttpInterceptor {
         if (error.status === 401) {
           if (error.statusText === "Unauthorized") {
             this.store.dispatch(AuthActions.logout());
+            return throwError("You are not authorized!");
           }
-          return throwError(error.error);
+          return throwError(error.statusText);
         }
 
         if (error instanceof HttpErrorResponse) {
