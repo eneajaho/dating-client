@@ -4,13 +4,17 @@
     <div class="name">{{ user.knownAs }}, {{ user.age }}</div>
 
     <div class="location">
-      <fa-icon [icon]="locationIcon" class="mr-1"></fa-icon>
+      <fa-icon [icon]="locationIcon" class="mr-2"></fa-icon>
       Lives in {{ user.city }}, {{ user.country }}
     </div>
 
     <div class="memberSince">
-      <fa-icon [icon]="calendarIcon" class="mr-1"></fa-icon>
-      Member since {{ user.createdAt | date: 'dd/MM/yyyy'}}
+      <fa-icon [icon]="calendarIcon" class="mr-2"></fa-icon>
+      Member since: {{ user.createdAt | date }}
+    </div>
+
+    <div class="lastActive">
+      Active {{ user.lastActive | timeAgo }}
     </div>
 
   </div>

@@ -8,6 +8,7 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { GoBackComponent, SpinnerComponent, FileUploaderComponent } from '@shared/components';
 import { ReactiveFormsModule } from "@angular/forms";
 import { DropzoneDirective } from './directives/dropzone.directive';
+import { TimeAgoPipe } from './pipes/time-ago.pipe';
 
 export const COMPONENTS = [
   GoBackComponent,
@@ -19,6 +20,7 @@ export const COMPONENTS = [
   declarations: [
     ...COMPONENTS,
     DropzoneDirective,
+    TimeAgoPipe,
   ],
   imports: [
     CommonModule,
@@ -36,6 +38,7 @@ export const COMPONENTS = [
     ReactiveFormsModule,
     BsDropdownModule,
     BsDatepickerModule,
+    TimeAgoPipe,
     ...COMPONENTS
   ]
 })

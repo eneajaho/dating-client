@@ -54,7 +54,19 @@
     left: 270px;
     font-size: 18px;
     color: #4c4c4c;
-    top: 290px;
+    top: 285px;
+  }
+
+  .lastActive {
+    position: absolute;
+    right: 10px;
+    font-weight: 500;
+    font-size: 14px;
+    color: #ffffff;
+    top: 5px;
+    background: #41058469;
+    padding: 5px 10px;
+    border-radius: 5px;
   }
 }
 
