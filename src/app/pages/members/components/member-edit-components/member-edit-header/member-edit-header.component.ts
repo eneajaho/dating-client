@@ -35,10 +35,10 @@ export class MemberEditHeaderComponent {
   }
 
   getProfilePicture() {
-    if (this.user) {
-      return { 'background-image':  `url(${ this.user.photoUrl })` };
+    if (this.user?.photoUrl) {
+      return { 'background-image': `url(${ this.user.photoUrl })` };
     }
-    return { 'background':  'grey' };
+    return { 'background-image': `url(https://i.imgur.com/bLrOP4M.png)` };
   }
 
 }

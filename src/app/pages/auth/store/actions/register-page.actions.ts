@@ -1,7 +1,7 @@
 import { createAction, props } from "@ngrx/store";
-import { Credentials } from "@auth/models";
+import { Register } from "@auth/models";
 
 export const register = createAction(
   '[Register Page] Register',
-  props<{ credentials: Credentials }>()
+  props<{ credentials: Register }>()
 );

@@ -39,7 +39,10 @@ export class MemberDetailsCardComponent implements OnChanges {
   }
 
   getProfilePicture() {
-    return { 'background-image':  `url(${ this.user.photoUrl })` };
+    if (this.user?.photoUrl) {
+      return { 'background-image': `url(${ this.user.photoUrl })` };
+    }
+    return { 'background-image': `url(https://i.imgur.com/bLrOP4M.png)` };
   }
 
 }

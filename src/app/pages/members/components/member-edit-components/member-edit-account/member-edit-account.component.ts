@@ -19,6 +19,7 @@ import { map, takeUntil } from "rxjs/operators";
 import validate = WebAssembly.validate;
 import { MemberEditPageActions } from "@members/store/actions";
 import { faInfo } from "@fortawesome/free-solid-svg-icons";
+import { DatePipe } from "@angular/common";
 
 @Component({
   selector: 'app-member-edit-account',
@@ -40,7 +41,7 @@ export class MemberEditAccountComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.form = this.fb.group({
       username: [ '', Validators.required ],
-      photoUrl: [ '', Validators.required ]
+    //  birthday: [ '', Validators.required ]
     });
 
     this.store.select(fromMembers.selectSelectedMember)
@@ -58,12 +59,7 @@ export class MemberEditAccountComponent implements OnInit, OnDestroy {
     this.form.patchValue({
       ...user,
       username: user.username,
-      photoUrl: user.photoUrl
     });
-  }
-
-  getPhotoUrl() {
-    return this.form.get('photoUrl').value;
   }
 
   onSubmit() {

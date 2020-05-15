@@ -8,6 +8,7 @@ import { of } from "rxjs";
 
 import { AuthApiActions, RegisterPageActions } from "@auth/store/actions";
 import { AuthService } from "@auth/store/services/auth.service";
+import { ToastrService } from "ngx-toastr";
 
 @Injectable()
 export class RegisterEffects {
@@ -17,7 +18,10 @@ export class RegisterEffects {
       ofType(RegisterPageActions.register),
       exhaustMap(({ credentials }) =>
         this.auth.register(credentials).pipe(
-          map(user => AuthApiActions.registerSuccess({ user })),
+          map(user => {
+            this.toast.success('', 'You were registered successfully!');
+            return AuthApiActions.registerSuccess();
+          }),
           catchError(error => of(AuthApiActions.registerFailure({ error })))
         ))
     ));
@@ -29,6 +33,6 @@ export class RegisterEffects {
     ), { dispatch: false });
 
   constructor(private actions$: Actions, private auth: AuthService,
-              private router: Router) {}
+              private router: Router, private toast: ToastrService) {}
 
 }

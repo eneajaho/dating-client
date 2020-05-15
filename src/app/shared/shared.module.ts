@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 import { GoBackComponent, SpinnerComponent, FileUploaderComponent } from '@shared/components';
 import { ReactiveFormsModule } from "@angular/forms";
@@ -17,7 +18,7 @@ export const COMPONENTS = [
 @NgModule({
   declarations: [
     ...COMPONENTS,
-    DropzoneDirective
+    DropzoneDirective,
   ],
   imports: [
     CommonModule,
@@ -26,13 +27,15 @@ export const COMPONENTS = [
     BsDropdownModule.forRoot({
       isAnimated: true,
       autoClose: true
-    })
+    }),
+    BsDatepickerModule.forRoot()
   ],
   exports: [
     CommonModule,
     FontAwesomeModule,
     ReactiveFormsModule,
     BsDropdownModule,
+    BsDatepickerModule,
     ...COMPONENTS
   ]
 })

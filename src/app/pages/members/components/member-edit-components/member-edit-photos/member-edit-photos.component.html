@@ -3,8 +3,15 @@
   (uploaded)="handlePhotos($event)">
 </app-file-uploader>
 
-<div class="row mt-4">
-  <div *ngFor="let photo of photos$ | async" class="col-xs-12 col-sm-4 mb-4">
+<div *ngIf="photos$ | async as photos" class="row mt-4">
+
+  <div *ngIf="photos.length === 0" class="col-12">
+    <div class="alert alert-primary text-center">
+      <h4 class="mb-0">Please upload a profile picture..</h4>
+    </div>
+  </div>
+
+  <div *ngFor="let photo of photos" class="col-xs-12 col-sm-4 mb-4">
     <div class="card rounded" [class.border-primary]="photo.isMain" style="border-width: 2px">
       <div class="card-body photo">
         <img [src]="photo.url" [alt]="photo.description" class="w-100 rounded">
@@ -22,4 +29,3 @@
     </div>
   </div>
 </div>
-

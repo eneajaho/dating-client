@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 
 import { AuthRoutingModule } from './auth-routing.module';
 
-import { AuthFormComponent } from './components/auth-form/auth-form.component';
+import { AuthFormComponent, RegisterFormComponent } from '@auth/components';
 import { AuthLayoutComponent, LoginComponent, RegisterComponent } from '@auth/containers';
 
 import { SharedModule } from "@shared/index";
@@ -13,6 +13,7 @@ import { SharedModule } from "@shared/index";
     RegisterComponent,
     AuthFormComponent,
     AuthLayoutComponent,
+    RegisterFormComponent,
   ],
   imports: [
     SharedModule,

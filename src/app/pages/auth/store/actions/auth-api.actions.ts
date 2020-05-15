@@ -1,5 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 import { LoginResponse } from "@auth/models";
+import { User } from "@core/models";
 
 export const loginSuccess = createAction(
   '[Auth/API] Login Success',
@@ -12,8 +13,7 @@ export const loginFailure = createAction(
 );
 
 export const registerSuccess = createAction(
-  '[Auth/API] Register Success',
-  props<{ user: LoginResponse }>()
+  '[Auth/API] Register Success'
 );
 
 export const registerFailure = createAction(

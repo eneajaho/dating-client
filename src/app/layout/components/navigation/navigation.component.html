@@ -1,4 +1,4 @@
-<nav class="navbar navbar-dark navbar-expand-md fixed-top bg-primary py-xs-3 py-md-1 px-3 shadow">
+<nav class="navbar navbar-dark navbar-expand-md fixed-top bg-primary py-xs-3 px-3 shadow">
   <a class="navbar-brand" routerLink="/">
     <fa-icon [icon]="heartIcon" [classes]="['text-danger mr-1']"></fa-icon>
     Dating App
@@ -9,7 +9,7 @@
   <div class="collapse navbar-collapse" [class.show]="showMenu">
 
     <ul class="navbar-nav">
-      <li class="nav-item" >
+      <li class="nav-item" routerLinkActive="active">
         <a class="nav-link" routerLink="/members/all">Members</a>
       </li>
       <li class="nav-item" routerLinkActive="active">

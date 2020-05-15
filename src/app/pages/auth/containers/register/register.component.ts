@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Observable } from "rxjs";
 import { Store } from "@ngrx/store";
-import { Credentials } from "@auth/models";
+import { Register } from "@auth/models";
 
 import * as fromAuth from '@auth/store/reducers';
 import { RegisterPageActions } from "@auth/store/actions";
@@ -23,7 +23,7 @@ export class RegisterComponent implements OnInit {
     this.loading$ = this.store.select(fromAuth.selectRegisterPagePending);
   }
 
-  handleRegister(credentials: Credentials) {
+  handleRegister(credentials: Register) {
     this.store.dispatch(RegisterPageActions.register({ credentials }));
   }
 
