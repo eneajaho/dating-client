@@ -5,7 +5,7 @@ import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
-import { GoBackComponent, SpinnerComponent, FileUploaderComponent } from '@shared/components';
+import { FileUploaderComponent, GoBackComponent, SpinnerComponent } from '@shared/components';
 import { ReactiveFormsModule } from "@angular/forms";
 import { DropzoneDirective } from './directives/dropzone.directive';
 import { TimeAgoPipe } from './pipes/time-ago.pipe';

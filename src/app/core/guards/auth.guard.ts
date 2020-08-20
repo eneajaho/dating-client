@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CanActivate } from '@angular/router';
 import { Store } from "@ngrx/store";
+import { Observable } from "rxjs";
 import { map, take } from "rxjs/operators";
 
 import * as fromAuth from '@auth/store/reducers';
@@ -11,7 +12,7 @@ export class AuthGuard implements CanActivate {
 
   constructor(private store: Store<fromAuth.State>) {}
 
-  canActivate() {
+  canActivate(): Observable<boolean> {
     return this.store.select(fromAuth.selectLoggedIn).pipe(
       map(isAuthenticated => {
           if (!isAuthenticated) {
@@ -21,7 +22,8 @@ export class AuthGuard implements CanActivate {
           return true;
         }
       ),
-      take(1));
+      take(1)
+    );
   }
 
 }

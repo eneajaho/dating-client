@@ -1,9 +1,12 @@
 import { createAction, props } from "@ngrx/store";
-import { User } from "@core/models";
 import { LoginResponse } from "@auth/models";
 
-export const logout = createAction(
+export const guardLogout = createAction(
   '[Auth Guard] Logout'
+);
+
+export const logout = createAction(
+  '[User Logout Event] Logout'
 );
 
 export const authRedirect = createAction(

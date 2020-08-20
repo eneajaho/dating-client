@@ -1,25 +1,11 @@
-import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  EventEmitter,
-  Input,
-  OnDestroy,
-  OnInit,
-  Output
-} from '@angular/core';
-import { Credentials } from "@auth/models";
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { User } from "@core/models";
 import { Observable, Subject } from "rxjs";
 import { Store } from "@ngrx/store";
+import { takeUntil } from "rxjs/operators";
 import * as fromMembers from "@members/store/reducers";
-import * as fromRoot from "@store/reducers";
-import { map, takeUntil } from "rxjs/operators";
-import validate = WebAssembly.validate;
 import { MemberEditPageActions } from "@members/store/actions";
-import { faInfo } from "@fortawesome/free-solid-svg-icons";
-import { DatePipe } from "@angular/common";
 
 @Component({
   selector: 'app-member-edit-account',

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { User } from "@core/models";
 import { Observable, Subject } from "rxjs";
@@ -6,7 +6,6 @@ import { Store } from "@ngrx/store";
 import * as fromMembers from "@members/store/reducers";
 import { takeUntil } from "rxjs/operators";
 import { MemberEditPageActions } from "@members/store/actions";
-import { faInfo } from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   selector: 'app-member-edit-profile',

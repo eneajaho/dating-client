@@ -3,7 +3,7 @@ import { Component, Input } from '@angular/core';
 @Component({
   selector: 'spinner',
   template: `
-    <div class="spinner-grow {{ color ? 'text-'+color : '' }}"
+    <div class="spinner-border {{ color ? 'text-'+color : '' }}"
          [class.small]="size === 'small'"
          [class.medium]="size === 'medium'"
          [class.big]="size === 'big'"

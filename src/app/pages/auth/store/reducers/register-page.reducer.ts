@@ -16,23 +16,20 @@ export const initialState: State = {
 export const reducer = createReducer(initialState,
 
   on(RegisterPageActions.register, state => ({
-    ...state,
-    error: null,
-    pending: true,
+    ...state, error: null, pending: true
   })),
 
   on(AuthApiActions.registerSuccess, state => ({
-    ...state,
-    error: null,
-    pending: false,
+    ...state, error: null, pending: false
   })),
 
   on(AuthApiActions.registerFailure, (state, { error }) => ({
-    ...state,
-    error,
-    pending: false,
-  }))
+    ...state, error, pending: false
+  })),
 
+  on(RegisterPageActions.clearRegisterError, state => ({
+    ...state, error: null, pending: false
+  }))
 );
 
 export const getError = (state: State) => state.error;

@@ -1,5 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import {Location} from '@angular/common';
+import { Component, Input } from '@angular/core';
+import { Location } from '@angular/common';
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { Router } from "@angular/router";
 

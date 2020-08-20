@@ -77,8 +77,9 @@ fa-icon {
 
 .photo-img {
   background: #570257ba;
-  width: 100%;
+  width: auto;
   margin: auto;
+  max-height: 300px;
 }
 
 .carousel-caption {

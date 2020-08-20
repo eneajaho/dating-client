@@ -3,11 +3,11 @@ import { Router } from "@angular/router";
 
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 
-import { tap} from 'rxjs/operators';
+import { tap } from 'rxjs/operators';
 
 import { LocalStorageService } from "@core/services/local-storage.service";
 import { AuthService } from "@auth/store/services/auth.service";
-import { AuthActions} from "@auth/store/actions";
+import { AuthActions } from "@auth/store/actions";
 
 @Injectable()
 export class AuthEffects {

@@ -1,4 +1,4 @@
-import { createSelector, createFeatureSelector, Action, combineReducers } from '@ngrx/store';
+import { Action, combineReducers, createFeatureSelector, createSelector } from '@ngrx/store';
 
 import * as fromRoot from '@store/reducers';
 import * as fromAuth from '@auth/store/reducers/auth.reducer';
@@ -33,7 +33,6 @@ export const selectAuthState = createFeatureSelector<State, AuthState>(
   authFeatureKey
 );
 
-
 /* Auth Status */
 export const selectAuthStatusState = createSelector(
   selectAuthState,
@@ -46,20 +45,17 @@ export const selectUser = createSelector(
 );
 
 export const selectUserId = createSelector(
-  selectUser,
-  user => user.id
+  selectUser, user => user.id
 );
 
 export const selectLoggedIn = createSelector(
-  selectUser,
-    user => !!user
+  selectUser, user => !!user
 );
 
 
 /* Login Page */
 export const selectLoginPageState = createSelector(
-  selectAuthState,
-  state => state.loginPage
+  selectAuthState, state => state.loginPage
 );
 
 export const selectLoginPageError = createSelector(
@@ -75,8 +71,7 @@ export const selectLoginPagePending = createSelector(
 
 /* Register Page */
 export const selectRegisterPageState = createSelector(
-  selectAuthState,
-  state => state.registerPage
+  selectAuthState, state => state.registerPage
 );
 
 export const selectRegisterPageError = createSelector(

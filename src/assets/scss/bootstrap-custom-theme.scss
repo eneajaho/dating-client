@@ -8,27 +8,42 @@ $theme-colors: ("primary": $primary-color);
 $theme-colors: ("secondary": #ba70ff);
 $base-color: $primary-color;
 
+
 @import "~bootstrap/scss/functions";
 @import "~bootstrap/scss/variables";
 @import "~bootstrap/scss/mixins";
 
+
 /** Buttons **/
-$btn-border-width:                  2px;
 $btn-font-weight:                   500;
-$btn-padding-x:                     1rem;
 $btn-box-shadow:                    0 0 10px rgba(141, 137, 137, 0.91);
+$btn-border-radius:                 5rem;
+$btn-padding-y:                     .3rem;
+$btn-padding-x:                     1rem;
+$btn-border-width:                  2px;
+$btn-height:                        auto;
 
 
 /** Inputs **/
 $input-bg:                          #f4f4f4;
 $input-color:                       #4c4c4c;
 $input-border-color:                #dddddd80;
+$input-border-radius:               1.5rem;
+$input-padding-y:                   .4rem;
+$input-padding-x:                   1rem;
 $input-border-width:                2px;
+$input-height:                      auto;
+
+
+/** Cards **/
+$card-border-radius:                0.5rem;
 
 
 /** Alerts **/
 $alert-border-width:                2px;
-
+$alert-border-radius:               1rem;
+$alert-padding-y:                   .5rem;
+$alert-padding-x:                   1rem;
 
 @import "~bootstrap/scss/custom-forms";
 @import "~bootstrap/scss/input-group";
@@ -39,11 +54,11 @@ $alert-border-width:                2px;
 @import "~bootstrap/scss/alert";
 @import "~bootstrap/scss/type";
 @import "~bootstrap/scss/reboot";
-@import "~bootstrap/scss/pagination";
+//@import "~bootstrap/scss/pagination";
 @import "~bootstrap/scss/modal";
-@import "~bootstrap/scss/tables";
+//@import "~bootstrap/scss/tables";
 @import "~bootstrap/scss/spinners";
-@import "~bootstrap/scss/button-group";
+//@import "~bootstrap/scss/button-group";
 @import "~bootstrap/scss/dropdown";
 @import "~bootstrap/scss/navbar";
 @import "~bootstrap/scss/nav";
@@ -57,3 +72,26 @@ $alert-border-width:                2px;
 
 .cp { cursor: pointer; }
 .outline-0 { outline: none; }
+.shadow { box-shadow: 0 0 10px rgb(148 148 148 / 15%)!important; }
+
+
+.btn {
+  transition: 0.2s all;
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+}
+
+.btn-secondary {
+  background-color: #ba70ff47;
+  border-color: #93c7ff00;
+  color: #6b0fc0;
+
+  &:hover {
+    background-color: #ba70ff47;
+    border-color: #93c7ff00;
+    color: #6b0fc0;
+  }
+}
+

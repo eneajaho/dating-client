@@ -3,7 +3,7 @@ import { Router } from "@angular/router";
 
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 
-import { map, catchError, exhaustMap, tap} from 'rxjs/operators';
+import { catchError, exhaustMap, map, tap } from 'rxjs/operators';
 import { of } from "rxjs";
 
 import { LocalStorageService } from "@core/services/local-storage.service";

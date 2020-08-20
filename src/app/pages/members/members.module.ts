@@ -8,20 +8,16 @@ import { TagInputModule } from 'ngx-chips';
 
 import { MembersStoreModule } from "@members/store/members-store.module";
 
-import {
-  MembersComponent,
-  MemberEditComponent,
-  MemberDetailsComponent,
-} from '@members/containers';
+import { MemberDetailsComponent, MemberEditComponent, MembersComponent, } from '@members/containers';
 
 import {
   MemberCardComponent,
   MemberDetailsCardComponent,
   MemberEditAccountComponent,
-  MemberEditNavigationComponent,
   MemberEditHeaderComponent,
-  MemberEditProfileComponent,
-  MemberEditPhotosComponent
+  MemberEditNavigationComponent,
+  MemberEditPhotosComponent,
+  MemberEditProfileComponent
 } from '@members/components';
 
 import { FormsModule } from "@angular/forms";

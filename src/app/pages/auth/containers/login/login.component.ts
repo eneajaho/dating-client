@@ -19,6 +19,7 @@ export class LoginComponent implements OnInit {
   constructor(private store: Store<fromAuth.State>) { }
 
   ngOnInit() {
+    this.store.dispatch(LoginPageActions.clearLoginError());
     this.error$ = this.store.select(fromAuth.selectLoginPageError);
     this.loading$ = this.store.select(fromAuth.selectLoginPagePending);
   }

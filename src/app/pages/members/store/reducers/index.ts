@@ -1,8 +1,8 @@
 import { Action, combineReducers, createFeatureSelector, createSelector, } from '@ngrx/store';
 import * as fromMembers from '@members/store/reducers/members.reducers';
 import * as fromAuth from '@auth/store/reducers';
+import { selectUserId } from '@auth/store/reducers';
 import * as fromRoot from '@store/reducers';
-import { selectUserId } from "@auth/store/reducers";
 
 export const membersFeatureKey = 'members';
 

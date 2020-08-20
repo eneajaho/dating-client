@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from "@angular/router";
-import { MainLayoutComponent, EmptyLayoutComponent } from "@layout/containers";
+import { MainLayoutComponent } from "@layout/containers";
 import { NotFoundComponent } from "@layout/components";
 import { AuthGuard, NonAuthGuard } from "@core/guards";
 
@@ -20,14 +20,10 @@ const ROUTES: Routes = [
     ]
   },
   {
-    path: '', component: EmptyLayoutComponent, children: [
-      {
-        path: 'auth',
-        canActivate: [NonAuthGuard],
-        loadChildren: () => import('@auth/auth.module')
-          .then(m => m.AuthModule)
-      }
-    ]
+      path: 'auth',
+      canActivate: [NonAuthGuard],
+      loadChildren: () => import('@auth/auth.module')
+        .then(m => m.AuthModule)
   },
   {
     path: '**', component: MainLayoutComponent, children: [
@@ -39,13 +35,10 @@ const ROUTES: Routes = [
 ];
 
 @NgModule({
-  declarations: [],
   imports: [
     CommonModule,
     RouterModule.forRoot(ROUTES),
   ],
-  exports: [
-    RouterModule
-  ]
+  exports: [ RouterModule ]
 })
 export class AppRoutingModule {}

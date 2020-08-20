@@ -4,7 +4,7 @@ import { Actions, createEffect, ofType, ROOT_EFFECTS_INIT } from '@ngrx/effects'
 import { switchMap } from 'rxjs/operators';
 import { of } from "rxjs";
 
-import { LocalStorageService } from "@core/services/local-storage.service";
+import { LocalStorageService } from "@core/services";
 import { AuthActions } from "@auth/store/actions";
 
 @Injectable()

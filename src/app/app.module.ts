@@ -5,8 +5,7 @@ import { HttpClientModule } from "@angular/common/http";
 
 import { AppComponent } from './app.component';
 import { SharedModule } from "@shared/shared.module";
-import { environment } from "../environments/environment";
-import { API_URL } from "@core/configs/api.token";
+import { API_PROVIDER } from "@core/configs";
 
 import { AppRoutingModule } from './app-routing.module';
 import { RootStoreModule } from '@store/root-store.module';
@@ -27,10 +26,7 @@ import { CoreModule } from '@core/core.module';
     CoreModule,
   ],
   providers: [
-    {
-      provide: API_URL,
-      useValue: environment.api
-    },
+    API_PROVIDER
   ],
   bootstrap: [ AppComponent ]
 })

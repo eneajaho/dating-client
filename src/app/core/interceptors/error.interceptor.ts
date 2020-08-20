@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpRequest, HttpHandler, HttpInterceptor, HttpErrorResponse, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpErrorResponse, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { throwError } from 'rxjs';
 import { catchError } from "rxjs/operators";
 import { Store } from "@ngrx/store";
@@ -15,8 +15,6 @@ export class ErrorInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<unknown>, next: HttpHandler) {
     return next.handle(request).pipe(
       catchError(error => {
-
-        console.log(error);
 
         if (error.status === 0) {
           if(error?.statusText === "Unknown Error") {
@@ -34,6 +32,10 @@ export class ErrorInterceptor implements HttpInterceptor {
           return throwError(error.statusText);
         }
 
+        if (error.status === 500) {
+          return throwError(error.error?.Message);
+        }
+
         if (error instanceof HttpErrorResponse) {
           const applicationError = error.headers.get('Application-Error');
           if (applicationError) {
@@ -42,7 +44,7 @@ export class ErrorInterceptor implements HttpInterceptor {
 
           const serverError = error.error;
           let modalStateErrors = '';
-          if (serverError.errors && typeof serverError.errors === 'object') {
+          if (typeof serverError?.errors === 'object') {
             for (const key in serverError.errors) {
               if (serverError.errors[key]) {
                 modalStateErrors += serverError.errors[key] + '\n';

@@ -8,7 +8,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { environment } from "../../environments/environment";
 
-import { ROOT_REDUCERS, CustomSerializer, metaReducers } from "@store/reducers";
+import { CustomSerializer, metaReducers, ROOT_REDUCERS } from "@store/reducers";
 import { RootEffects } from "@store/effects/root.effects";
 import { AuthStoreModule } from "@auth/store/auth-store.module";
 

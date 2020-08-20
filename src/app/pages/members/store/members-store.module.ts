@@ -2,11 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { StoreModule } from "@ngrx/store";
 import { EffectsModule } from "@ngrx/effects";
-import {
-  MembersEffects,
-  MemberEffects,
-  PhotosEffects
-} from "@members/store/effects";
+import { MemberEffects, MembersEffects, PhotosEffects } from "@members/store/effects";
 import * as fromMembers from "@members/store/reducers";
 
 @NgModule({

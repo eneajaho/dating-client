@@ -5,7 +5,7 @@ import { of } from "rxjs";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { Store } from "@ngrx/store";
 
-import { MembersPageActions, MembersApiActions } from "@members/store/actions";
+import { MembersApiActions, MembersPageActions } from "@members/store/actions";
 import { MemberService } from "../services/member.service";
 import * as fromMembers from '@members/store/reducers';
 

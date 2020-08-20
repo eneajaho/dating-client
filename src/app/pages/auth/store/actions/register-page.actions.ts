@@ -5,3 +5,7 @@ export const register = createAction(
   '[Register Page] Register',
   props<{ credentials: Register }>()
 );
+
+export const clearRegisterError = createAction(
+  '[Register Page] Clear Register Page Error'
+);

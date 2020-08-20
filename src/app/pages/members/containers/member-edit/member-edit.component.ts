@@ -1,14 +1,11 @@
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
-import { Observable, Subject } from "rxjs";
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { Observable } from "rxjs";
 import { User } from "@models/User";
-import { faComment } from "@fortawesome/free-regular-svg-icons";
-import { faUserCog } from "@fortawesome/free-solid-svg-icons";
 import { Store } from "@ngrx/store";
 
 import * as fromMembers from '@members/store/reducers';
 import * as fromRoot from '@store/reducers';
-import { map, takeUntil, tap } from "rxjs/operators";
-import { MemberActions } from "@members/store/actions";
+import { map } from "rxjs/operators";
 
 @Component({
   selector: 'app-member-edit',

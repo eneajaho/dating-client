@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@angular/core';
 import { API_URL } from "@core/configs/api.token";
 import { HttpClient } from "@angular/common/http";
-import { Observable, of } from "rxjs";
+import { Observable } from "rxjs";
 
 @Injectable({ providedIn: 'root' })
 export class PhotoService {

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot } from '@angular/router';
 import { Store } from "@ngrx/store";
 import { Observable, of } from "rxjs";
 import { filter, map, switchMap, take, tap } from "rxjs/operators";
@@ -20,13 +20,10 @@ export class MembersGuard implements CanActivate {
   }
 
   checkStore(): Observable<boolean> {
-    return this.store.select(fromMembers.selectAllMembers).pipe(
-      tap(members => {
-        if (members.length === 0) {
-          this.store.dispatch(MembersPageActions.loadMembers());
-        }
+    return this.store.select(fromMembers.selectMembersLoaded).pipe(
+      tap(loaded => {
+        if (!loaded) { this.store.dispatch(MembersPageActions.loadMembers()); }
       }),
-      map(members => members.length > 0),
       filter((loaded: boolean) => loaded),
       take(1));
   }
