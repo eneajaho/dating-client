@@ -1,10 +1,26 @@
 .navbar {
-  background: #6b0fc0!important;
-  padding-top: 0;
-  padding-bottom: 0;
+  background: var(--bg-color-light) !important;
+  transition: 0.4s all;
+  border-radius: 10px;
+  margin: 10px;
+ // box-shadow: 0 5px 10px var(--box-shadow-color);
+}
 
-  .navbar-dark .navbar-nav .nav-link {
-    color: rgba(255, 255, 255, 0.75);
+.navbar-brand {
+  color: var(--text-color);
+  font-size: 25px;
+  font-weight: 700;
+}
+
+.navbar-nav .nav-link {
+  color: var(--text-color);
+}
+
+a {
+  color: var(--text-color)!important;
+
+  &:hover {
+    color: var(--main-color)!important;
   }
 }
 

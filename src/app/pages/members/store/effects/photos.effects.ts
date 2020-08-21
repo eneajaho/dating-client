@@ -5,7 +5,7 @@ import { of } from "rxjs";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 
 import { MembersPhotoActions } from "@members/store/actions";
-import { PhotoService } from "@members/store/services/photo.service";
+import { PhotoService } from "@members/services/photo.service";
 import { ToastrService } from "ngx-toastr";
 
 @Injectable()

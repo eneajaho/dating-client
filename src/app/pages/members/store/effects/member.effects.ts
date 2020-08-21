@@ -2,7 +2,7 @@ import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { catchError, map, switchMap } from "rxjs/operators";
 import { of } from "rxjs";
 import { Injectable } from "@angular/core";
-import { MemberService } from "../services/member.service";
+import { MemberService } from "../../services/member.service";
 
 import { MemberActions, MemberEditPageActions, MembersApiActions } from "@members/store/actions";
 import { ToastrService } from "ngx-toastr";

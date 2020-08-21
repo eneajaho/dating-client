@@ -5,6 +5,7 @@ import { Credentials } from "@auth/models";
 @Component({
   selector: 'app-auth-form',
   templateUrl: './auth-form.component.html',
+  styleUrls: ['./auth-form.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AuthFormComponent {
@@ -17,18 +18,26 @@ export class AuthFormComponent {
   constructor(private fb: FormBuilder) {
     this.form = this.fb.group({
       username: [ '', Validators.required ],
-      password: [ '', Validators.required ]
+      password: [ '', [ Validators.required, Validators.minLength(8) ] ]
     });
   }
 
   onSubmit() {
+    if (this.loading) return;
     if (this.form.valid) {
       this.submitted.emit(this.form.value);
     }
   }
 
-  required(control: string): boolean {
+  invalid(control: string): boolean {
     return this.form.get(control).touched && this.form.get(control).invalid;
   }
 
+  required(control: string): boolean {
+    return this.form.get(control).hasError('required');
+  }
+
+  minLength(control: string): boolean {
+    return this.form.get(control).hasError('minlength');
+  }
 }

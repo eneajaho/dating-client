@@ -1,15 +1,24 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { NotFoundComponent } from "@layout/components";
-import { MemberDetailsComponent, MemberEditComponent, MembersComponent } from "@members/containers";
+import {
+  MemberDetailsComponent,
+  MemberEditComponent,
+  MembersComponent,
+  MembersSearchComponent
+} from "@members/containers";
 import { MembersGuard, PreventUnsavedChangesGuard } from "@members/guards";
 import { MemberEditAccountComponent, MemberEditPhotosComponent, MemberEditProfileComponent } from "@members/components";
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'all',
+    redirectTo: 'search',
     pathMatch: 'full'
+  },
+  {
+    path: 'search',
+    component: MembersSearchComponent
   },
   {
     path: 'all',

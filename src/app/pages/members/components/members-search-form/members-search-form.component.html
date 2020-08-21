@@ -1,0 +1,40 @@
+<div class="input-group {{ theme }}">
+  <div class="input-group-prepend">
+    <select class="select first-input">
+      <option selected>Age</option>
+      <option value="18-21">18-21</option>
+      <option value="22-30">22-30</option>
+      <option value="31-45">31-45</option>
+      <option value="31-45">> 46</option>
+    </select>
+    <select class="select">
+      <option selected>Gender</option>
+      <option value="m">Male</option>
+      <option value="f">Female</option>
+    </select>
+  </div>
+  <input type="text" class="form-control" placeholder="Interests..">
+  <div class="input-group-append">
+    <select class="select last-input">
+      <option selected>Last active</option>
+      <option value="day">Last day</option>
+      <option value="week">Last week</option>
+      <option value="month">Last month</option>
+      <option value="year">Last year</option>
+    </select>
+
+<!--    <select class="select last-input">-->
+<!--      <option selected>Location</option>-->
+<!--      <option value="m">< 10km</option>-->
+<!--      <option value="f">< 50km</option>-->
+<!--      <option value="f">> 100km</option>-->
+<!--    </select>-->
+  </div>
+</div>
+
+<div class="mt-5 d-flex justify-content-center">
+  <button class="btn btn-primary search-button text-uppercase btn-lg">
+    <fa-icon [icon]="searchIcon" class="mr-2"></fa-icon>
+    Search Now
+  </button>
+</div>

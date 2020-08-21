@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from "@angular/router";
 
 import { EmptyLayoutComponent, MainLayoutComponent } from '@layout/containers';
-import { NavigationComponent, NotFoundComponent } from '@layout/components';
+import { NavigationComponent, NotFoundComponent, ThemeToggleComponent } from '@layout/components';
 
 import { SharedModule } from "@shared/index";
 
@@ -13,6 +13,7 @@ import { SharedModule } from "@shared/index";
     MainLayoutComponent,
     EmptyLayoutComponent,
     NotFoundComponent,
+    ThemeToggleComponent,
   ],
   imports: [
     SharedModule,

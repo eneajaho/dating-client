@@ -2,32 +2,32 @@
   <div class="form-group">
     <input type="text" formControlName="username" autocomplete="username"
            placeholder="Email address" class="form-control">
-    <div class="alert alert-danger mt-1" *ngIf="required('username')">
-      Email is required!
+    <div class="invalid-feedback" *ngIf="invalid('username')">
+      <span *ngIf="required('username')">Email is required!</span>
     </div>
   </div>
   <div class="form-group">
     <input type="password" formControlName="password" autocomplete="current-password"
            placeholder="Password" class="form-control">
-    <div class="alert alert-danger mt-1" *ngIf="required('password')">
-      Password is required!
+    <div class="invalid-feedback" *ngIf="invalid('password')">
+      <span *ngIf="required('password')">Password is required!</span>
+      <span *ngIf="minLength('password')">Password must have at least 8 characters!</span>
     </div>
   </div>
 
   <div class="form-group">
-    <ng-content select=".error"></ng-content>
+      <ng-content select=".error"></ng-content>
   </div>
 
   <div class="submit">
-    <button [disabled]="loading" type="submit"
-            class="btn btn-primary btn-block">
+    <button type="submit" class="btn btn-primary">
 
       <span *ngIf="!loading; else loader">
         <ng-content select="#type"></ng-content>
       </span>
 
       <ng-template #loader>
-        <spinner size="small"></spinner>
+        <spinner size="small" class="mx-2"></spinner>
       </ng-template>
 
     </button>

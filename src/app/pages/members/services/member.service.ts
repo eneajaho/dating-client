@@ -10,6 +10,7 @@ export class MemberService {
   constructor(@Inject(API_URL) private api: string, private http: HttpClient) { }
 
   getMembers(): Observable<User[]> {
+    // const path = this.api + 'users?pageNumber=1&pageSize=6';
     const path = this.api + 'users';
     return this.http.get<User[]>(path);
   }

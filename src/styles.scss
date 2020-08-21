@@ -1,6 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
 
+@import "src/assets/scss/_colors";
+
 @import "src/assets/scss/bootstrap-custom-theme";
+
+/* Components */
+@import "src/assets/scss/_dropdown";
+@import "src/assets/scss/_buttons";
+
 
 @import '~ngx-toastr/toastr-bs4-alert';
 
@@ -10,9 +17,20 @@
 
 @import "./src/assets/scss/tabset-custom-theme";
 
-
 $theme-dark-blue: $primary-color!important;
 
 @import "~ngx-bootstrap/datepicker/bs-datepicker";
 
 @import "./src/assets/scss/animations";
+
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 95%;
+  background: var(--bg-color-normal)!important;
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+}

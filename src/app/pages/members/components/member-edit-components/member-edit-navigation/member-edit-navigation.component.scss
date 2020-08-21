@@ -1,16 +1,19 @@
 .list-group-item {
   border-color: transparent;
-  border-left-width: 2px;
+  border-left-width: 4px;
   outline: none;
+  background: var(--bg-color-light);
+  color: var(--text-color);
 
   &:hover {
-    color: #4a008f;
-    border-left: 2px solid #6b0fc095!important;
+    color: var(--text-color-light);
+    border-left: 4px solid #6b0fc095!important;
   }
 
   &.active {
-    color: #4a008f;
-    border-left: 2px solid #6b0fc0!important;
-    background: #f4f4f4;
+    color: var(--text-color);
+    background: var(--bg-color-light);
+    border-left: 4px solid #6b0fc0!important;
+    font-weight: 600;
   }
 }

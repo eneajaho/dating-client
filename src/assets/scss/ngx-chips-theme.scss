@@ -26,8 +26,8 @@ $foundation-tag-theme: (
 
 // this is the delete icon's theme
 $foundation-icon-theme: (
-  fill: $foundation-primary-text,
-  fill-focus: $foundation-primary-text,
+  fill: var(--btn-light-text-color),
+  fill-focus: var(--btn-light-text-color),
   transition: all 0.2s
 );
 
@@ -36,10 +36,18 @@ tag-input .ng2-tag-input.foundation-theme {
   @include tag-input-theme($foundation-theme);
 }
 
+
 .ng2-tag-input {
-  border: 2px solid #dddddd80!important;
+  border: 1px solid #dddddd80!important;
   border-radius: 5px;
   padding: 6px 0 3px 5px!important;
+
+  background: var(--input-bg);
+
+  &__text-input {
+    background: transparent;
+    color: var(--text-color-normal) !important;
+  }
 
   &--focused {
     border-color: $foundation-primary-text!important;
@@ -50,14 +58,19 @@ tag-input .ng2-tag-input.foundation-theme {
 tag-input .ng2-tag-input.foundation-theme tag {
   @include tag-theme($foundation-tag-theme);
 
+  background: var(--btn-light-bg-color);
+  color: var(--text-color-normal);
+
   &:hover {
     box-shadow: none !important;
     transform: translateY(-2px);
-    color: $foundation-primary-text!important;
+    background: var(--btn-light-bg-color);
+    color: var(--text-color-normal)!important;
   }
 }
 
 // apply theme to the delete icon
 tag-input .ng2-tag-input.foundation-theme tag delete-icon {
   @include icon-theme($foundation-icon-theme);
+  //color: var(--btn-light-text-color)!important;
 }

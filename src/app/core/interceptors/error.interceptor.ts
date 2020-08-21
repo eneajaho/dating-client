@@ -15,7 +15,6 @@ export class ErrorInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<unknown>, next: HttpHandler) {
     return next.handle(request).pipe(
       catchError(error => {
-
         if (error.status === 0) {
           if(error?.statusText === "Unknown Error") {
             return throwError("Server is not responding!");
@@ -23,7 +22,6 @@ export class ErrorInterceptor implements HttpInterceptor {
           this.store.dispatch(AuthActions.logout());
           return throwError(error.statusText);
         }
-
         if (error.status === 401) {
           if (error.statusText === "Unauthorized") {
             this.store.dispatch(AuthActions.logout());

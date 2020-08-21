@@ -1,13 +1,13 @@
-<nav class="navbar navbar-dark navbar-expand-md fixed-top bg-primary py-xs-3 px-3 shadow">
+<nav class="navbar navbar-expand-md mx-4 mt-4 px-4">
+<!--  fixed-top-->
   <a class="navbar-brand" routerLink="/">
     <fa-icon [icon]="heartIcon" [classes]="['text-danger mr-1']"></fa-icon>
-    Dating App
+    DatingYou
   </a>
   <button (click)="show()" class="navbar-toggler" type="button">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" [class.show]="showMenu">
-
     <ul class="navbar-nav">
       <li class="nav-item" routerLinkActive="active">
         <a class="nav-link" routerLink="/members/all">Members</a>
@@ -20,9 +20,12 @@
       </li>
     </ul>
 
-    <input style="width: 300px" type="text" class="form-control form-control-primary ml-5" placeholder="Search..." >
+<!--    <input style="width: 300px" type="text" class="form-control form-control-primary ml-5" placeholder="Search..." >-->
 
     <ul class="navbar-nav ml-auto">
+      <li class="nav-item text-danger cp">
+            <app-theme-toggle [theme]="theme$ | async" (click)="darkMode()"></app-theme-toggle>
+      </li>
       <li *ngIf="user" class="nav-item active">
         <div class="btn-group" dropdown>
           <a id="button-basic" dropdownToggle type="button" class="text-light dropdown-toggle">
@@ -30,7 +33,7 @@
             {{ user.name | titlecase }}
             <span class="caret"></span>
           </a>
-          <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu dropdown-menu-right mt-2">
+          <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu dropdown-menu-right mr-2">
             <li role="menuitem">
               <a class="dropdown-item" [routerLink]="['/members', user.id]">
                 <fa-icon [icon]="userIcon" class="mr-2"></fa-icon>

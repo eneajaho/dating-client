@@ -5,3 +5,4 @@ export * from './member-edit-components/member-edit-header/member-edit-header.co
 export * from './member-edit-components/member-edit-navigation/member-edit-navigation.component';
 export * from './member-edit-components/member-edit-profile/member-edit-profile.component';
 export * from './member-edit-components/member-edit-photos/member-edit-photos.component';
+export * from './members-search-form/members-search-form.component';

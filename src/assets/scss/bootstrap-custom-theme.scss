@@ -17,22 +17,27 @@ $base-color: $primary-color;
 /** Buttons **/
 $btn-font-weight:                   500;
 $btn-box-shadow:                    0 0 10px rgba(141, 137, 137, 0.91);
-$btn-border-radius:                 5rem;
+$btn-border-radius:                 5px;
 $btn-padding-y:                     .3rem;
 $btn-padding-x:                     1rem;
-$btn-border-width:                  2px;
+$btn-border-width:                  1px;
 $btn-height:                        auto;
 
 
 /** Inputs **/
-$input-bg:                          #f4f4f4;
-$input-color:                       #4c4c4c;
+$input-font-size:                   1rem;
+$input-bg:                          var(--input-bg);
+$input-color:                       var(--input-color);
+$input-focus-bg:                    var(--input-focus-bg);
+$input-focus-color:                 var(--input-focus-color);
+$input-focus-box-shadow:            none;
 $input-border-color:                #dddddd80;
-$input-border-radius:               1.5rem;
-$input-padding-y:                   .4rem;
-$input-padding-x:                   1rem;
-$input-border-width:                2px;
+$input-border-radius:               5px;
+$input-padding-y:                   .5rem;
+$input-padding-x:                   1.5rem;
+$input-border-width:                1px;
 $input-height:                      auto;
+
 
 
 /** Cards **/
@@ -40,8 +45,8 @@ $card-border-radius:                0.5rem;
 
 
 /** Alerts **/
-$alert-border-width:                2px;
-$alert-border-radius:               1rem;
+$alert-border-width:                1px;
+$alert-border-radius:               5px;
 $alert-padding-y:                   .5rem;
 $alert-padding-x:                   1rem;
 
@@ -72,26 +77,27 @@ $alert-padding-x:                   1rem;
 
 .cp { cursor: pointer; }
 .outline-0 { outline: none; }
-.shadow { box-shadow: 0 0 10px rgb(148 148 148 / 15%)!important; }
+.shadow { box-shadow: var(--box-shadow-color)!important; }
 
 
-.btn {
-  transition: 0.2s all;
-
-  &:hover {
-    transform: translateY(-2px);
-  }
+.invalid-feedback {
+  display: block;
+  margin-top: 0.15rem;
+  font-size: 95%;
+  color: #dc3545;
+  font-weight: 600;
 }
 
-.btn-secondary {
-  background-color: #ba70ff47;
-  border-color: #93c7ff00;
-  color: #6b0fc0;
-
-  &:hover {
-    background-color: #ba70ff47;
-    border-color: #93c7ff00;
-    color: #6b0fc0;
-  }
+.error {
+  background: #ff00001f;
+  padding: 10px 10px;
+  margin: 0;
+  text-align: center;
 }
+
+.valid-feedback {
+  display: block;
+}
+
+
 

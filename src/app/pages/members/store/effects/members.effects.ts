@@ -6,7 +6,7 @@ import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { Store } from "@ngrx/store";
 
 import { MembersApiActions, MembersPageActions } from "@members/store/actions";
-import { MemberService } from "../services/member.service";
+import { MemberService } from "../../services/member.service";
 import * as fromMembers from '@members/store/reducers';
 
 @Injectable()

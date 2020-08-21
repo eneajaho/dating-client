@@ -1,0 +1,78 @@
+:root {
+
+  --main-color: #6b0fc0;
+  --secondary-color: #6b0fc0;
+
+  --text-color: #1f1f1f;
+  --text-color-normal: #353535;
+  --text-color-light: #3e3e3e;
+
+  --bg-color-normal: rgba(244, 244, 244);
+  --bg-color-light: #ffffff;
+
+  --bg-color-normal-transparent: #ffffffbf;
+  --bg-color-light-transparent: rgb(238, 244, 247, 0.5);
+
+  --box-shadow-color: rgb(119, 119, 120, 0.3);
+
+
+  /* Buttons */
+  --btn-primary-text-color: white;
+  --btn-primary-bg-color: var(--main-color);
+
+  --btn-light-text-color: #343a40;
+  --btn-light-bg-color: #ffffff;
+
+  --btn-secondary-text-color: #6b0fc0;
+  --btn-secondary-bg-color:  #ba70ff47;
+
+  /* Inputs */
+  --input-bg: #f4f4f4;
+  --input-color: #4c4c4c;
+  --input-focus-color: #4c4c4c;
+  --input-focus-bg: white;
+
+
+  /* Member Card Component */
+  --member-card-title-color: #6b0fc0;
+  --member-card-subtitle-color: #4c6176db;
+
+}
+
+[data-theme="dark"] {
+
+  --text-color: #eee;
+  --text-color-normal: #b3b9c5;
+  --text-color-light: #9051b1;
+
+  --bg-color-normal: #202020;
+  --bg-color-light: #2A2A2A;
+
+  --bg-color-normal-transparent: #292929c2;
+  --bg-color-light-transparent: rgb(238, 244, 247, 0.5);
+
+  --box-shadow-color: rgb(119, 119, 120, 0.3);
+
+
+  /* Buttons */
+  --btn-primary-text-color: white;
+  --btn-primary-bg-color: #6b0fc078;
+
+  --btn-light-text-color: #dbdbdb;
+  --btn-light-bg-color: #4a4a4aad;
+
+  --btn-secondary-text-color: #41007d;
+  --btn-secondary-bg-color:  #c78cfffa;
+
+  /* Inputs */
+  --input-bg: #232020;
+  --input-color: #bfbfbf;
+  --input-focus-color: #d3d3d3;
+  --input-focus-bg: #1a1616;
+
+
+  /* Member Card Component */
+  --member-card-title-color: #d2a6ff;
+  --member-card-subtitle-color: rgb(199 199 199);
+
+}

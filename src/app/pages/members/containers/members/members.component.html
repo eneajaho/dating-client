@@ -1,6 +1,26 @@
-<div class="container-fluid">
+<div class="container-fluid mb-auto px-4 pt-3 mt-3">
+  <div class="row">
+    <div class="col-10">
+      <h2 class="mb-4 font-weight-bolder" style="font-size: 40px;">
+        Find your new lover
+      </h2>
+    </div>
+    <div class="col-2">
+      <div class="form-group row">
+        <label for="pageSize" class="col-sm-6 col-form-label">Pagesize:</label>
+        <div class="col-sm-6">
+          <select class="form-control custom-select" id="pageSize">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <ng-container *ngIf="members$ | async as members">
-    <div class="row">
+    <div class="row h-100">
       <div *ngFor="let user of members" class="col-xs-12 col-sm-6 col-md-3 col-lg-2 mb-4">
         <app-member-card [user]="user"></app-member-card>
       </div>

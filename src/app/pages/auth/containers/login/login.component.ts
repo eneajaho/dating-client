@@ -9,6 +9,7 @@ import { LoginPageActions } from "@auth/store/actions";
 @Component({
   selector: 'auth-login',
   templateUrl: './login.component.html',
+  styles: [` h2 { color: var(--text-color)  }  `],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LoginComponent implements OnInit {
@@ -19,9 +20,13 @@ export class LoginComponent implements OnInit {
   constructor(private store: Store<fromAuth.State>) { }
 
   ngOnInit() {
-    this.store.dispatch(LoginPageActions.clearLoginError());
+    this.clearErrors();
     this.error$ = this.store.select(fromAuth.selectLoginPageError);
     this.loading$ = this.store.select(fromAuth.selectLoginPagePending);
+  }
+
+  clearErrors() {
+    this.store.dispatch(LoginPageActions.clearLoginError());
   }
 
   handleLogin(credentials: Credentials) {

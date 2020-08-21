@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 
 import { MembersRoutingModule } from './members-routing.module';
+import { FormsModule } from "@angular/forms";
 import { SharedModule } from "@shared/shared.module";
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { TabsModule } from "ngx-bootstrap/tabs";
@@ -8,7 +9,12 @@ import { TagInputModule } from 'ngx-chips';
 
 import { MembersStoreModule } from "@members/store/members-store.module";
 
-import { MemberDetailsComponent, MemberEditComponent, MembersComponent, } from '@members/containers';
+import {
+  MemberDetailsComponent,
+  MemberEditComponent,
+  MembersComponent,
+  MembersSearchComponent
+} from '@members/containers';
 
 import {
   MemberCardComponent,
@@ -17,10 +23,11 @@ import {
   MemberEditHeaderComponent,
   MemberEditNavigationComponent,
   MemberEditPhotosComponent,
-  MemberEditProfileComponent
+  MemberEditProfileComponent,
+  MembersSearchFormComponent
 } from '@members/components';
+import { BsDropdownModule } from "ngx-bootstrap/dropdown";
 
-import { FormsModule } from "@angular/forms";
 
 /**
  * MembersModule and MembersStoreModule will be lazy loaded.
@@ -39,6 +46,8 @@ import { FormsModule } from "@angular/forms";
     MemberEditAccountComponent,
     MemberEditProfileComponent,
     MemberEditPhotosComponent,
+    MembersSearchComponent,
+    MembersSearchFormComponent,
   ],
   imports: [
     SharedModule,
@@ -48,6 +57,10 @@ import { FormsModule } from "@angular/forms";
     CarouselModule.forRoot(),
     TabsModule.forRoot(),
     FormsModule,
+    BsDropdownModule.forRoot({
+      isAnimated: true,
+      autoClose: true
+    }),
   ]
 })
 export class MembersModule {}

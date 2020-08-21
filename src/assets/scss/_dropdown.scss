@@ -1,0 +1,14 @@
+.dropdown-menu {
+  background: var(--bg-color-light)!important;
+  z-index: 9999;
+  border: none!important;
+
+  .dropdown-item{
+    color: var(--text-color);
+
+    &:hover, &:focus {
+      background: none;
+      color: var(--main-color);
+    }
+  }
+}

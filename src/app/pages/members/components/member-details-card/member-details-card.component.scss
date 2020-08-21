@@ -1,3 +1,7 @@
+.card {
+  background: var(--bg-color-light);
+}
+
 .cover-photo {
   width: 100%;
   height: 250px;
@@ -45,7 +49,7 @@
     top: 255px;
     left: 270px;
     font-size: 18px;
-    color: #4c4c4c;
+    color: var(--text-color);
   }
 
 
@@ -53,7 +57,7 @@
     position: absolute;
     left: 270px;
     font-size: 18px;
-    color: #4c4c4c;
+    color: var(--text-color);
     top: 285px;
   }
 

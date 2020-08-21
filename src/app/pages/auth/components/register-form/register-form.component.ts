@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Credentials } from "@auth/models";
+import { Register } from "@auth/models";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { passwordValidation } from "@shared/validators";
 
@@ -11,7 +11,7 @@ import { passwordValidation } from "@shared/validators";
 export class RegisterFormComponent {
 
   @Input() loading: boolean;
-  @Output() submitted = new EventEmitter<Credentials>();
+  @Output() submitted = new EventEmitter<Register>();
 
   form: FormGroup;
   bsConfig = { dateInputFormat: 'DD/MM/YYYY', containerClass: 'theme-dark-blue' }
