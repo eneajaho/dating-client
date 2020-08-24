@@ -26,14 +26,14 @@ ng serve -o
 
 ### Main folder structure
     .
-    ├── core                      # Core Module manages global services, interceptors, guards and other configs
+    ├── core                      # Core Module manages global services, interceptors and other configs.
     │   ├── configs
     │   ├── guards
     │   ├── interceptors
     │   ├── models
     │   ├── services
     │   └── core.module.ts
-    ├── layout                    # Layout Module manages navigation components, layouts and theme service, 
+    ├── layout                    # Layout Module manages navigation components, layouts and theme service.
     │   ├── components
     │   ├── containers
     │   ├── services
@@ -42,7 +42,7 @@ ng serve -o
     │   ├── auth
     │   ├── settings
     │   └── members
-    ├── shared                    # Shared Module includes the most used components in the app. Gets imported in all the modules.
+    ├── shared                    # Shared Module includes the most used components in the app. 
     │   ├── components
     │   ├── directives
     │   ├── pipes
