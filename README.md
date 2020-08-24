@@ -70,7 +70,9 @@ ng serve -o
 
 
 ### Todo
-- Filter functionality
+- Filter/sort functionality
+- Likes functionality
+- Private messages (using SignalR) functionality
 - Upgrade to Angular 10
 
 
