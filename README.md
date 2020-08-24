@@ -3,6 +3,8 @@ A dating application built on top of Angular, NGRX, Bootstrap and RxJS.
 
 Backend is built with .Net Core 3.1 . Check out here: [DatingYou Backend](https://github.com/eneajaho/dating-api).
 
+App showcase gallery: [here](https://imgur.com/gallery/r6bIrfG)
+
 ## How to run
 - Clone the repository
 - Install dependencies
