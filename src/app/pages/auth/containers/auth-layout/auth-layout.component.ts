@@ -9,6 +9,6 @@ import { LayoutService } from "@layout/services";
 export class AuthLayoutComponent {
 
   constructor(private layout: LayoutService) {
-    layout.dark();
+    layout.light();
   }
 }
