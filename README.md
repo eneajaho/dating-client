@@ -58,7 +58,7 @@ ng serve -o
     ├── app.module.ts  
     └── app-routing.module.ts
     
-### Modules folder structure
+### Feature modules folder structure (auth, members, settings etc.)
      
     module                    
     ├── containers
