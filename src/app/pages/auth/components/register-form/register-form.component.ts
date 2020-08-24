@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { Register } from "@auth/models";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { passwordValidation } from "@shared/validators";
@@ -6,7 +6,8 @@ import { passwordValidation } from "@shared/validators";
 @Component({
   selector: 'app-register-form',
   templateUrl: './register-form.component.html',
-  styleUrls: [ './register-form.component.scss' ]
+  styleUrls: [ './register-form.component.scss' ],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RegisterFormComponent {
 
@@ -31,7 +32,7 @@ export class RegisterFormComponent {
 
   onSubmit() {
     if (this.form.valid) {
-         this.submitted.emit(this.form.value);
+       this.submitted.emit(this.form.value);
     }
   }
 

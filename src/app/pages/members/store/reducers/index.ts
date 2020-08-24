@@ -1,13 +1,13 @@
 import { Action, combineReducers, createFeatureSelector, createSelector, } from '@ngrx/store';
 import * as fromMembers from '@members/store/reducers/members.reducers';
 import * as fromAuth from '@auth/store/reducers';
-import { selectUserId } from '@auth/store/reducers';
 import * as fromRoot from '@store/reducers';
+import { adapter } from "@members/store/reducers/members.reducers";
 
 export const membersFeatureKey = 'members';
 
 export interface MembersState {
-  [fromMembers.membersFeatureKey]: fromMembers.State;
+  [fromMembers.membersEntityFeatureKey]: fromMembers.State;
 }
 
 export interface State extends fromRoot.State, fromAuth.State {
@@ -17,9 +17,10 @@ export interface State extends fromRoot.State, fromAuth.State {
 /** Provide reducer in AoT-compilation happy way */
 export function reducers(state: MembersState | undefined, action: Action) {
   return combineReducers({
-    [fromMembers.membersFeatureKey]: fromMembers.reducer
+    [fromMembers.membersEntityFeatureKey]: fromMembers.reducer
   })(state, action);
 }
+
 
 export const selectMembersState = createFeatureSelector<State, MembersState>(
   membersFeatureKey
@@ -27,7 +28,7 @@ export const selectMembersState = createFeatureSelector<State, MembersState>(
 
 export const selectMemberEntitiesState = createSelector(
   selectMembersState,
-  state => state[membersFeatureKey]
+  state => state[fromMembers.membersEntityFeatureKey]
 );
 
 export const {
@@ -35,27 +36,49 @@ export const {
   selectEntities: selectMemberEntities,
   selectAll: selectAllMembers,
   selectTotal: selectTotalMembers,
-} = fromMembers.adapter.getSelectors(selectMemberEntitiesState);
+} = adapter.getSelectors(selectMemberEntitiesState);
+
 
 /* Member Entities selectors */
-
 export const selectMembersLoading = createSelector(
   selectMemberEntitiesState,
-  members => members.loading
+  fromMembers.getLoading
 );
 
 export const selectMembersLoaded = createSelector(
   selectMemberEntitiesState,
-  members => members.loaded
+  fromMembers.getLoaded
 );
 
 export const selectMembersError = createSelector(
   selectMemberEntitiesState,
-  members => members.error
+  fromMembers.getError
 );
 
-/* Selected Member Selectors */
+/** Pagination */
+export const selectMembersPagination = createSelector(
+  selectMemberEntitiesState,
+  fromMembers.getPagination
+);
 
+export const selectMembersPaginationLoading = createSelector(
+  selectMembersPagination,
+  (state) => state?.loading
+);
+
+export const selectMembersHasMorePages = createSelector(
+  selectMembersPagination,
+  (state) => state.currentPage < state.totalPages
+);
+
+export const selectMembersPaginationError = createSelector(
+  selectMembersPagination,
+  (state) => state?.error
+);
+
+
+
+/** Selected Member Selectors */
 export const selectSelectedMemberId = createSelector(
   selectMemberEntitiesState,
   fromMembers.getMemberId
@@ -64,8 +87,8 @@ export const selectSelectedMemberId = createSelector(
 export const selectSelectedMember = createSelector(
   selectMemberEntities,
   selectSelectedMemberId,
-  (entities, selectedId) => {
-    return selectedId && entities[selectedId];
+  (members, selectedMemberId) => {
+    return members[selectedMemberId]
   }
 );
 
@@ -84,11 +107,14 @@ export const selectMemberError = createSelector(
   member => member.error
 );
 
-export const selectMyProfile = createSelector(
-  selectMemberEntitiesState,
-  selectUserId,
-  (members, userId) => members[userId]
+export const selectIsMyProfile = createSelector(
+  selectSelectedMemberId,
+  fromAuth.selectUserId,
+  (selectedMemberId, authUserId) => {
+    return selectedMemberId === authUserId;
+  }
 );
+
 
 
 

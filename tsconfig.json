@@ -22,7 +22,8 @@
 
       "@pages/*": ["app/pages/*"],
       "@auth/*": ["app/pages/auth/*"],
-      "@members/*": ["app/pages/members/*"]
+      "@members/*": ["app/pages/members/*"],
+      "@settings/*": ["app/pages/settings/*"]
     }
   },
   "angularCompilerOptions": {

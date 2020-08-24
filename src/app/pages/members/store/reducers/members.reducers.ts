@@ -1,26 +1,17 @@
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 import { createReducer, on } from "@ngrx/store";
-
 import {
   MemberActions,
-  MemberEditPageActions,
   MembersApiActions,
   MembersPageActions,
-  MembersPhotoActions
 } from "@members/store/actions";
-import { User } from "@core/models";
+import { Pagination, Status, User } from "@core/models";
 
-
-export const membersFeatureKey = 'members';
-
-export interface Status {
-  error?: string;
-  loaded?: boolean;
-  loading?: boolean;
-}
+export const membersEntityFeatureKey = 'membersEntity';
 
 export interface State extends EntityState<User & Status>, Status {
   selectedMemberId: number;
+  pagination: Pagination & Status;
 }
 
 export const adapter: EntityAdapter<User & Status> = createEntityAdapter<User & Status>({
@@ -29,6 +20,15 @@ export const adapter: EntityAdapter<User & Status> = createEntityAdapter<User & 
 
 export const initialState: State = adapter.getInitialState({
   selectedMemberId: null,
+  pagination: {
+    currentPage: null,
+    itemsPerPage: null,
+    totalItems: null,
+    totalPages: null,
+    loading: false,
+    loaded: false,
+    error: null,
+  },
   error: null,
   loaded: false,
   loading: false
@@ -38,129 +38,66 @@ export const initialState: State = adapter.getInitialState({
 export const reducer = createReducer(initialState,
 
   /** All Members reducers **/
-
   on(MembersPageActions.loadMembers, state => ({
     ...state, error: null, loaded: false, loading: true
   })),
 
-  on(MembersApiActions.loadMembersSuccess, (state, { members }) => {
-    return adapter.addMany(members, {
-      ...state, error: null, loaded: true, loading: false
-    })
+  on(MembersApiActions.loadMembersSuccess, (state, { members, pagination }) => {
+    return adapter.upsertMany(
+      members,
+      { ...state, pagination, error: null, loaded: true, loading: false })
   }),
 
   on(MembersApiActions.loadMembersFailure, (state, { error }) => ({
-    ...state, error,
+    ...state, loaded: false, loading: false, error
   })),
 
+
+  /** Load more members pagination */
+  on(MembersPageActions.loadMoreMembers, state => ({ ...state,
+    pagination: { ...state.pagination, error: null, loading: true }
+  })),
+
+  on(MembersApiActions.loadMoreMembersSuccess, (state, { members, pagination }) => {
+    return adapter.upsertMany(members, { ...state,
+      pagination: { ...state.pagination, ...pagination, loading: false, loaded: true }
+    })
+  }),
+
+  on(MembersApiActions.loadMoreMembersFailure, (state, { error }) => ({ ...state,
+    pagination: { ...state.pagination, error, loading: false, loaded: true }
+  })),
 
   /** Selected Member reducers **/
-
-  on(MemberActions.loadMember, (state, { id }) => ({
-    ...state, selectedMemberId: id
-  })),
-
   on(MemberActions.loadMember, (state, { id }) => {
-    return adapter.updateOne({ id: id, changes: { loading: true, error: null } }, state);
+    return adapter.upsertOne(
+      { id, loading: true, error: null },
+      { ...state, selectedMemberId: id }
+    );
   }),
 
   on(MembersApiActions.loadMemberSuccess, (state, { user }) => {
-    return adapter.updateOne({
-      id: user.id,
-      changes: { ...user, loading: false, loaded: true, error: null }
-    }, state);
+    return adapter.upsertOne(
+      { ...user, loading: false, loaded: true, error: null },
+      state
+    );
   }),
 
   on(MembersApiActions.loadMemberFailure, (state, { error, id }) => {
     return adapter.updateOne({
       id: id, changes: { error: error, loaded: false, loading: false }
     }, state);
-  }),
+  })
 
-
-  /**  Edit Member Reducers  **/
-
-  on(MemberEditPageActions.editMember, (state, { user }) => {
-    return adapter.updateOne({
-      id: user.id,
-      changes: { loading: true, error: null }
-    }, state);
-  }),
-
-  on(MembersApiActions.editMemberSuccess, (state, { user }) => {
-    return adapter.updateOne({
-      id: user.id,
-      changes: { ...user, loading: false, loaded: true, error: null }
-    }, state);
-  }),
-
-  on(MembersApiActions.editMemberFailure, (state, { error, id }) => {
-    return adapter.updateOne({
-      id: id, changes: { error: error, loaded: false, loading: false }
-    }, state);
-  }),
-
-
-
-  /**  Photo Reducers  **/
-  on(MembersPhotoActions.uploadPhoto, (state, { payload, userId }) => {
-    return adapter.updateOne({
-      id: userId,
-      changes: { loading: true, error: null }
-    }, state);
-  }),
-
-  on(MembersPhotoActions.uploadPhotoSuccess, (state, { photo, userId }) => {
-    const updatedPhotos = [ ...state.entities[userId].photos, photo];
-    return adapter.updateOne({
-      id: userId,
-      changes: { photos: updatedPhotos, loading: false }
-    }, state);
-  }),
-
-  on(MembersPhotoActions.uploadPhotoFailure, (state, { error, userId }) => {
-    return adapter.updateOne({
-      id: userId,
-      changes: { error, loading: false }
-    }, state);
-  }),
-
-  on(MembersPhotoActions.setMainPhotoSuccess, (state, { userId, photoId }) => {
-    const updatedPhotos = state.entities[userId].photos.map(photo => {
-      return { ...photo, isMain: photo.id === photoId };
-    });
-    return adapter.updateOne({
-      id: userId,
-      changes: {
-        photoUrl: updatedPhotos.find(p => p.id === photoId).url,
-        photos: updatedPhotos,
-        error: null
-      }
-    }, state);
-  }),
-
-  on(MembersPhotoActions.setMainPhotoFailure, (state, { userId, error }) => {
-    return state;
-  }),
-
-  on(MembersPhotoActions.deletePhotoSuccess, (state, { userId, photoId }) => {
-    const updatedPhotos = state.entities[userId].photos.filter(photo => photo.id !== photoId);
-    return adapter.updateOne({
-      id: userId,
-      changes: { photos: updatedPhotos, error: null }
-    }, state);
-  }),
-
-  on(MembersPhotoActions.deletePhotoFailure, (state, { userId, error }) => {
-    return state;
-  }),
-)
+);
 
 
 export const getMemberId = (state: State) => state.selectedMemberId;
+export const getPagination = (state: State) => state.pagination;
 export const getLoading = (state: State) => state.loading;
 export const getLoaded = (state: State) => state.loaded;
 export const getError = (state: State) => state.error;
+
 
 
 

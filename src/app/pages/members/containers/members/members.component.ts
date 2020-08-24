@@ -4,8 +4,8 @@ import { Store } from "@ngrx/store";
 import { User } from "@models/User";
 
 import * as fromMembers from '@members/store/reducers';
-import { Status } from "@members/store/reducers/members.reducers";
-import { LayoutService } from "@layout/services/layout.service";
+import { Status } from "@core/models";
+import { MembersPageActions } from "@members/store/actions";
 
 @Component({
   selector: 'app-members',
@@ -16,12 +16,28 @@ import { LayoutService } from "@layout/services/layout.service";
 export class MembersComponent implements OnInit {
 
   members$: Observable<(User & Status)[]>;
+  loading$: Observable<boolean>;
+  error$: Observable<string>;
 
-  constructor(private store: Store<fromMembers.State>, private layout: LayoutService) { }
+  paginationHasMorePages$: Observable<boolean>;
+  paginationLoading$: Observable<boolean>;
+  paginationError$: Observable<string>;
+
+  constructor(private store: Store<fromMembers.State>) { }
 
   ngOnInit() {
     this.members$ = this.store.select(fromMembers.selectAllMembers);
-    // this.layout.light();
+    this.loading$ = this.store.select(fromMembers.selectMembersLoading);
+    this.error$ = this.store.select(fromMembers.selectMembersError);
+
+    this.paginationHasMorePages$ = this.store.select(fromMembers.selectMembersHasMorePages);
+    this.paginationLoading$ = this.store.select(fromMembers.selectMembersPaginationLoading);
+    this.paginationError$ = this.store.select(fromMembers.selectMembersPaginationError);
   }
+
+  loadMore() {
+    this.store.dispatch(MembersPageActions.loadMoreMembers());
+  }
+
 
 }

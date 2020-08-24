@@ -6,14 +6,14 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { tap } from 'rxjs/operators';
 
 import { LocalStorageService } from "@core/services/local-storage.service";
-import { AuthService } from "@auth/store/services/auth.service";
 import { AuthActions } from "@auth/store/actions";
 
 @Injectable()
 export class AuthEffects {
 
-  constructor(private actions$: Actions, private auth: AuthService,
+  constructor(private actions$: Actions,
               private router: Router, private local: LocalStorageService) {}
+
 
   redirectToAuthPage$ = createEffect(() =>
     this.actions$.pipe(

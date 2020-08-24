@@ -95,6 +95,17 @@ $alert-padding-x:                   1rem;
   text-align: center;
 }
 
+.alert-error {
+  display: block;
+  margin-top: 0.15rem;
+  font-size: 95%;
+  color: #dc3545;
+  font-weight: 600;
+  background: #ff00001f;
+  padding: 10px 10px;
+  text-align: center;
+}
+
 .valid-feedback {
   display: block;
 }

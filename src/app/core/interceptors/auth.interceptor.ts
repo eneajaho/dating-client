@@ -11,11 +11,11 @@ export class AuthInterceptor implements HttpInterceptor {
   constructor(private store: Store<fromAuth.State>) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler) {
-    return this.store.select(fromAuth.selectUser).pipe(
+    return this.store.select(fromAuth.selectAuthToken).pipe(
       first(),
-      switchMap(user => {
-        const authRequest = !!user ? req.clone({
-          setHeaders: { Authorization: `Bearer ${ user.token }` }
+      switchMap(token => {
+        const authRequest = !!token ? req.clone({
+          setHeaders: { Authorization: `Bearer ${ token }` }
         }) : req;
         return next.handle(authRequest);
       })

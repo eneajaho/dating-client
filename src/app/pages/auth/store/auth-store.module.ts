@@ -17,7 +17,7 @@ import { AuthEffects, LoginEffects, RegisterEffects } from "@auth/store/effects"
     EffectsModule.forFeature([
       AuthEffects,
       LoginEffects,
-      RegisterEffects
+      RegisterEffects,
     ])
 
   ]

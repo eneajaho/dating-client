@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from "@angular/router";
 
-import { AuthFormComponent, RegisterFormComponent } from '@auth/components';
+import { LoginFormComponent, RegisterFormComponent } from '@auth/components';
 import { AuthLayoutComponent, LoginComponent, RegisterComponent } from '@auth/containers';
 
 import { SharedModule } from "@shared/index";
@@ -29,7 +29,7 @@ const routes: Routes = [
   declarations: [
     LoginComponent,
     RegisterComponent,
-    AuthFormComponent,
+    LoginFormComponent,
     AuthLayoutComponent,
     RegisterFormComponent,
   ],

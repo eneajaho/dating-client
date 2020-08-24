@@ -33,7 +33,7 @@ import { AuthStoreModule } from "@auth/store/auth-store.module";
     }),
 
     StoreDevtoolsModule.instrument({
-      maxAge: 10,
+      maxAge: 20,
       logOnly: environment.production,
     })
   ]

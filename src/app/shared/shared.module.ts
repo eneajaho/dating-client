@@ -5,15 +5,17 @@ import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
-import { FileUploaderComponent, GoBackComponent, SpinnerComponent } from '@shared/components';
+import { FileUploaderComponent, GoBackComponent, SpinnerComponent, ErrorAlertComponent } from '@shared/components';
 import { ReactiveFormsModule } from "@angular/forms";
 import { DropzoneDirective } from './directives/dropzone.directive';
 import { TimeAgoPipe } from './pipes/time-ago.pipe';
+import { LoadingDirective } from './directives/loading.directive';
 
 export const COMPONENTS = [
   GoBackComponent,
   SpinnerComponent,
-  FileUploaderComponent
+  FileUploaderComponent,
+  ErrorAlertComponent,
 ]
 
 @NgModule({
@@ -21,6 +23,8 @@ export const COMPONENTS = [
     ...COMPONENTS,
     DropzoneDirective,
     TimeAgoPipe,
+    LoadingDirective,
+    LoadingDirective,
   ],
   imports: [
     CommonModule,
@@ -39,7 +43,8 @@ export const COMPONENTS = [
     BsDropdownModule,
     BsDatepickerModule,
     TimeAgoPipe,
-    ...COMPONENTS
+    ...COMPONENTS,
+    LoadingDirective
   ]
 })
 export class SharedModule { }

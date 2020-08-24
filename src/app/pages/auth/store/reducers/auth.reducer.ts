@@ -13,7 +13,6 @@ export const initialState: State = {
 };
 
 export const reducer = createReducer(initialState,
-
   on(AuthApiActions.loginSuccess, (state, { user }) => ({ ...state, user })),
 
   on(AuthActions.logout, () => initialState),
@@ -21,4 +20,7 @@ export const reducer = createReducer(initialState,
   on(AuthActions.getUserLocal, (state, { user }) => ({ ...state, user })),
 );
 
-export const getUser = (state: State) => state.user;
+export const getAuth = (state: State) => state.user;
+export const getToken = (state: State) => state.user?.token;
+export const getUserId = (state: State) => state.user?.id;
+export const isLoggedIn = (state: State) => state.user !== null;

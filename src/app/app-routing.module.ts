@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from "@angular/router";
 import { MainLayoutComponent } from "@layout/containers";
 import { NotFoundComponent } from "@layout/components";
@@ -14,16 +13,19 @@ const ROUTES: Routes = [
       {
         path: 'members',
         canActivate: [ AuthGuard ],
-        loadChildren: () => import('@pages/members/members.module')
-          .then(m => m.MembersModule)
+        loadChildren: async () => (await import('@members/members.module')).MembersModule
+      },
+      {
+        path: 'settings',
+        canActivate: [ AuthGuard ],
+        loadChildren: async () => (await import('@pages/settings/settings.module')).SettingsModule
       }
     ]
   },
   {
       path: 'auth',
       canActivate: [NonAuthGuard],
-      loadChildren: () => import('@auth/auth.module')
-        .then(m => m.AuthModule)
+      loadChildren: async () => (await import('@auth/auth.module')).AuthModule
   },
   {
     path: '**', component: MainLayoutComponent, children: [
@@ -36,7 +38,6 @@ const ROUTES: Routes = [
 
 @NgModule({
   imports: [
-    CommonModule,
     RouterModule.forRoot(ROUTES),
   ],
   exports: [ RouterModule ]

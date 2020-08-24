@@ -1,2 +1,2 @@
-export * from './auth-form/auth-form.component';
+export * from './login-form/login-form.component';
 export * from "./register-form/register-form.component";

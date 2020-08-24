@@ -1,13 +1,17 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { map, tap } from "rxjs/operators";
 import { Store } from "@ngrx/store";
 import { Observable } from "rxjs";
-import { map, switchMap } from "rxjs/operators";
-import { User } from "@models/User";
+
 import { faComment } from "@fortawesome/free-regular-svg-icons";
 import { faUserCog } from "@fortawesome/free-solid-svg-icons";
 
 import * as fromMembers from '@members/store/reducers';
-import * as fromAuth from '@auth/store/reducers';
+import * as fromSettings from '@settings/store/reducers';
+import { AuthActions } from "@auth/store/actions";
+import * as fromRoot from "@store/reducers";
+import { User } from "@models/User";
+import { SettingsActions } from "@settings/store/actions";
 
 @Component({
   selector: 'app-member-details',
@@ -18,22 +22,32 @@ import * as fromAuth from '@auth/store/reducers';
 export class MemberDetailsComponent implements OnInit {
 
   details$: Observable<User>;
-  userId$: Observable<any>;
-
-  isMyProfile$: Observable<boolean>;
+  myProfile$: Observable<boolean>;
 
   sendIcon = faComment;
   userEditIcon = faUserCog;
 
-  constructor(private store: Store<fromMembers.State>) { }
+  constructor(private store: Store<fromMembers.State & fromSettings.State>) { }
 
-  ngOnInit(): void {
-    this.details$ = this.store.select(fromMembers.selectSelectedMember);
-    this.userId$ = this.store.select(fromAuth.selectUserId);
+  ngOnInit() {
+    this.myProfile$ = this.isMyProfilePage$.pipe(
+      tap(isMyProfile => {
+        if (isMyProfile) {
+          this.details$ = this.store.select(fromSettings.selectUserDetails);
+        } else {
+          this.details$ = this.store.select(fromMembers.selectSelectedMember);
+        }
+      })
+    );
+  }
 
-    this.isMyProfile$ =
-      this.details$.pipe(switchMap(details =>
-        this.userId$.pipe(map(userId => details?.id === userId))));
+  private get isMyProfilePage$(): Observable<boolean> {
+    return this.store.select(fromRoot.selectRouter).pipe(
+      map(data => data?.state?.url === '/members/profile'),
+      tap(isMyProfile => {
+        if (isMyProfile) { this.store.dispatch(SettingsActions.loadAuthDetails()); }
+      })
+    )
   }
 
 }

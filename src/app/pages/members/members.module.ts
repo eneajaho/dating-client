@@ -11,7 +11,6 @@ import { MembersStoreModule } from "@members/store/members-store.module";
 
 import {
   MemberDetailsComponent,
-  MemberEditComponent,
   MembersComponent,
   MembersSearchComponent
 } from '@members/containers';
@@ -19,14 +18,10 @@ import {
 import {
   MemberCardComponent,
   MemberDetailsCardComponent,
-  MemberEditAccountComponent,
-  MemberEditHeaderComponent,
-  MemberEditNavigationComponent,
-  MemberEditPhotosComponent,
-  MemberEditProfileComponent,
   MembersSearchFormComponent
 } from '@members/components';
 import { BsDropdownModule } from "ngx-bootstrap/dropdown";
+import { SettingsStoreModule } from "@settings/store/settings-store.module";
 
 
 /**
@@ -37,15 +32,10 @@ import { BsDropdownModule } from "ngx-bootstrap/dropdown";
 @NgModule({
   declarations: [
     MembersComponent,
-    MemberEditComponent,
     MemberCardComponent,
     MemberDetailsComponent,
     MemberDetailsCardComponent,
-    MemberEditNavigationComponent,
-    MemberEditHeaderComponent,
-    MemberEditAccountComponent,
-    MemberEditProfileComponent,
-    MemberEditPhotosComponent,
+
     MembersSearchComponent,
     MembersSearchFormComponent,
   ],
@@ -53,6 +43,11 @@ import { BsDropdownModule } from "ngx-bootstrap/dropdown";
     SharedModule,
     MembersRoutingModule,
     MembersStoreModule,
+
+    // for the moment Settings Store is loaded also here because of profile page
+    // will be changed later, because another profile page will be created
+    SettingsStoreModule,
+
     TagInputModule,
     CarouselModule.forRoot(),
     TabsModule.forRoot(),

@@ -20,8 +20,13 @@ export class RegisterComponent implements OnInit {
   constructor(private store: Store<fromAuth.State>) { }
 
   ngOnInit() {
+    this.clearErrors();
     this.error$ = this.store.select(fromAuth.selectRegisterPageError);
     this.loading$ = this.store.select(fromAuth.selectRegisterPagePending);
+  }
+
+  clearErrors() {
+    this.store.dispatch(RegisterPageActions.clearRegisterError());
   }
 
   handleRegister(credentials: Register) {

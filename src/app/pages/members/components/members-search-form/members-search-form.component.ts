@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { Theme } from "@layout/services/layout.service";
 
@@ -13,10 +13,15 @@ export class MembersSearchFormComponent implements OnInit {
   searchIcon = faSearch;
 
   @Input() theme: Theme = 'dark';
+  @Output() submitted = new EventEmitter();
 
   constructor() { }
 
-  ngOnInit(): void {
+  ngOnInit() {
+  }
+
+  onSubmit() {
+    this.submitted.emit(true);
   }
 
 }

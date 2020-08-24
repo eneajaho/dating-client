@@ -3,11 +3,11 @@ import { Router } from "@angular/router";
 
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 
-import { catchError, exhaustMap, map, tap } from 'rxjs/operators';
+import { catchError, exhaustMap, map, switchMap, tap } from 'rxjs/operators';
 import { of } from "rxjs";
 
 import { LocalStorageService } from "@core/services/local-storage.service";
-import { AuthService } from "@auth/store/services/auth.service";
+import { AuthService } from "@core/services/auth.service";
 import { AuthApiActions, LoginPageActions } from "@auth/store/actions";
 
 @Injectable()
@@ -15,7 +15,7 @@ export class LoginEffects {
 
   login$ = createEffect(() =>
     this.actions$.pipe(ofType(LoginPageActions.login),
-      exhaustMap(({ credentials }) =>
+      switchMap(({ credentials }) =>
         this.auth.login(credentials).pipe(
           map(user => AuthApiActions.loginSuccess({ user })),
           catchError(error => of(AuthApiActions.loginFailure({ error }))),

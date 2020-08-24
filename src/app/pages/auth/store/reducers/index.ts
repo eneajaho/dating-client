@@ -26,36 +26,49 @@ export function reducers(state: AuthState | undefined, action: Action) {
 }
 
 
-/* Auth Selectors */
+/** Auth Selectors */
 
-/* Auth State */
+
+
+/** Auth State */
 export const selectAuthState = createFeatureSelector<State, AuthState>(
   authFeatureKey
 );
 
-/* Auth Status */
+
+
+/** Auth Status */
 export const selectAuthStatusState = createSelector(
   selectAuthState,
-  state => state.status
+  state => state[fromAuth.statusFeatureKey]
 );
 
 export const selectUser = createSelector(
   selectAuthStatusState,
-  fromAuth.getUser
+  fromAuth.getAuth
+);
+
+export const selectAuthToken = createSelector(
+  selectAuthStatusState,
+  fromAuth.getToken
 );
 
 export const selectUserId = createSelector(
-  selectUser, user => user.id
+  selectAuthStatusState,
+  fromAuth.getUserId
 );
 
 export const selectLoggedIn = createSelector(
-  selectUser, user => !!user
+  // selectUser, user => !!user
+  selectAuthStatusState,
+  fromAuth.isLoggedIn
 );
 
 
-/* Login Page */
+/** Login Page */
 export const selectLoginPageState = createSelector(
-  selectAuthState, state => state.loginPage
+  selectAuthState,
+    state => state[fromLoginPage.loginPageFeatureKey]
 );
 
 export const selectLoginPageError = createSelector(
@@ -69,9 +82,9 @@ export const selectLoginPagePending = createSelector(
 );
 
 
-/* Register Page */
+/** Register Page */
 export const selectRegisterPageState = createSelector(
-  selectAuthState, state => state.registerPage
+  selectAuthState, state => state[fromRegisterPage.registerPageFeatureKey]
 );
 
 export const selectRegisterPageError = createSelector(

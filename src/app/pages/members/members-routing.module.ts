@@ -1,14 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { NotFoundComponent } from "@layout/components";
 import {
   MemberDetailsComponent,
-  MemberEditComponent,
   MembersComponent,
   MembersSearchComponent
 } from "@members/containers";
-import { MembersGuard, PreventUnsavedChangesGuard } from "@members/guards";
-import { MemberEditAccountComponent, MemberEditPhotosComponent, MemberEditProfileComponent } from "@members/components";
+import { MemberGuard, MembersGuard } from "@members/guards";
 
 const routes: Routes = [
   {
@@ -26,36 +23,8 @@ const routes: Routes = [
     component: MembersComponent
   },
   {
-    path: 'edit',
-    canActivate: [ MembersGuard ],
-    component: MemberEditComponent,
-    children: [
-      {
-        path: '', redirectTo: 'profile', pathMatch: 'full'
-      },
-      {
-        path: 'account',
-        canDeactivate: [ PreventUnsavedChangesGuard ],
-        component: MemberEditAccountComponent
-      },
-      {
-        path: 'profile',
-        canDeactivate: [ PreventUnsavedChangesGuard ],
-        component: MemberEditProfileComponent
-      },
-      {
-        path: 'photos',
-        canDeactivate: [],
-        component: MemberEditPhotosComponent
-      },
-      {
-        path: '**', component: NotFoundComponent
-      }
-    ]
-  },
-  {
     path: ':memberId',
-    canActivate: [ MembersGuard ],
+    canActivate: [ MemberGuard ],
     component: MemberDetailsComponent
   }
 ];

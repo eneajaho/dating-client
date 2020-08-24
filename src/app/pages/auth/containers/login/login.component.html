@@ -1,13 +1,13 @@
 <h2 class="font-weight-bold mb-3">Login in Dating</h2>
 
-<app-auth-form [loading]="loading$ | async" (submitted)="handleLogin($event)">
+<app-login-form [loading]="loading$ | async" (submitted)="handleLogin($event)">
+  <!--  used content projection-->
   <span id="type">Login now</span>
   <div *ngIf="error$ | async as error" (click)="clearErrors()"
-       title="Close error!"
-       class="error invalid-feedback cp">
+       class="alert alert-error error cp">
     {{ error }}
   </div>
-</app-auth-form>
+</app-login-form>
 
 <div class="mt-3">
   <a routerLink="/auth/register" class="text-muted">

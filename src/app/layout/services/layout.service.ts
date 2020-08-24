@@ -7,10 +7,12 @@ export type Theme = 'dark' | 'light';
 @Injectable({ providedIn: 'root' })
 export class LayoutService {
 
-  private theme = new BehaviorSubject<Theme>('light');
+  private theme = new BehaviorSubject<Theme>('dark');
   public theme$: Observable<Theme> = this.theme.asObservable();
 
-  constructor(@Inject(DOCUMENT) private document: Document) { }
+  constructor(@Inject(DOCUMENT) private document: Document) {
+    this.dark();
+  }
 
   toggle() {
     if (this.activeTheme === "dark") {

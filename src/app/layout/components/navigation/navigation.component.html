@@ -35,16 +35,15 @@
           </a>
           <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu dropdown-menu-right mr-2">
             <li role="menuitem">
-              <a class="dropdown-item" [routerLink]="['/members', user.id]">
+              <a class="dropdown-item" routerLink="/members/profile">
                 <fa-icon [icon]="userIcon" class="mr-2"></fa-icon>
                 My Profile
               </a>
-              <a class="dropdown-item" routerLink="/members/edit">
+              <a class="dropdown-item" routerLink="/settings">
                 <fa-icon [icon]="settingsIcon"></fa-icon>
                 Settings
               </a>
             </li>
-
             <li class="divider dropdown-divider"></li>
             <li role="menuitem">
               <a class="dropdown-item" (click)="onLogout()">

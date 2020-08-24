@@ -3,11 +3,11 @@ import { Router } from "@angular/router";
 
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 
-import { catchError, exhaustMap, map, tap } from 'rxjs/operators';
+import { catchError, exhaustMap, map, switchMap, tap } from 'rxjs/operators';
 import { of } from "rxjs";
 
 import { AuthApiActions, RegisterPageActions } from "@auth/store/actions";
-import { AuthService } from "@auth/store/services/auth.service";
+import { AuthService } from "@core/services/auth.service";
 import { ToastrService } from "ngx-toastr";
 
 @Injectable()
@@ -16,7 +16,7 @@ export class RegisterEffects {
   register$ = createEffect(() =>
     this.actions$.pipe(
       ofType(RegisterPageActions.register),
-      exhaustMap(({ credentials }) =>
+      switchMap(({ credentials }) =>
         this.auth.register(credentials).pipe(
           map(user => {
             this.toast.success('', 'You were registered successfully!');

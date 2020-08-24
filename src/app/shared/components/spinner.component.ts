@@ -11,10 +11,13 @@ import { Component, Input } from '@angular/core';
       <span class="sr-only">Loading...</span>
     </div>
   `,
-  styles: [
-    '.small { width: 1.5rem; height: 1.5rem; }',
-    '.medium { width: 5rem; height: 5rem; }',
-    '.big { width: 10rem; height: 10rem; }'
+  styles: [`
+    .spinner-border { color: var(--text-color) }
+    .text-button { color: var(--bg-color-light) }
+    .small { width: 1.5rem; height: 1.5rem; }
+    .medium { width: 5rem; height: 5rem; }
+    .big { width: 10rem; height: 10rem; }
+    `
   ]
 })
 export class SpinnerComponent {

@@ -2,9 +2,9 @@ import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { catchError, map, switchMap } from "rxjs/operators";
 import { of } from "rxjs";
 import { Injectable } from "@angular/core";
-import { MemberService } from "../../services/member.service";
+import { MemberService } from "@core/services";
 
-import { MemberActions, MemberEditPageActions, MembersApiActions } from "@members/store/actions";
+import { MemberActions, MembersApiActions } from "@members/store/actions";
 import { ToastrService } from "ngx-toastr";
 
 @Injectable()
@@ -23,19 +23,5 @@ export class MemberEffects {
     })
   ));
 
-  editMember$ = createEffect(() => this.actions$.pipe(
-    ofType(MemberEditPageActions.editMember),
-    switchMap(({ user }) => {
-      return this.memberService.editMember(user).pipe(
-        map(user => {
-          this.toast.success('', 'Profile updated successfully!');
-          return MembersApiActions.editMemberSuccess({ user })
-        }),
-        catchError(error => {
-          this.toast.error('', error);
-          return of(MembersApiActions.editMemberFailure({ error, id: user.id }))
-        }),
-      )
-    })
-  ));
+
 }
