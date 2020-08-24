@@ -1,27 +1,77 @@
-# DatingClient
+# DatingYou
+A dating application built on top of Angular, NGRX, Bootstrap and RxJS.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.7.
+Backend is built with .Net Core 3.1 . Check out here: [DatingYou Backend](https://github.com/eneajaho/dating-api).
 
-## Development server
+## How to run
+- Clone the repository
+- Install dependencies
+- Run application
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+```bash
+git clone https://github.com/eneajaho/dating-client.git
+npm install
+ng serve -o
+```
 
-## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## What's included
+- NGRX Store (eager & lazy loaded store modules)
+- Authentication & Authorization
+- CRUD & Pagination (server side)
+- Multiple layouts architecture 
+- Light & Dark Mode
+- Image uploading
 
-## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+### Main folder structure
+    .
+    ├── core                      # Core Module manages global services, interceptors, guards and other configs
+    │   ├── configs
+    │   ├── guards
+    │   ├── interceptors
+    │   ├── models
+    │   ├── services
+    │   └── core.module.ts
+    ├── layout                    # Layout Module manages navigation components, layouts and theme service, 
+    │   ├── components
+    │   ├── containers
+    │   ├── services
+    │   └── layout.module.ts
+    ├── pages                     # Pages is where lazy loaded and eager modules live
+    │   ├── auth
+    │   ├── settings
+    │   └── members
+    ├── shared                    # Shared Module includes the most used components in the app. Gets imported in all the modules.
+    │   ├── components
+    │   ├── directives
+    │   ├── pipes
+    │   ├── validators
+    │   └── shared.module.ts
+    ├── store                     # Manages and initializes the Root Store Module (NGRX Store)
+    │   ├── effects
+    │   ├── reducers
+    │   └── root-store.module.ts
+    ├── app.component.ts
+    ├── app.module.ts  
+    └── app-routing.module.ts
+    
+### Modules folder structure
+     
+    module                    
+    ├── containers
+    ├── components
+    ├── services
+    ├── guards
+    ├── store
+    └── module.ts
 
-## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### Todo
+- Filter functionality
+- Upgrade to Angular 10
 
-## Running end-to-end tests
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+#### License: MIT
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+#### Author: [Enea Jahollari](https://github.com/eneajaho)
