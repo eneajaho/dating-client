@@ -74,7 +74,8 @@ ng serve -o
 - Likes functionality
 - Private messages (using SignalR) functionality
 - Upgrade to Angular 10
-
+- SSR (Angular Universal)
+- Testing 
 
 #### License: MIT
 
