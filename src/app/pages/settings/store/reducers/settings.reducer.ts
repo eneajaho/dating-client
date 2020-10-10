@@ -56,10 +56,7 @@ export const reducer = createReducer(initialState,
   })),
 
   on(PhotosActions.uploadPhotoSuccess, (state, { photo }) => ({ ...state,
-      user: {
-        ...state.user,
-        photos: [ ...state.user.photos, photo ]
-      },
+      user: { ...state.user, photos: [ ...state.user.photos, photo ] },
       savingChanges: false
   })),
 
@@ -74,13 +71,12 @@ export const reducer = createReducer(initialState,
 
   on(PhotosActions.setMainPhotoSuccess, (state, { photoId }) => {
     const updatedPhotos = state.user.photos.map(photo => ({ ...photo, isMain: photo.id === photoId }));
-    return { ...state,
+    return { ...state, savingChanges: false,
       user: {
         ...state.user,
         photoUrl: updatedPhotos.find(p => p.id === photoId).url,
         photos: updatedPhotos
-      },
-      savingChanges: false
+      }
     }
   }),
 

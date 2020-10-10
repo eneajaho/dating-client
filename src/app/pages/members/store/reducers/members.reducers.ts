@@ -38,18 +38,18 @@ export const initialState: State = adapter.getInitialState({
 export const reducer = createReducer(initialState,
 
   /** All Members reducers **/
-  on(MembersPageActions.loadMembers, state => ({
-    ...state, error: null, loaded: false, loading: true
+  on(MembersPageActions.loadMembers, state => ({ ...state,
+    error: null, loaded: false, loading: true
   })),
 
   on(MembersApiActions.loadMembersSuccess, (state, { members, pagination }) => {
-    return adapter.upsertMany(
-      members,
-      { ...state, pagination, error: null, loaded: true, loading: false })
+    return adapter.upsertMany(members, { ...state,
+      pagination, error: null, loaded: true, loading: false
+    })
   }),
 
-  on(MembersApiActions.loadMembersFailure, (state, { error }) => ({
-    ...state, loaded: false, loading: false, error
+  on(MembersApiActions.loadMembersFailure, (state, { error }) => ({ ...state,
+    loaded: false, loading: false, error
   })),
 
 
