@@ -47,7 +47,7 @@
   </div>
 
   <div class="submit mt-3">
-    <button [disabled]="!formChanged" type="submit"
+    <button [disabled]="!(formChanged$ | async)" type="submit"
             class="btn btn-primary px-4">
 
       <span *ngIf="!(savingChanges$ | async); else loader">

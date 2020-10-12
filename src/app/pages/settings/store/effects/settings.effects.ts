@@ -20,7 +20,7 @@ export class SettingsEffects {
               private toast: ToastrService) {}
 
 
-  loadAuthDetails$ = createEffect(() =>
+  LoadAuthDetails$ = createEffect(() =>
     this.actions$.pipe(
       ofType(SettingsActions.loadAuthDetails),
       switchMap(() => this.store.select(fromAuth.selectUserId)),
@@ -31,7 +31,7 @@ export class SettingsEffects {
         ))
     ));
 
-  editUserDetails$ = createEffect(() => this.actions$.pipe(
+  EditUserDetails$ = createEffect(() => this.actions$.pipe(
       ofType(SettingsActions.editAuthDetails),
       switchMap(({ user }) => {
         return this.memberService.editMember(user).pipe(

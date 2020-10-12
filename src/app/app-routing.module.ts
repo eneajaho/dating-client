@@ -23,14 +23,14 @@ const ROUTES: Routes = [
     ]
   },
   {
-      path: 'auth',
-      canActivate: [NonAuthGuard],
-      loadChildren: async () => (await import('@auth/auth.module')).AuthModule
+    path: 'auth',
+    canActivate: [ NonAuthGuard ],
+    loadChildren: async () => (await import('@auth/auth.module')).AuthModule
   },
   {
     path: '**', component: MainLayoutComponent, children: [
       {
-        path: '',  component: NotFoundComponent
+        path: '', component: NotFoundComponent
       }
     ]
   },
@@ -42,4 +42,5 @@ const ROUTES: Routes = [
   ],
   exports: [ RouterModule ]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule {
+}

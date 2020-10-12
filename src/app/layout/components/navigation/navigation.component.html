@@ -9,14 +9,14 @@
   </button>
   <div class="collapse navbar-collapse" [class.show]="showMenu">
     <ul class="navbar-nav">
-      <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" routerLink="/members/all">Members</a>
+      <li class="nav-item">
+        <a class="nav-link" routerLinkActive="active"  routerLink="/members/all">Members</a>
       </li>
-      <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" routerLink="/matches">Matches</a>
+      <li class="nav-item">
+        <a class="nav-link" routerLinkActive="active" routerLink="/matches">Matches</a>
       </li>
-      <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" routerLink="/messages">Messages</a>
+      <li class="nav-item">
+        <a class="nav-link" routerLinkActive="active" routerLink="/messages">Messages</a>
       </li>
     </ul>
 
@@ -40,7 +40,7 @@
                 My Profile
               </a>
               <a class="dropdown-item" routerLink="/settings">
-                <fa-icon [icon]="settingsIcon"></fa-icon>
+                <fa-icon [icon]="settingsIcon" class="mr-2"></fa-icon>
                 Settings
               </a>
             </li>
@@ -54,11 +54,11 @@
           </ul>
         </div>
       </li>
-      <li *ngIf="!user" class="nav-item" routerLinkActive="active">
-        <a class="nav-link" routerLink="/auth/login">Login</a>
+      <li *ngIf="!user" class="nav-item">
+        <a class="nav-link" routerLinkActive="active" routerLink="/auth/login">Login</a>
       </li>
-      <li *ngIf="!user" class="nav-item" routerLinkActive="active">
-        <a class="nav-link" routerLink="/auth/register">Register</a>
+      <li *ngIf="!user" class="nav-item">
+        <a class="nav-link" routerLinkActive="active" routerLink="/auth/register">Register</a>
       </li>
     </ul>
   </div>

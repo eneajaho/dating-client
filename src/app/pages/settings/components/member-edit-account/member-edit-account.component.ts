@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { User } from "@core/models";
-import { Observable, Subject } from "rxjs";
+import { BehaviorSubject, Observable, Subject } from "rxjs";
 import { Store } from "@ngrx/store";
 import { takeUntil } from "rxjs/operators";
 
@@ -15,35 +15,52 @@ import { SettingsActions } from "@settings/store/actions";
 })
 export class MemberEditAccountComponent implements OnInit, OnDestroy {
 
-  form: FormGroup;
+  form: FormGroup = this.fb.group({
+    username: [ '', Validators.required ],
+    gender: [ '', Validators.required ],
+    //  birthday: [ '', Validators.required ]
+  });
+
   details: User;
+
+  formChanged$ = new BehaviorSubject(false);
 
   private destroy$ = new Subject<boolean>();
 
   loading$: Observable<boolean>;
   error$: Observable<string>;
 
-  constructor(private store: Store<fromSettings.State>,
-              private fb: FormBuilder) {}
+  constructor(private store: Store<fromSettings.State>, private fb: FormBuilder) {}
 
-  ngOnInit() {
-    this.form = this.fb.group({
-      username: [ '', Validators.required ],
-    //  birthday: [ '', Validators.required ]
-    });
+  ngOnInit(): void {
+    this.getUserDetails();
+    this.handleFormChanges();
 
-    this.store.select(fromSettings.selectUserDetails)
-      .pipe(takeUntil(this.destroy$)).subscribe(data => {
-      this.details = data;
-      this.patchForm(data);
-    });
-
-    this.loading$ = this.store.select(fromSettings.selectUserDetailsLoading);
+    this.loading$ = this.store.select(fromSettings.selectUserDetailsSavingChanges);
     this.error$ = this.store.select(fromSettings.selectUserDetailsError);
   }
 
-  patchForm(user: User) {
+  getUserDetails(): void {
+    this.store.select(fromSettings.selectUserDetails)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(data => {
+        this.details = data;
+        this.patchForm(data);
+      });
+  }
+
+  handleFormChanges(): void {
+    this.form.valueChanges
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(x => {
+        this.formChanged$.next(this.form.dirty);
+      });
+  }
+
+  patchForm(user: User): void {
     this.form.reset();
+
+    console.log(user);
 
     this.form.patchValue({
       ...user,
@@ -51,10 +68,11 @@ export class MemberEditAccountComponent implements OnInit, OnDestroy {
     });
   }
 
-  onSubmit() {
+  onSubmit(): void {
     if (this.form.valid) {
       const user = { ...this.details, ...this.form.value };
-      this.store.dispatch(SettingsActions.editAuthDetails({ user }))
+      this.store.dispatch(SettingsActions.editAuthDetails({ user }));
+      this.formChanged$.next(false);
     }
   }
 
@@ -62,11 +80,7 @@ export class MemberEditAccountComponent implements OnInit, OnDestroy {
     return this.form.get(control).touched && this.form.get(control).invalid;
   }
 
-  get formChanged() {
-    return this.form.touched && this.form.dirty;
-  }
-
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.destroy$.next(true);
     this.destroy$.complete();
     this.destroy$.unsubscribe();

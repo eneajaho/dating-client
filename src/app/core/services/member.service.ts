@@ -1,9 +1,9 @@
 import { Inject, Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpResponse } from "@angular/common/http";
+import { IQueryParams, PaginatedResult } from "@models/Pagination";
 import { Observable } from "rxjs";
 import { API_URL } from "@core/configs";
 import { User } from "@models/User";
-import { IQueryParams, PaginatedResult } from "@models/Pagination";
 import { map } from "rxjs/operators";
 
 @Injectable({ providedIn: 'root' })

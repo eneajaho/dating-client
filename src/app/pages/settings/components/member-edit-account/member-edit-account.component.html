@@ -1,4 +1,4 @@
-<div *ngIf="formChanged" class="text-right text-secondary">
+<div *ngIf="formChanged$ | async" class="text-right text-secondary">
   *Unsaved changes
 </div>
 
@@ -13,6 +13,13 @@
       Username is required!
     </div>
   </div>
+  <div class="form-group">
+    <label for="gender">Gender</label>
+    <select name="gender" id="gender" formControlName="gender" class="form-control">
+      <option value="male">Male</option>
+      <option value="female">Female</option>
+    </select>
+  </div>
 
 <!--  <div class="form-group">-->
 <!--    <label for="birthday">Birthday</label>-->
@@ -24,7 +31,7 @@
 <!--  </div>-->
 
   <div class="submit mt-3">
-    <button [disabled]="!formChanged" type="submit" class="btn btn-primary px-4">
+    <button [disabled]="!(formChanged$ | async)" type="submit" class="btn btn-primary px-4">
 
       <span *ngIf="!(loading$ | async); else loader">
         Save changes

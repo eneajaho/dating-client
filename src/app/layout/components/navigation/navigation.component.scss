@@ -3,7 +3,10 @@
   transition: 0.4s all;
   border-radius: 10px;
   margin: 10px;
- // box-shadow: 0 5px 10px var(--box-shadow-color);
+  position: sticky;
+  top: -5px;
+  z-index: 99999;
+  box-shadow: 0 0 5px var(--box-shadow-color);
 }
 
 .navbar-brand {
@@ -16,11 +19,19 @@
   color: var(--text-color);
 }
 
-a {
+#button-basic  {
   color: var(--text-color)!important;
 
   &:hover {
     color: var(--main-color)!important;
+  }
+}
+
+a {
+  color: var(--text-color);
+
+  &:hover {
+    color: var(--main-color);
   }
 }
 
@@ -39,4 +50,8 @@ a {
 
 .dropdown-item {
   cursor: pointer;
+}
+
+.active {
+  color: var(--main-color)!important;
 }

@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { BehaviorSubject, Observable, Subject } from "rxjs";
-import { debounceTime, takeUntil } from "rxjs/operators";
+import { takeUntil } from "rxjs/operators";
 import { Store } from "@ngrx/store";
 import { User } from "@core/models";
 
@@ -15,7 +15,14 @@ import { SettingsActions } from "@settings/store/actions";
 })
 export class MemberEditProfileComponent implements OnInit, OnDestroy {
 
-  form: FormGroup;
+  form: FormGroup = this.fb.group({
+    knownAs: [ '', Validators.required ],
+    city: '',
+    country: '',
+    interests: '',
+    introduction: ''
+  });
+
   details: User;
 
   formChanged$ = new BehaviorSubject(false);
@@ -23,32 +30,22 @@ export class MemberEditProfileComponent implements OnInit, OnDestroy {
 
   private destroy$ = new Subject<boolean>();
 
-  constructor(private store: Store<fromSettings.State>, private fb: FormBuilder) {}
+  constructor(private store: Store<fromSettings.State>, private fb: FormBuilder) {
+  }
 
   ngOnInit() {
-    this.initForm();
     this.handleFormChanges();
     this.updateFormData();
 
     this.savingChanges$ = this.store.select(fromSettings.selectUserDetailsSavingChanges);
   }
 
-  initForm() {
-    this.form = this.fb.group({
-      knownAs: [ '', Validators.required ],
-      city: '',
-      country: '',
-      interests: '',
-      introduction: ''
-    });
-  }
-
   handleFormChanges() {
     this.form.valueChanges
       .pipe(takeUntil(this.destroy$))
       .subscribe(data => {
-        // console.log(data);
-        this.formChanged$.next(this.form.touched && this.form.dirty);
+        console.log(data);
+        this.formChanged$.next(this.form.dirty);
       });
   }
 
@@ -63,10 +60,12 @@ export class MemberEditProfileComponent implements OnInit, OnDestroy {
       });
   }
 
-  onChipChange() { this.formChanged$.next(true); }
+  onChipChange() {
+    this.formChanged$.next(true);
+  }
 
   onSubmit() {
-    if (this.form.valid && this.formChanged) {
+    if (this.form.valid && this.formChanged$.value) {
       const interests = this.joinInterests(this.form.get('interests').value);
       const user = { ...this.details, ...this.form.value, interests };
       this.store.dispatch(SettingsActions.editAuthDetails({ user }));
@@ -91,7 +90,9 @@ export class MemberEditProfileComponent implements OnInit, OnDestroy {
   private joinInterests(interests) {
     const newArray = [];
     for (let interest of interests) {
-      if (newArray.includes(interest)) { continue; }
+      if (newArray.includes(interest)) {
+        continue;
+      }
       if (typeof interest === "string") {
         newArray.push(interest);
       } else if (typeof interest === "object") {
@@ -104,8 +105,6 @@ export class MemberEditProfileComponent implements OnInit, OnDestroy {
   required(control: string): boolean {
     return this.form.get(control).touched && this.form.get(control).invalid;
   }
-
-  get formChanged() { return this.formChanged$.value; }
 
   ngOnDestroy() {
     this.destroy$.next(true);

@@ -8,7 +8,7 @@ export class PreventUnsavedChangesGuard implements CanDeactivate<unknown> {
                 currentRoute: ActivatedRouteSnapshot, currentState: RouterStateSnapshot,
                 nextState?: RouterStateSnapshot) {
 
-    if (component?.formChanged) {
+    if (component?.formChanged$.value) {
       return confirm('Are you sure you want to continue? \nAny unsaved changes will be lost!')
     }
     return true;

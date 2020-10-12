@@ -5,6 +5,7 @@ import { Component, Input } from '@angular/core';
   template: `
     <div class="spinner-border {{ color ? 'text-'+color : '' }}"
          [class.small]="size === 'small'"
+         [class.text-button]="color === 'button'"
          [class.medium]="size === 'medium'"
          [class.big]="size === 'big'"
          role="status">
@@ -13,7 +14,7 @@ import { Component, Input } from '@angular/core';
   `,
   styles: [`
     .spinner-border { color: var(--text-color) }
-    .text-button { color: var(--bg-color-light) }
+    .text-button { color: var(--btn-primary-text-color) }
     .small { width: 1.5rem; height: 1.5rem; }
     .medium { width: 5rem; height: 5rem; }
     .big { width: 10rem; height: 10rem; }
