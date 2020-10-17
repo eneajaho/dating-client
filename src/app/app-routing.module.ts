@@ -6,6 +6,11 @@ import { AuthGuard, NonAuthGuard } from "@core/guards";
 
 const ROUTES: Routes = [
   {
+    path: 'auth',
+    canActivate: [ NonAuthGuard ],
+    loadChildren: async () => (await import('@auth/auth.module')).AuthModule
+  },
+  {
     path: '', redirectTo: 'members', pathMatch: 'full'
   },
   {
@@ -19,21 +24,12 @@ const ROUTES: Routes = [
         path: 'settings',
         canActivate: [ AuthGuard ],
         loadChildren: async () => (await import('@pages/settings/settings.module')).SettingsModule
-      }
-    ]
-  },
-  {
-    path: 'auth',
-    canActivate: [ NonAuthGuard ],
-    loadChildren: async () => (await import('@auth/auth.module')).AuthModule
-  },
-  {
-    path: '**', component: MainLayoutComponent, children: [
+      },
       {
-        path: '', component: NotFoundComponent
+        path: '**', component: NotFoundComponent
       }
     ]
-  },
+  }
 ];
 
 @NgModule({

@@ -34,3 +34,18 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
 }
+
+* {
+  outline: none;
+
+  &::-webkit-scrollbar{
+    width:8px!important;
+    height:8px!important;
+  }
+
+  &::-webkit-scrollbar-thumb{
+    background-color: var(--scrollbar-color);
+    border-radius: 5px;
+
+  }
+}

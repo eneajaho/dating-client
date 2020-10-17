@@ -37,6 +37,10 @@
   --member-card-title-color: #6b0fc0;
   --member-card-subtitle-color: #4c6176db;
 
+
+  /* Scrollbar */
+  --scrollbar-color: #a8a7a7;
+
 }
 
 [data-theme="dark"] {
@@ -74,5 +78,8 @@
   /* Member Card Component */
   --member-card-title-color: #d2a6ff;
   --member-card-subtitle-color: rgb(199 199 199);
+
+  /* Scrollbar */
+  --scrollbar-color: #a8a7a7;
 
 }
