@@ -7,11 +7,13 @@
     <spinner size="medium" color="primary"></spinner>
   </div>
 
-  <h2 *ngIf="!uploading" class="icon"><fa-icon [icon]="uploadIcon" class="mr-1"></fa-icon></h2>
+  <h2 *ngIf="!uploading" class="icon">
+    <fa-icon [icon]="uploadIcon" class="mr-1"></fa-icon>
+  </h2>
   <h4 *ngIf="!uploading" class="">Drag & drop your photos here</h4>
   <h5 *ngIf="!uploading" class="text-center mb-2">or</h5>
   <input *ngIf="!uploading" type="file"  id="file"
-         (change)="handleFileInput($event.target.files)">
+         (change)="handleFileInput($event.target?.files)">
   <label *ngIf="!uploading" for="file" class="btn btn-primary">
     <fa-icon [icon]="uploadIcon" class="mr-1"></fa-icon>
     Choose a file

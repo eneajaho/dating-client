@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { Register } from "@auth/models";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { passwordValidation } from "@shared/validators";
+import { passwordValidation } from "../validators";
 
 @Component({
   selector: 'app-register-form',

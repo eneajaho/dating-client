@@ -1,6 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
-import { Theme } from "@layout/services/layout.service";
 
 @Component({
   selector: 'app-members-search-form',
@@ -12,7 +11,7 @@ export class MembersSearchFormComponent implements OnInit {
 
   searchIcon = faSearch;
 
-  @Input() theme: Theme = 'dark';
+  @Input() theme: string = 'dark';
   @Output() submitted = new EventEmitter();
 
   constructor() { }

@@ -1,5 +1,5 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { LayoutService } from "@layout/services/layout.service";
+import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { ThemeService } from "@layout/services";
 import { ToastrService } from "ngx-toastr";
 
 @Component({
@@ -8,14 +8,11 @@ import { ToastrService } from "ngx-toastr";
   styleUrls: ['./members-search.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class MembersSearchComponent implements OnInit {
+export class MembersSearchComponent {
 
-  constructor(private layout: LayoutService, private toast: ToastrService) { }
+  constructor(private theme: ThemeService, private toast: ToastrService) { }
 
-  theme$ = this.layout.theme$;
-
-  ngOnInit() {
-  }
+  theme$ = this.theme.theme$;
 
   handleSubmit(event) {
     this.toast.info('', "Doesn't function for the moment!");

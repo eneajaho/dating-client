@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 @Component({
   selector: 'spinner',
@@ -18,8 +18,8 @@ import { Component, Input } from '@angular/core';
     .small { width: 1.5rem; height: 1.5rem; }
     .medium { width: 5rem; height: 5rem; }
     .big { width: 10rem; height: 10rem; }
-    `
-  ]
+  `],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SpinnerComponent {
 

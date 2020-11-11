@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { BehaviorSubject, Observable, Subject } from "rxjs";
 import { takeUntil } from "rxjs/operators";
@@ -12,6 +12,7 @@ import { SettingsActions } from "@settings/store/actions";
   selector: 'app-member-edit-profile',
   templateUrl: './member-edit-profile.component.html',
   styleUrls: [ './member-edit-profile.component.scss' ],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MemberEditProfileComponent implements OnInit, OnDestroy {
 

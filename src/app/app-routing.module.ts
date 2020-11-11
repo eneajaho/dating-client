@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from "@angular/router";
 import { MainLayoutComponent } from "@layout/containers";
-import { NotFoundComponent } from "@layout/components";
 import { AuthGuard, NonAuthGuard } from "@core/guards";
+import { NotFoundComponent, NotFoundModule } from "@shared/components";
 
 const ROUTES: Routes = [
   {
@@ -23,7 +23,7 @@ const ROUTES: Routes = [
       {
         path: 'settings',
         canActivate: [ AuthGuard ],
-        loadChildren: async () => (await import('@pages/settings/settings.module')).SettingsModule
+        loadChildren: async () => (await import('@settings/settings.module')).SettingsModule
       },
       {
         path: '**', component: NotFoundComponent
@@ -34,7 +34,10 @@ const ROUTES: Routes = [
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(ROUTES, { relativeLinkResolution: 'legacy' }),
+    NotFoundModule,
+    RouterModule.forRoot(ROUTES,
+      { relativeLinkResolution: 'legacy' }
+    ),
   ],
   exports: [ RouterModule ]
 })

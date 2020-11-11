@@ -24,5 +24,4 @@ export class SettingsComponent {
 
   constructor(private settings: SettingsFacade) { }
 
-
 }

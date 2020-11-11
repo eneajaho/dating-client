@@ -11,19 +11,45 @@
     "moduleResolution": "node",
     "importHelpers": true,
     "target": "es2015",
-    "lib": ["es2018", "dom"],
+    "lib": [
+      "es2018",
+      "dom"
+    ],
     "paths": {
-      "@app/*": ["./src/app/*"],
-      "@store/*": ["app/store/*"],
-      "@core/*": ["app/core/*"],
-      "@shared/*": ["app/shared/*"],
-      "@layout/*": ["app/layout/*"],
-      "@models/*": ["app/core/models/*"],
-
-      "@pages/*": ["app/pages/*"],
-      "@auth/*": ["app/pages/auth/*"],
-      "@members/*": ["app/pages/members/*"],
-      "@settings/*": ["app/pages/settings/*"]
+      // libraries
+      "@ui/*": [
+        "./dist/ui/*"
+      ],
+      "@app/*": [
+        "./src/app/*"
+      ],
+      "@store/*": [
+        "app/store/*"
+      ],
+      "@core/*": [
+        "app/core/*"
+      ],
+      "@shared/*": [
+        "app/shared/*"
+      ],
+      "@layout/*": [
+        "app/layout/*"
+      ],
+      "@models/*": [
+        "app/core/models/*"
+      ],
+      "@pages/*": [
+        "app/pages/*"
+      ],
+      "@auth/*": [
+        "app/pages/auth/*"
+      ],
+      "@members/*": [
+        "app/pages/members/*"
+      ],
+      "@settings/*": [
+        "app/pages/settings/*"
+      ]
     }
   },
   "angularCompilerOptions": {

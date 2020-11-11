@@ -1,26 +1,29 @@
 import { NgModule } from '@angular/core';
-
+import { CommonModule } from '@angular/common';
 import { RouterModule } from "@angular/router";
 
 import { EmptyLayoutComponent, MainLayoutComponent } from '@layout/containers';
-import { NavigationComponent, NotFoundComponent, ThemeToggleComponent } from '@layout/components';
+import { NavigationComponent, ThemeToggleComponent } from '@layout/components';
 
-import { SharedModule } from "@shared/index";
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { BsDropdownModule } from "ngx-bootstrap/dropdown";
 
 @NgModule({
   declarations: [
     NavigationComponent,
     MainLayoutComponent,
     EmptyLayoutComponent,
-    NotFoundComponent,
     ThemeToggleComponent,
   ],
   imports: [
-    SharedModule,
+    CommonModule,
     RouterModule,
-  ],
-  exports: [
-    NavigationComponent
+    FontAwesomeModule,
+    BsDropdownModule.forRoot({
+      isAnimated: true,
+      autoClose: true
+    }),
   ]
 })
-export class LayoutModule {}
+export class LayoutModule {
+}

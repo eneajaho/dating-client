@@ -24,7 +24,7 @@
 
     <ul class="navbar-nav ml-auto">
       <li class="nav-item text-danger cp">
-            <app-theme-toggle [theme]="theme$ | async" (click)="darkMode()"></app-theme-toggle>
+            <app-theme-toggle></app-theme-toggle>
       </li>
       <li *ngIf="user" class="nav-item active">
         <div class="btn-group" dropdown>

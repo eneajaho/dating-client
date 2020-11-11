@@ -5,6 +5,7 @@ import { Credentials } from "@auth/models";
 
 import * as fromAuth from '@auth/store/reducers';
 import { LoginPageActions } from "@auth/store/actions";
+import { tap } from "rxjs/operators";
 
 @Component({
   selector: 'auth-login',
@@ -20,7 +21,8 @@ export class LoginComponent implements OnInit, OnDestroy {
   constructor(private store: Store<fromAuth.State>) { }
 
   ngOnInit() {
-    this.error$ = this.store.select(fromAuth.selectLoginPageError);
+    this.error$ = this.store.select(fromAuth.selectLoginPageError).pipe(tap(x => {
+      console.log(x);}));
     this.loading$ = this.store.select(fromAuth.selectLoginPagePending);
   }
 

@@ -49,3 +49,15 @@ body {
 
   }
 }
+
+
+/* Datepicker Custom Start */
+.bs-datepicker {
+  border-radius: 10px!important;
+  border: none;
+
+  .bs-datepicker-container {
+    padding: 0;
+  }
+}
+/* Datepicker Custom End */

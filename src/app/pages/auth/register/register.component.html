@@ -4,10 +4,7 @@
 
   <app-register-form [loading]="loading$ | async" (submitted)="handleRegister($event)">
     <span id="type">Register now</span>
-    <div *ngIf="error$ | async as error" (click)="clearErrors()"
-         class="alert alert-error error cp">
-      {{ error }}
-    </div>
+    <error-alert [error]="error$ | async" (click)="clearErrors()"></error-alert>
   </app-register-form>
 
   <div class="mt-3">
@@ -15,6 +12,5 @@
       Already have an account? Sign in.
     </a>
   </div>
-
 </div>
 
