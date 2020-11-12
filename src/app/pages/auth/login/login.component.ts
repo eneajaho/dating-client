@@ -21,8 +21,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   constructor(private store: Store<fromAuth.State>) { }
 
   ngOnInit() {
-    this.error$ = this.store.select(fromAuth.selectLoginPageError).pipe(tap(x => {
-      console.log(x);}));
+    this.error$ = this.store.select(fromAuth.selectLoginPageError);
     this.loading$ = this.store.select(fromAuth.selectLoginPagePending);
   }
 

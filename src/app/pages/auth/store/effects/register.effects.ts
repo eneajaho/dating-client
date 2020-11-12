@@ -30,7 +30,8 @@ export class RegisterEffects {
     this.actions$.pipe(
       ofType(AuthApiActions.registerSuccess),
       tap(() => this.router.navigate([ '/auth/login' ]))
-    ), { dispatch: false });
+    ), { dispatch: false }
+  );
 
   constructor(private actions$: Actions, private auth: AuthService,
               private router: Router, private toast: ToastrService) {}

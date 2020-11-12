@@ -1,6 +1,7 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
   <div class="form-group">
     <input type="text" formControlName="username" autocomplete="username"
+           [class.is-invalid]="invalid('username')"
            placeholder="Email address" class="form-control">
     <div class="invalid-feedback" *ngIf="invalid('username')">
       <span *ngIf="required('username')">Email is required!</span>
@@ -8,6 +9,7 @@
   </div>
   <div class="form-group">
     <input type="password" formControlName="password" autocomplete="current-password"
+           [class.is-invalid]="invalid('password')"
            placeholder="Password" class="form-control">
     <div class="invalid-feedback" *ngIf="invalid('password')">
       <span *ngIf="required('password')">Password is required!</span>

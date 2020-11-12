@@ -32,10 +32,11 @@ import { AuthStoreModule } from "@auth/store/auth-store.module";
       serializer: CustomSerializer
     }),
 
-    StoreDevtoolsModule.instrument({
-      maxAge: 20,
-      logOnly: environment.production,
-    })
+    environment.production
+      ? []
+      : StoreDevtoolsModule.instrument({ maxAge: 20 })
   ]
 })
-export class RootStoreModule {}
+export class RootStoreModule {
+}
+

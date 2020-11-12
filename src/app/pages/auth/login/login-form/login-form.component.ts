@@ -26,6 +26,8 @@ export class LoginFormComponent {
     if (this.loading) return;
     if (this.form.valid) {
       this.submitted.emit(this.form.value);
+    } else {
+      this.form.markAllAsTouched();
     }
   }
 
