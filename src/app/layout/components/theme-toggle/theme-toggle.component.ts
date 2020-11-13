@@ -1,5 +1,5 @@
-import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
-import { Theme } from "@layout/services/layout.service";
+import { Component, ChangeDetectionStrategy, Input, HostListener } from '@angular/core';
+import { ThemeService } from '@layout/services';
 
 @Component({
   selector: 'app-theme-toggle',
@@ -9,6 +9,10 @@ import { Theme } from "@layout/services/layout.service";
 })
 export class ThemeToggleComponent {
 
-  @Input() theme: Theme;
+  constructor(private theme: ThemeService) {}
 
+  theme$ = this.theme.theme$;
+
+  @HostListener('click') 
+  toggle(): void { this.theme.toggle(); }
 }

@@ -7,7 +7,7 @@ import { catchError, exhaustMap, map, switchMap, tap } from 'rxjs/operators';
 import { of } from "rxjs";
 
 import { LocalStorageService } from "@core/services/local-storage.service";
-import { AuthService } from "@core/services/auth.service";
+import { AuthService } from "@auth/services/auth.service";
 import { AuthApiActions, LoginPageActions } from "@auth/store/actions";
 
 @Injectable()

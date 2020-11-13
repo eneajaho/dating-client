@@ -73,6 +73,7 @@ ng serve -o
 - Filter/sort functionality
 - Likes functionality
 - Private messages (using SignalR) functionality
+- Stricter type checking
 - ~~Upgrade to Angular 10~~
 - SSR (Angular Universal)
 - Testing 

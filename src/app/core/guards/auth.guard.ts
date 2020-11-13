@@ -10,12 +10,13 @@ import { AuthActions } from "@auth/store/actions";
 @Injectable({ providedIn: 'root' })
 export class AuthGuard implements CanActivate {
 
-  constructor(private store: Store<fromAuth.State>) {}
+  constructor(private store: Store<fromAuth.State>) { }
 
   canActivate(): Observable<boolean> {
     return this.store.select(fromAuth.selectLoggedIn).pipe(
-      map(isAuthenticated => {
-          if (!isAuthenticated) {
+      map(isLoggedIn => {
+          if (!isLoggedIn) {
+            /* If the user is not logged in, he gets redirected to login page */
             this.store.dispatch(AuthActions.authRedirect());
             return false;
           }

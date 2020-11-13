@@ -9,9 +9,12 @@ import {
   MemberEditPhotosComponent,
   MemberEditProfileComponent
 } from "@settings/components";
-import { SharedModule } from "@shared/shared.module";
 import { TagInputModule } from "ngx-chips";
 import { SettingsStoreModule } from "@settings/store/settings-store.module";
+import { ErrorAlertModule, FileUploaderModule, SpinnerModule } from "@shared/components";
+import { CommonModule } from "@angular/common";
+import { ReactiveFormsModule } from "@angular/forms";
+import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 
 
 @NgModule({
@@ -24,10 +27,15 @@ import { SettingsStoreModule } from "@settings/store/settings-store.module";
     MemberEditPhotosComponent,
   ],
   imports: [
+    CommonModule,
+    ReactiveFormsModule,
     SettingsRoutingModule,
-    SharedModule,
     SettingsStoreModule,
-    TagInputModule
+    FileUploaderModule,
+    FontAwesomeModule,
+    ErrorAlertModule,
+    TagInputModule,
+    SpinnerModule,
   ]
 })
 export class SettingsModule { }

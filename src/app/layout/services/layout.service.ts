@@ -1,49 +1,47 @@
 import { Inject, Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from "rxjs";
+import { Observable, ReplaySubject } from "rxjs";
 import { DOCUMENT } from "@angular/common";
+import { distinctUntilChanged, tap } from 'rxjs/operators';
 
-export type Theme = 'dark' | 'light';
+export const Themes = {
+  Dark: 'dark',
+  Light: 'light'
+};
 
 @Injectable({ providedIn: 'root' })
-export class LayoutService {
+export class ThemeService {
 
-  private theme = new BehaviorSubject<Theme>('dark');
-  public theme$: Observable<Theme> = this.theme.asObservable();
+  private theme = new ReplaySubject<string>(null);
+
+  public theme$: Observable<string> = this.theme.asObservable().pipe(
+    distinctUntilChanged(),
+    tap(theme => this.document.body.setAttribute('data-theme', theme))
+  );
 
   constructor(@Inject(DOCUMENT) private document: Document) {
+    // Automatically activate dark mode
     this.dark();
   }
 
   toggle() {
-    if (this.activeTheme === "dark") {
+    if (this.activeTheme === Themes.Dark) {
       this.light();
     } else {
       this.dark();
     }
   }
 
-  private get activeTheme() {
-    return this.document.body.attributes.getNamedItem('data-theme') ? 'dark' : 'light';
+  private get activeTheme(): string {
+    const themeAttr = this.document.body.attributes.getNamedItem('data-theme')?.value;
+    return themeAttr === Themes.Dark ? Themes.Dark : Themes.Light;
   }
 
-  public dark() {
-    this.setNavbarTheme('dark');
-    this.document.body.setAttribute('data-theme', 'dark');
-
+  public dark(): void {
+    this.theme.next(Themes.Dark);
   }
 
-  public light() {
-    this.setNavbarTheme('light');
-    this.document.body.removeAttribute('data-theme');
-  }
-
-  private setNavbarTheme(type: Theme) {
-    this.theme.next(type);
-    if (type === "dark") {
-      this.document.body.classList.add("dark-theme");
-    } else {
-      this.document.body.classList.remove("dark-theme");
-    }
+  public light(): void {
+    this.theme.next(Themes.Light);
   }
 
 }

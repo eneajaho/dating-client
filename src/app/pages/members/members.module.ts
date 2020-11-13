@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 
 import { MembersRoutingModule } from './members-routing.module';
 import { FormsModule } from "@angular/forms";
-import { SharedModule } from "@shared/shared.module";
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { TabsModule } from "ngx-bootstrap/tabs";
 import { TagInputModule } from 'ngx-chips';
@@ -22,6 +21,11 @@ import {
 } from '@members/components';
 import { BsDropdownModule } from "ngx-bootstrap/dropdown";
 import { SettingsStoreModule } from "@settings/store/settings-store.module";
+import { GoBackModule } from "@shared/directives";
+import { TimeAgoModule } from "@shared/pipes";
+import { SpinnerModule } from "@shared/components";
+import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
+import { CommonModule } from "@angular/common";
 
 
 /**
@@ -40,7 +44,6 @@ import { SettingsStoreModule } from "@settings/store/settings-store.module";
     MembersSearchFormComponent,
   ],
   imports: [
-    SharedModule,
     MembersRoutingModule,
     MembersStoreModule,
 
@@ -56,6 +59,11 @@ import { SettingsStoreModule } from "@settings/store/settings-store.module";
       isAnimated: true,
       autoClose: true
     }),
+    GoBackModule,
+    TimeAgoModule,
+    SpinnerModule,
+    FontAwesomeModule,
+    CommonModule,
   ]
 })
 export class MembersModule {}

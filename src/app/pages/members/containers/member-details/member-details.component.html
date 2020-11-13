@@ -3,7 +3,11 @@
     <div class="col-xs-12 col-sm-10 col-md-8 col-lg-7">
 
       <div class="d-flex justify-content-between mb-4">
-        <go-back></go-back>
+
+        <button goBack class="btn btn-light">
+          <fa-icon [icon]="backIcon" class="mr-1"></fa-icon>
+          Go back
+        </button>
 
         <button *ngIf="myProfile$ | async; else sendMessage"
                 routerLink="/settings" class="btn btn-primary">

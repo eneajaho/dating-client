@@ -4,11 +4,10 @@ import { Store } from "@ngrx/store";
 import { Observable } from "rxjs";
 
 import { faComment } from "@fortawesome/free-regular-svg-icons";
-import { faUserCog } from "@fortawesome/free-solid-svg-icons";
+import { faArrowLeft, faUserCog } from "@fortawesome/free-solid-svg-icons";
 
 import * as fromMembers from '@members/store/reducers';
 import * as fromSettings from '@settings/store/reducers';
-import { AuthActions } from "@auth/store/actions";
 import * as fromRoot from "@store/reducers";
 import { User } from "@models/User";
 import { SettingsActions } from "@settings/store/actions";
@@ -26,6 +25,7 @@ export class MemberDetailsComponent implements OnInit {
 
   sendIcon = faComment;
   userEditIcon = faUserCog;
+  backIcon = faArrowLeft;
 
   constructor(private store: Store<fromMembers.State & fromSettings.State>) { }
 
@@ -45,7 +45,9 @@ export class MemberDetailsComponent implements OnInit {
     return this.store.select(fromRoot.selectRouter).pipe(
       map(data => data?.state?.url === '/members/profile'),
       tap(isMyProfile => {
-        if (isMyProfile) { this.store.dispatch(SettingsActions.loadAuthDetails()); }
+        if (isMyProfile) {
+          this.store.dispatch(SettingsActions.loadAuthDetails());
+        }
       })
     )
   }

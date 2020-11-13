@@ -1,0 +1,16 @@
+<div>
+  <h3 class="mb-3">Relationships matter. <br>Build yours.</h3>
+  <p class="lead">Join Dating now. It's free.</p>
+
+  <app-register-form [loading]="loading$ | async" (submitted)="handleRegister($event)">
+    <span id="type">Register now</span>
+    <error-alert [error]="error$ | async" (click)="clearErrors()"></error-alert>
+  </app-register-form>
+
+  <div class="mt-3">
+    <a routerLink="/auth/login" class="text-muted">
+      Already have an account? Sign in.
+    </a>
+  </div>
+</div>
+
