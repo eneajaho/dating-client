@@ -14,9 +14,9 @@ export class AuthInterceptor implements HttpInterceptor {
     return this.store.select(fromAuth.selectAuthToken).pipe(
       first(),
       switchMap(token => {
-        const authRequest = !!token ? req.clone({
-          setHeaders: { Authorization: `Bearer ${ token }` }
-        }) : req;
+        const authRequest = !!token
+          ? req.clone({ setHeaders: { Authorization: `Bearer ${ token }` } })
+          : req;
         return next.handle(authRequest);
       })
     );

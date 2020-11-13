@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 import { EffectsModule } from "@ngrx/effects";
 import { StoreModule } from "@ngrx/store";
@@ -14,29 +13,23 @@ import { AuthStoreModule } from "@auth/store/auth-store.module";
 
 @NgModule({
   imports: [
-    CommonModule,
-
-    /*
+    /**
     * AuthModule is lazy-loaded
     * AuthStoreModule is eagerly loaded
     */
     AuthStoreModule,
 
-    StoreModule.forRoot(ROOT_REDUCERS, {
-      metaReducers
-    }),
+    StoreModule.forRoot(ROOT_REDUCERS, { metaReducers }),
 
     EffectsModule.forRoot([ RootEffects ]),
 
-    StoreRouterConnectingModule.forRoot({
-      serializer: CustomSerializer
-    }),
+    StoreRouterConnectingModule.forRoot({ serializer: CustomSerializer }),
 
+    // Won't include StoreDevtoolsModule in production build
     environment.production
       ? []
       : StoreDevtoolsModule.instrument({ maxAge: 20 })
   ]
 })
-export class RootStoreModule {
-}
+export class RootStoreModule { }
 

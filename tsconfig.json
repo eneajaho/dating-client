@@ -16,9 +16,8 @@
       "dom"
     ],
     "paths": {
-      // libraries
-      "@ui/*": [
-        "./dist/ui/*"
+      "@env/*": [
+        "./src/environments/*"
       ],
       "@app/*": [
         "./src/app/*"

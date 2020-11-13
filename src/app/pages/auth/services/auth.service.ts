@@ -4,14 +4,14 @@ import { API_URL } from "@core/configs/api.token";
 import { Observable } from 'rxjs';
 import { Credentials, LoginResponse } from "@auth/models";
 
-@Injectable({ providedIn: 'root' })
+@Injectable({ providedIn: 'any' })
 export class AuthService {
 
   constructor(@Inject(API_URL) private api: string, private http: HttpClient) { }
 
-  register(credentials: Credentials) {
+  register(credentials: Credentials): Observable<any> {
     const path = this.api + 'auth/register';
-    return this.http.post<LoginResponse>(path, credentials);
+    return this.http.post<any>(path, credentials);
   }
 
   login(credentials: Credentials): Observable<LoginResponse> {

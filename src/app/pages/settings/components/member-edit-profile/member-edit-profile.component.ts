@@ -42,10 +42,8 @@ export class MemberEditProfileComponent implements OnInit, OnDestroy {
   }
 
   handleFormChanges() {
-    this.form.valueChanges
-      .pipe(takeUntil(this.destroy$))
+    this.form.valueChanges.pipe(takeUntil(this.destroy$))
       .subscribe(data => {
-        console.log(data);
         this.formChanged$.next(this.form.dirty);
       });
   }
