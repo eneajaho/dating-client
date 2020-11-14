@@ -4,9 +4,8 @@ import { RouterModule } from "@angular/router";
 
 import { ToastrModule } from "ngx-toastr";
 
-import { ErrorInterceptorProvider } from "./interceptors/error.interceptor";
-import { AuthInterceptorProvider } from "./interceptors/auth.interceptor";
-import { LocalStorageService } from "@core/services/local-storage.service";
+import { ErrorInterceptorProvider, AuthInterceptorProvider } from "./interceptors";
+import { LocalStorageService } from "./services";
 import { API_PROVIDER } from './configs';
 
 @NgModule({
