@@ -5,7 +5,7 @@ import { StoreModule } from "@ngrx/store";
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
-import { environment } from "../../environments/environment";
+import { environment as env } from "../../environments/environment";
 
 import { CustomSerializer, metaReducers, ROOT_REDUCERS } from "@store/reducers";
 import { RootEffects } from "@store/effects/root.effects";
@@ -26,9 +26,7 @@ import { AuthStoreModule } from "@auth/store/auth-store.module";
     StoreRouterConnectingModule.forRoot({ serializer: CustomSerializer }),
 
     // Won't include StoreDevtoolsModule in production build
-    environment.production
-      ? []
-      : StoreDevtoolsModule.instrument({ maxAge: 20 })
+    env.production ? [] : StoreDevtoolsModule.instrument({ maxAge: 20 })
   ]
 })
 export class RootStoreModule { }

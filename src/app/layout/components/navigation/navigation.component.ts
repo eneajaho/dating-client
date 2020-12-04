@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
-import { faCog, faHeart, faSignOutAlt, faUser } from "@fortawesome/free-solid-svg-icons";
+import { faCog, faComments, faHeart, faSignOutAlt, faStar, faUser, faUsers } from "@fortawesome/free-solid-svg-icons";
 import { User } from "@models/User";
 
 @Component({
@@ -14,6 +14,9 @@ export class NavigationComponent {
   settingsIcon = faCog;
   userIcon = faUser;
   heartIcon = faHeart;
+  membersIcon = faUsers;
+  matchesIcon = faStar;
+  messagesIcon = faComments;
 
   showMenu = false;
 

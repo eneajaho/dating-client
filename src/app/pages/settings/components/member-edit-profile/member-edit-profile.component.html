@@ -7,9 +7,10 @@
     <label for="knownAs">Known As</label>
     <input type="text" formControlName="knownAs"
            placeholder="Known as..." class="form-control" id="knownAs">
-    <div class="alert alert-danger mt-1" *ngIf="required('knownAs')">
-      You should enter a default name!
-    </div>
+    <error-alert class="mt-1"
+      *ngIf="required('knownAs')"
+      error="You should enter a default name!">
+    </error-alert>
   </div>
 
   <div class="row">

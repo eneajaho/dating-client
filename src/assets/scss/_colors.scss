@@ -1,6 +1,7 @@
 :root {
 
-  --main-color: #6b0fc0;
+  --main-color: #862ed6;
+  --main-color-rgb: 133, 46, 214;
   --secondary-color: #6b0fc0;
 
   --text-color: #1f1f1f;
@@ -9,6 +10,7 @@
 
   --bg-color-normal: rgba(244, 244, 244);
   --bg-color-light: #ffffff;
+  --bg-color-light-rgb: 255, 255, 255;
 
   --bg-color-normal-transparent: #ffffffbf;
   --bg-color-light-transparent: rgb(238, 244, 247, 0.5);
@@ -23,18 +25,19 @@
   --btn-light-text-color: #343a40;
   --btn-light-bg-color: #ffffff;
 
-  --btn-secondary-text-color: #6b0fc0;
+  --btn-secondary-text-color: var(--main-color);
   --btn-secondary-bg-color:  #ba70ff47;
 
   /* Inputs */
   --input-bg: #f4f4f4;
   --input-color: #4c4c4c;
+  --input-border-color: #dddddd80;
   --input-focus-color: #4c4c4c;
   --input-focus-bg: white;
 
 
   /* Member Card Component */
-  --member-card-title-color: #6b0fc0;
+  --member-card-title-color: var(--main-color);
   --member-card-subtitle-color: #4c6176db;
 
 
@@ -50,7 +53,8 @@
   --text-color-light: #9051b1;
 
   --bg-color-normal: #202020;
-  --bg-color-light: #2A2A2A;
+  --bg-color-light: #2a2a2a;
+  --bg-color-light-rgb: 42, 42, 42;
 
   --bg-color-normal-transparent: #292929c2;
   --bg-color-light-transparent: rgb(238, 244, 247, 0.5);
@@ -60,10 +64,10 @@
 
   /* Buttons */
   --btn-primary-text-color: white;
-  --btn-primary-bg-color: #6b0fc078;
+  --btn-primary-bg-color: var(--main-color);
 
   --btn-light-text-color: #dbdbdb;
-  --btn-light-bg-color: #4a4a4aad;
+  --btn-light-bg-color: rgba(74, 74, 74, 0.68);
 
   --btn-secondary-text-color: #41007d;
   --btn-secondary-bg-color:  #c78cfffa;
@@ -71,6 +75,7 @@
   /* Inputs */
   --input-bg: #232020;
   --input-color: #bfbfbf;
+  --input-border-color: rgba(100, 100, 100, 0.4);
   --input-focus-color: #d3d3d3;
   --input-focus-bg: #1a1616;
 

@@ -5,7 +5,6 @@ import { Credentials } from "@auth/models";
 
 import * as fromAuth from '@auth/store/reducers';
 import { LoginPageActions } from "@auth/store/actions";
-import { tap } from "rxjs/operators";
 
 @Component({
   selector: 'auth-login',
@@ -15,7 +14,7 @@ import { tap } from "rxjs/operators";
 })
 export class LoginComponent implements OnInit, OnDestroy {
 
-  error$: Observable<any>;
+  error$: Observable<string>;
   loading$: Observable<boolean>;
 
   constructor(private store: Store<fromAuth.State>) { }

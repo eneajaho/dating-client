@@ -14,7 +14,7 @@ export class MembersGuard implements CanActivate {
     return this.store.select(fromMembers.selectMembersLoaded).pipe(
       tap(loaded => { if (!loaded) {
         this.store.dispatch(MembersPageActions.loadMembers(
-          { pageNumber: '1', pageSize: '6' })
+          { pageNumber: '1', pageSize: '2' })
         )}
       }),
       map(() => true),

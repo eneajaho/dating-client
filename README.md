@@ -44,12 +44,11 @@ ng serve -o
     │   ├── auth
     │   ├── settings
     │   └── members
-    ├── shared                    # Shared Module includes the most used components in the app. 
+    ├── shared                    # Shared folder includes shared utilities in the app. 
     │   ├── components
     │   ├── directives
     │   ├── pipes
-    │   ├── validators
-    │   └── shared.module.ts
+    │   └── validators
     ├── store                     # Manages and initializes the Root Store Module (NGRX Store)
     │   ├── effects
     │   ├── reducers
@@ -74,7 +73,8 @@ ng serve -o
 - Likes functionality
 - Private messages (using SignalR) functionality
 - Stricter type checking
-- ~~Upgrade to Angular 10~~
+- Add animations
+- ~~Upgrade to Angular 11~~
 - SSR (Angular Universal)
 - Testing 
 

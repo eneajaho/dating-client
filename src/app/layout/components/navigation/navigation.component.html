@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-md mx-4 mt-4 px-4">
-<!--  fixed-top-->
+  <!--  fixed-top-->
   <a class="navbar-brand" routerLink="/">
     <fa-icon [icon]="heartIcon" [classes]="['text-danger mr-1']"></fa-icon>
     DatingYou
@@ -10,21 +10,30 @@
   <div class="collapse navbar-collapse" [class.show]="showMenu">
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" routerLinkActive="active"  routerLink="/members/all">Members</a>
+        <a class="nav-link" routerLinkActive="active" routerLink="/members/all">
+          <fa-icon [icon]="membersIcon" class="mr-1"></fa-icon>
+          Members
+        </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLinkActive="active" routerLink="/matches">Matches</a>
+        <a class="nav-link" routerLinkActive="active" routerLink="/matches">
+          <fa-icon [icon]="matchesIcon" class="mr-1"></fa-icon>
+          Matches
+        </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLinkActive="active" routerLink="/messages">Messages</a>
+        <a class="nav-link" routerLinkActive="active" routerLink="/messages">
+          <fa-icon [icon]="messagesIcon" class="mr-1"></fa-icon>
+          Messages
+        </a>
       </li>
     </ul>
 
-<!--    <input style="width: 300px" type="text" class="form-control form-control-primary ml-5" placeholder="Search..." >-->
+    <!--    <input style="width: 300px" type="text" class="form-control form-control-primary ml-5" placeholder="Search..." >-->
 
     <ul class="navbar-nav ml-auto">
       <li class="nav-item text-danger cp">
-            <app-theme-toggle></app-theme-toggle>
+        <app-theme-toggle></app-theme-toggle>
       </li>
       <li *ngIf="user" class="nav-item active">
         <div class="btn-group" dropdown>
@@ -33,13 +42,13 @@
             {{ user.name | titlecase }}
             <span class="caret"></span>
           </a>
-          <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu dropdown-menu-right mr-2">
+          <ul *dropdownMenu class="dropdown-menu dropdown-menu-right mr-2">
             <li role="menuitem">
-              <a class="dropdown-item" routerLink="/members/profile">
+              <a class="dropdown-item" routerLinkActive="active" routerLink="/members/profile">
                 <fa-icon [icon]="userIcon" class="mr-2"></fa-icon>
                 My Profile
               </a>
-              <a class="dropdown-item" routerLink="/settings">
+              <a class="dropdown-item" routerLinkActive="active" routerLink="/settings">
                 <fa-icon [icon]="settingsIcon" class="mr-2"></fa-icon>
                 Settings
               </a>

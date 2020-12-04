@@ -15,6 +15,7 @@ export class NonAuthGuard implements CanActivate {
     return this.store.select(fromAuth.selectLoggedIn).pipe(
       map(isLoggedIn => {
           if (isLoggedIn) {
+            /** Cannot access login/register page when user is logged in. */
             this.router.navigate([ '/' ]).then(() => {
               return false;
             });

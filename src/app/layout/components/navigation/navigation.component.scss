@@ -1,12 +1,12 @@
 .navbar {
-  background: var(--bg-color-light) !important;
+  background: rgba(var(--bg-color-light-rgb), 0.85);
   transition: 0.4s all;
   border-radius: 10px;
   margin: 10px;
   position: sticky;
   top: -5px;
   z-index: 99999;
-  box-shadow: 0 0 5px var(--box-shadow-color);
+  //box-shadow: 0 0 5px var(--box-shadow-color);
 }
 
 .navbar-brand {
@@ -17,6 +17,8 @@
 
 .navbar-nav .nav-link {
   color: var(--text-color);
+  text-transform: uppercase;
+  font-weight: 400;
 }
 
 #button-basic  {
@@ -29,9 +31,10 @@
 
 a {
   color: var(--text-color);
+  transition: 0.2s all;
 
   &:hover {
-    color: var(--main-color);
+    color: var(--main-color)!important;
   }
 }
 
@@ -49,6 +52,15 @@ a {
 
 .dropdown-item {
   cursor: pointer;
+  background: transparent!important;
+}
+
+.dropdown-divider {
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+  border-color: #a6a6a61c;
+  border-width: 2px;
 }
 
 .active {

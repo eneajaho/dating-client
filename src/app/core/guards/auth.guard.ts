@@ -16,7 +16,7 @@ export class AuthGuard implements CanActivate {
     return this.store.select(fromAuth.selectLoggedIn).pipe(
       map(isLoggedIn => {
           if (!isLoggedIn) {
-            /* If the user is not logged in, he gets redirected to login page */
+            /** If the user is not logged in, he gets redirected to login page */
             this.store.dispatch(AuthActions.authRedirect());
             return false;
           }
