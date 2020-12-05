@@ -36,11 +36,11 @@ export class ThemeService {
     return themeAttr === Themes.Dark ? Themes.Dark : Themes.Light;
   }
 
-  public dark(): void {
+  dark(): void {
     this.theme.next(Themes.Dark);
   }
 
-  public light(): void {
+  light(): void {
     this.theme.next(Themes.Light);
   }
 

@@ -23,17 +23,20 @@ const routes: Routes = [
       {
         path: 'account',
         canDeactivate: [ PreventUnsavedChangesGuard ],
-        component: MemberEditAccountComponent
+        component: MemberEditAccountComponent,
+        data: { animation: 'Account'}
       },
       {
         path: 'profile',
         canDeactivate: [ PreventUnsavedChangesGuard ],
-        component: MemberEditProfileComponent
+        component: MemberEditProfileComponent,
+        data: { animation: 'Profile'}
       },
       {
         path: 'photos',
         canDeactivate: [],
-        component: MemberEditPhotosComponent
+        component: MemberEditPhotosComponent,
+        data: { animation: 'Photos'}
       },
       {
         path: '**', component: NotFoundComponent

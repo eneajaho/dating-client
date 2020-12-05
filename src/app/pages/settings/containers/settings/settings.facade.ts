@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Store } from "@ngrx/store";
-import { Observable } from "rxjs";
-import { map } from "rxjs/operators";
+import { merge, Observable } from "rxjs";
+import { map, withLatestFrom } from "rxjs/operators";
 import { User } from "@core/models";
 import * as fromRoot from "@store/reducers";
 import * as fromSettings from "@settings/store/reducers";
@@ -14,6 +14,10 @@ export class SettingsFacade {
   loading$: Observable<boolean> = this.store.select(fromSettings.selectUserDetailsLoading);
   loaded$: Observable<boolean> = this.store.select(fromSettings.selectUserDetailsLoaded);
   error$: Observable<string> = this.store.select(fromSettings.selectUserDetailsError);
+
+  showSettings$ = this.loaded$.pipe(withLatestFrom(this.error$)).pipe(
+    map(([loaded, error]) => loaded && !error)
+  );
 
   page$: Observable<string> = this.store.select(fromRoot.selectRouter).pipe(
     map(data => this.getPage(data))
@@ -29,4 +33,5 @@ export class SettingsFacade {
     if (tags[2] !== null && tags[2] !== '' && tags[2] !== undefined) { return tags[2]; }
     return '';
   }
+
 }

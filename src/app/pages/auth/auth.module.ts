@@ -11,11 +11,13 @@ const routes: Routes = [
     path: '', component: AuthLayoutComponent, children: [
       {
         path: 'login',
-        loadChildren: async () => (await import('./containers/login/login.module')).LoginModule
+        loadChildren: async () => (await import('./containers/login/login.module')).LoginModule,
+        data: { animation: 'Login'}
       },
       {
         path: 'register',
-        loadChildren: async () => (await import('./containers/register/register.module')).RegisterModule
+        loadChildren: async () => (await import('./containers/register/register.module')).RegisterModule,
+        data: { animation: 'Register'}
       }
     ]
   },

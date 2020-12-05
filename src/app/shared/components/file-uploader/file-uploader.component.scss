@@ -1,21 +1,23 @@
-.drop-zone {
+.dropzone {
+  --dropzone-color: #862ED6;
+
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   font-weight: 200;
   height: 200px;
-  border: 2px dashed #6b0fc0;
+  border: 2px dashed var(--dropzone-color);
   border-radius: 5px;
   background: var(--bg-color-light);
   margin: 10px 0;
 
   .icon {
-    color: #6b0fc0;
+    color: var(--dropzone-color);
   }
 
   &.hovering {
-    border: 2px solid #6b0fc0;
+    border: 2px solid var(--dropzone-color);
     color: #dadada !important;
   }
 

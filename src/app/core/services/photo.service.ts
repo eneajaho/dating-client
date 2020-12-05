@@ -9,17 +9,17 @@ export class PhotoService {
   constructor(@Inject(API_URL) private api, private http: HttpClient) { }
 
   uploadPhoto(payload, userId: number): Observable<any> {
-    const path = `${this.api}users/${userId}/photos`;
+    const path = `${this.api}/users/${userId}/photos`;
     return this.http.post(path, payload);
   }
 
   setMainPhoto(userId: number, photoId: number) {
-    const path = `${this.api}users/${userId}/photos/${photoId}/setMain`;
+    const path = `${this.api}/users/${userId}/photos/${photoId}/setMain`;
     return this.http.post(path, {});
   }
 
   deletePhoto(userId: number, photoId: number): Observable<any> {
-    const path = `${this.api}users/${userId}/photos/${photoId}`;
+    const path = `${this.api}/users/${userId}/photos/${photoId}`;
     return this.http.delete(path);
   }
 

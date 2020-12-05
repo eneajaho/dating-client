@@ -1,1 +1,1 @@
-export * from './layout.service';
+export { ThemeService } from './theme.service';

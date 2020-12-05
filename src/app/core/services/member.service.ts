@@ -17,7 +17,7 @@ export class MemberService {
       .append('PageSize', pageSize)
       .append('PageNumber', pageNumber);
 
-    const path = this.api + 'users';
+    const path = `${this.api}/users`;
     return this.http.get<User[]>(path, { observe: 'response', params }).pipe(
       map((res: HttpResponse<any>) => {
         const paginationHeader = res.headers?.get('Pagination');
@@ -28,12 +28,12 @@ export class MemberService {
   }
 
   getMemberDetails(id: number): Observable<User> {
-    const path = this.api + 'users/' + id;
+    const path = `${this.api}/users/${id}`;
     return this.http.get<User>(path);
   }
 
   editMember(user: User): Observable<User> {
-    const path = this.api + 'users/' + user.id;
+    const path = `${this.api}/users/${user.id}`;
     return this.http.put<User>(path, user);
   }
 

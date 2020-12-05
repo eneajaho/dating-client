@@ -2,7 +2,7 @@
   <div class="col-3">
     <div class="profile-photo cp outline-0 mx-auto"
          routerLink="/settings/photos"
-         [ngStyle]="getProfilePicture()">
+         [ngStyle]="profilePicture()">
     </div>
   </div>
   <div class="col-9">
@@ -17,11 +17,4 @@
       {{ _page.description }}
     </p>
   </div>
-<!--  <div class="col-2 text-right">-->
-<!--    <button [routerLink]="['/members', user.id]" class="btn btn-outline-primary">-->
-<!--      <fa-icon [icon]="userIcon" class="mr-1"></fa-icon>-->
-<!--      View-->
-<!--    </button>-->
-<!--  </div>-->
-
 </div>

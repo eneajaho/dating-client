@@ -18,15 +18,19 @@ const ROUTES: Routes = [
       {
         path: 'members',
         canActivate: [ AuthGuard ],
-        loadChildren: async () => (await import('@members/members.module')).MembersModule
+        loadChildren: async () => (await import('@members/members.module')).MembersModule,
+        data: { animation: 'Members'}
       },
       {
         path: 'settings',
         canActivate: [ AuthGuard ],
-        loadChildren: async () => (await import('@settings/settings.module')).SettingsModule
+        loadChildren: async () => (await import('@settings/settings.module')).SettingsModule,
+        data: { animation: 'Settings'}
       },
       {
-        path: '**', component: NotFoundComponent
+        path: '**',
+        component: NotFoundComponent,
+        data: { animation: '404'}
       }
     ]
   }

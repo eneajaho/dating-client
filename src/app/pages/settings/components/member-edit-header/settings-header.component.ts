@@ -1,16 +1,13 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { User } from "@core/models";
-import { faUser } from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   selector: 'app-settings-header',
   templateUrl: './settings-header.component.html',
-  styleUrls: ['./settings-header.component.scss'],
+  styleUrls: [ './settings-header.component.scss' ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SettingsHeaderComponent {
-
-  userIcon = faUser;
 
   @Input() user: User;
 
@@ -28,13 +25,11 @@ export class SettingsHeaderComponent {
   pageDetails = {
     profile: 'Update your profile details, ex. bio, interests...',
     account: 'Manage your account details, ex. username, profile picture...',
-    // email: 'Change your email or add recovery email.',
-    // password: 'Update your account password.',
     chat: 'Modify your chat settings, ex. chat requests, chat blocking...',
     photos: 'View, add or remove your photos...'
   }
 
-  getProfilePicture() {
+  profilePicture() {
     if (this.user?.photoUrl) {
       return { 'background-image': `url(${ this.user.photoUrl })` };
     }

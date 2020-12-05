@@ -4,8 +4,8 @@ import { faHome } from '@fortawesome/free-solid-svg-icons';
 @Component({
   selector: 'not-found',
   template: `
-    <div class="container">
-      <div class="row justify-content-center align-items-center vh-100">
+    <div class="container pt-5">
+      <div class="row justify-content-center align-items-center pt-5">
         <div class="col-xs-12 col-sm-10 col-md-8 col-lg-6">
           <h1 class="display-3 text-center">
             404 Not Found

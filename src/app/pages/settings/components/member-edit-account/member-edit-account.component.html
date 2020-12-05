@@ -5,21 +5,29 @@
 <error-alert [error]="error$ | async"></error-alert>
 
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
-  <div class="form-group">
-    <label for="username">Username</label>
-    <input type="text" formControlName="username" autocomplete="username"
-           placeholder="Username" class="form-control" id="username">
-    <div class="alert alert-danger mt-1" *ngIf="required('username')">
-      Username is required!
+  <div class="row">
+    <div class="col-12 col-md-6">
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" formControlName="username" autocomplete="username"
+               placeholder="Username" class="form-control" id="username">
+        <div class="alert alert-danger mt-1" *ngIf="required('username')">
+          Username is required!
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-6">
+      <div class="form-group">
+        <label for="gender">Gender</label>
+        <select name="gender" id="gender" formControlName="gender" class="form-control">
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+        </select>
+      </div>
     </div>
   </div>
-  <div class="form-group">
-    <label for="gender">Gender</label>
-    <select name="gender" id="gender" formControlName="gender" class="form-control">
-      <option value="male">Male</option>
-      <option value="female">Female</option>
-    </select>
-  </div>
+
+
 
 <!--  <div class="form-group">-->
 <!--    <label for="birthday">Birthday</label>-->

@@ -1,5 +1,5 @@
-<div class="container-fluid  mt-5">
-  <div class="row justify-content-center mb-5" [style.paddingBottom]="'100px'">
+<div class="container-fluid mt-5">
+  <div class="row justify-content-center mb-5" style="padding-bottom: 100px">
 
     <ng-container *ngIf="loading$ | async">
       <div class="d-flex justify-content-center align-items-center mt-5 mb-3">
@@ -16,7 +16,7 @@
       </div>
     </ng-container>
 
-    <div *ngIf="(loaded$ | async) && !(error$ | async)" class="col-xs-12 col-sm-10 col-lg-9">
+    <div *ngIf="showSettings$ | async" class="col-xs-12 col-sm-10 col-lg-9">
       <div class="row justify-content-center">
         <div class="col-12">
           <app-settings-header
@@ -31,8 +31,8 @@
         </div>
         <div class="col-9">
           <div class="card shadow border-0 rounded overflow-hidden">
-            <div class="card-body">
-              <router-outlet></router-outlet>
+            <div [@routerAnimations]="prepareRoute(outlet)" class="card-body">
+              <router-outlet #outlet="outlet"></router-outlet>
             </div>
           </div>
         </div>

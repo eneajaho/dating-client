@@ -3,4 +3,8 @@
   (logout)="handleLogout()">
 </app-navigation>
 
-<router-outlet></router-outlet>
+<div [@routerAnimations]="prepareRoute(outlet)">
+  <router-outlet #outlet="outlet"></router-outlet>
+</div>
+
+
