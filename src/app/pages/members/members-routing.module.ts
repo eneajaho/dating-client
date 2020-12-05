@@ -15,17 +15,20 @@ const routes: Routes = [
   },
   {
     path: 'search',
-    component: MembersSearchComponent
+    component: MembersSearchComponent,
+    data: { animation: 'Search'}
   },
   {
     path: 'all',
     canActivate: [ MembersGuard ],
-    component: MembersComponent
+    component: MembersComponent,
+    data: { animation: 'AllMembers'}
   },
   {
     path: ':memberId',
     canActivate: [ MemberGuard ],
-    component: MemberDetailsComponent
+    component: MemberDetailsComponent,
+    data: { animation: 'SingleMember'}
   }
 ];
 

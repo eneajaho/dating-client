@@ -1,9 +1,10 @@
 .list-group-item {
-  border-color: transparent;
-  border-left-width: 4px;
+  border: none;
+  border-left: 4px solid transparent;
   outline: none;
   background: var(--bg-color-light);
   color: var(--text-color);
+  transition: 0.2s all;
 
   &:hover {
     color: var(--text-color-light);
@@ -14,6 +15,6 @@
     color: var(--text-color);
     background: var(--bg-color-light);
     border-left: 4px solid #6b0fc0!important;
-    font-weight: 600;
+    //font-weight: 600;
   }
 }
