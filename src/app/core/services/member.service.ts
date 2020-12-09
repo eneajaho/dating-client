@@ -5,17 +5,28 @@ import { Observable } from "rxjs";
 import { API_URL } from "@core/configs";
 import { User } from "@models/User";
 import { map } from "rxjs/operators";
+import { MembersFilter } from "@core/models";
+import { paramIsCorrect } from "@shared/helpers";
 
 @Injectable({ providedIn: 'root' })
 export class MemberService {
 
   constructor(@Inject(API_URL) private api, private http: HttpClient) { }
 
-  getMembers({ pageSize, pageNumber }: IQueryParams): Observable<PaginatedResult<User[]>> {
+  getMembers(queryParams: IQueryParams & MembersFilter): Observable<PaginatedResult<User[]>> {
+    let params = new HttpParams()
+      .append('PageSize', queryParams.pageSize)
+      .append('PageNumber', queryParams.pageNumber);
 
-    const params = new HttpParams()
-      .append('PageSize', pageSize)
-      .append('PageNumber', pageNumber);
+    if(paramIsCorrect(queryParams.maxAge)) {
+      params = params.append('MaxAge', queryParams.maxAge + '')
+    }
+    if (paramIsCorrect(queryParams.minAge)) {
+      params = params.append('MinAge', queryParams.minAge + '')
+    }
+    if (paramIsCorrect(queryParams.gender)) {
+      params = params.append('gender', queryParams.gender)
+    }
 
     const path = `${this.api}/users`;
     return this.http.get<User[]>(path, { observe: 'response', params }).pipe(

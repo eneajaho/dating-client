@@ -76,6 +76,12 @@ export const selectMembersPaginationError = createSelector(
   (state) => state?.error
 );
 
+/** Members Filters */
+export const selectMembersFilters = createSelector(
+  selectMemberEntitiesState,
+  fromMembers.getFilters
+);
+
 
 
 /** Selected Member Selectors */

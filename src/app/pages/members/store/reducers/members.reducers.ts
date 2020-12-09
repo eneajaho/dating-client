@@ -5,13 +5,14 @@ import {
   MembersApiActions,
   MembersPageActions,
 } from "@members/store/actions";
-import { Pagination, Status, User } from "@core/models";
+import { MembersFilter, Pagination, Status, User } from "@core/models";
 
 export const membersEntityFeatureKey = 'membersEntity';
 
 export interface State extends EntityState<User & Status>, Status {
   selectedMemberId: number;
   pagination: Pagination & Status;
+  filters: MembersFilter;
 }
 
 export const adapter: EntityAdapter<User & Status> = createEntityAdapter<User & Status>({
@@ -29,6 +30,11 @@ export const initialState: State = adapter.getInitialState({
     loaded: false,
     error: null,
   },
+  filters: {
+    gender: null,
+    maxAge: null,
+    minAge: null
+  },
   error: null,
   loaded: false,
   loading: false
@@ -37,7 +43,12 @@ export const initialState: State = adapter.getInitialState({
 
 export const reducer = createReducer(initialState,
 
-  /** All Members reducers **/
+  /** Set Members Filter */
+  on(MembersPageActions.setMembersFilter, (state, { filters }) => ({
+    ...state, filters: { ...state.filters, ...filters}
+  })),
+
+  /** Load Members **/
   on(MembersPageActions.loadMembers, state => ({ ...state,
     error: null, loaded: false, loading: true
   })),
@@ -93,6 +104,7 @@ export const reducer = createReducer(initialState,
 
 
 export const getMemberId = (state: State) => state.selectedMemberId;
+export const getFilters = (state: State) => state.filters;
 export const getPagination = (state: State) => state.pagination;
 export const getLoading = (state: State) => state.loading;
 export const getLoaded = (state: State) => state.loaded;

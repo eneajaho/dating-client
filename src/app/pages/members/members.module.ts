@@ -23,7 +23,7 @@ import { BsDropdownModule } from "ngx-bootstrap/dropdown";
 import { SettingsStoreModule } from "@settings/store/settings-store.module";
 import { GoBackModule } from "@shared/directives";
 import { TimeAgoModule } from "@shared/pipes";
-import { SpinnerModule } from "@shared/components";
+import { ErrorAlertModule, SpinnerModule } from "@shared/components";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { CommonModule } from "@angular/common";
 
@@ -64,6 +64,7 @@ import { CommonModule } from "@angular/common";
     SpinnerModule,
     FontAwesomeModule,
     CommonModule,
+    ErrorAlertModule,
   ]
 })
 export class MembersModule {}

@@ -35,8 +35,14 @@ export class MembersComponent implements OnInit {
     this.paginationError$ = this.store.select(fromMembers.selectMembersPaginationError);
   }
 
-  loadMore() {
+  loadMore(): void {
     this.store.dispatch(MembersPageActions.loadMoreMembers());
+  }
+
+  retry(): void {
+    this.store.dispatch(MembersPageActions.loadMembers(
+      { pageNumber: '1', pageSize: '2' })
+    );
   }
 
 

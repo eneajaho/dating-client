@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { catchError, concatMap, map, switchMap, withLatestFrom } from "rxjs/operators";
-import { of } from "rxjs";
+import { combineLatest, of } from "rxjs";
 
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { Store } from "@ngrx/store";
@@ -8,18 +8,26 @@ import { Store } from "@ngrx/store";
 import { MembersApiActions, MembersPageActions } from "@members/store/actions";
 import { MemberService } from "@core/services";
 import * as fromMembers from '@members/store/reducers';
-import { QueryParams } from "@core/models";
+import { IQueryParams, MembersFilter, QueryParams } from "@core/models";
 
 @Injectable()
 export class MembersEffects {
   constructor(private actions$: Actions, private memberService: MemberService,
-              private store: Store<fromMembers.State>) {}
+              private store: Store<fromMembers.State>) { }
+
+  FilterMembers$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(MembersPageActions.setMembersFilter),
+      switchMap(({ filters }) =>
+        of(MembersPageActions.loadMembers({ pageNumber: '1', pageSize: '2', ...filters }))
+      )
+    ));
 
   LoadMembers$ = createEffect(() =>
     this.actions$.pipe(
       ofType(MembersPageActions.loadMembers),
-      switchMap(({ pageNumber, pageSize }) => {
-        return this.memberService.getMembers({ pageNumber, pageSize }).pipe(
+      switchMap((params: IQueryParams & MembersFilter) => {
+        return this.memberService.getMembers(params).pipe(
           map(({ result, pagination }) =>
             MembersApiActions.loadMembersSuccess({ members: result, pagination })
           ),
@@ -28,17 +36,26 @@ export class MembersEffects {
       })
     ));
 
-  LoadMoreMembers$ = createEffect(() =>
-    this.actions$.pipe(
+  LoadMoreMembers$ = createEffect(() => {
+    const currentParams$ = combineLatest([
+      this.store.select(fromMembers.selectMembersPagination),
+      this.store.select(fromMembers.selectMembersFilters)
+    ]).pipe(
+      map(([ pagination, filters ]) => ({
+        currentFilters: filters,
+        currentPagination: pagination
+      }))
+    );
+
+    return this.actions$.pipe(
       ofType(MembersPageActions.loadMoreMembers),
-      concatMap(action => of(action).pipe(
-        withLatestFrom(this.store.select(fromMembers.selectMembersPagination))
-      )),
-      switchMap(([action, activePagination]) => {
-        const params = new QueryParams(
-          (activePagination.currentPage + 1).toString(),
-          activePagination.itemsPerPage.toString()
+      concatMap(action => of(action).pipe(withLatestFrom(currentParams$))),
+      switchMap(([ action, { currentFilters, currentPagination } ]) => {
+        const newPaginationParams = new QueryParams(
+          (currentPagination.currentPage + 1).toString(),
+          currentPagination.itemsPerPage.toString()
         );
+        const params = { ...newPaginationParams, ...currentFilters };
 
         return this.memberService.getMembers(params).pipe(
           map(({ result, pagination }) =>
@@ -47,6 +64,7 @@ export class MembersEffects {
           catchError(error => of(MembersApiActions.loadMoreMembersFailure({ error }))),
         )
       })
-    ));
+    )
+  });
 
 }
