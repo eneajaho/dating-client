@@ -1,20 +1,14 @@
-.btn {
-  transition: 0.2s all;
-
-  &:hover {
-    transform: translateY(-2px);
-  }
-}
-
 .btn-primary {
-  background-color: var(--btn-primary-bg-color);
-  border-color: var(--btn-primary-bg-color);
-  color: var(--btn-primary-text-color);
+  background-color: var(--main-color);
+  border-color: var(--main-color);
+  color: var(--text-color-white);
+  transition: 0.15s transform;
 
   &:hover {
-    background-color: var(--btn-primary-bg-color);
-    border-color: var(--btn-primary-bg-color);
-    color: var(--btn-primary-text-color);
+    //transform: translateY(-3px);
+    background-color: var(--main-color);
+    border-color: var(--main-color);
+    color: var(--text-color-white);
   }
 }
 
