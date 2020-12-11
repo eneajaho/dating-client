@@ -5,7 +5,7 @@ import { Directive, ElementRef, Input, OnChanges, OnInit, SimpleChanges } from '
 })
 export class LoadingDirective implements OnInit, OnChanges {
 
-  @Input('isLoading') loading: boolean;
+  @Input('isLoading') loading?: boolean;
 
   constructor(private element: ElementRef) { }
 

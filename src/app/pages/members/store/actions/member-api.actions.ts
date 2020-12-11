@@ -8,7 +8,7 @@ export const loadMembersSuccess = createAction(
 
 export const loadMembersFailure = createAction(
   '[Members/API] Load Members Failure',
-  props<{ error }>()
+  props<{ error: string }>()
 );
 
 export const loadMoreMembersSuccess = createAction(
@@ -18,7 +18,7 @@ export const loadMoreMembersSuccess = createAction(
 
 export const loadMoreMembersFailure = createAction(
   '[Members/API] Load More Members Failure',
-  props<{ error }>()
+  props<{ error: string }>()
 );
 
 
@@ -29,5 +29,5 @@ export const loadMemberSuccess = createAction(
 
 export const loadMemberFailure = createAction(
   '[Members/API] Load Member Failure',
-  props<{ error, id }>()
+  props<{ error: string, id: number }>()
 );

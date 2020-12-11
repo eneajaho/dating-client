@@ -16,7 +16,7 @@ type Sections = 'age' | 'gender' | 'lastActive';
 export class MembersSearchFormComponent implements OnInit {
 
   @Input() theme: string = 'dark';
-  @Input() activeFilters: MembersFilter = null;
+  @Input() activeFilters: MembersFilter | null = null;
   @Output() submitted = new EventEmitter<MembersFilter>();
 
   searchIcon = faSearch;
@@ -53,7 +53,7 @@ export class MembersSearchFormComponent implements OnInit {
   }
 
   invalid(control: string): boolean {
-    return this.form.get(control).touched && this.form.get(control).invalid;
+    return (this.form.get(control)?.touched && this.form.get(control)?.invalid) ?? false;
   }
 
 }

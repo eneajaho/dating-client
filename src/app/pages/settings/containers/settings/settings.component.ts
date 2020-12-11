@@ -17,8 +17,8 @@ import { RouterOutlet } from "@angular/router";
 export class SettingsComponent {
 
   details$: Observable<User> = this.settings.details$;
-  loading$: Observable<boolean> = this.settings.loading$;
-  error$: Observable<string> = this.settings.error$;
+  loading$ = this.settings.loading$;
+  error$ = this.settings.error$;
 
   showSettings$ = this.settings.showSettings$;
 

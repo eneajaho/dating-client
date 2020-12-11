@@ -1,5 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
-import { Observable } from "rxjs";
+import { ChangeDetectionStrategy, Component, OnDestroy } from '@angular/core';
 import { Store } from "@ngrx/store";
 import { Credentials } from "@auth/models";
 
@@ -12,23 +11,18 @@ import { LoginPageActions } from "@auth/store/actions";
   styles: [` h2 { color: var(--text-color)  }  `],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class LoginComponent implements OnInit, OnDestroy {
+export class LoginComponent implements OnDestroy {
 
-  error$: Observable<string>;
-  loading$: Observable<boolean>;
+  error$ = this.store.select(fromAuth.selectLoginPageError);
+  loading$ = this.store.select(fromAuth.selectLoginPagePending);
 
   constructor(private store: Store<fromAuth.State>) { }
 
-  ngOnInit() {
-    this.error$ = this.store.select(fromAuth.selectLoginPageError);
-    this.loading$ = this.store.select(fromAuth.selectLoginPagePending);
-  }
-
-  clearErrors() {
+  clearErrors(): void {
     this.store.dispatch(LoginPageActions.clearLoginError());
   }
 
-  handleLogin(credentials: Credentials) {
+  handleLogin(credentials: Credentials): void {
     this.store.dispatch(LoginPageActions.login({ credentials }));
   }
 

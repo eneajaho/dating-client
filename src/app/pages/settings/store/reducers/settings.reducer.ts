@@ -1,6 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
 import { PhotosActions, SettingsActions } from "@settings/store/actions";
-import { Status, User } from "@core/models";
+import { User } from "@core/models";
 
 export const userDetailsFeatureKey = 'userDetails';
 
@@ -8,16 +8,19 @@ export interface State {
   user: User;
   loading: boolean;
   loaded: boolean;
-  error: string;
+  error: string | null;
   savingChanges: boolean;
 }
 
-export const initialState: State & Status = {
+export const initialState: State = {
   loading: false,
   loaded: false,
   error: null,
   savingChanges: false,
-  user: null,
+  user: {
+    photos: [],
+    id: -1
+  },
 };
 
 export const reducer = createReducer(initialState,
@@ -55,10 +58,13 @@ export const reducer = createReducer(initialState,
     savingChanges: true, error: null
   })),
 
-  on(PhotosActions.uploadPhotoSuccess, (state, { photo }) => ({ ...state,
-      user: { ...state.user, photos: [ ...state.user.photos, photo ] },
+  on(PhotosActions.uploadPhotoSuccess, (state, { photo }) => {
+    const updatedPhotos = [ ...state.user.photos, photo ];
+    return { ...state,
+      user: { ...state.user, photos: updatedPhotos },
       savingChanges: false
-  })),
+    }
+  }),
 
   on(PhotosActions.uploadPhotoFailure, (state, { error }) => ({ ...state,
     error, savingChanges: false
@@ -74,7 +80,7 @@ export const reducer = createReducer(initialState,
     return { ...state, savingChanges: false,
       user: {
         ...state.user,
-        photoUrl: updatedPhotos.find(p => p.id === photoId).url,
+        photoUrl: updatedPhotos.find(p => p.id === photoId)?.url,
         photos: updatedPhotos
       }
     }
@@ -102,11 +108,7 @@ export const reducer = createReducer(initialState,
 
 
 export const getUserDetails = (state: State) => state.user;
-
 export const getUserDetailsLoading = (state: State) => state.loading;
-
 export const getUserDetailsLoaded = (state: State) => state.loaded;
-
 export const getUserDetailsError = (state: State) => state.error;
-
 export const getUserDetailsSavingChanges = (state: State) => state.savingChanges;

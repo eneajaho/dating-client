@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@angular/core';
-import { Observable, ReplaySubject } from "rxjs";
+import { BehaviorSubject, Observable } from "rxjs";
 import { DOCUMENT } from "@angular/common";
 import { distinctUntilChanged, tap } from 'rxjs/operators';
 
@@ -11,7 +11,7 @@ export const Themes = {
 @Injectable({ providedIn: 'root' })
 export class ThemeService {
 
-  private theme = new ReplaySubject<string>(null);
+  private theme = new BehaviorSubject<string>('');
 
   public theme$: Observable<string> = this.theme.asObservable().pipe(
     distinctUntilChanged(),
@@ -23,7 +23,7 @@ export class ThemeService {
     this.dark();
   }
 
-  toggle() {
+  toggle(): void {
     if (this.activeTheme === Themes.Dark) {
       this.light();
     } else {

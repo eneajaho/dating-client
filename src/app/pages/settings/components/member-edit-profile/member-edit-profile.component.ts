@@ -24,10 +24,10 @@ export class MemberEditProfileComponent implements OnInit, OnDestroy {
     introduction: ''
   });
 
-  details: User;
+  details?: User = undefined;
 
   formChanged$ = new BehaviorSubject(false);
-  savingChanges$: Observable<boolean>;
+  savingChanges$: Observable<boolean> = this.store.select(fromSettings.selectUserDetailsSavingChanges);
 
   private destroy$ = new Subject<boolean>();
 
@@ -37,18 +37,14 @@ export class MemberEditProfileComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.handleFormChanges();
     this.updateFormData();
-
-    this.savingChanges$ = this.store.select(fromSettings.selectUserDetailsSavingChanges);
   }
 
-  handleFormChanges() {
+  handleFormChanges(): void {
     this.form.valueChanges.pipe(takeUntil(this.destroy$))
-      .subscribe(data => {
-        this.formChanged$.next(this.form.dirty);
-      });
+      .subscribe(() => { this.formChanged$.next(this.form.dirty); });
   }
 
-  updateFormData() {
+  updateFormData(): void {
     this.store.select(fromSettings.selectUserDetails)
       .pipe(takeUntil(this.destroy$))
       .subscribe(data => {
@@ -59,13 +55,13 @@ export class MemberEditProfileComponent implements OnInit, OnDestroy {
       });
   }
 
-  onChipChange() {
+  onChipChange(): void {
     this.formChanged$.next(true);
   }
 
   onSubmit() {
     if (this.form.valid && this.formChanged$.value) {
-      const interests = this.joinInterests(this.form.get('interests').value);
+      const interests = this.joinInterests(this.form.get('interests')?.value);
       const user = { ...this.details, ...this.form.value, interests };
       this.store.dispatch(SettingsActions.editAuthDetails({ user }));
       this.formChanged$.next(false);
@@ -75,10 +71,7 @@ export class MemberEditProfileComponent implements OnInit, OnDestroy {
   private patchForm(user: User) {
     this.form.reset();
 
-    let interests = [];
-    if (user.interests?.length > 0) {
-      interests = user.interests?.split(/[\s,]+/);
-    }
+    let interests: string[] = user?.interests?.split(/[\s,]+/) ?? [];
 
     this.form.patchValue({
       ...user,
@@ -86,8 +79,9 @@ export class MemberEditProfileComponent implements OnInit, OnDestroy {
     });
   }
 
-  private joinInterests(interests) {
-    const newArray = [];
+  private joinInterests(interests: any[]) {
+    console.log(interests);
+    const newArray: string[] = [];
     for (let interest of interests) {
       if (newArray.includes(interest)) {
         continue;
@@ -102,7 +96,7 @@ export class MemberEditProfileComponent implements OnInit, OnDestroy {
   }
 
   required(control: string): boolean {
-    return this.form.get(control).touched && this.form.get(control).invalid;
+    return (this.form.get(control)?.touched && this.form.get(control)?.invalid) ?? false;
   }
 
   ngOnDestroy() {

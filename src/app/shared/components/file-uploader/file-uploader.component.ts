@@ -8,23 +8,23 @@ import { faCloudUploadAlt } from "@fortawesome/free-solid-svg-icons";
 })
 export class FileUploaderComponent {
 
-  @Input() uploading: boolean;
+  @Input() uploading: boolean = false;
 
   @Output() uploaded = new EventEmitter<FileList>();
 
   uploadIcon = faCloudUploadAlt;
 
-  isHovering: boolean;
+  isHovering: boolean = false;
 
-  handleFileInput(files: FileList) {
+  handleFileInput(files: FileList): void {
     this.uploaded.emit(files);
   }
 
-  toggleHover(event: boolean) {
+  toggleHover(event: boolean): void {
     this.isHovering = event;
   }
 
-  onDrop(files: FileList) {
+  onDrop(files: FileList): void {
     this.uploaded.emit(files);
   }
 

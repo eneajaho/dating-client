@@ -8,11 +8,11 @@ import { ChangeDetectorRef, NgZone, OnDestroy, Pipe, PipeTransform } from "@angu
 @Pipe({ name: 'timeAgo' })
 export class TimeAgoPipe implements PipeTransform, OnDestroy {
 
-  private timer: number;
+  private timer: number | null | undefined;
 
   constructor(private changeDetectorRef: ChangeDetectorRef, private ngZone: NgZone) {}
 
-  transform(value: string) {
+  transform(value: string): string {
     this.removeTimer();
     let d = new Date(value);
     let now = new Date();
@@ -62,14 +62,14 @@ export class TimeAgoPipe implements PipeTransform, OnDestroy {
     this.removeTimer();
   }
 
-  private removeTimer() {
+  private removeTimer(): void {
     if (this.timer) {
       window.clearTimeout(this.timer);
       this.timer = null;
     }
   }
 
-  private static getSecondsUntilUpdate(seconds: number) {
+  private static getSecondsUntilUpdate(seconds: number): number {
     let min = 60;
     let hr = min * 60;
     let day = hr * 24;

@@ -16,8 +16,8 @@ import { MembersPageActions } from "@members/store/actions";
 export class MembersComponent implements OnInit {
 
   members$: Observable<(User & Status)[]> = this.store.select(fromMembers.selectAllMembers);
-  loading$: Observable<boolean> = this.store.select(fromMembers.selectMembersLoading);
-  error$: Observable<string> = this.store.select(fromMembers.selectMembersError);
+  loading$ = this.store.select(fromMembers.selectMembersLoading);
+  error$ = this.store.select(fromMembers.selectMembersError);
 
   pagination$ = this.store.select(fromMembers.selectMembersPagination);
   hasMorePages$ = this.store.select(fromMembers.selectMembersHasMorePages);

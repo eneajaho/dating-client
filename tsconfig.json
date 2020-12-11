@@ -15,6 +15,12 @@
       "es2018",
       "dom"
     ],
+    /* Strict Mode */
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+
     "paths": {
       "@env/*": [
         "./src/environments/*"

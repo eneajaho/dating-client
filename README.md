@@ -69,14 +69,14 @@ ng serve -o
 
 
 ### Todo
-- Filter/sort functionality
 - Likes functionality
 - Private messages (using SignalR) functionality
-- Stricter type checking
-- Add animations
-- ~~Upgrade to Angular 11~~
+- Add animations - 35%
 - SSR (Angular Universal)
 - Testing 
+- ~~Filter functionality~~
+- ~~Stricter type checking~~
+- ~~Upgrade to Angular 11~~
 
 #### License: MIT
 

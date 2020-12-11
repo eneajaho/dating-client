@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input, OnChanges } from '@angular/core';
 import { User } from "@models/User";
 import { faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
-import { faCalendarAlt, faClock } from "@fortawesome/free-regular-svg-icons";
+import { faCalendarAlt } from "@fortawesome/free-regular-svg-icons";
 
 @Component({
   selector: 'app-member-details-card',
@@ -11,7 +11,7 @@ import { faCalendarAlt, faClock } from "@fortawesome/free-regular-svg-icons";
 })
 export class MemberDetailsCardComponent implements OnChanges {
 
-  interests: string[];
+  interests: string[] | undefined = [];
 
   colors = [ 'primary', 'danger', 'info', 'success' ];
 
@@ -24,18 +24,17 @@ export class MemberDetailsCardComponent implements OnChanges {
 
   locationIcon = faMapMarkerAlt;
   calendarIcon = faCalendarAlt;
-  clockIcon = faClock;
 
-  @Input() user: User;
+  @Input() user!: User;
 
   ngOnChanges() {
-    this.interests = this.user.interests?.split(',');
+    this.interests = this.user?.interests?.split(',');
   }
 
   getCover() {
     return {
       'background-image': `linear-gradient(0, #000000e8 10%, #6b0fc02b 50%),
-                                  url(${ this.covers[this.user.id % 4] })`
+                                  url(${ this.covers[(this.user?.id ?? 1) % 4] })`
     };
   }
 

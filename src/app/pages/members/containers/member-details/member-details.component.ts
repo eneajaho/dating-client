@@ -20,8 +20,8 @@ import { SettingsActions } from "@settings/store/actions";
 })
 export class MemberDetailsComponent implements OnInit {
 
-  details$: Observable<User>;
-  myProfile$: Observable<boolean>;
+  details$: Observable<User> | undefined;
+  myProfile$: Observable<boolean> | undefined;
 
   sendIcon = faComment;
   userEditIcon = faUserCog;
@@ -35,6 +35,7 @@ export class MemberDetailsComponent implements OnInit {
         if (isMyProfile) {
           this.details$ = this.store.select(fromSettings.selectUserDetails);
         } else {
+          // @ts-ignore
           this.details$ = this.store.select(fromMembers.selectSelectedMember);
         }
       })

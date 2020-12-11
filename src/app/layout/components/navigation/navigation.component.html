@@ -39,7 +39,7 @@
         <div class="btn-group" dropdown>
           <a id="button-basic" dropdownToggle type="button" class="text-light dropdown-toggle">
             <fa-icon [icon]="userIcon" class="mr-1"></fa-icon>
-            {{ user.name | titlecase }}
+            {{ user?.name | titlecase }}
             <span class="caret"></span>
           </a>
           <ul *dropdownMenu class="dropdown-menu dropdown-menu-right mr-2">

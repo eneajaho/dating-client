@@ -14,7 +14,7 @@
     </div>
 
     <div class="lastActive">
-      Active {{ user.lastActive | timeAgo }}
+      Active {{ user?.lastActive | timeAgo }}
     </div>
 
   </div>
@@ -37,9 +37,9 @@
       <tab heading="Photos">
         <carousel>
           <slide *ngFor="let photo of user.photos">
-            <img [src]="photo.url" [alt]="photo.description" class="d-block photo-img margin-auto">
+            <img [src]="photo.url" [alt]="photo?.description" class="d-block photo-img margin-auto">
             <div class="carousel-caption d-none d-md-block px-4 py-2 photo-img">
-              <h4>{{ photo.dateAdded | date: 'dd/MM/yyyy'}}</h4>
+              <h4>{{ photo.addedAt | date: 'dd/MM/yyyy'}}</h4>
               <p>{{ photo.description }}</p>
             </div>
           </slide>

@@ -10,7 +10,7 @@ import { Credentials } from "@auth/models";
 })
 export class LoginFormComponent {
 
-  @Input() loading: boolean;
+  @Input() loading: boolean = false;
   @Output() submitted = new EventEmitter<Credentials>();
 
   form: FormGroup;
@@ -32,14 +32,14 @@ export class LoginFormComponent {
   }
 
   invalid(control: string): boolean {
-    return this.form.get(control).touched && this.form.get(control).invalid;
+    return this.form.get(control)!.touched && this.form.get(control)!.invalid;
   }
 
   required(control: string): boolean {
-    return this.form.get(control).hasError('required');
+    return this.form.get(control)!.hasError('required');
   }
 
   minLength(control: string): boolean {
-    return this.form.get(control).hasError('minlength');
+    return this.form.get(control)!.hasError('minlength');
   }
 }

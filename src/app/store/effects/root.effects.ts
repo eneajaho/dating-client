@@ -16,11 +16,8 @@ export class RootEffects {
     this.actions$.pipe(
       ofType(ROOT_EFFECTS_INIT),
       switchMap(() => {
-        const cookieExists = !!this.local.get('user');
-        let user = null;
-        if (cookieExists) {
-          user = JSON.parse(this.local.get('user'));
-        }
+        let localUser = this.local.get('user');
+        let user = localUser ? JSON.parse(localUser) : null;
         return of(AuthActions.getUserLocal({ user }))
       })));
 }

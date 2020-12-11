@@ -14,7 +14,7 @@ import { fadeIdAnimation } from "@shared/animations";
 })
 export class MemberCardComponent {
 
-  @Input() user: User;
+  @Input() user!: User;
 
   constructor(private router: Router) {}
 
@@ -23,11 +23,11 @@ export class MemberCardComponent {
   loveIcon = faHeart;
 
   goToMember() {
-    this.router.navigate(['/members', this.user.id]);
+    this.router.navigate(['/members', this.user?.id]);
   }
 
   getBackground() {
-    if (this.user && this.user.photoUrl) {
+    if (this.user?.photoUrl) {
       return { 'background-image': `url(${ this.user.photoUrl })` };
     }
     return { 'background-color': 'grey' };

@@ -33,6 +33,6 @@ export class NotFoundComponent {
 
   homeIcon = faHome;
 
-  @Input() templateOutlet: TemplateRef<any>;
+  @Input() templateOutlet: TemplateRef<any> | undefined;
 
 }

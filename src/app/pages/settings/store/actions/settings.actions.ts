@@ -32,5 +32,5 @@ export const editAuthDetailsSuccess = createAction(
 
 export const editAuthDetailsFailure = createAction(
   '[Members/API] Edit Auth Details Failure',
-  props<{ error }>()
+  props<{ error: string }>()
 );

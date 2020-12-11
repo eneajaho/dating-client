@@ -16,8 +16,8 @@ export class PaginatedResult<T> {
 }
 
 export interface IQueryParams {
-  pageNumber?: string;
-  pageSize?: string;
+  pageNumber: string;
+  pageSize: string;
 }
 
 export class QueryParams implements IQueryParams {

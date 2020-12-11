@@ -3,6 +3,7 @@ import { THEME, ThemeProvider } from "@core/tokens/theme.token";
 import { Store } from "@ngrx/store";
 import * as fromMembers from '@members/store/reducers';
 import { MembersPageActions } from "@members/store/actions";
+import { MembersFilter } from "@core/models";
 
 @Component({
   selector: 'app-members-search',
@@ -17,7 +18,7 @@ export class MembersSearchComponent {
   constructor(@Inject(THEME) public theme$: ThemeProvider,
               private store: Store<fromMembers.State>) { }
 
-  handleSubmit(filters) {
+  handleSubmit(filters: MembersFilter) {
     this.store.dispatch(MembersPageActions.setMembersFilter({ filters }));
   }
 

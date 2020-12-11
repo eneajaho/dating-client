@@ -7,7 +7,7 @@ import { Credentials, LoginResponse } from "@auth/models";
 @Injectable({ providedIn: 'any' })
 export class AuthService {
 
-  constructor(@Inject(API_URL) private api, private http: HttpClient) { }
+  constructor(@Inject(API_URL) private api: string, private http: HttpClient) { }
 
   register(credentials: Credentials): Observable<unknown> {
     const path = `${this.api}/auth/register`;

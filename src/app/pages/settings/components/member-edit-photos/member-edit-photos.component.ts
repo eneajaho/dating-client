@@ -3,7 +3,7 @@ import { Photo } from "@core/models";
 import { Observable } from "rxjs";
 import { Store } from "@ngrx/store";
 import * as fromSettings from "@settings/store/reducers";
-import { map, tap } from "rxjs/operators";
+import { pluck, tap } from "rxjs/operators";
 import { faCheck, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import { PhotosActions } from "@settings/store/actions";
 
@@ -15,39 +15,40 @@ import { PhotosActions } from "@settings/store/actions";
 })
 export class MemberEditPhotosComponent implements OnInit {
 
-  photos$: Observable<Photo[]>;
-  loading$: Observable<boolean>;
-  userId: number;
+  photos$: Observable<Photo[]>= this.store.select(fromSettings.selectUserDetails).pipe(
+    tap(user => { this.userId = user.id }),
+    pluck('photos')
+  );
+
+  loading$: Observable<boolean> = this.store.select(fromSettings.selectUserDetailsLoading);
+
+  userId: number = -1;
 
   checkIcon = faCheck;
   deleteIcon = faTrashAlt;
 
-  constructor(private store: Store<fromSettings.State>) {}
+  constructor(private store: Store<fromSettings.State>) { }
 
-  ngOnInit() {
-    this.photos$ = this.store.select(fromSettings.selectUserDetails).pipe(
-      tap(user => { this.userId = user.id }),
-      map(user => user.photos)
-    );
+  ngOnInit(): void { }
 
-    this.loading$ = this.store.select(fromSettings.selectUserDetailsLoading);
-  }
-
-  handlePhotos(photos: FileList) {
-    if (!photos.item(0)?.name) {
-      return false;
+  handlePhotos(photos: FileList): void {
+    if (!photos?.item(0)?.name) {
+      return;
     }
     const formData = new FormData();
-    formData.append('File', photos.item(0), photos.item(0).name);
+    if (photos.item(0) !== null) {
+      // @ts-ignore
+      formData.append('File', photos.item(0), photos.item(0)?.name);
+    }
 
     this.store.dispatch(PhotosActions.uploadPhoto({ payload: formData, userId: this.userId }))
   }
 
-  setMainPhoto(id: number) {
+  setMainPhoto(id: number): void {
     this.store.dispatch(PhotosActions.setMainPhoto({ userId: this.userId, photoId: id }));
   }
 
-  deletePhoto(id: number) {
+  deletePhoto(id: number): void {
     this.store.dispatch(PhotosActions.deletePhoto({ userId: this.userId, photoId: id }));
   }
 

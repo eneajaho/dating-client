@@ -6,26 +6,29 @@ import { API_URL } from "@core/tokens";
 import { User } from "@models/User";
 import { map } from "rxjs/operators";
 import { MembersFilter } from "@core/models";
-import { paramIsCorrect } from "@shared/helpers";
 
 @Injectable({ providedIn: 'root' })
 export class MemberService {
 
-  constructor(@Inject(API_URL) private api, private http: HttpClient) { }
+  constructor(@Inject(API_URL) private api: string, private http: HttpClient) { }
 
-  getMembers(queryParams: IQueryParams & MembersFilter): Observable<PaginatedResult<User[]>> {
-    let params = new HttpParams()
-      .append('PageSize', queryParams.pageSize)
-      .append('PageNumber', queryParams.pageNumber);
+  getMembers(filters: Partial<IQueryParams & MembersFilter>): Observable<PaginatedResult<User[]>> {
+    let params = new HttpParams();
 
-    if(paramIsCorrect(queryParams.maxAge)) {
-      params = params.append('MaxAge', queryParams.maxAge + '')
+    if(filters.pageSize !== undefined ) {
+      params = params.append('PageSize', filters.pageSize);
     }
-    if (paramIsCorrect(queryParams.minAge)) {
-      params = params.append('MinAge', queryParams.minAge + '')
+    if(filters.pageNumber !== undefined ) {
+      params = params.append('PageNumber', filters.pageNumber);
     }
-    if (paramIsCorrect(queryParams.gender)) {
-      params = params.append('gender', queryParams.gender)
+    if(filters.maxAge !== undefined) {
+      params = params.append('MaxAge', filters.maxAge + '')
+    }
+    if (filters.minAge !== undefined) {
+      params = params.append('MinAge', filters.minAge + '')
+    }
+    if (filters.gender !== undefined) {
+      params = params.append('gender', <string>filters.gender)
     }
 
     const path = `${this.api}/users`;
@@ -38,7 +41,7 @@ export class MemberService {
     );
   }
 
-  getMemberDetails(id: number): Observable<User> {
+  getMemberDetails(id?: number): Observable<User> {
     const path = `${this.api}/users/${id}`;
     return this.http.get<User>(path);
   }

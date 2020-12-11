@@ -11,7 +11,7 @@ import { passwordValidation } from "../validators";
 })
 export class RegisterFormComponent {
 
-  @Input() loading: boolean;
+  @Input() loading: boolean = false;
   @Output() submitted = new EventEmitter<Register>();
 
   form: FormGroup;
@@ -37,19 +37,19 @@ export class RegisterFormComponent {
   }
 
   required(control: string): boolean {
-    return this.form.get(control).touched &&
-      this.form.get(control).invalid &&
-      this.form.get(control).errors?.required;
+    return this.form.get(control)!.touched &&
+      this.form.get(control)!.invalid &&
+      this.form.get(control)!.errors?.required;
   }
 
   passwordLength(control: string): boolean {
-    return this.form.get(control).touched &&
-      this.form.get(control).invalid &&
-      this.form.get(control).errors?.minlength;
+    return this.form.get(control)!.touched &&
+      this.form.get(control)!.invalid &&
+      this.form.get(control)!.errors?.minlength;
   }
 
   valid(control: string): boolean {
-    return this.form.get(control).touched && this.form.get(control).valid;
+    return this.form.get(control)!.touched && this.form.get(control)!.valid;
   }
 
   get passwordsError() {

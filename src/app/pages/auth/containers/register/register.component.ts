@@ -1,5 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
-import { Observable } from "rxjs";
+import { ChangeDetectionStrategy, Component, OnDestroy } from '@angular/core';
 import { Store } from "@ngrx/store";
 import { Register } from "@auth/models";
 
@@ -12,23 +11,18 @@ import { RegisterPageActions } from "@auth/store/actions";
   styles: [` h3, p { color: var(--text-color)  } `],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class RegisterComponent implements OnInit, OnDestroy {
+export class RegisterComponent implements OnDestroy {
 
-  error$: Observable<any>;
-  loading$: Observable<boolean>;
+  error$ = this.store.select(fromAuth.selectRegisterPageError);
+  loading$= this.store.select(fromAuth.selectRegisterPagePending);
 
   constructor(private store: Store<fromAuth.State>) { }
 
-  ngOnInit() {
-    this.error$ = this.store.select(fromAuth.selectRegisterPageError);
-    this.loading$ = this.store.select(fromAuth.selectRegisterPagePending);
-  }
-
-  clearErrors() {
+  clearErrors(): void {
     this.store.dispatch(RegisterPageActions.clearRegisterError());
   }
 
-  handleRegister(credentials: Register) {
+  handleRegister(credentials: Register): void {
     this.store.dispatch(RegisterPageActions.register({ credentials }));
   }
 

@@ -5,7 +5,7 @@ import { Router } from "@angular/router";
 @Directive({ selector: '[goBack]' })
 export class GoBackDirective {
 
-  @Input() route: string;
+  @Input() route?: string;
 
   constructor(private location: Location, private router: Router) { }
 

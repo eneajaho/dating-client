@@ -12,7 +12,7 @@ import { PhotosActions } from "@settings/store/actions";
 export class PhotosEffects {
   constructor(private actions$: Actions, private photoService: PhotoService, private toast: ToastrService) {}
 
-  uploadPhoto$ = createEffect(() =>
+  UploadPhoto$ = createEffect(() =>
     this.actions$.pipe(
       ofType(PhotosActions.uploadPhoto),
       switchMap(({ payload, userId }) => {
@@ -23,11 +23,11 @@ export class PhotosEffects {
       })
     ));
 
-  setMainPhoto$ = createEffect(() => this.actions$.pipe(
+  SetMainPhoto$ = createEffect(() => this.actions$.pipe(
     ofType(PhotosActions.setMainPhoto),
     switchMap(({ userId, photoId }) => {
       return this.photoService.setMainPhoto(userId, photoId).pipe(
-        map(res => PhotosActions.setMainPhotoSuccess({ photoId })),
+        map(() => PhotosActions.setMainPhotoSuccess({ photoId })),
         catchError(error => {
           this.toast.warning('', error);
           return of(PhotosActions.setMainPhotoFailure({ error }))
@@ -36,11 +36,11 @@ export class PhotosEffects {
     })
   ))
 
-  deletePhoto$ = createEffect(() => this.actions$.pipe(
+  DeletePhoto$ = createEffect(() => this.actions$.pipe(
     ofType(PhotosActions.deletePhoto),
     switchMap(({ userId, photoId }) => {
       return this.photoService.deletePhoto(userId, photoId).pipe(
-        map(res => PhotosActions.deletePhotoSuccess({ photoId })),
+        map(() => PhotosActions.deletePhotoSuccess({ photoId })),
         catchError(error => {
           this.toast.warning('', error);
           return of(PhotosActions.deletePhotoFailure({ error }))

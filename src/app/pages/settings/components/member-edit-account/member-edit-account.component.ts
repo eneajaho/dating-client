@@ -21,23 +21,20 @@ export class MemberEditAccountComponent implements OnInit, OnDestroy {
     //  birthday: [ '', Validators.required ]
   });
 
-  details: User;
+  details?: User = undefined;
 
   formChanged$ = new BehaviorSubject(false);
 
   private destroy$ = new Subject<boolean>();
 
-  loading$: Observable<boolean>;
-  error$: Observable<string>;
+  loading$ = this.store.select(fromSettings.selectUserDetailsSavingChanges);
+  error$ = this.store.select(fromSettings.selectUserDetailsError);
 
   constructor(private store: Store<fromSettings.State>, private fb: FormBuilder) {}
 
   ngOnInit(): void {
     this.getUserDetails();
     this.handleFormChanges();
-
-    this.loading$ = this.store.select(fromSettings.selectUserDetailsSavingChanges);
-    this.error$ = this.store.select(fromSettings.selectUserDetailsError);
   }
 
   getUserDetails(): void {
@@ -60,8 +57,6 @@ export class MemberEditAccountComponent implements OnInit, OnDestroy {
   patchForm(user: User): void {
     this.form.reset();
 
-    console.log(user);
-
     this.form.patchValue({
       ...user,
       username: user.username,
@@ -77,7 +72,7 @@ export class MemberEditAccountComponent implements OnInit, OnDestroy {
   }
 
   required(control: string): boolean {
-    return this.form.get(control).touched && this.form.get(control).invalid;
+    return (this.form.get(control)?.touched && this.form.get(control)?.invalid) ?? false;
   }
 
   ngOnDestroy(): void {

@@ -100,17 +100,17 @@ export const selectSelectedMember = createSelector(
 
 export const selectMemberLoading = createSelector(
   selectSelectedMember,
-  member => member.loading
+  member => member?.loading
 );
 
 export const selectMemberLoaded = createSelector(
   selectSelectedMember,
-  member => member.loaded
+  member => member?.loaded
 );
 
 export const selectMemberError = createSelector(
   selectSelectedMember,
-  member => member.error
+  member => member?.error
 );
 
 export const selectIsMyProfile = createSelector(
