@@ -2,7 +2,7 @@ import { Inject, Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpResponse } from "@angular/common/http";
 import { IQueryParams, PaginatedResult } from "@models/Pagination";
 import { Observable } from "rxjs";
-import { API_URL } from "@core/configs";
+import { API_URL } from "@core/tokens";
 import { User } from "@models/User";
 import { map } from "rxjs/operators";
 import { MembersFilter } from "@core/models";

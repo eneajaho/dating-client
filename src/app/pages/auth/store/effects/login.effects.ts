@@ -3,7 +3,7 @@ import { Router } from "@angular/router";
 
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 
-import { catchError, exhaustMap, map, switchMap, tap } from 'rxjs/operators';
+import { catchError, map, switchMap, tap } from 'rxjs/operators';
 import { of } from "rxjs";
 
 import { LocalStorageService } from "@core/services/local-storage.service";
@@ -32,7 +32,7 @@ export class LoginEffects {
     ), { dispatch: false });
 
 
-  constructor(private actions$: Actions,  private auth: AuthService,
+  constructor(private actions$: Actions, private auth: AuthService,
               private router: Router, private local: LocalStorageService) {}
 
 }

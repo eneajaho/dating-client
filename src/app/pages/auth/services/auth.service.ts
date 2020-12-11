@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { API_URL } from "@core/configs/api.token";
+import { API_URL } from "@core/tokens";
 import { Observable } from 'rxjs';
 import { Credentials, LoginResponse } from "@auth/models";
 
