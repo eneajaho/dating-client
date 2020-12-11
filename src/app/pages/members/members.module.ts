@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 
 import { MembersRoutingModule } from './members-routing.module';
-import { FormsModule } from "@angular/forms";
+import { ReactiveFormsModule } from "@angular/forms";
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { TabsModule } from "ngx-bootstrap/tabs";
 import { TagInputModule } from 'ngx-chips';
@@ -43,29 +43,29 @@ import { CommonModule } from "@angular/common";
     MembersSearchComponent,
     MembersSearchFormComponent,
   ],
-  imports: [
-    MembersRoutingModule,
-    MembersStoreModule,
+    imports: [
+        MembersRoutingModule,
+        MembersStoreModule,
 
-    // for the moment Settings Store is loaded also here because of profile page
-    // will be changed later, because another profile page will be created
-    SettingsStoreModule,
+        // for the moment Settings Store is loaded also here because of profile page
+        // will be changed later, because another profile page will be created
+        SettingsStoreModule,
 
-    TagInputModule,
-    CarouselModule.forRoot(),
-    TabsModule.forRoot(),
-    FormsModule,
-    BsDropdownModule.forRoot({
-      isAnimated: true,
-      autoClose: true
-    }),
-    GoBackModule,
-    TimeAgoModule,
-    SpinnerModule,
-    FontAwesomeModule,
-    CommonModule,
-    ErrorAlertModule,
-  ]
+        TagInputModule,
+        CarouselModule.forRoot(),
+        TabsModule.forRoot(),
+        BsDropdownModule.forRoot({
+            isAnimated: true,
+            autoClose: true
+        }),
+        GoBackModule,
+        TimeAgoModule,
+        SpinnerModule,
+        FontAwesomeModule,
+        CommonModule,
+        ErrorAlertModule,
+        ReactiveFormsModule,
+    ]
 })
 export class MembersModule {}
 

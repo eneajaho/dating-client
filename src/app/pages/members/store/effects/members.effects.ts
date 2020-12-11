@@ -9,25 +9,35 @@ import { MembersApiActions, MembersPageActions } from "@members/store/actions";
 import { MemberService } from "@core/services";
 import * as fromMembers from '@members/store/reducers';
 import { IQueryParams, MembersFilter, QueryParams } from "@core/models";
+import { Router } from "@angular/router";
+
+const DEFAULT_PAGINATION_PARAMS = {
+  pageNumber: '1',
+  pageSize: '2'
+};
 
 @Injectable()
 export class MembersEffects {
-  constructor(private actions$: Actions, private memberService: MemberService,
+  constructor(private actions$: Actions, private router: Router,
+              private memberService: MemberService,
               private store: Store<fromMembers.State>) { }
 
   FilterMembers$ = createEffect(() =>
     this.actions$.pipe(
       ofType(MembersPageActions.setMembersFilter),
-      switchMap(({ filters }) =>
-        of(MembersPageActions.loadMembers({ pageNumber: '1', pageSize: '2', ...filters }))
+      switchMap(({ filters }) => {
+          this.router.navigate([ '/members/all' ]);
+          return of(MembersPageActions.loadMembers(filters))
+        }
       )
     ));
 
   LoadMembers$ = createEffect(() =>
     this.actions$.pipe(
       ofType(MembersPageActions.loadMembers),
-      switchMap((params: IQueryParams & MembersFilter) => {
-        return this.memberService.getMembers(params).pipe(
+      switchMap((params: Partial<IQueryParams & MembersFilter>) => {
+        const payload = { ...DEFAULT_PAGINATION_PARAMS, ...params };
+        return this.memberService.getMembers(payload).pipe(
           map(({ result, pagination }) =>
             MembersApiActions.loadMembersSuccess({ members: result, pagination })
           ),

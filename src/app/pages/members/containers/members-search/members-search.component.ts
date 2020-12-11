@@ -1,6 +1,8 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { ThemeService } from "@layout/services";
-import { ToastrService } from "ngx-toastr";
+import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
+import { THEME, ThemeProvider } from "@core/tokens/theme.token";
+import { Store } from "@ngrx/store";
+import * as fromMembers from '@members/store/reducers';
+import { MembersPageActions } from "@members/store/actions";
 
 @Component({
   selector: 'app-members-search',
@@ -10,12 +12,13 @@ import { ToastrService } from "ngx-toastr";
 })
 export class MembersSearchComponent {
 
-  constructor(private theme: ThemeService, private toast: ToastrService) { }
+  activeFilters$ = this.store.select(fromMembers.selectMembersFilters);
 
-  theme$ = this.theme.theme$;
+  constructor(@Inject(THEME) public theme$: ThemeProvider,
+              private store: Store<fromMembers.State>) { }
 
-  handleSubmit(event) {
-    this.toast.info('', "Doesn't function for the moment!");
+  handleSubmit(filters) {
+    this.store.dispatch(MembersPageActions.setMembersFilter({ filters }));
   }
 
 }

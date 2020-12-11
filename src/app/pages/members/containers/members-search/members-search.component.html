@@ -2,8 +2,11 @@
   <div class="container">
     <div class="row justify-content-center align-items-center">
       <div class="col-12 col-sm-10 col-md-8">
-        <h1 class="font-weight-bolder text-center mb-5">How do you like your soulmate?</h1>
+        <h1 class="font-weight-bolder text-center mb-5">
+          How do you like your soulmate?
+        </h1>
         <app-members-search-form
+          [activeFilters]="activeFilters$ | async"
           [theme]="theme$ | async"
           (submitted)="handleSubmit($event)">
         </app-members-search-form>

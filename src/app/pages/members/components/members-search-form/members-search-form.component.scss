@@ -1,63 +1,50 @@
+.form-control {
+  background: white;
+}
+
 .dark {
-  .select, .form-control {
-    background: #ffffff45;
-    color: white;
+  .form-control {
+    background: var(--input-bg);
   }
 }
 
-.input-group {
+ul.sections {
+  display: flex;
   justify-content: center;
+  align-items: center;
+  list-style: none;
+
+  .section-pill {
+    margin-right: 10px;
+    background: var(--bg-color-light);
+    padding: 5px 15px;
+    border-radius: 20px;
+    color: var(--text-color);
+    cursor: pointer;
+    transition: 0.15s transform;
+
+    &:hover {
+      transform: scale(1.05);
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  .active {
+    background: var(--main-color)!important;
+    color: white!important;
+    transform: scale(1.05);
+  }
 }
 
-.select {
-  border-radius: 0;
-  background: #2f2f2fad;
-  color: white;
-  border: none !important;
-  outline: none;
-  box-shadow: none;
-  font-size: 18px;
-  font-weight: 400;
-  padding: 15px 20px;
-  margin-right: 2px;
-}
+.section-box {
+  text-align: center;
+  color: var(--text-color);
 
-.first-input {
-  border-radius: 10px 0 0 10px;
-}
-
-.last-input {
-  border-radius: 0 10px 10px 0;
-}
-
-.form-control {
-  background: #2f2f2fad;
-  color: white;
-  font-size: 18px;
-  font-weight: 400;
-  border: none;
-  margin-right: 4px;
-  margin-left: 1px;
-  max-width: 250px;
-}
-
-::placeholder {
-  color: white;
-  opacity: 1; /* Firefox */
-}
-
-option:not(:first-of-type) {
-  color: black;
-}
-
-.search-button {
-  padding: 12px 40px;
-  background: rgba(107, 15, 192, 0.7);
-  border: #6B0FC0;
-  font-size: 24px;
-  font-weight: 700;
-
-  &:hover {
-    background: #6b0fc0;
+  .forms {
+    display: flex;
+    justify-content: center;
   }
 }

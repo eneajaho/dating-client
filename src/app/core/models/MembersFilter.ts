@@ -1,5 +1,6 @@
 export interface MembersFilter {
-  minAge?: number;
-  maxAge?: number;
+  minAge?: string;
+  maxAge?: string;
   gender?: string;
+  lastActive?: string;
 }

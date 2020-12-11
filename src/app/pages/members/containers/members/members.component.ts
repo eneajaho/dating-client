@@ -10,39 +10,37 @@ import { MembersPageActions } from "@members/store/actions";
 @Component({
   selector: 'app-members',
   templateUrl: './members.component.html',
-  styleUrls: ['./members.component.scss'],
+  styleUrls: [ './members.component.scss' ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MembersComponent implements OnInit {
 
-  members$: Observable<(User & Status)[]>;
-  loading$: Observable<boolean>;
-  error$: Observable<string>;
+  members$: Observable<(User & Status)[]> = this.store.select(fromMembers.selectAllMembers);
+  loading$: Observable<boolean> = this.store.select(fromMembers.selectMembersLoading);
+  error$: Observable<string> = this.store.select(fromMembers.selectMembersError);
 
-  paginationHasMorePages$: Observable<boolean>;
-  paginationLoading$: Observable<boolean>;
-  paginationError$: Observable<string>;
+  pagination$ = this.store.select(fromMembers.selectMembersPagination);
+  hasMorePages$ = this.store.select(fromMembers.selectMembersHasMorePages);
+  /*
+  // if we want to combine multiple obs$ in one
+  // so we can have only one async pipe
+  pagination$ = combineLatest([
+    this.store.select(fromMembers.selectMembersPagination),
+    this.store.select(fromMembers.selectMembersHasMorePages)
+  ]).pipe(map(([ pagination, hasMorePages ]) =>
+    ({ ...pagination, hasMorePages })
+  ));*/
 
-  constructor(private store: Store<fromMembers.State>) { }
+  constructor(private store: Store<fromMembers.State>) {}
 
-  ngOnInit() {
-    this.members$ = this.store.select(fromMembers.selectAllMembers);
-    this.loading$ = this.store.select(fromMembers.selectMembersLoading);
-    this.error$ = this.store.select(fromMembers.selectMembersError);
-
-    this.paginationHasMorePages$ = this.store.select(fromMembers.selectMembersHasMorePages);
-    this.paginationLoading$ = this.store.select(fromMembers.selectMembersPaginationLoading);
-    this.paginationError$ = this.store.select(fromMembers.selectMembersPaginationError);
-  }
+  ngOnInit(): void { }
 
   loadMore(): void {
     this.store.dispatch(MembersPageActions.loadMoreMembers());
   }
 
   retry(): void {
-    this.store.dispatch(MembersPageActions.loadMembers(
-      { pageNumber: '1', pageSize: '2' })
-    );
+    this.store.dispatch(MembersPageActions.loadMembers({}));
   }
 
 

@@ -54,7 +54,7 @@ export const reducer = createReducer(initialState,
   })),
 
   on(MembersApiActions.loadMembersSuccess, (state, { members, pagination }) => {
-    return adapter.upsertMany(members, { ...state,
+    return adapter.setAll(members, { ...state,
       pagination, error: null, loaded: true, loading: false
     })
   }),

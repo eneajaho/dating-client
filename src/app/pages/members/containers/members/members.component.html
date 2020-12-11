@@ -20,9 +20,17 @@
          class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 mb-4">
       <app-member-card [user]="user"></app-member-card>
     </div>
+
+    <ng-container *ngIf="members.length === 0">
+      <div class="col-10 no-members">
+        Ooops... No members found 😢. <br>
+        Do you want to refresh the filters?
+        <a routerLink="/members/search">Retry!</a>
+      </div>
+    </ng-container>
   </div>
 
-  <div class="pagination">
+<!--  <div class="pagination">
     <div *ngIf="paginationHasMorePages$ | async" class="flex-center my-5">
       <div *ngIf="paginationLoading$ | async; else loadMoreButton"
            class="flex-center mt-5 mb-3">
@@ -40,7 +48,27 @@
       <error-alert [error]="pgnError" [inline]="true"></error-alert>
     </div>
 
-  </div>
+  </div>-->
 
+  <div class="pagination" *ngIf="pagination$ | async as pagination">
+
+    <div *ngIf="hasMorePages$ | async" class="flex-center my-5">
+      <div *ngIf="pagination.loading; else loadMoreButton"
+           class="flex-center mt-5 mb-3">
+        <spinner size="medium"></spinner>
+      </div>
+
+      <ng-template #loadMoreButton>
+        <button class="btn btn-primary px-5" (click)="loadMore()">
+          Load More
+        </button>
+      </ng-template>
+    </div>
+
+    <div *ngIf="pagination.error" class="flex-center">
+      <error-alert [error]="pagination.error" [inline]="true"></error-alert>
+    </div>
+
+  </div>
 
 </div>
