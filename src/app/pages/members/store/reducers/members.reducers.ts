@@ -8,7 +8,7 @@ export const membersEntityFeatureKey = 'membersEntity';
 export interface State extends EntityState<User & Status>, Status {
   selectedMemberId: number;
   pagination: Pagination & Status;
-  filters: MembersFilter;
+  filters: Partial<MembersFilter>;
 }
 
 export const adapter: EntityAdapter<User & Status> = createEntityAdapter<User & Status>({
@@ -27,9 +27,9 @@ export const initialState: State = adapter.getInitialState({
     error: undefined,
   },
   filters: {
-    gender: '',
-    maxAge: '',
-    minAge: '',
+    gender: undefined,
+    maxAge: undefined,
+    minAge: undefined,
     lastActive: ''
   },
   error: undefined,
