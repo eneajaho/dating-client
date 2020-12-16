@@ -1,9 +1,7 @@
-# DatingYou
+# DatingYou - [Live app](https://dating-you.netlify.app/)
 A dating application built on top of Angular, NGRX, Bootstrap and RxJS.
 
 Backend is built with .Net Core 3.1 . Check out here: [DatingYou Backend](https://github.com/eneajaho/dating-api).
-
-App showcase gallery: [here](https://imgur.com/a/r6bIrfG)
 
 ## How to run
 - Clone the repository
@@ -66,6 +64,12 @@ ng serve -o
     ├── guards
     ├── store
     └── module.ts
+
+### Login in live app
+```
+- Username: lola | dorothy | duke
+- Password: password
+```
 
 
 ### Todo
