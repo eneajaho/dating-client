@@ -8,13 +8,12 @@ import { LoginPageActions } from "@auth/store/actions";
 @Component({
   selector: 'auth-login',
   templateUrl: './login.component.html',
-  styles: [` h2 { color: var(--text-color)  }  `],
+  styles: [` h2 { color: var(--text-color)  } `],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LoginComponent implements OnDestroy {
 
-  error$ = this.store.select(fromAuth.selectLoginPageError);
-  loading$ = this.store.select(fromAuth.selectLoginPagePending);
+  vm$ = this.store.select(fromAuth.selectLoginPageState);
 
   constructor(private store: Store<fromAuth.State>) { }
 

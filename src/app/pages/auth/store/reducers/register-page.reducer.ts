@@ -5,32 +5,32 @@ export const registerPageFeatureKey = 'registerPage';
 
 export interface State {
   error: string | null;
-  pending: boolean;
+  loading: boolean;
 }
 
 export const initialState: State = {
   error: null,
-  pending: false,
+  loading: false,
 };
 
 export const reducer = createReducer(initialState,
 
   on(RegisterPageActions.register, state => ({
-    ...state, error: null, pending: true
+    ...state, error: null, loading: true
   })),
 
   on(AuthApiActions.registerSuccess, state => ({
-    ...state, error: null, pending: false
+    ...state, error: null, loading: false
   })),
 
   on(AuthApiActions.registerFailure, (state, { error }) => ({
-    ...state, error, pending: false
+    ...state, error, loading: false
   })),
 
   on(RegisterPageActions.clearRegisterError, state => ({
-    ...state, error: null, pending: false
+    ...state, error: null, loading: false
   }))
 );
 
 export const getError = (state: State) => state.error;
-export const getPending = (state: State) => state.pending;
+export const getLoading = (state: State) => state.loading;

@@ -3,13 +3,8 @@ import { CommonModule } from '@angular/common';
 import { LoginComponent } from "./login.component";
 import { LoginFormComponent } from "./login-form/login-form.component";
 import { ErrorAlertModule, SpinnerModule } from "@shared/components";
-import { RouterModule, Routes } from "@angular/router";
+import { RouterModule } from "@angular/router";
 import { ReactiveFormsModule } from "@angular/forms";
-
-export const routes: Routes = [ {
-  path: '', component: LoginComponent
-} ];
-
 
 @NgModule({
   declarations: [
@@ -19,13 +14,13 @@ export const routes: Routes = [ {
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    RouterModule.forChild(routes),
+    RouterModule.forChild(
+      [ { path: '', component: LoginComponent } ]
+    ),
     ErrorAlertModule,
     SpinnerModule
   ],
-  exports: [
-    RouterModule
-  ]
+  exports: [ RouterModule ]
 })
 export class LoginModule {
 }

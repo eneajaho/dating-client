@@ -13,8 +13,7 @@ import { RegisterPageActions } from "@auth/store/actions";
 })
 export class RegisterComponent implements OnDestroy {
 
-  error$ = this.store.select(fromAuth.selectRegisterPageError);
-  loading$= this.store.select(fromAuth.selectRegisterPagePending);
+  vm$ = this.store.select(fromAuth.selectRegisterPageState);
 
   constructor(private store: Store<fromAuth.State>) { }
 
