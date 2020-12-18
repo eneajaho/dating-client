@@ -1,12 +1,11 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { Observable } from "rxjs";
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { combineLatest } from "rxjs";
 import { Store } from "@ngrx/store";
-import { User } from "@models/User";
 
 import * as fromMembers from '@members/store/reducers';
-import { Status } from "@core/models";
 import { MembersPageActions } from "@members/store/actions";
 import { faFilter } from "@fortawesome/free-solid-svg-icons";
+import { map } from "rxjs/operators";
 
 @Component({
   selector: 'app-members',
@@ -14,29 +13,23 @@ import { faFilter } from "@fortawesome/free-solid-svg-icons";
   styleUrls: [ './members.component.scss' ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class MembersComponent implements OnInit {
+export class MembersComponent {
 
-  members$: Observable<(User & Status)[]> = this.store.select(fromMembers.selectAllMembers);
-  loading$ = this.store.select(fromMembers.selectMembersLoading);
-  error$ = this.store.select(fromMembers.selectMembersError);
+  vm$ = combineLatest([
+    this.store.select(fromMembers.selectAllMembers),
+    this.store.select(fromMembers.selectMembersLoading),
+    this.store.select(fromMembers.selectMembersError)
+  ]).pipe(map(([ members, loading, error ]) => ({
+    members, error, loading,
+    noMembersFound: members.length === 0 && !loading && !error
+  })));
 
   pagination$ = this.store.select(fromMembers.selectMembersPagination);
   hasMorePages$ = this.store.select(fromMembers.selectMembersHasMorePages);
-  /*
-  // if we want to combine multiple obs$ in one
-  // so we can have only one async pipe
-  pagination$ = combineLatest([
-    this.store.select(fromMembers.selectMembersPagination),
-    this.store.select(fromMembers.selectMembersHasMorePages)
-  ]).pipe(map(([ pagination, hasMorePages ]) =>
-    ({ ...pagination, hasMorePages })
-  ));*/
 
   filterIcon = faFilter;
 
   constructor(private store: Store<fromMembers.State>) {}
-
-  ngOnInit(): void { }
 
   loadMore(): void {
     this.store.dispatch(MembersPageActions.loadMoreMembers());

@@ -13,48 +13,48 @@
     </div>
   </div>
 
-  <error-alert [error]="error$ | async" [inline]="true">
-    <span (click)="retry()">Click here to retry.</span>
-  </error-alert>
+  <ng-container *ngIf="vm$ | async as vm">
+    <error-alert [error]="vm.error" [inline]="true">
+      <span (click)="retry()">Click here to retry.</span>
+    </error-alert>
 
-  <div *ngIf="loading$ | async" class="flex-center mt-5 mb-3">
-    <spinner size="medium"></spinner>
-  </div>
-
-  <div *ngIf="members$ | async as members" class="row h-100">
-    <div *ngFor="let user of members"
-         class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 mb-4">
-      <app-member-card [user]="user"></app-member-card>
+    <div *ngIf="vm.loading" class="flex-center mt-5 mb-3">
+      <spinner size="medium"></spinner>
     </div>
 
-    <ng-container *ngIf="members.length === 0">
-      <div class="col-10 no-members">
-        Ooops... No members found 😢. <br>
-        Do you want to refresh the filters?
-        <a routerLink="/members/search">Retry!</a>
+    <div *ngIf="vm.members.length > 0" class="row h-100">
+      <div *ngFor="let user of vm.members"
+           class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 mb-4">
+        <app-member-card [user]="user"></app-member-card>
       </div>
-    </ng-container>
-  </div>
+    </div>
 
-<!--  <div class="pagination">
-    <div *ngIf="paginationHasMorePages$ | async" class="flex-center my-5">
-      <div *ngIf="paginationLoading$ | async; else loadMoreButton"
-           class="flex-center mt-5 mb-3">
-        <spinner size="medium"></spinner>
+    <div *ngIf="vm.noMembersFound" class="col-10 no-members">
+      Ooops... No members found 😢. <br>
+      Do you want to refresh the filters?
+      <a routerLink="/members/search">Retry!</a>
+    </div>
+  </ng-container>
+
+  <!--  <div class="pagination">
+      <div *ngIf="paginationHasMorePages$ | async" class="flex-center my-5">
+        <div *ngIf="paginationLoading$ | async; else loadMoreButton"
+             class="flex-center mt-5 mb-3">
+          <spinner size="medium"></spinner>
+        </div>
+
+        <ng-template #loadMoreButton>
+          <button class="btn btn-primary px-5" (click)="loadMore()">
+            Load More
+          </button>
+        </ng-template>
       </div>
 
-      <ng-template #loadMoreButton>
-        <button class="btn btn-primary px-5" (click)="loadMore()">
-          Load More
-        </button>
-      </ng-template>
-    </div>
+      <div *ngIf="paginationError$ | async as pgnError" class="flex-center">
+        <error-alert [error]="pgnError" [inline]="true"></error-alert>
+      </div>
 
-    <div *ngIf="paginationError$ | async as pgnError" class="flex-center">
-      <error-alert [error]="pgnError" [inline]="true"></error-alert>
-    </div>
-
-  </div>-->
+    </div>-->
 
   <div class="pagination" *ngIf="pagination$ | async as pagination">
 

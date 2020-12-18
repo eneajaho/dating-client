@@ -30,7 +30,9 @@ import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
     CommonModule,
     ReactiveFormsModule,
     SettingsRoutingModule,
+
     SettingsStoreModule,
+
     FileUploaderModule,
     FontAwesomeModule,
     ErrorAlertModule,
