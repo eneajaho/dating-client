@@ -5,15 +5,15 @@ import { RouterStateUrl } from "@store/reducers/custom-route-serializer";
 
 export { CustomSerializer } from './custom-route-serializer';
 
-export interface State {
+export interface RootState {
   router: RouterReducerState<RouterStateUrl>;
 }
 
-export const ROOT_REDUCERS: ActionReducerMap<State> = {
+export const ROOT_REDUCERS: ActionReducerMap<RootState> = {
   router: routerReducer
 };
 
-export function logger(reducer: ActionReducer<State>): ActionReducer<State> {
+export function logger(reducer: ActionReducer<RootState>): ActionReducer<RootState> {
   return (state, action) => {
     const result = reducer(state, action);
     /* console.groupCollapsed(action.type);
@@ -25,9 +25,9 @@ export function logger(reducer: ActionReducer<State>): ActionReducer<State> {
   };
 }
 
-export const metaReducers: MetaReducer<State>[] = !environment.production ? [ logger ] : [];
+export const metaReducers: MetaReducer<RootState>[] = !environment.production ? [ logger ] : [];
 
-export const selectRouter = createFeatureSelector<State, RouterReducerState<RouterStateUrl>>(
+export const selectRouter = createFeatureSelector<RootState, RouterReducerState<RouterStateUrl>>(
   'router'
 );
 

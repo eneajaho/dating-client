@@ -11,7 +11,7 @@ import { PhotosEffects, SettingsEffects } from "@settings/store/effects";
 
     StoreModule.forFeature(
       fromSettings.settingsFeatureKey,
-      fromSettings.reducers
+      fromSettings.reducer
     ),
 
     EffectsModule.forFeature([

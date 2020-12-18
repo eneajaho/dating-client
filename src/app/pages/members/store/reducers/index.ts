@@ -1,8 +1,7 @@
-import { Action, ActionReducerMap, combineReducers, createFeatureSelector, createSelector, } from '@ngrx/store';
+import { combineReducers, createFeatureSelector, createSelector, } from '@ngrx/store';
 import * as fromMembers from '@members/store/reducers/members.reducers';
+import { adapter } from '@members/store/reducers/members.reducers';
 import * as fromAuth from '@auth/store/reducers';
-import * as fromRoot from '@store/reducers';
-import { adapter } from "@members/store/reducers/members.reducers";
 
 export const membersFeatureKey = 'members';
 
@@ -10,16 +9,15 @@ export interface MembersState {
   [fromMembers.membersEntityFeatureKey]: fromMembers.State;
 }
 
-export interface State extends fromRoot.State, fromAuth.State {
+// State will extend only fromAuth.State which is also extending RootState,
+// so there is no need to extend RootState
+export interface State extends fromAuth.State {
   [membersFeatureKey]: MembersState;
 }
 
-/** Provide reducer in AoT-compilation happy way */
-export function reducers(state: MembersState | undefined, action: Action) {
-  return combineReducers({
-    [fromMembers.membersEntityFeatureKey]: fromMembers.reducer
-  })(state, action);
-}
+export const reducer = combineReducers({
+  [fromMembers.membersEntityFeatureKey]: fromMembers.reducer
+});
 
 
 export const selectMembersState = createFeatureSelector<State, MembersState>(

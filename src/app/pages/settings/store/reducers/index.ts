@@ -1,6 +1,6 @@
-import { Action, combineReducers, createFeatureSelector, createSelector } from '@ngrx/store';
+import { combineReducers, createFeatureSelector, createSelector } from '@ngrx/store';
 
-import * as fromRoot from '@store/reducers';
+import { RootState } from "@store/reducers";
 import * as fromSettings from './settings.reducer';
 
 export const settingsFeatureKey = 'settings';
@@ -9,16 +9,13 @@ export interface SettingsState {
   [fromSettings.userDetailsFeatureKey]: fromSettings.State;
 }
 
-export interface State extends fromRoot.State {
+export interface State extends RootState {
   [settingsFeatureKey]: SettingsState;
 }
 
-export function reducers(state: SettingsState | undefined, action: Action) {
-  return combineReducers({
-    [fromSettings.userDetailsFeatureKey]: fromSettings.reducer,
-  })(state, action);
-}
-
+export const reducer = combineReducers({
+  [fromSettings.userDetailsFeatureKey]: fromSettings.reducer,
+});
 
 /** Settings Selectors */
 
@@ -33,7 +30,7 @@ export const selectSettingsState = createFeatureSelector<State, SettingsState>(
 
 export const selectUserDetailsState = createSelector(
   selectSettingsState,
-  state => state[fromSettings.userDetailsFeatureKey]
+  (state) => state[fromSettings.userDetailsFeatureKey]
 );
 
 
