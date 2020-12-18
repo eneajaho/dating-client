@@ -33,28 +33,37 @@
         </div>
       </div>
       <div class="forms" @fadeIn *ngIf="active === 'gender'">
-        <div class="form-group">
-          <label for="gender">Gender</label>
+<!--        <div class="form-group">
+&lt;!&ndash;          <label for="gender">Gender</label>&ndash;&gt;
           <select id="gender" formControlName="gender"
                   class="form-control" style="min-width: 220px">
             <option selected disabled>Gender</option>
             <option value="male">Male</option>
             <option value="female">Female</option>
           </select>
+        </div>-->
+        <div class="form-group d-flex">
+          <div class="mx-3 custom-control custom-radio">
+            <input formControlName="gender" name="gender" type="radio" value="male" id="male" class="custom-control-input">
+            <label class="custom-control-label" for="male">Male</label>
+          </div>
+          <div class="mx-3 custom-control custom-radio">
+            <input formControlName="gender" name="gender" type="radio" value="female"  id="female" class="custom-control-input">
+            <label class="custom-control-label" for="female">Female</label>
+          </div>
         </div>
       </div>
       <div class="forms" @fadeIn *ngIf="active === 'lastActive'" >
         <div class="form-group">
-          <label for="lastActive">Last active*</label>
+<!--          <label for="lastActive">Last active</label>-->
           <select id="lastActive" formControlName="lastActive"
                   class="form-control" style="min-width: 220px">
-            <option selected>Last active</option>
+            <option disabled>Last active</option>
             <option value="day">Last day</option>
             <option value="week">Last week</option>
             <option value="month">Last month</option>
             <option value="year">Last year</option>
           </select>
-          <small class="form-text text-muted">Doesn't work!</small>
         </div>
       </div>
       <div class="d-flex justify-content-center mt-3">

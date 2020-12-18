@@ -15,20 +15,23 @@ export class MemberService {
   getMembers(filters: Partial<IQueryParams & MembersFilter>): Observable<PaginatedResult<User[]>> {
     let params = new HttpParams();
 
-    if(filters.pageSize !== undefined ) {
+    if(filters.pageSize !== undefined) {
       params = params.append('PageSize', filters.pageSize);
     }
-    if(filters.pageNumber !== undefined ) {
+    if(filters.pageNumber !== undefined) {
       params = params.append('PageNumber', filters.pageNumber);
     }
-    if(filters.maxAge !== undefined) {
+    if(filters.maxAge !== undefined && filters.maxAge !== '') {
       params = params.append('MaxAge', filters.maxAge + '')
     }
-    if (filters.minAge !== undefined) {
+    if (filters.minAge !== undefined && filters.minAge !== '') {
       params = params.append('MinAge', filters.minAge + '')
     }
-    if (filters.gender !== undefined) {
-      params = params.append('gender', <string>filters.gender)
+    if (filters.gender !== undefined && filters.gender !== '') {
+      params = params.append('Gender', <string>filters.gender)
+    }
+    if (filters.lastActive !== undefined && filters.lastActive !== '') {
+      params = params.append('LastActive', filters.lastActive)
     }
 
     const path = `${this.api}/users`;

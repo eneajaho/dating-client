@@ -6,6 +6,7 @@ import { User } from "@models/User";
 import * as fromMembers from '@members/store/reducers';
 import { Status } from "@core/models";
 import { MembersPageActions } from "@members/store/actions";
+import { faFilter } from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   selector: 'app-members',
@@ -30,6 +31,8 @@ export class MembersComponent implements OnInit {
   ]).pipe(map(([ pagination, hasMorePages ]) =>
     ({ ...pagination, hasMorePages })
   ));*/
+
+  filterIcon = faFilter;
 
   constructor(private store: Store<fromMembers.State>) {}
 
