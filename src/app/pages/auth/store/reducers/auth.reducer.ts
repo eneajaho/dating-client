@@ -2,7 +2,7 @@ import { createReducer, on } from '@ngrx/store';
 import { LoginResponse } from "@auth/models";
 import { AuthActions, AuthApiActions } from "@auth/store/actions";
 
-export const statusFeatureKey = 'status';
+export const statusFeatureKey = 'authStatus';
 
 export interface State {
   user: LoginResponse | null;
