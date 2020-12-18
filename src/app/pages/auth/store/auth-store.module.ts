@@ -8,7 +8,7 @@ import { AuthEffects, LoginEffects, RegisterEffects } from "@auth/store/effects"
   imports: [
     StoreModule.forFeature(
       fromAuth.authFeatureKey,
-      fromAuth.reducers
+      fromAuth.reducer
     ),
     EffectsModule.forFeature([
       AuthEffects,

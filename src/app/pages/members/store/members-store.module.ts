@@ -10,7 +10,7 @@ import * as fromMembers from "@members/store/reducers";
     CommonModule,
     StoreModule.forFeature(
       fromMembers.membersFeatureKey,
-      fromMembers.reducers
+      fromMembers.reducer
     ),
     EffectsModule.forFeature([
       MembersEffects,
