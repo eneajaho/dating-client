@@ -77,9 +77,9 @@ ng serve -o
 - Private messages (using SignalR) functionality
 - Add animations - 35%
 - SSR (Angular Universal)
-- Testing 
-  - Convert to Jest Testing
-  - Remove Karma
+- Testing
+  ~~- Convert to Jest Testing~~
+  ~~- Remove Karma~~
   - Add tests
     - Test Store
     - Test Components
