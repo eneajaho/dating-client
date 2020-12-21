@@ -78,6 +78,12 @@ ng serve -o
 - Add animations - 35%
 - SSR (Angular Universal)
 - Testing 
+  - Convert to Jest Testing
+  - Remove Karma
+  - Add tests
+    - Test Store
+    - Test Components
+    - Test Directives/Pipes/Services
 - ~~Filter functionality~~
 - ~~Stricter type checking~~
 - ~~Upgrade to Angular 11~~
