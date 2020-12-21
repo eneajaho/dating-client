@@ -4,7 +4,7 @@ import { MainLayoutComponent } from "@layout/containers";
 import { AuthGuard, NonAuthGuard } from "@core/guards";
 import { NotFoundComponent, NotFoundModule } from "@shared/components";
 
-const ROUTES: Routes = [
+export const routes: Routes = [
   {
     path: 'auth',
     canActivate: [ NonAuthGuard ],
@@ -39,7 +39,7 @@ const ROUTES: Routes = [
 @NgModule({
   imports: [
     NotFoundModule,
-    RouterModule.forRoot(ROUTES,
+    RouterModule.forRoot(routes,
       { relativeLinkResolution: 'legacy' }
     ),
   ],
