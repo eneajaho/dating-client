@@ -8,7 +8,7 @@ import { HttpErrorResponse } from "@angular/common/http";
 describe('PhotoService', () => {
   let photoService: PhotoService;
   let httpMock: HttpTestingController;
-  let apiUrl: string = '/api/';
+  let apiUrl: string = '/api';
 
   beforeEach(() => {
     TestBed.configureTestingModule({
