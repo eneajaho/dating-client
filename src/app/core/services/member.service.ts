@@ -13,26 +13,7 @@ export class MemberService {
   constructor(@Inject(API_URL) private api: string, private http: HttpClient) { }
 
   getMembers(filters: Partial<IQueryParams & MembersFilter>): Observable<PaginatedResult<User[]>> {
-    let params = new HttpParams();
-
-    if(filters.pageSize !== undefined) {
-      params = params.append('PageSize', filters.pageSize);
-    }
-    if(filters.pageNumber !== undefined) {
-      params = params.append('PageNumber', filters.pageNumber);
-    }
-    if(filters.maxAge !== undefined && filters.maxAge !== '') {
-      params = params.append('MaxAge', filters.maxAge + '')
-    }
-    if (filters.minAge !== undefined && filters.minAge !== '') {
-      params = params.append('MinAge', filters.minAge + '')
-    }
-    if (filters.gender !== undefined && filters.gender !== '') {
-      params = params.append('Gender', <string>filters.gender)
-    }
-    if (filters.lastActive !== undefined && filters.lastActive !== '') {
-      params = params.append('LastActive', filters.lastActive)
-    }
+    let params = this.createParamsFromFilter(filters);
 
     const path = `${this.api}/users`;
     return this.http.get<User[]>(path, { observe: 'response', params }).pipe(
@@ -44,7 +25,7 @@ export class MemberService {
     );
   }
 
-  getMemberDetails(id?: number): Observable<User> {
+  getMemberDetails(id: number): Observable<User> {
     const path = `${this.api}/users/${id}`;
     return this.http.get<User>(path);
   }
@@ -52,6 +33,23 @@ export class MemberService {
   editMember(user: User): Observable<User> {
     const path = `${this.api}/users/${user.id}`;
     return this.http.put<User>(path, user);
+  }
+
+  createParamsFromFilter(filters: Partial<IQueryParams & MembersFilter>): HttpParams {
+    let params = new HttpParams();
+
+    for (const [key, value] of Object.entries(filters).sort()) {
+      if(value !== undefined && value !== ''  && value !== null) {
+        let capitalizedParamKey = this.capitalizeFirstLetter(key);
+        params = params.append(capitalizedParamKey, value + '');
+      }
+    }
+
+    return params;
+  }
+
+  private capitalizeFirstLetter(text: string): string {
+    return text.charAt(0).toUpperCase() + text.slice(1);
   }
 
 }
