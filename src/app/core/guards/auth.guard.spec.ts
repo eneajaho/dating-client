@@ -6,7 +6,7 @@ import { AuthGuard } from "./auth.guard";
 import { selectLoggedIn } from "@auth/store/reducers";
 import { authRedirect } from "@auth/store/actions/auth.actions";
 
-describe('TestGuardGuard', () => {
+describe('AuthGuard', () => {
   let guard: AuthGuard;
   let store: MockStore;
 
