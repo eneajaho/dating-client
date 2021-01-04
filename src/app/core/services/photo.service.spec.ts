@@ -90,22 +90,6 @@ describe('PhotoService', () => {
 
       req.flush(errorMessage, { status: 404, statusText: 'Not Found' });
     });
-
-    // TODO: Add interceptor in order to test: "should have an authorization token" use case
-    /*    it('should have an authorization token', () => {
-          photoService.uploadPhoto(testPhoto, userId).subscribe(res => {
-            expect(res).toEqual(testPhoto);
-          });
-
-          const req = httpMock.expectOne(
-            request => request.headers.has('Authorization')
-          );
-
-          expect(req.request.headers).toContain('Authorization');
-          expect(req.request.headers).toBe('Authorization');
-
-          req.flush(testPhoto);
-        });*/
   })
 
   describe('#setMainPhoto', () => {
