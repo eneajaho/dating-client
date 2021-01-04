@@ -83,7 +83,9 @@ ng serve -o
   - Add tests
     - Test Store
     - Test Components
-    - Test Directives/Pipes/Services
+    - Test Directives/Pipes
+    - Test Services
+    - Test Guards/Interceptors
 - ~~Filter functionality~~
 - ~~Stricter type checking~~
 - ~~Upgrade to Angular 11~~
