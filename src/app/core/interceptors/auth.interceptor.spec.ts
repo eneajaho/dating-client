@@ -21,6 +21,8 @@ describe('Auth Interceptor', () => {
     httpMock = TestBed.inject(HttpTestingController);
   });
 
+  afterEach(() => httpMock.verify());
+
   it('should add an Auth header to request if the token is valid(exists)', done => {
     store.overrideSelector(selectAuthToken, 'TestToken');
     store.refreshState();
