@@ -37,12 +37,12 @@ describe('MemberService', () => {
         gender: '',
         lastActive: undefined,
         pageNumber: '',
-        minAge: '20',
+        minAge: '22',
         maxAge: undefined,
         pageSize: '2'
       };
       let params = memberService.createParamsFromFilter(filters);
-      expect(params.toString()).toBe('MinAge=20&PageSize=2');
+      expect(params.toString()).toBe('MinAge=22&PageSize=2');
     });
   })
 
@@ -174,8 +174,7 @@ describe('MemberService', () => {
       let errorMessage = 'Error!!!';
       let testUser: User = { id: 1, username: 'test', photos: [] };
       memberService.editMember(testUser).subscribe(
-        () => {
-        },
+        () => {},
         (error: HttpErrorResponse) => {
           expect(error.status).toEqual(404);
           expect(error.statusText).toEqual('Not Found');
