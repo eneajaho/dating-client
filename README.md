@@ -1,4 +1,7 @@
-# DatingYou - [Live app](https://dating-you.netlify.app/)
+# DatingYou - [Live app](https://dating-you.netlify.app/) 
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/caf7101b-f63f-4f67-94aa-e8eabe906cfa/deploy-status)](https://app.netlify.com/sites/dating-you/deploys)
+
 A dating application built on top of Angular, NGRX, Bootstrap and RxJS.
 
 Backend is built with .Net Core 3.1 . Check out here: [DatingYou Backend](https://github.com/eneajaho/dating-api).
