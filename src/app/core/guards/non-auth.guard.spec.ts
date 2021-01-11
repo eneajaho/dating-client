@@ -12,7 +12,6 @@ describe('NonAuth Guard', () => {
 
   let router: Router;
 
-
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [ RouterTestingModule ],
@@ -41,18 +40,11 @@ describe('NonAuth Guard', () => {
     store.overrideSelector(selectLoggedIn, true);
     store.refreshState();
 
-    /**
-     * https://github.com/angular/angular/issues/25837
-     * This test will throw this warning:
-     * Navigation triggered outside Angular zone, did you forget to call 'ngZone.run()'?
-     * A pull request has been made that fixes this bug.
-     * This comment will get removed after the pull request gets merged.
-     * */
-    const navigateSpy = spyOn(router, 'navigate');
+    const navigateSpy = spyOn(router, 'navigateByUrl');
 
     guard.canActivate().subscribe(() => done());
 
-    expect(navigateSpy).toHaveBeenCalledWith(['/']);
+    expect(navigateSpy).toHaveBeenCalledWith('/');
   });
 
   it('should return false if the user is logged in', done => {
