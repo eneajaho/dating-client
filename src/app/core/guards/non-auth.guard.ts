@@ -17,7 +17,7 @@ export class NonAuthGuard implements CanActivate {
       map(isLoggedIn => {
           if (isLoggedIn) {
             /** Cannot access login/register page when user is logged in. */
-            this.ngZone.run(() => this.router.navigateByUrl( '/')).then();
+            this.ngZone.run(() => this.router.navigateByUrl( '/'));
             return false;
           }
           return true;
