@@ -1,6 +1,6 @@
 import { Directive, HostListener, Input } from '@angular/core';
 import { Location } from '@angular/common';
-import { Router } from "@angular/router";
+import { Router } from '@angular/router';
 
 @Directive({ selector: '[goBack]' })
 export class GoBackDirective {

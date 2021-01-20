@@ -13,6 +13,6 @@ export class ThemeToggleComponent {
 
   theme$ = this.theme.theme$;
 
-  @HostListener('click') 
+  @HostListener('click')
   toggle(): void { this.theme.toggle(); }
 }

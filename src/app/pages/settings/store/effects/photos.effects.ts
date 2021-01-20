@@ -1,12 +1,12 @@
-import { Injectable } from "@angular/core";
-import { catchError, map, switchMap } from "rxjs/operators";
-import { of } from "rxjs";
+import { Injectable } from '@angular/core';
+import { catchError, map, switchMap } from 'rxjs/operators';
+import { of } from 'rxjs';
 
-import { Actions, createEffect, ofType } from "@ngrx/effects";
+import { Actions, createEffect, ofType } from '@ngrx/effects';
 
-import { PhotoService } from "@core/services";
-import { ToastrService } from "ngx-toastr";
-import { PhotosActions } from "@settings/store/actions";
+import { PhotoService } from '@core/services';
+import { ToastrService } from 'ngx-toastr';
+import { PhotosActions } from '@settings/store/actions';
 
 @Injectable()
 export class PhotosEffects {
@@ -19,7 +19,7 @@ export class PhotosEffects {
         return this.photoService.uploadPhoto(payload, userId).pipe(
           map(photo => PhotosActions.uploadPhotoSuccess({ photo })),
           catchError(error => of(PhotosActions.uploadPhotoFailure({ error }))),
-        )
+        );
       })
     ));
 
@@ -30,11 +30,11 @@ export class PhotosEffects {
         map(() => PhotosActions.setMainPhotoSuccess({ photoId })),
         catchError(error => {
           this.toast.warning('', error);
-          return of(PhotosActions.setMainPhotoFailure({ error }))
+          return of(PhotosActions.setMainPhotoFailure({ error }));
         })
-      )
+      );
     })
-  ))
+  ));
 
   DeletePhoto$ = createEffect(() => this.actions$.pipe(
     ofType(PhotosActions.deletePhoto),
@@ -43,10 +43,10 @@ export class PhotosEffects {
         map(() => PhotosActions.deletePhotoSuccess({ photoId })),
         catchError(error => {
           this.toast.warning('', error);
-          return of(PhotosActions.deletePhotoFailure({ error }))
+          return of(PhotosActions.deletePhotoFailure({ error }));
         })
-      )
+      );
     })
-  ))
+  ));
 
 }

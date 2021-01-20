@@ -1,7 +1,7 @@
 import { ActionReducer, ActionReducerMap, createFeatureSelector, MetaReducer } from '@ngrx/store';
-import { environment } from "../../../environments/environment";
-import { routerReducer, RouterReducerState } from "@ngrx/router-store";
-import { RouterStateUrl } from "@store/reducers/custom-route-serializer";
+import { environment } from '../../../environments/environment';
+import { routerReducer, RouterReducerState } from '@ngrx/router-store';
+import { RouterStateUrl } from '@store/reducers/custom-route-serializer';
 
 export { CustomSerializer } from './custom-route-serializer';
 

@@ -1,6 +1,6 @@
-import { inject, InjectionToken } from "@angular/core";
-import { Observable } from "rxjs";
-import { ThemeService } from "@layout/services";
+import { inject, InjectionToken } from '@angular/core';
+import { Observable } from 'rxjs';
+import { ThemeService } from '@layout/services';
 
 export type ThemeProvider = Observable<string>;
 

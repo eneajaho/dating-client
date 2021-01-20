@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
-import { EffectsModule } from "@ngrx/effects";
-import { StoreModule } from "@ngrx/store";
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
 import * as fromAuth from './reducers';
-import { AuthEffects, LoginEffects, RegisterEffects } from "@auth/store/effects";
+import { AuthEffects, LoginEffects, RegisterEffects } from '@auth/store/effects';
 
 @NgModule({
   imports: [

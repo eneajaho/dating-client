@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { AuthApiActions, LoginPageActions } from "@auth/store/actions";
+import { AuthApiActions, LoginPageActions } from '@auth/store/actions';
 
 export const loginPageFeatureKey = 'loginPage';
 

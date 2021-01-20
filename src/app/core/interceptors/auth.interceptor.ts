@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HTTP_INTERCEPTORS, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
-import { Store } from "@ngrx/store";
-import { first, switchMap } from "rxjs/operators";
+import { Store } from '@ngrx/store';
+import { first, switchMap } from 'rxjs/operators';
 
 import * as fromAuth from '@auth/store/reducers';
-import { Observable } from "rxjs";
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
@@ -28,4 +28,4 @@ export const AuthInterceptorProvider = {
   provide: HTTP_INTERCEPTORS,
   useClass: AuthInterceptor,
   multi: true
-}
+};

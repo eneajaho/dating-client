@@ -1,6 +1,6 @@
-import { TestBed, waitForAsync } from "@angular/core/testing";
-import { NO_ERRORS_SCHEMA } from "@angular/core";
-import { NavigationComponent } from "@layout/components";
+import { TestBed, waitForAsync } from '@angular/core/testing';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { NavigationComponent } from '@layout/components';
 
 describe('Navigation Component', () => {
   // beforeEach(waitForAsync(() => {
@@ -10,7 +10,7 @@ describe('Navigation Component', () => {
   //   }).compileComponents();
   // }));
 
-  it('should just success', function () {
+  it('should just success', function() {
     expect(1).toBe(1);
   });
 

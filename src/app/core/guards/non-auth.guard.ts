@@ -1,10 +1,10 @@
 import { Injectable, NgZone } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
-import { Store } from "@ngrx/store";
-import { Observable } from "rxjs";
-import { map, take } from "rxjs/operators";
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { map, take } from 'rxjs/operators';
 
-import * as fromAuth from "@auth/store/reducers";
+import * as fromAuth from '@auth/store/reducers';
 
 @Injectable({ providedIn: 'root' })
 export class NonAuthGuard implements CanActivate {

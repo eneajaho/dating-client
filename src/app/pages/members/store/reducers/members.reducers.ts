@@ -1,7 +1,7 @@
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
-import { createReducer, on } from "@ngrx/store";
-import { MemberActions, MembersApiActions, MembersPageActions, } from "@members/store/actions";
-import { MembersFilter, Pagination, Status, User } from "@core/models";
+import { createReducer, on } from '@ngrx/store';
+import { MemberActions, MembersApiActions, MembersPageActions, } from '@members/store/actions';
+import { MembersFilter, Pagination, Status, User } from '@core/models';
 
 export const membersEntityFeatureKey = 'membersEntity';
 
@@ -56,7 +56,7 @@ export const reducer = createReducer(initialState,
         ...state, error: undefined, loaded: true, loading: false,
         pagination: { ...state.pagination, ...pagination, loading: false, loaded: true }
       }
-    )
+    );
   }),
 
   on(MembersApiActions.loadMembersFailure, (state, { error }) => ({
@@ -74,7 +74,7 @@ export const reducer = createReducer(initialState,
     return adapter.upsertMany(members, {
       ...state,
       pagination: { ...state.pagination, ...pagination, loading: false, loaded: true }
-    })
+    });
   }),
 
   on(MembersApiActions.loadMoreMembersFailure, (state, { error }) => ({
@@ -98,7 +98,7 @@ export const reducer = createReducer(initialState,
 
   on(MembersApiActions.loadMemberFailure, (state, { error, id }) => {
     return adapter.updateOne({
-      id: id, changes: { error: error, loaded: false, loading: false }
+      id, changes: { error, loaded: false, loading: false }
     }, state);
   })
 );

@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
-import { Router } from "@angular/router";
+import { Router } from '@angular/router';
 
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 
 import { catchError, map, switchMap } from 'rxjs/operators';
-import { of } from "rxjs";
+import { of } from 'rxjs';
 
-import { AuthApiActions, RegisterPageActions } from "@auth/store/actions";
-import { AuthService } from "@auth/services/auth.service";
-import { ToastrService } from "ngx-toastr";
+import { AuthApiActions, RegisterPageActions } from '@auth/store/actions';
+import { AuthService } from '@auth/services/auth.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable()
 export class RegisterEffects {

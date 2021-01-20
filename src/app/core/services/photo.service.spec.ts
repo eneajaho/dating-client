@@ -1,14 +1,14 @@
 import { TestBed } from '@angular/core/testing';
-import { HttpClientTestingModule, HttpTestingController } from "@angular/common/http/testing";
-import { PhotoService } from "@core/services/photo.service";
-import { Photo } from "@core/models";
-import { API_URL } from "@core/tokens";
-import { HttpErrorResponse } from "@angular/common/http";
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { PhotoService } from '@core/services/photo.service';
+import { Photo } from '@core/models';
+import { API_URL } from '@core/tokens';
+import { HttpErrorResponse } from '@angular/common/http';
 
 describe('PhotoService', () => {
   let photoService: PhotoService;
   let httpMock: HttpTestingController;
-  let apiUrl: string = '/api';
+  const apiUrl = '/api';
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -35,15 +35,15 @@ describe('PhotoService', () => {
   });
 
   describe('#uploadPhoto', () => {
-    let testPhoto: Photo = {
+    const testPhoto: Photo = {
       id: 1,
       url: 'http://test.com',
       description: 'test',
       addedAt: new Date(),
       isMain: true
     };
-    let userId = 1
-    let path = `${ apiUrl }/users/${ userId }/photos`;
+    const userId = 1;
+    const path = `${ apiUrl }/users/${ userId }/photos`;
 
     it('should return a photo, empty object or null', () => {
       photoService.uploadPhoto(testPhoto, userId).subscribe(res => {
@@ -73,7 +73,7 @@ describe('PhotoService', () => {
     });
 
     it('should return an error message', () => {
-      let errorMessage = 'Error!!!';
+      const errorMessage = 'Error!!!';
 
       photoService.uploadPhoto({}, userId).subscribe(
         res => {
@@ -90,13 +90,13 @@ describe('PhotoService', () => {
 
       req.flush(errorMessage, { status: 404, statusText: 'Not Found' });
     });
-  })
+  });
 
   describe('#setMainPhoto', () => {
-    let userId = 1
-    let photoId = 1;
+    const userId = 1;
+    const photoId = 1;
 
-    let path = `${ apiUrl }/users/${ userId }/photos/${ photoId }/setMain`;
+    const path = `${ apiUrl }/users/${ userId }/photos/${ photoId }/setMain`;
 
     it('should return empty object', () => {
       photoService.setMainPhoto(userId, photoId).subscribe(res => {
@@ -112,10 +112,10 @@ describe('PhotoService', () => {
       req.flush({});
     });
 
-  })
+  });
 
   describe('#deletePhoto', () => {
-    let path = `${ apiUrl }/users/${ 1 }/photos/${ 1 }`;
+    const path = `${ apiUrl }/users/${ 1 }/photos/${ 1 }`;
 
     it('should return empty object (void)', () => {
       photoService.deletePhoto(1, 1).subscribe(res =>
@@ -125,6 +125,6 @@ describe('PhotoService', () => {
       expect(req.request.method).toEqual('DELETE');
       req.flush({});
     });
-  })
+  });
 
 });

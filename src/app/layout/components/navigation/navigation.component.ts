@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
-import { faCog, faComments, faHeart, faSignOutAlt, faStar, faUser, faUsers } from "@fortawesome/free-solid-svg-icons";
-import { User } from "@models/User";
+import { faCog, faComments, faHeart, faSignOutAlt, faStar, faUser, faUsers } from '@fortawesome/free-solid-svg-icons';
+import { User } from '@models/User';
 
 @Component({
   selector: 'app-navigation',

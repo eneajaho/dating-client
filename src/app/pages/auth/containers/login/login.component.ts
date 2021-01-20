@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component, OnDestroy } from '@angular/core';
-import { Store } from "@ngrx/store";
-import { Credentials } from "@auth/models";
+import { Store } from '@ngrx/store';
+import { Credentials } from '@auth/models';
 
 import * as fromAuth from '@auth/store/reducers';
-import { LoginPageActions } from "@auth/store/actions";
+import { LoginPageActions } from '@auth/store/actions';
 
 @Component({
   selector: 'auth-login',

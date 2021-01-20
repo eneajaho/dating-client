@@ -1,12 +1,12 @@
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { BehaviorSubject, Observable, Subject } from "rxjs";
-import { takeUntil } from "rxjs/operators";
-import { Store } from "@ngrx/store";
-import { User } from "@core/models";
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+import { Store } from '@ngrx/store';
+import { User } from '@core/models';
 
-import * as fromSettings from "@settings/store/reducers";
-import { SettingsActions } from "@settings/store/actions";
+import * as fromSettings from '@settings/store/reducers';
+import { SettingsActions } from '@settings/store/actions';
 
 @Component({
   selector: 'app-member-edit-profile',
@@ -71,24 +71,24 @@ export class MemberEditProfileComponent implements OnInit, OnDestroy {
   private patchForm(user: User) {
     this.form.reset();
 
-    let interests: string[] = user?.interests?.split(/[\s,]+/) ?? [];
+    const interests: string[] = user?.interests?.split(/[\s,]+/) ?? [];
 
     this.form.patchValue({
       ...user,
-      interests: interests,
+      interests,
     });
   }
 
   private joinInterests(interests: any[]) {
     console.log(interests);
     const newArray: string[] = [];
-    for (let interest of interests) {
+    for (const interest of interests) {
       if (newArray.includes(interest)) {
         continue;
       }
-      if (typeof interest === "string") {
+      if (typeof interest === 'string') {
         newArray.push(interest);
-      } else if (typeof interest === "object") {
+      } else if (typeof interest === 'object') {
         newArray.push(interest.value);
       }
     }

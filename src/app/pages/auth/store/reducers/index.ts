@@ -1,6 +1,6 @@
 import { combineReducers, createFeatureSelector, createSelector } from '@ngrx/store';
 
-import { RootState } from "@store/reducers";
+import { RootState } from '@store/reducers';
 import * as fromAuth from '@auth/store/reducers/auth.reducer';
 import * as fromLoginPage from '@auth/store/reducers/login-page.reducer';
 import * as fromRegisterPage from '@auth/store/reducers/register-page.reducer';

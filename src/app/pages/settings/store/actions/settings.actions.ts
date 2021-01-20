@@ -1,5 +1,5 @@
-import { createAction, props } from "@ngrx/store";
-import { User } from "@core/models";
+import { createAction, props } from '@ngrx/store';
+import { User } from '@core/models';
 
 /** Load User Details */
 

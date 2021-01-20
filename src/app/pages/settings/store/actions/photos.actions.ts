@@ -1,5 +1,5 @@
-import { createAction, props } from "@ngrx/store";
-import { Photo } from "@core/models";
+import { createAction, props } from '@ngrx/store';
+import { Photo } from '@core/models';
 
 interface PhotoUploadPayload {
   payload: FormData;

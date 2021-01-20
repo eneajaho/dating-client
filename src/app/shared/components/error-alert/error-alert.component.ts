@@ -25,6 +25,6 @@ export class ErrorAlertComponent {
   * If set to true the error alert box will be inlined.
   * @default false
   */
-  @Input() inline: boolean = false;
+  @Input() inline = false;
 
 }

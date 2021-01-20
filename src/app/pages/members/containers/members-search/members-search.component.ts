@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
-import { THEME, ThemeProvider } from "@core/tokens/theme.token";
-import { Store } from "@ngrx/store";
+import { THEME, ThemeProvider } from '@core/tokens/theme.token';
+import { Store } from '@ngrx/store';
 import * as fromMembers from '@members/store/reducers';
-import { MembersPageActions } from "@members/store/actions";
-import { MembersFilter } from "@core/models";
+import { MembersPageActions } from '@members/store/actions';
+import { MembersFilter } from '@core/models';
 
 @Component({
   selector: 'app-members-search',

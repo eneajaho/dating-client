@@ -1,10 +1,10 @@
 import { TestBed } from '@angular/core/testing';
 
-import { MockStore, provideMockStore } from "@ngrx/store/testing";
-import { selectLoggedIn } from "@auth/store/reducers";
-import { NonAuthGuard } from "./non-auth.guard";
-import { RouterTestingModule } from "@angular/router/testing";
-import { Router } from "@angular/router";
+import { MockStore, provideMockStore } from '@ngrx/store/testing';
+import { selectLoggedIn } from '@auth/store/reducers';
+import { NonAuthGuard } from './non-auth.guard';
+import { RouterTestingModule } from '@angular/router/testing';
+import { Router } from '@angular/router';
 
 describe('NonAuth Guard', () => {
   let guard: NonAuthGuard;

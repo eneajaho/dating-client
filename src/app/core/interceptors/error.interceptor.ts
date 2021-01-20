@@ -8,11 +8,11 @@ import {
   HttpRequest
 } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { catchError } from "rxjs/operators";
-import { Store } from "@ngrx/store";
+import { catchError } from 'rxjs/operators';
+import { Store } from '@ngrx/store';
 
 import * as fromAuth from '@auth/store/reducers';
-import { AuthActions } from "@auth/store/actions";
+import { AuthActions } from '@auth/store/actions';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
@@ -26,15 +26,15 @@ export class ErrorInterceptor implements HttpInterceptor {
       catchError((error: any): Observable<never> => {
         if (error instanceof HttpErrorResponse) {
           if (error.status === 0) {
-            if (error?.statusText === "Unknown Error") {
-              return throwError("Server is not responding!");
+            if (error?.statusText === 'Unknown Error') {
+              return throwError('Server is not responding!');
             }
             this.store.dispatch(AuthActions.logout());
             return throwError(error.statusText);
           } else if (error.status === 401) {
-            if (error.statusText === "Unauthorized") {
+            if (error.statusText === 'Unauthorized') {
               this.store.dispatch(AuthActions.logout());
-              return throwError("You are not authorized!");
+              return throwError('You are not authorized!');
             }
             return throwError(error.statusText);
           }
@@ -52,8 +52,9 @@ export class ErrorInterceptor implements HttpInterceptor {
           let modelStateErrors = '';
           if (typeof serverError?.errors === 'object') {
             for (const key in serverError.errors) {
-              if (serverError.errors[key])
+              if (serverError.errors[key]) {
                 modelStateErrors += serverError.errors[key] + '\n';
+              }
             }
           }
           return throwError(modelStateErrors || serverError || 'Server Error');
@@ -69,4 +70,4 @@ export const ErrorInterceptorProvider = {
   provide: HTTP_INTERCEPTORS,
   useClass: ErrorInterceptor,
   multi: true
-}
+};

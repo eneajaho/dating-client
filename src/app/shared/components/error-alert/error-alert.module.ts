@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ErrorAlertComponent } from "./error-alert.component";
+import { ErrorAlertComponent } from './error-alert.component';
 
 @NgModule({
   declarations: [ErrorAlertComponent],

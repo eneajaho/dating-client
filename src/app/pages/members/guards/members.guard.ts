@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot } from '@angular/router';
-import { Store } from "@ngrx/store";
-import { map, take, tap } from "rxjs/operators";
-import { MembersPageActions } from "@members/store/actions";
+import { Store } from '@ngrx/store';
+import { map, take, tap } from 'rxjs/operators';
+import { MembersPageActions } from '@members/store/actions';
 import * as fromMembers from '@members/store/reducers';
-import { combineLatest } from "rxjs";
+import { combineLatest } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class MembersGuard implements CanActivate {
@@ -18,7 +18,7 @@ export class MembersGuard implements CanActivate {
     ]).pipe(
       tap(([ loaded, loading ]) => {
           if (!loaded && !loading) {
-            this.store.dispatch(MembersPageActions.loadMembers({}))
+            this.store.dispatch(MembersPageActions.loadMembers({}));
           }
         }
       ),

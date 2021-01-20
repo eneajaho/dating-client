@@ -1,8 +1,8 @@
 import { Inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { API_URL } from "@core/tokens";
+import { API_URL } from '@core/tokens';
 import { Observable } from 'rxjs';
-import { Credentials, LoginResponse, Register } from "@auth/models";
+import { Credentials, LoginResponse, Register } from '@auth/models';
 
 @Injectable({ providedIn: 'any' })
 export class AuthService {
@@ -16,6 +16,6 @@ export class AuthService {
 
   login(credentials: Credentials): Observable<LoginResponse> {
     const path = `${this.api}/auth/login`;
-    return this.http.post<LoginResponse>(path, credentials)
+    return this.http.post<LoginResponse>(path, credentials);
   }
 }

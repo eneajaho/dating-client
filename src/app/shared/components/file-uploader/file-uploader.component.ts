@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { faCloudUploadAlt } from "@fortawesome/free-solid-svg-icons";
+import { faCloudUploadAlt } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-file-uploader',
@@ -8,13 +8,13 @@ import { faCloudUploadAlt } from "@fortawesome/free-solid-svg-icons";
 })
 export class FileUploaderComponent {
 
-  @Input() uploading: boolean = false;
+  @Input() uploading = false;
 
   @Output() uploaded = new EventEmitter<FileList>();
 
   uploadIcon = faCloudUploadAlt;
 
-  isHovering: boolean = false;
+  isHovering = false;
 
   handleFileInput(files: FileList): void {
     this.uploaded.emit(files);

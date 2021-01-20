@@ -7,7 +7,7 @@ import { Credentials, LoginResponse, Register } from '@auth/models';
 describe('Auth Service', () => {
   let authService: AuthService;
   let httpMock: HttpTestingController;
-  let apiUrl: string = '/api';
+  const apiUrl = '/api';
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -30,7 +30,7 @@ describe('Auth Service', () => {
 
 
   describe('register method', () => {
-    let credentials: Register = {
+    const credentials: Register = {
       username: 'test', birthday: new Date(),
       city: 'T', country: 'T', gender: 'Male',
       knownAs: 'T', password: 'TTTTT'
@@ -49,11 +49,11 @@ describe('Auth Service', () => {
 
       req.flush({});
     });
-  })
+  });
 
   describe('login method', () => {
-    let credentials: Credentials = { username: 'test',  password: 'TTTTT' };
-    let response: LoginResponse = { id: 1, name: 't', token: 't' }
+    const credentials: Credentials = { username: 'test',  password: 'TTTTT' };
+    const response: LoginResponse = { id: 1, name: 't', token: 't' };
     it('should return Observable<LoginResponse>', () => {
       authService.login(credentials).subscribe(res => {
         expect(res).toBe(response);
@@ -67,7 +67,7 @@ describe('Auth Service', () => {
 
       req.flush(response);
     });
-  })
+  });
 
 
 });

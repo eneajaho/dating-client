@@ -1,11 +1,11 @@
 import { Inject, Injectable } from '@angular/core';
-import { HttpClient, HttpParams, HttpResponse } from "@angular/common/http";
-import { IQueryParams, PaginatedResult } from "@models/Pagination";
-import { Observable } from "rxjs";
-import { API_URL } from "@core/tokens";
-import { User } from "@models/User";
-import { map } from "rxjs/operators";
-import { MembersFilter } from "@core/models";
+import { HttpClient, HttpParams, HttpResponse } from '@angular/common/http';
+import { IQueryParams, PaginatedResult } from '@models/Pagination';
+import { Observable } from 'rxjs';
+import { API_URL } from '@core/tokens';
+import { User } from '@models/User';
+import { map } from 'rxjs/operators';
+import { MembersFilter } from '@core/models';
 
 @Injectable({ providedIn: 'root' })
 export class MemberService {
@@ -13,7 +13,7 @@ export class MemberService {
   constructor(@Inject(API_URL) private api: string, private http: HttpClient) { }
 
   getMembers(filters: Partial<IQueryParams & MembersFilter>): Observable<PaginatedResult<User[]>> {
-    let params = this.createParamsFromFilter(filters);
+    const params = this.createParamsFromFilter(filters);
 
     const path = `${this.api}/users`;
     return this.http.get<User[]>(path, { observe: 'response', params }).pipe(
@@ -39,8 +39,8 @@ export class MemberService {
     let params = new HttpParams();
 
     for (const [key, value] of Object.entries(filters).sort()) {
-      if(value !== undefined && value !== ''  && value !== null) {
-        let capitalizedParamKey = this.capitalizeFirstLetter(key);
+      if (value !== undefined && value !== ''  && value !== null) {
+        const capitalizedParamKey = this.capitalizeFirstLetter(key);
         params = params.append(capitalizedParamKey, value + '');
       }
     }

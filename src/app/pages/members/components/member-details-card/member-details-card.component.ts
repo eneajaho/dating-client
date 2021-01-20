@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input, OnChanges } from '@angular/core';
-import { User } from "@models/User";
-import { faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
-import { faCalendarAlt } from "@fortawesome/free-regular-svg-icons";
+import { User } from '@models/User';
+import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
+import { faCalendarAlt } from '@fortawesome/free-regular-svg-icons';
 
 @Component({
   selector: 'app-member-details-card',
@@ -20,7 +20,7 @@ export class MemberDetailsCardComponent implements OnChanges {
     'https://i.imgur.com/t6xCnGT.jpg',
     'https://i.imgur.com/whSVWhd.jpg',
     'https://i.imgur.com/eiyHiMi.jpg',
-  ]
+  ];
 
   locationIcon = faMapMarkerAlt;
   calendarIcon = faCalendarAlt;

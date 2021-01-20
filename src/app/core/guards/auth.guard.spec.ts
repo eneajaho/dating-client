@@ -1,10 +1,10 @@
 import { TestBed } from '@angular/core/testing';
 
-import { cold } from "jest-marbles";
-import { MockStore, provideMockStore } from "@ngrx/store/testing";
-import { AuthGuard } from "./auth.guard";
-import { selectLoggedIn } from "@auth/store/reducers";
-import { authRedirect } from "@auth/store/actions/auth.actions";
+import { cold } from 'jest-marbles';
+import { MockStore, provideMockStore } from '@ngrx/store/testing';
+import { AuthGuard } from './auth.guard';
+import { selectLoggedIn } from '@auth/store/reducers';
+import { authRedirect } from '@auth/store/actions/auth.actions';
 
 describe('AuthGuard', () => {
   let guard: AuthGuard;
@@ -42,7 +42,7 @@ describe('AuthGuard', () => {
 
     guard.canActivate().subscribe(() => done());
 
-    let expected = cold('a', { a: authRedirect() })
+    const expected = cold('a', { a: authRedirect() });
     expect(store.scannedActions$).toBeObservable(expected);
   });
 

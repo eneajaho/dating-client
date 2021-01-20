@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from "rxjs";
-import { DOCUMENT } from "@angular/common";
+import { BehaviorSubject, Observable } from 'rxjs';
+import { DOCUMENT } from '@angular/common';
 import { distinctUntilChanged, tap } from 'rxjs/operators';
 
 export const Themes = {

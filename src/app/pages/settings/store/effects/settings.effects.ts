@@ -3,13 +3,13 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 
 import { catchError, exhaustMap, map, switchMap } from 'rxjs/operators';
-import { of } from "rxjs";
-import { ToastrService } from "ngx-toastr";
-import { MemberService } from "@core/services";
-import { SettingsActions } from "@settings/store/actions";
-import * as fromSettings from "@settings/store/reducers";
-import * as fromAuth from "@auth/store/reducers";
-import { Store } from "@ngrx/store";
+import { of } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
+import { MemberService } from '@core/services';
+import { SettingsActions } from '@settings/store/actions';
+import * as fromSettings from '@settings/store/reducers';
+import * as fromAuth from '@auth/store/reducers';
+import { Store } from '@ngrx/store';
 
 @Injectable()
 export class SettingsEffects {
@@ -26,7 +26,7 @@ export class SettingsEffects {
       switchMap(() => this.store.select(fromAuth.selectUserId)),
       switchMap(id => {
           if (!id) {
-            let error = 'User id doesn\'t exist';
+            const error = 'User id doesn\'t exist';
             return of(SettingsActions.loadAuthDetailsFailure({ error }));
           }
           return this.memberService.getMemberDetails(id).pipe(
@@ -43,15 +43,15 @@ export class SettingsEffects {
       return this.memberService.editMember(user).pipe(
         map(user => {
           this.toast.success('', 'Profile updated successfully!');
-          return SettingsActions.editAuthDetailsSuccess({ user })
+          return SettingsActions.editAuthDetailsSuccess({ user });
         }),
         catchError(error => {
           this.toast.error('', error);
-          return of(SettingsActions.editAuthDetailsFailure({ error }))
+          return of(SettingsActions.editAuthDetailsFailure({ error }));
         }),
-      )
+      );
     })
     )
-  )
+  );
 
 }

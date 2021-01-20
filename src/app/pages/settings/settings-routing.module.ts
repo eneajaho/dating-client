@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { SettingsComponent } from "@settings/containers";
+import { SettingsComponent } from '@settings/containers';
 import {
   MemberEditAccountComponent,
   MemberEditProfileComponent,
   MemberEditPhotosComponent
-} from "@settings/components";
-import { PreventUnsavedChangesGuard, SettingsGuard } from "@settings/guards";
-import { NotFoundComponent, NotFoundModule } from "@shared/components";
+} from '@settings/components';
+import { PreventUnsavedChangesGuard, SettingsGuard } from '@settings/guards';
+import { NotFoundComponent, NotFoundModule } from '@shared/components';
 
 
 const routes: Routes = [

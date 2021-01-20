@@ -1,6 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
-import { PhotosActions, SettingsActions } from "@settings/store/actions";
-import { User } from "@core/models";
+import { PhotosActions, SettingsActions } from '@settings/store/actions';
+import { User } from '@core/models';
 
 export const userDetailsFeatureKey = 'userDetails';
 
@@ -63,7 +63,7 @@ export const reducer = createReducer(initialState,
     return { ...state,
       user: { ...state.user, photos: updatedPhotos },
       savingChanges: false
-    }
+    };
   }),
 
   on(PhotosActions.uploadPhotoFailure, (state, { error }) => ({ ...state,
@@ -83,7 +83,7 @@ export const reducer = createReducer(initialState,
         photoUrl: updatedPhotos.find(p => p.id === photoId)?.url,
         photos: updatedPhotos
       }
-    }
+    };
   }),
 
   on(PhotosActions.setMainPhotoFailure, (state, { error }) => ({ ...state,

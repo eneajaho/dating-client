@@ -24,6 +24,6 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 export class SpinnerComponent {
 
   @Input() size: 'small' | 'medium' | 'big' | '' = '';
-  @Input() color: string = '';
+  @Input() color = '';
 
 }

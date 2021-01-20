@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from "@angular/router";
-import { MainLayoutComponent } from "@layout/containers";
-import { AuthGuard, NonAuthGuard } from "@core/guards";
-import { NotFoundComponent, NotFoundModule } from "@shared/components";
+import { RouterModule, Routes } from '@angular/router';
+import { MainLayoutComponent } from '@layout/containers';
+import { AuthGuard, NonAuthGuard } from '@core/guards';
+import { NotFoundComponent, NotFoundModule } from '@shared/components';
 
 export const routes: Routes = [
   {

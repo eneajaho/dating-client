@@ -1,11 +1,11 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { Photo } from "@core/models";
-import { Observable } from "rxjs";
-import { Store } from "@ngrx/store";
-import * as fromSettings from "@settings/store/reducers";
-import { pluck, tap } from "rxjs/operators";
-import { faCheck, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
-import { PhotosActions } from "@settings/store/actions";
+import { Photo } from '@core/models';
+import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
+import * as fromSettings from '@settings/store/reducers';
+import { pluck, tap } from 'rxjs/operators';
+import { faCheck, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import { PhotosActions } from '@settings/store/actions';
 
 @Component({
   selector: 'app-member-edit-photos',
@@ -15,14 +15,14 @@ import { PhotosActions } from "@settings/store/actions";
 })
 export class MemberEditPhotosComponent implements OnInit {
 
-  photos$: Observable<Photo[]>= this.store.select(fromSettings.selectUserDetails).pipe(
-    tap(user => { this.userId = user.id }),
+  photos$: Observable<Photo[]> = this.store.select(fromSettings.selectUserDetails).pipe(
+    tap(user => { this.userId = user.id; }),
     pluck('photos')
   );
 
   loading$: Observable<boolean> = this.store.select(fromSettings.selectUserDetailsLoading);
 
-  userId: number = -1;
+  userId = -1;
 
   checkIcon = faCheck;
   deleteIcon = faTrashAlt;
@@ -41,7 +41,7 @@ export class MemberEditPhotosComponent implements OnInit {
       formData.append('File', photos.item(0), photos.item(0)?.name);
     }
 
-    this.store.dispatch(PhotosActions.uploadPhoto({ payload: formData, userId: this.userId }))
+    this.store.dispatch(PhotosActions.uploadPhoto({ payload: formData, userId: this.userId }));
   }
 
   setMainPhoto(id: number): void {

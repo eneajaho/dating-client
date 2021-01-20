@@ -1,5 +1,5 @@
-import { createAction, props } from "@ngrx/store";
-import { LoginResponse } from "@auth/models";
+import { createAction, props } from '@ngrx/store';
+import { LoginResponse } from '@auth/models';
 
 export const guardLogout = createAction('[Auth Guard] Logout');
 

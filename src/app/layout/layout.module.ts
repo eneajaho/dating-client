@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from "@angular/router";
+import { RouterModule } from '@angular/router';
 
 import { EmptyLayoutComponent, MainLayoutComponent } from '@layout/containers';
 import { NavigationComponent, ThemeToggleComponent } from '@layout/components';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { BsDropdownModule } from "ngx-bootstrap/dropdown";
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
 @NgModule({
   declarations: [

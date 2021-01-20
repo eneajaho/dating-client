@@ -1,10 +1,10 @@
 import { TestBed } from '@angular/core/testing';
-import { HttpClientTestingModule, HttpTestingController } from "@angular/common/http/testing";
-import { MockStore, provideMockStore } from "@ngrx/store/testing";
-import { HttpClient } from "@angular/common/http";
-import { ErrorInterceptorProvider } from "./error.interceptor";
-import { AuthActions } from "@auth/store/actions";
-import { cold } from "jest-marbles";
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { MockStore, provideMockStore } from '@ngrx/store/testing';
+import { HttpClient } from '@angular/common/http';
+import { ErrorInterceptorProvider } from './error.interceptor';
+import { AuthActions } from '@auth/store/actions';
+import { cold } from 'jest-marbles';
 
 describe('Error Interceptor', () => {
   let store: MockStore;
@@ -15,7 +15,7 @@ describe('Error Interceptor', () => {
     TestBed.configureTestingModule({
       imports: [ HttpClientTestingModule ],
       providers: [ ErrorInterceptorProvider, provideMockStore() ]
-    })
+    });
 
     store = TestBed.inject(MockStore);
     httpClient = TestBed.inject(HttpClient);
@@ -72,10 +72,10 @@ describe('Error Interceptor', () => {
 
         req.flush('Error!!!', { status: 0, statusText: 'ErrorMessage' });
 
-        let expected = cold('a', { a: AuthActions.logout() })
+        const expected = cold('a', { a: AuthActions.logout() });
         expect(store.scannedActions$).toBeObservable(expected);
       });
-    })
+    });
 
     describe('with error status: 401', () => {
       it('and statusText: \'Unauthorized\' should throw \'You are not authorized!\' and dispatch logout action', done => {
@@ -89,7 +89,7 @@ describe('Error Interceptor', () => {
 
         req.flush('Error!!!', { status: 401, statusText: 'Unauthorized' });
 
-        let expected = cold('a', { a: AuthActions.logout() })
+        const expected = cold('a', { a: AuthActions.logout() });
         expect(store.scannedActions$).toBeObservable(expected);
       });
 
@@ -107,7 +107,7 @@ describe('Error Interceptor', () => {
 
         req.flush('Error!!!', { status: 401, statusText: 'ErrorMessage' });
       });
-    })
+    });
 
     it('with error status: 500, should throw body of the error', done => {
       httpClient.get('/api').subscribe(x => {},
@@ -145,7 +145,7 @@ describe('Error Interceptor', () => {
           username: [ 'Username cannot be longer than 20 characters.' ],
           password: [ 'Password cannot be shorter than 8 characters.' ]
       } };
-      let { errors } = serverError;
+      const { errors } = serverError;
 
       httpClient.get('/api').subscribe(x => {},
       err => {
@@ -168,6 +168,6 @@ describe('Error Interceptor', () => {
       });
     });
 
-  })
+  });
 
 });

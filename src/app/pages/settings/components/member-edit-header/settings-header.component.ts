@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { User } from "@core/models";
+import { User } from '@core/models';
 
 interface PageDetails {
   profile: string;
@@ -34,7 +34,7 @@ export class SettingsHeaderComponent {
     account: 'Manage your account details, ex. username, profile picture...',
     chat: 'Modify your chat settings, ex. chat requests, chat blocking...',
     photos: 'View, add or remove your photos...'
-  }
+  };
 
   profilePicture() {
     if (this.user?.photoUrl) {

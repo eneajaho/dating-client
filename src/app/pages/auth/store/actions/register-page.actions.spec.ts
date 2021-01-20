@@ -5,7 +5,7 @@ describe('Register Page Actions', () => {
 
   describe('Register', () => {
     it('should create a Register action with credentials', () => {
-      let credentials: Register = {
+      const credentials: Register = {
         username: 'test', birthday: new Date(),
         city: 'T', country: 'T', gender: 'Male',
         knownAs: 'T', password: 'TTTTT'

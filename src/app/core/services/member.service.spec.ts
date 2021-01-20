@@ -1,14 +1,14 @@
 import { TestBed } from '@angular/core/testing';
-import { HttpClientTestingModule, HttpTestingController } from "@angular/common/http/testing";
-import { IQueryParams, MembersFilter, Pagination, User } from "@core/models";
-import { API_URL } from "@core/tokens";
-import { HttpErrorResponse } from "@angular/common/http";
-import { MemberService } from "@core/services";
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { IQueryParams, MembersFilter, Pagination, User } from '@core/models';
+import { API_URL } from '@core/tokens';
+import { HttpErrorResponse } from '@angular/common/http';
+import { MemberService } from '@core/services';
 
 describe('MemberService', () => {
   let memberService: MemberService;
   let httpMock: HttpTestingController;
-  let apiUrl: string = '/api';
+  const apiUrl = '/api';
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -33,7 +33,7 @@ describe('MemberService', () => {
 
   describe('createParamsFromFilter method', () => {
     it('should return only valid http params', () => {
-      let filters: Partial<IQueryParams & MembersFilter> = {
+      const filters: Partial<IQueryParams & MembersFilter> = {
         gender: '',
         lastActive: undefined,
         pageNumber: '',
@@ -41,13 +41,13 @@ describe('MemberService', () => {
         maxAge: undefined,
         pageSize: '2'
       };
-      let params = memberService.createParamsFromFilter(filters);
+      const params = memberService.createParamsFromFilter(filters);
       expect(params.toString()).toBe('MinAge=22&PageSize=2');
     });
-  })
+  });
 
   describe('getMembers method', () => {
-    let filters: Partial<IQueryParams & MembersFilter> = {
+    const filters: Partial<IQueryParams & MembersFilter> = {
       gender: '',
       lastActive: '',
       maxAge: '99',
@@ -55,16 +55,16 @@ describe('MemberService', () => {
       pageNumber: undefined,
       pageSize: '2'
     };
-    let pagination: Pagination = {
+    const pagination: Pagination = {
       currentPage: 1,
       itemsPerPage: 2,
       totalItems: 10,
       totalPages: 5
-    }
-    let membersList: User[] = [
+    };
+    const membersList: User[] = [
       { id: 1, username: 'test1', photos: [] },
       { id: 2, username: 'test2', photos: [] }
-    ]
+    ];
     const path = `${ apiUrl }/users`;
 
     it('should return a paginated result of users', () => {
@@ -79,22 +79,22 @@ describe('MemberService', () => {
         expect(res.pagination).toEqual(pagination);
       });
 
-      let params = memberService.createParamsFromFilter(filters);
+      const params = memberService.createParamsFromFilter(filters);
 
-      let pathWithParams = path + '?' + params.toString();
+      const pathWithParams = path + '?' + params.toString();
 
       const requests = httpMock.match(pathWithParams);
       expect(requests[0].request.urlWithParams).toBe(pathWithParams);
       expect(requests[0]?.request?.method).toEqual('GET');
 
-      let headers = { 'Pagination': JSON.stringify(pagination) }
+      const headers = { Pagination: JSON.stringify(pagination) };
 
       requests[0].flush(membersList, { headers });
       requests[1].flush({}, { headers });
     });
 
     it('should return an error message', () => {
-      let errorMessage = 'Error!!!';
+      const errorMessage = 'Error!!!';
 
       memberService.getMembers({}).subscribe(
         () => {
@@ -111,10 +111,10 @@ describe('MemberService', () => {
       req.flush(errorMessage, { status: 404, statusText: 'Not Found' });
     });
 
-  })
+  });
 
   describe('getMemberDetails method', () => {
-    let testUser: User = { id: 1, username: 'test', photos: [] };
+    const testUser: User = { id: 1, username: 'test', photos: [] };
     const path = `${ apiUrl }/users/${ 1 }`;
 
     it('should return a User or empty object', () => {
@@ -136,7 +136,7 @@ describe('MemberService', () => {
     });
 
     it('should return an error message', () => {
-      let errorMessage = 'Error!!!';
+      const errorMessage = 'Error!!!';
 
       memberService.getMemberDetails(1).subscribe(
         () => {
@@ -153,10 +153,10 @@ describe('MemberService', () => {
       req.flush(errorMessage, { status: 404, statusText: 'Not Found' });
     });
 
-  })
+  });
 
   describe('editMember method', () => {
-    let testUser: User = { id: 1, username: 'test', photos: [] };
+    const testUser: User = { id: 1, username: 'test', photos: [] };
     const path = `${ apiUrl }/users/${ testUser.id }`;
 
     it('should return a User', () => {
@@ -171,8 +171,8 @@ describe('MemberService', () => {
     });
 
     it('should return an error message', () => {
-      let errorMessage = 'Error!!!';
-      let testUser: User = { id: 1, username: 'test', photos: [] };
+      const errorMessage = 'Error!!!';
+      const testUser: User = { id: 1, username: 'test', photos: [] };
       memberService.editMember(testUser).subscribe(
         () => {},
         (error: HttpErrorResponse) => {
@@ -185,6 +185,6 @@ describe('MemberService', () => {
       req.flush(errorMessage, { status: 404, statusText: 'Not Found' });
     });
 
-  })
+  });
 
 });

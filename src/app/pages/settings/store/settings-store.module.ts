@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
-import { EffectsModule } from "@ngrx/effects";
-import { StoreModule } from "@ngrx/store";
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
 import * as fromSettings from './reducers';
-import { PhotosEffects, SettingsEffects } from "@settings/store/effects";
+import { PhotosEffects, SettingsEffects } from '@settings/store/effects';
 
 @NgModule({
   imports: [

@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';
-import { Store } from "@ngrx/store";
+import { Store } from '@ngrx/store';
 
-import { map } from "rxjs/operators";
-import { Status, User } from "@core/models";
-import { SettingsActions } from "@settings/store/actions";
+import { map } from 'rxjs/operators';
+import { Status, User } from '@core/models';
+import { SettingsActions } from '@settings/store/actions';
 import * as fromSettings from '@settings/store/reducers';
 
 @Injectable({ providedIn: 'root' })
@@ -18,7 +18,7 @@ export class SettingsGuard implements CanActivate {
       map((user: User & Status) => {
         // load details if user is not loaded or user has an error
         if (!user || !user.loaded || user.error) {
-          this.store.dispatch(SettingsActions.loadAuthDetails())
+          this.store.dispatch(SettingsActions.loadAuthDetails());
         }
         return true;
       })

@@ -1,6 +1,6 @@
 import { combineReducers, createFeatureSelector, createSelector } from '@ngrx/store';
 
-import { RootState } from "@store/reducers";
+import { RootState } from '@store/reducers';
 import * as fromSettings from './settings.reducer';
 
 export const settingsFeatureKey = 'settings';

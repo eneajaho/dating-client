@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { RouterOutlet } from "@angular/router";
-import { Store } from "@ngrx/store";
+import { RouterOutlet } from '@angular/router';
+import { Store } from '@ngrx/store';
 
-import { routerAnimation } from "@shared/animations";
-import { AuthActions } from "@auth/store/actions";
+import { routerAnimation } from '@shared/animations';
+import { AuthActions } from '@auth/store/actions';
 import * as fromAuth from '@auth/store/reducers';
 
 @Component({
