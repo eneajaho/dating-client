@@ -7,4 +7,6 @@ export const logout = createAction('[User Logout] Logout');
 
 export const authRedirect = createAction('[Auth Guard] Auth Redirect');
 
-export const getUserLocal = createAction('[INIT] Get User From LocalStorage', props<{ user: LoginResponse }>());
+export const getUserLocal = createAction('[INIT] Get User From LocalStorage',
+  props<{ user: LoginResponse }>()
+);
