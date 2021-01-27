@@ -24,14 +24,14 @@ export class ThemeService {
   }
 
   toggle(): void {
-    if (this.activeTheme === Themes.Dark) {
+    if (this.activeTheme() === Themes.Dark) {
       this.light();
     } else {
       this.dark();
     }
   }
 
-  private get activeTheme(): string {
+  activeTheme(): string {
     const themeAttr = this.document.body.attributes.getNamedItem('data-theme')?.value;
     return themeAttr === Themes.Dark ? Themes.Dark : Themes.Light;
   }
