@@ -1,0 +1,33 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/dating-client
+    docker:
+      - image: circleci/node:10-browsers
+    steps:
+      # Checkout the code from the branch into the working_directory
+      - checkout
+
+      # Log the current branch
+      - run:
+          name: Show current branch
+          command: echo ${CIRCLE_BRANCH}
+
+      # Restore local dependencies from cache
+      - restore_cache:
+          key: dating-client-{{ .Branch }}-{{ checksum "package-lock.json" }}
+
+      # Install project dependencies
+      - run:
+          name: Install local dependencies
+          command: npm install
+
+      # Cache local dependencies if they don't exist
+      - save_cache:
+          key: dating-client-{{ .Branch }}-{{ checksum "package-lock.json" }}
+          paths:
+            - node_modules
+
+      - run: npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
+#      - run: npm run e2e -- --protractor-config=e2e/protractor-ci.conf.js
+

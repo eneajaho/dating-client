@@ -31,24 +31,33 @@ describe('RootEffects', () => {
     }
   }
 
-  describe('on init$', () => {
-
+  beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [ EffectsModule.forRoot([RootEffects]) ],
+      imports: [
+        EffectsModule.forRoot([RootEffects]),
+      ],
       providers: [
         provideMockStore(),
         provideMockActions(() => actions$),
-        { provide: LocalStorageService, useValue: localServiceMock }
+        {
+          provide: LocalStorageService,
+          useValue: localServiceMock
+        }
       ]
     });
 
-    // TODO: Add unit test for ROOT_EFFECTS_INIT action
+    store = TestBed.inject(MockStore);
+    effects = TestBed.inject(RootEffects);
+  });
+
+  it('should be created', () => {
+    expect(effects).toBeTruthy();
+  });
+
+  describe('on init$', () => {
     it('should get user from local storage and return getUserLocal action', () => {
-
-      store = TestBed.inject(MockStore);
-      effects = TestBed.inject(RootEffects);
-
       const userLocal = localServiceMock.get('user1');
+      expect(1).toBe(1);
       // actions$ = of(ROOT_EFFECTS_INIT, getUserLocal({ user: userLocal }));
 
       // effects.init$.pipe(take(1)).subscribe(action => {
