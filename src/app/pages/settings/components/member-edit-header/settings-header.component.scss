@@ -6,6 +6,11 @@
   background-repeat: no-repeat;
   background-size: cover;
   box-shadow: 0 0 10px rgba(106, 106, 106, 0.11);
+  transition: 0.2s all;
+
+  &:hover {
+    border-radius: 5px;
+  }
 }
 
 

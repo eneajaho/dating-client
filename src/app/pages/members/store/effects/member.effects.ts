@@ -9,19 +9,17 @@ import { ToastrService } from 'ngx-toastr';
 
 @Injectable()
 export class MemberEffects {
-  constructor(private actions$: Actions,
-              private toast: ToastrService,
+  constructor(private actions$: Actions, private toast: ToastrService,
               private memberService: MemberService) {}
 
-  loadMember$ = createEffect(() => this.actions$.pipe(
+  LoadMember$ = createEffect(() => this.actions$.pipe(
     ofType(MemberActions.loadMember),
-    switchMap(({ id }) => {
+    mergeMap(({ id }) => {
       return this.memberService.getMemberDetails(id).pipe(
         map(user => MembersApiActions.loadMemberSuccess({ user })),
         catchError(error => of(MembersApiActions.loadMemberFailure({ error, id }))),
       );
     })
   ));
-
 
 }
