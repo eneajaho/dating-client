@@ -1,5 +1,6 @@
 # DatingYou - [Live app](https://dating-you.netlify.app/) 
 
+[![CircleCI](https://circleci.com/gh/eneajaho/dating-client.svg?style=svg)](https://circleci.com/gh/eneajaho/dating-client)
 [![Netlify Status](https://api.netlify.com/api/v1/badges/caf7101b-f63f-4f67-94aa-e8eabe906cfa/deploy-status)](https://app.netlify.com/sites/dating-you/deploys)
 
 A dating application built on top of Angular, NGRX, Bootstrap and RxJS.
