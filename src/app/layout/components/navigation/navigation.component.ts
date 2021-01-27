@@ -2,6 +2,12 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
 import { faCog, faComments, faHeart, faSignOutAlt, faStar, faUser, faUsers } from '@fortawesome/free-solid-svg-icons';
 import { User } from '@models/User';
 
+export interface MenuItem {
+  title: string,
+  link: string,
+  icon: any,
+}
+
 @Component({
   selector: 'app-navigation',
   templateUrl: './navigation.component.html',
@@ -14,11 +20,26 @@ export class NavigationComponent {
   settingsIcon = faCog;
   userIcon = faUser;
   heartIcon = faHeart;
-  membersIcon = faUsers;
-  matchesIcon = faStar;
-  messagesIcon = faComments;
 
   showMenu = false;
+
+  menuItems: MenuItem[] = [
+    {
+      title: 'Members',
+      link: '/members/all',
+      icon: faUsers,
+    },
+    {
+      title: 'Matches',
+      link: '/matches',
+      icon: faStar,
+    },
+    {
+      title: 'Messages',
+      link: '/messages',
+      icon: faComments,
+    }
+  ];
 
   @Input() user: User | any;
 
