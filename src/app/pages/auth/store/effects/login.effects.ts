@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
-import { Router } from "@angular/router";
+import { Router } from '@angular/router';
 
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 
 import { catchError, map, switchMap, tap } from 'rxjs/operators';
-import { of } from "rxjs";
+import { of } from 'rxjs';
 
-import { LocalStorageService } from "@core/services/local-storage.service";
-import { AuthService } from "@auth/services/auth.service";
-import { AuthApiActions, LoginPageActions } from "@auth/store/actions";
+import { LocalStorageService } from '@core/services/local-storage.service';
+import { AuthService } from '@auth/services/auth.service';
+import { AuthApiActions, LoginPageActions } from '@auth/store/actions';
 
 @Injectable()
 export class LoginEffects {
@@ -26,8 +26,8 @@ export class LoginEffects {
     this.actions$.pipe(
       ofType(AuthApiActions.loginSuccess),
       tap(({ user }) => {
-        this.local.set('user', JSON.stringify(user))
-        this.router.navigate([ '/' ])
+        this.local.set('user', JSON.stringify(user));
+        this.router.navigate([ '/' ]);
       })
     ), { dispatch: false });
 

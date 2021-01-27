@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Store } from "@ngrx/store";
-import { Observable } from "rxjs";
-import { map, withLatestFrom } from "rxjs/operators";
-import { User } from "@core/models";
-import * as fromRoot from "@store/reducers";
-import * as fromSettings from "@settings/store/reducers";
-import { SettingsActions } from "@settings/store/actions";
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { map, withLatestFrom } from 'rxjs/operators';
+import { User } from '@core/models';
+import * as fromRoot from '@store/reducers';
+import * as fromSettings from '@settings/store/reducers';
+import { SettingsActions } from '@settings/store/actions';
 
 @Injectable()
 export class SettingsFacade {

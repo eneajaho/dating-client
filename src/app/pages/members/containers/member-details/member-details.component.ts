@@ -1,16 +1,16 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { map, tap } from "rxjs/operators";
-import { Store } from "@ngrx/store";
-import { Observable } from "rxjs";
+import { map, tap } from 'rxjs/operators';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 
-import { faComment } from "@fortawesome/free-regular-svg-icons";
-import { faArrowLeft, faUserCog } from "@fortawesome/free-solid-svg-icons";
+import { faComment } from '@fortawesome/free-regular-svg-icons';
+import { faArrowLeft, faUserCog } from '@fortawesome/free-solid-svg-icons';
 
 import * as fromMembers from '@members/store/reducers';
 import * as fromSettings from '@settings/store/reducers';
-import * as fromRoot from "@store/reducers";
-import { User } from "@models/User";
-import { SettingsActions } from "@settings/store/actions";
+import * as fromRoot from '@store/reducers';
+import { User } from '@models/User';
+import { SettingsActions } from '@settings/store/actions';
 
 @Component({
   selector: 'app-member-details',
@@ -50,7 +50,7 @@ export class MemberDetailsComponent implements OnInit {
           this.store.dispatch(SettingsActions.loadAuthDetails());
         }
       })
-    )
+    );
   }
 
 }

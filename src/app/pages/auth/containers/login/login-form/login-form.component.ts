@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { Credentials } from "@auth/models";
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Credentials } from '@auth/models';
 
 @Component({
   selector: 'app-login-form',
@@ -10,7 +10,7 @@ import { Credentials } from "@auth/models";
 })
 export class LoginFormComponent {
 
-  @Input() loading: boolean = false;
+  @Input() loading = false;
   @Output() submitted = new EventEmitter<Credentials>();
 
   form: FormGroup;
@@ -23,7 +23,7 @@ export class LoginFormComponent {
   }
 
   onSubmit() {
-    if (this.loading) return;
+    if (this.loading) { return; }
     if (this.form.valid) {
       this.submitted.emit(this.form.value);
     } else {

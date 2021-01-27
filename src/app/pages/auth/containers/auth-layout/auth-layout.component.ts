@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { ThemeService } from "@layout/services";
-import { RouterOutlet } from "@angular/router";
-import { routerAnimation } from "@shared/animations";
+import { ThemeService } from '@layout/services';
+import { RouterOutlet } from '@angular/router';
+import { routerAnimation } from '@shared/animations';
 
 @Component({
   selector: 'app-auth-layout',

@@ -92,7 +92,7 @@ export const selectSelectedMember = createSelector(
   selectMemberEntities,
   selectSelectedMemberId,
   (members, selectedMemberId) => {
-    return members[selectedMemberId]
+    return members[selectedMemberId];
   }
 );
 

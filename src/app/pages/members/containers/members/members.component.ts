@@ -1,11 +1,11 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { combineLatest } from "rxjs";
-import { Store } from "@ngrx/store";
+import { combineLatest } from 'rxjs';
+import { Store } from '@ngrx/store';
 
 import * as fromMembers from '@members/store/reducers';
-import { MembersPageActions } from "@members/store/actions";
-import { faFilter } from "@fortawesome/free-solid-svg-icons";
-import { map } from "rxjs/operators";
+import { MembersPageActions } from '@members/store/actions';
+import { faFilter } from '@fortawesome/free-solid-svg-icons';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-members',

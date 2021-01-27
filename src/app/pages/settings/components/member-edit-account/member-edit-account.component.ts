@@ -1,12 +1,12 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { User } from "@core/models";
-import { BehaviorSubject, Observable, Subject } from "rxjs";
-import { Store } from "@ngrx/store";
-import { takeUntil } from "rxjs/operators";
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { User } from '@core/models';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { takeUntil } from 'rxjs/operators';
 
-import * as fromSettings from "@settings/store/reducers";
-import { SettingsActions } from "@settings/store/actions";
+import * as fromSettings from '@settings/store/reducers';
+import { SettingsActions } from '@settings/store/actions';
 
 @Component({
   selector: 'app-member-edit-account',

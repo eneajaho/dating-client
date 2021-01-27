@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot } from '@angular/router';
 import { Observable, of } from 'rxjs';
-import { Store } from "@ngrx/store";
+import { Store } from '@ngrx/store';
 
-import { MemberActions } from "@members/store/actions";
-import * as fromMembers from "@members/store/reducers";
+import { MemberActions } from '@members/store/actions';
+import * as fromMembers from '@members/store/reducers';
 import * as fromAuth from '@auth/store/reducers';
-import { map } from "rxjs/operators";
+import { map } from 'rxjs/operators';
 
 @Injectable({ providedIn: 'root' })
 export class MemberGuard implements CanActivate {
@@ -26,7 +26,7 @@ export class MemberGuard implements CanActivate {
         }
         return true;
       })
-    )
+    );
   }
 
 }

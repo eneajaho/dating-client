@@ -1,8 +1,8 @@
 import { Inject, Injectable } from '@angular/core';
-import { API_URL } from "@core/tokens";
-import { HttpClient } from "@angular/common/http";
-import { Observable } from "rxjs";
-import { Photo } from "@core/models";
+import { API_URL } from '@core/tokens';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { Photo } from '@core/models';
 
 @Injectable({ providedIn: 'root' })
 export class PhotoService {

@@ -29,13 +29,12 @@ ng serve -o
 
 ### Main folder structure
     .
-    ├── core                      # Core Module manages global services, interceptors and other configs.
+    ├── core                      # Core folder includes global services, interceptors and other configs.
     │   ├── configs
     │   ├── guards
     │   ├── interceptors
     │   ├── models
-    │   ├── services
-    │   └── core.module.ts
+    │   └── services
     ├── layout                    # Layout Module manages navigation components, layouts and theme service.
     │   ├── components
     │   ├── containers
@@ -80,15 +79,19 @@ ng serve -o
 - Private messages (using SignalR) functionality
 - Add animations - 35%
 - SSR (Angular Universal)
-- Testing 
-  - Convert to Jest Testing
-  - Remove Karma
+- Testing
+  - ~~Convert to Jest Testing~~
+  - ~~Remove Karma~~
   - Add tests
     - Test Store
+      - Test Actions
+      - Test Reducers
+      - Test Effects
     - Test Components
-    - Test Directives/Pipes
-    - Test Services
-    - Test Guards/Interceptors
+    - Test Directives
+    - Test Pipes
+    - ~~Test Services~~
+    - ~~Test Guards/Interceptors~~
 - ~~Filter functionality~~
 - ~~Stricter type checking~~
 - ~~Upgrade to Angular 11~~

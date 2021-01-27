@@ -1,10 +1,10 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { Observable } from "rxjs";
-import { User } from "@models/User";
+import { Observable } from 'rxjs';
+import { User } from '@models/User';
 
-import { SettingsFacade } from "./settings.facade";
-import { routerAnimation } from "@shared/animations";
-import { RouterOutlet } from "@angular/router";
+import { SettingsFacade } from './settings.facade';
+import { routerAnimation } from '@shared/animations';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-account-settings',

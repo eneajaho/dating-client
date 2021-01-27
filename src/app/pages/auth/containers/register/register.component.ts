@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component, OnDestroy } from '@angular/core';
-import { Store } from "@ngrx/store";
-import { Register } from "@auth/models";
+import { Store } from '@ngrx/store';
+import { Register } from '@auth/models';
 
 import * as fromAuth from '@auth/store/reducers';
-import { RegisterPageActions } from "@auth/store/actions";
+import { RegisterPageActions } from '@auth/store/actions';
 
 @Component({
   selector: 'app-register',

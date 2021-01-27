@@ -1,9 +1,9 @@
 import { ModuleWithProviders, NgModule, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { ToastrModule } from "ngx-toastr";
+import { ToastrModule } from 'ngx-toastr';
 
-import { ErrorInterceptorProvider, AuthInterceptorProvider } from "./interceptors";
+import { ErrorInterceptorProvider, AuthInterceptorProvider } from './interceptors';
 
 @NgModule({
   imports: [

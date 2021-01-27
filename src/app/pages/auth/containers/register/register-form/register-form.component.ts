@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
-import { Register } from "@auth/models";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { passwordValidation } from "../validators";
+import { Register } from '@auth/models';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { passwordValidation } from '../validators';
 
 @Component({
   selector: 'app-register-form',
@@ -11,11 +11,11 @@ import { passwordValidation } from "../validators";
 })
 export class RegisterFormComponent {
 
-  @Input() loading: boolean = false;
+  @Input() loading = false;
   @Output() submitted = new EventEmitter<Register>();
 
   form: FormGroup;
-  bsConfig = { dateInputFormat: 'DD/MM/YYYY', containerClass: 'theme-dark-blue' }
+  bsConfig = { dateInputFormat: 'DD/MM/YYYY', containerClass: 'theme-dark-blue' };
 
   constructor(private fb: FormBuilder) {
     this.form = this.fb.group({

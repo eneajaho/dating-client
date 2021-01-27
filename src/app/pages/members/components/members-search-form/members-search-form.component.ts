@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
-import { FormBuilder, Validators } from "@angular/forms";
-import { fadeIdAnimation } from "@shared/animations";
-import { MembersFilter } from "@core/models";
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { FormBuilder, Validators } from '@angular/forms';
+import { fadeIdAnimation } from '@shared/animations';
+import { MembersFilter } from '@core/models';
 
 type Sections = 'age' | 'gender' | 'lastActive';
 
@@ -15,7 +15,7 @@ type Sections = 'age' | 'gender' | 'lastActive';
 })
 export class MembersSearchFormComponent implements OnInit {
 
-  @Input() theme: string = 'dark';
+  @Input() theme = 'dark';
   @Input() activeFilters: MembersFilter | null = null;
   @Output() submitted = new EventEmitter<MembersFilter>();
 
