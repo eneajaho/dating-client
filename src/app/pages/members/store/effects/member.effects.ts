@@ -1,5 +1,5 @@
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, map, switchMap } from 'rxjs/operators';
+import { catchError, map, mergeMap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { MemberService } from '@core/services';
@@ -10,7 +10,8 @@ import { ToastrService } from 'ngx-toastr';
 @Injectable()
 export class MemberEffects {
   constructor(private actions$: Actions, private toast: ToastrService,
-              private memberService: MemberService) {}
+              private memberService: MemberService) {
+  }
 
   LoadMember$ = createEffect(() => this.actions$.pipe(
     ofType(MemberActions.loadMember),
