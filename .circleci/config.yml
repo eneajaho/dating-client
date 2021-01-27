@@ -4,6 +4,9 @@ jobs:
     working_directory: ~/dating-client
     docker:
       - image: circleci/node:10-browsers
+
+    parallelism: 4
+
     steps:
       # Checkout the code from the branch into the working_directory
       - checkout
@@ -28,6 +31,9 @@ jobs:
           paths:
             - node_modules
 
-      - run: npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
+      # Run all unit test
+      - run:
+         name: Run unit tests
+         command: npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
 #      - run: npm run e2e -- --protractor-config=e2e/protractor-ci.conf.js
 
