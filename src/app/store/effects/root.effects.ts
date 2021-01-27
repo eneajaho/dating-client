@@ -13,11 +13,10 @@ export class RootEffects {
   constructor(private actions$: Actions, private local: LocalStorageService) {}
 
   init$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(ROOT_EFFECTS_INIT),
-      switchMap(() => {
-        const localUser = this.local.get('user');
-        const user = localUser ? JSON.parse(localUser) : null;
-        return of(AuthActions.getUserLocal({ user }));
-      })));
+    this.actions$.pipe(ofType(ROOT_EFFECTS_INIT), switchMap(() => {
+      const localUser = this.local.get('user');
+      const user = localUser ? JSON.parse(localUser) : null;
+      return of(AuthActions.getUserLocal({ user }));
+    }))
+  );
 }
