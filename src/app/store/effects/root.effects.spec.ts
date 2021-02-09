@@ -11,8 +11,8 @@ import { MockStore, provideMockStore } from '@ngrx/store/testing';
 interface LocalServiceMock {
   users: {
     [userId: string]: LoginResponse
-  },
-  get: (user: string) => LoginResponse
+  };
+  get: (user: string) => LoginResponse;
 }
 
 describe('RootEffects', () => {
@@ -22,14 +22,14 @@ describe('RootEffects', () => {
 
   const localServiceMock: LocalServiceMock = {
     users: {
-      'user': { id: 1, name: 'Test1', token: 'test' },
-      'user2': { id: 2, name: 'Test2', token: 'test' },
+      user: { id: 1, name: 'Test1', token: 'test' },
+      user2: { id: 2, name: 'Test2', token: 'test' },
     },
     get: (user: string): LoginResponse => {
       const { users } = localServiceMock;
       return users[user] ?? null;
     }
-  }
+  };
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -68,6 +68,6 @@ describe('RootEffects', () => {
       // });
     });
 
-  })
+  });
 
 });

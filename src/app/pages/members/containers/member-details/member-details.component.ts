@@ -11,6 +11,7 @@ import * as fromSettings from '@settings/store/reducers';
 import * as fromRoot from '@store/reducers';
 import { User } from '@models/User';
 import { SettingsActions } from '@settings/store/actions';
+import { Status } from '@core/models';
 
 @Component({
   selector: 'app-member-details',
@@ -20,7 +21,7 @@ import { SettingsActions } from '@settings/store/actions';
 })
 export class MemberDetailsComponent implements OnInit {
 
-  details$: Observable<User> | undefined;
+  details$: Observable<User & Status> | undefined;
   myProfile$: Observable<boolean> | undefined;
 
   sendIcon = faComment;

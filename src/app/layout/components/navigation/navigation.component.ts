@@ -3,9 +3,9 @@ import { faCog, faComments, faHeart, faSignOutAlt, faStar, faUser, faUsers } fro
 import { User } from '@models/User';
 
 export interface MenuItem {
-  title: string,
-  link: string,
-  icon: any,
+  title: string;
+  link: string;
+  icon: any;
 }
 
 @Component({

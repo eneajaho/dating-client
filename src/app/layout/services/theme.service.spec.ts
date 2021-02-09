@@ -18,7 +18,7 @@ describe('ThemeService', () => {
         expect(theme).toBe(Themes.Dark);
         expect(theme).not.toBe(Themes.Light);
         done();
-      })
+      });
     });
   });
 
@@ -29,7 +29,7 @@ describe('ThemeService', () => {
         expect(theme).toBe(Themes.Light);
         expect(theme).not.toBe(Themes.Dark);
         done();
-      })
+      });
     });
   });
 
@@ -43,7 +43,7 @@ describe('ThemeService', () => {
         expect(theme).toBe(Themes.Light);
         expect(theme).not.toBe(Themes.Dark);
         done();
-      })
+      });
     });
   });
 

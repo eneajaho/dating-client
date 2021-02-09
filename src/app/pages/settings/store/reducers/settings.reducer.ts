@@ -1,11 +1,11 @@
 import { createReducer, on } from '@ngrx/store';
 import { PhotosActions, SettingsActions } from '@settings/store/actions';
-import { User } from '@core/models';
+import { Status, User } from '@core/models';
 
 export const userDetailsFeatureKey = 'userDetails';
 
 export interface State {
-  user: User;
+  user: User & Status;
   loading: boolean;
   loaded: boolean;
   error: string | null;

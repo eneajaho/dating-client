@@ -45,7 +45,8 @@ describe('Error Interceptor', () => {
    * will be wrapped in an HttpErrorResponse to provide additional
    * context about the state of the HTTP layer when the error occurred.
    * The error property will contain either a wrapped Error object
-   * or the error response returned from the server. */
+   * or the error response returned from the server.
+   */
   describe('with error that is instanceof HttpErrorResponse', () => {
 
     describe('with error status: 0', () => {
@@ -152,7 +153,7 @@ describe('Error Interceptor', () => {
         let modelStateErrors = '';
         if (typeof errors === 'object') {
           for (const key in errors) {
-              // @ts-ignore
+            // @ts-ignore
             modelStateErrors += errors[key] + '\n';
           }
         }

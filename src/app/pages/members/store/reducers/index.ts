@@ -30,10 +30,10 @@ export const selectMemberEntitiesState = createSelector(
 );
 
 export const {
-  selectIds: selectMemberIds,
+  // selectIds: selectMemberIds,
   selectEntities: selectMemberEntities,
   selectAll: selectAllMembers,
-  selectTotal: selectTotalMembers,
+  // selectTotal: selectTotalMembers,
 } = adapter.getSelectors(selectMemberEntitiesState);
 
 
@@ -59,27 +59,17 @@ export const selectMembersPagination = createSelector(
   fromMembers.getPagination
 );
 
-export const selectMembersPaginationLoading = createSelector(
-  selectMembersPagination,
-  (state) => state?.loading
-);
-
 export const selectMembersHasMorePages = createSelector(
   selectMembersPagination,
   (state) => state.currentPage < state.totalPages
 );
 
-export const selectMembersPaginationError = createSelector(
-  selectMembersPagination,
-  (state) => state?.error
-);
 
 /** Members Filters */
 export const selectMembersFilters = createSelector(
   selectMemberEntitiesState,
   fromMembers.getFilters
 );
-
 
 
 /** Selected Member Selectors */
