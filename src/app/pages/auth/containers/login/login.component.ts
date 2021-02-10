@@ -8,7 +8,6 @@ import { clearLoginError, login } from '@auth/store/actions/auth.actions';
 @Component({
   selector: 'auth-login',
   templateUrl: './login.component.html',
-  styles: [` h2 { color: var(--text-color)  } `],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LoginComponent implements OnDestroy {

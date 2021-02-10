@@ -18,4 +18,5 @@ export class AuthService {
     const path = `${this.api}/auth/login`;
     return this.http.post<LoginResponse>(path, credentials);
   }
+
 }

@@ -23,8 +23,6 @@
   }
 }
 
-
-
 .btn-light {
   color: var(--btn-light-text-color);
   background-color: var(--btn-light-bg-color);
@@ -35,4 +33,11 @@
     background-color: var(--btn-light-bg-color);
     border-color: var(--btn-light-bg-color);
   }
+}
+
+
+.auth-btn button[type="submit"] {
+    font-size: 18px;
+    padding: 6px 30px;
+    box-shadow: 0 0 10px rgba(107, 15, 192, 0.2);
 }

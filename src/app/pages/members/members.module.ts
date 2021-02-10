@@ -36,30 +36,31 @@ import { CommonModule } from '@angular/common';
     MembersSearchComponent,
     MembersSearchFormComponent,
   ],
-    imports: [
-        MembersRoutingModule,
-        MembersStoreModule,
+  imports: [
+    MembersRoutingModule,
+    MembersStoreModule,
 
-        // for the moment Settings Store is loaded also here because of profile page
-        // will be changed later, because another profile page will be created
-        SettingsStoreModule,
+    // for the moment Settings Store is loaded also here because of profile page
+    // will be changed later, because another profile page will be created
+    SettingsStoreModule,
 
-        TagInputModule,
-        CarouselModule.forRoot(),
-        TabsModule.forRoot(),
-        BsDropdownModule.forRoot({
-            isAnimated: true,
-            autoClose: true
-        }),
-        GoBackModule,
-        TimeAgoModule,
-        SpinnerModule,
-        FontAwesomeModule,
-        CommonModule,
-        ErrorAlertModule,
-        ReactiveFormsModule,
-    ]
+    TagInputModule,
+    CarouselModule.forRoot(),
+    TabsModule.forRoot(),
+    BsDropdownModule.forRoot({
+      isAnimated: true,
+      autoClose: true
+    }),
+    GoBackModule,
+    TimeAgoModule,
+    SpinnerModule,
+    FontAwesomeModule,
+    CommonModule,
+    ErrorAlertModule,
+    ReactiveFormsModule,
+  ]
 })
-export class MembersModule {}
+export class MembersModule {
+}
 
 

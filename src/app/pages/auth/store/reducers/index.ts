@@ -7,17 +7,17 @@ import * as fromRegisterPage from '@auth/store/reducers/register-page.reducer';
 
 export const authFeatureKey = 'auth';
 
-interface AuthStateObj {
+interface AuthFeatureState {
   [fromAuth.statusFeatureKey]: fromAuth.State;
   [fromLoginPage.loginPageFeatureKey]: fromLoginPage.State;
   [fromRegisterPage.registerPageFeatureKey]: fromRegisterPage.State;
 }
 
 export interface AuthState extends RootState {
-  [authFeatureKey]:  AuthStateObj
+  [authFeatureKey]:  AuthFeatureState
 }
 
-export const reducer = combineReducers({
+export const authFeatureReducer = combineReducers({
   [fromAuth.statusFeatureKey]: fromAuth.reducer,
   [fromLoginPage.loginPageFeatureKey]: fromLoginPage.reducer,
   [fromRegisterPage.registerPageFeatureKey]: fromRegisterPage.reducer
@@ -25,8 +25,9 @@ export const reducer = combineReducers({
 
 
 /** Auth Selectors */
+
 /** Auth State */
-export const selectAuthState = createFeatureSelector<AuthState, AuthStateObj>(
+export const selectAuthState = createFeatureSelector<AuthState, AuthFeatureState>(
   authFeatureKey
 );
 

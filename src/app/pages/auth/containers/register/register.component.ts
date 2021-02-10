@@ -8,7 +8,6 @@ import { clearRegisterError, register } from '@auth/store/actions/auth.actions';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styles: [` h3, p { color: var(--text-color)  } `],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RegisterComponent implements OnDestroy {

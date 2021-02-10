@@ -1,6 +1,6 @@
 <h2 class="font-weight-bold mb-3">Login in Dating</h2>
 
-<ng-container *ngIf="vm$ | async as vm" >
+<ng-container *ngIf="vm$ | async as vm">
   <app-login-form [loading]="vm.loading" (submitted)="onLogin($event)">
     <!--  used content projection-->
     <span id="type">Login now</span>
@@ -17,3 +17,9 @@
     Not registered yet? Register now!
   </a>
 </div>
+
+<style>
+  h2 {
+    color: var(--text-color)
+  }
+</style>
