@@ -19,7 +19,7 @@ export class RegisterEffects {
       switchMap(({ credentials }) =>
         this.auth.register(credentials).pipe(
           map(() => {
-            this.toast.success('', 'You were registered successfully!');
+            this.toast.success('You were successfully registered!');
             this.router.navigate([ '/auth/login' ]);
             return registerSuccess();
           }),

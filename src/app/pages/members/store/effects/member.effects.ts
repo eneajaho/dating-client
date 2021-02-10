@@ -5,13 +5,10 @@ import { Injectable } from '@angular/core';
 import { MemberService } from '@core/services/member.service';
 
 import { MemberActions, MembersApiActions } from '@members/store/actions';
-import { ToastrService } from 'ngx-toastr';
 
 @Injectable()
 export class MemberEffects {
-  constructor(private actions$: Actions, private toast: ToastrService,
-              private memberService: MemberService) {
-  }
+  constructor(private actions$: Actions, private memberService: MemberService) {}
 
   LoadMember$ = createEffect(() => this.actions$.pipe(
     ofType(MemberActions.loadMember),

@@ -9,7 +9,9 @@ import { AuthInterceptorProvider } from '@core/interceptors/auth.interceptor';
 @NgModule({
   imports: [
     CommonModule,
-    ToastrModule.forRoot(),
+    ToastrModule.forRoot({
+      positionClass: 'toast-bottom-right'
+    }),
   ]
 })
 

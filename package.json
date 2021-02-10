@@ -36,7 +36,7 @@
     "jest-marbles": "^2.5.1",
     "ngx-bootstrap": "^6.2.0",
     "ngx-chips": "^2.2.0",
-    "ngx-toastr": "^12.0.1",
+    "ngx-toastr": "^13.2.0",
     "rxjs": "~6.6.3",
     "ts-jest": "^26.4.4",
     "tslib": "^2.0.0",

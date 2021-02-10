@@ -29,7 +29,7 @@ export class PhotosEffects {
       return this.photoService.setMainPhoto(userId, photoId).pipe(
         map(() => PhotosActions.setMainPhotoSuccess({ photoId })),
         catchError(error => {
-          this.toast.warning('', error);
+          this.toast.warning(error);
           return of(PhotosActions.setMainPhotoFailure({ error }));
         })
       );
@@ -42,7 +42,7 @@ export class PhotosEffects {
       return this.photoService.deletePhoto(userId, photoId).pipe(
         map(() => PhotosActions.deletePhotoSuccess({ photoId })),
         catchError(error => {
-          this.toast.warning('', error);
+          this.toast.warning(error);
           return of(PhotosActions.deletePhotoFailure({ error }));
         })
       );

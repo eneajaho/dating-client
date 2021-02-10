@@ -42,7 +42,7 @@ export class SettingsEffects {
     exhaustMap(({ user }) => {
       return this.memberService.editMember(user).pipe(
         map(user => {
-          this.toast.success('', 'Profile updated successfully!');
+          this.toast.success('Profile was successfully updated!');
           return SettingsActions.editAuthDetailsSuccess({ user });
         }),
         catchError(error => {
