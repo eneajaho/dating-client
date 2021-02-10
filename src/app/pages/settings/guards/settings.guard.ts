@@ -8,6 +8,7 @@ import { Status, User } from '@core/models';
 import { SettingsActions } from '@settings/store/actions';
 import * as fromSettings from '@settings/store/reducers';
 import { SettingsState } from '@settings/store/reducers';
+import { loadEntity } from '@shared/helpers';
 
 @Injectable({ providedIn: 'root' })
 export class SettingsGuard implements CanActivate {
@@ -17,10 +18,7 @@ export class SettingsGuard implements CanActivate {
   canActivate(next: ActivatedRouteSnapshot): Observable<boolean> {
     return this.store.select(fromSettings.selectUserDetails).pipe(
       map((user: User & Status) => {
-        // load details if user is not loaded or user has an error
-        if (!user || !user.loaded || user.error) {
-          this.store.dispatch(SettingsActions.loadAuthDetails());
-        }
+        loadEntity(user, () => this.store.dispatch(SettingsActions.loadAuthDetails()))
         return true;
       })
     );

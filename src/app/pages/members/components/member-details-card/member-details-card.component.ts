@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, Input, OnChanges } from '@angular/c
 import { User } from '@models/User';
 import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
 import { faCalendarAlt } from '@fortawesome/free-regular-svg-icons';
+import { Status } from '@core/models';
 
 @Component({
   selector: 'app-member-details-card',
@@ -15,17 +16,10 @@ export class MemberDetailsCardComponent implements OnChanges {
 
   colors = [ 'primary', 'danger', 'info', 'success' ];
 
-  covers = [
-    'https://i.imgur.com/6hU9Fb2.png',
-    'https://i.imgur.com/t6xCnGT.jpg',
-    'https://i.imgur.com/whSVWhd.jpg',
-    'https://i.imgur.com/eiyHiMi.jpg',
-  ];
-
   locationIcon = faMapMarkerAlt;
   calendarIcon = faCalendarAlt;
 
-  @Input() user!: User;
+  @Input() user!: User & Status;
 
   ngOnChanges() {
     this.interests = this.user?.interests?.split(',');
@@ -33,8 +27,9 @@ export class MemberDetailsCardComponent implements OnChanges {
 
   getCover() {
     return {
-      'background-image': `linear-gradient(0, #000000e8 10%, #6b0fc02b 50%),
-                                  url(${ this.covers[(this.user?.id ?? 1) % 4] })`
+      'background-image': `
+        linear-gradient(0, #000000e8 10%, #6b0fc02b 50%),
+        url(https://i.imgur.com/t6xCnGT.jpg)`
     };
   }
 

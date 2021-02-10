@@ -5,14 +5,14 @@ import { AuthState, selectAuthenticatedUserId } from '@auth/store/reducers';
 
 export const membersFeatureKey = 'members';
 
-interface MembersStateObj {
+interface MembersFeatureState {
   [fromMembers.membersEntityFeatureKey]: fromMembers.State;
 }
 
 // State will extend only AuthState which is also extending RootState,
 // so there is no need to extend RootState
 export interface MembersState extends AuthState {
-  [membersFeatureKey]: MembersState;
+  [membersFeatureKey]: MembersFeatureState;
 }
 
 export const reducer = combineReducers({
@@ -20,7 +20,7 @@ export const reducer = combineReducers({
 });
 
 
-export const selectMembersState = createFeatureSelector<MembersState, MembersStateObj>(
+export const selectMembersState = createFeatureSelector<MembersState, MembersFeatureState>(
   membersFeatureKey
 );
 
@@ -102,10 +102,9 @@ export const selectMemberError = createSelector(
 );
 
 export const selectIsMyProfile = createSelector(
-  selectSelectedMemberId,
   selectAuthenticatedUserId,
-  (selectedMemberId, authUserId) => {
-    return selectedMemberId === authUserId;
+  (authUserId: number | undefined, props: { userId: number }) => {
+    return authUserId === props.userId;
   }
 );
 

@@ -9,7 +9,7 @@
           Go back
         </button>
 
-        <button *ngIf="myProfile$ | async; else sendMessage"
+        <button *ngIf="isLoggedInUserProfile; else sendMessage"
                 routerLink="/settings" class="btn btn-primary">
           <fa-icon [icon]="userEditIcon" class="mr-1"></fa-icon>
           Edit Profile
@@ -22,7 +22,7 @@
         </ng-template>
       </div>
 
-      <div *ngIf="details$ | async as user">
+      <div *ngIf="userDetails$ | async as user">
         <app-member-details-card
           [user]="user">
         </app-member-details-card>
