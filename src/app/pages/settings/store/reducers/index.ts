@@ -5,12 +5,12 @@ import * as fromSettings from './settings.reducer';
 
 export const settingsFeatureKey = 'settings';
 
-export interface SettingsState {
+interface SettingsStateObj {
   [fromSettings.userDetailsFeatureKey]: fromSettings.State;
 }
 
-export interface State extends RootState {
-  [settingsFeatureKey]: SettingsState;
+export interface SettingsState extends RootState {
+  [settingsFeatureKey]: SettingsStateObj;
 }
 
 export const reducer = combineReducers({
@@ -21,7 +21,7 @@ export const reducer = combineReducers({
 
 
 /** Settings State */
-export const selectSettingsState = createFeatureSelector<State, SettingsState>(
+export const selectSettingsState = createFeatureSelector<SettingsState, SettingsStateObj>(
   settingsFeatureKey
 );
 

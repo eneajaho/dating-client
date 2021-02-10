@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MainLayoutComponent } from '@layout/containers';
-import { AuthGuard, NonAuthGuard } from '@core/guards';
-import { NotFoundComponent, NotFoundModule } from '@shared/components';
+import { NonAuthGuard } from '@core/guards/non-auth.guard';
+import { AuthGuard } from '@core/guards/auth.guard';
+import { NotFoundComponent } from '@layout/components/not-found.component';
 
 export const routes: Routes = [
   {
@@ -38,7 +39,6 @@ export const routes: Routes = [
 
 @NgModule({
   imports: [
-    NotFoundModule,
     RouterModule.forRoot(routes,
       { relativeLinkResolution: 'legacy' }
     ),

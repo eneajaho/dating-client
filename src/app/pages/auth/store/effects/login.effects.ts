@@ -8,23 +8,23 @@ import { of } from 'rxjs';
 
 import { LocalStorageService } from '@core/services/local-storage.service';
 import { AuthService } from '@auth/services/auth.service';
-import { AuthApiActions, LoginPageActions } from '@auth/store/actions';
+import { login, loginFailure, loginSuccess } from '@auth/store/actions/auth.actions';
 
 @Injectable()
 export class LoginEffects {
 
   login$ = createEffect(() =>
-    this.actions$.pipe(ofType(LoginPageActions.login),
+    this.actions$.pipe(ofType(login),
       switchMap(({ credentials }) =>
         this.auth.login(credentials).pipe(
-          map(user => AuthApiActions.loginSuccess({ user })),
-          catchError(error => of(AuthApiActions.loginFailure({ error }))),
+          map(user => loginSuccess({ user })),
+          catchError(error => of(loginFailure({ error }))),
         ))
     ));
 
   loginSuccess$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(AuthApiActions.loginSuccess),
+      ofType(loginSuccess),
       tap(({ user }) => {
         this.local.set('user', JSON.stringify(user));
         this.router.navigate([ '/' ]);

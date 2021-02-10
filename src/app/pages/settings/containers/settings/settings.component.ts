@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { User } from '@models/User';
 
 import { SettingsFacade } from './settings.facade';
-import { routerAnimation } from '@shared/animations';
+import { routerAnimation } from '@shared/animations/router.animation';
 import { RouterOutlet } from '@angular/router';
 
 @Component({

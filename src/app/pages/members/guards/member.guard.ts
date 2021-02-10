@@ -4,14 +4,14 @@ import { Observable, of } from 'rxjs';
 import { Store } from '@ngrx/store';
 
 import { MemberActions } from '@members/store/actions';
-import * as fromMembers from '@members/store/reducers';
-import * as fromAuth from '@auth/store/reducers';
 import { map } from 'rxjs/operators';
+import { MembersState } from '@members/store/reducers';
+import { selectAuthenticatedUserId } from '@auth/store/reducers';
 
 @Injectable({ providedIn: 'root' })
 export class MemberGuard implements CanActivate {
 
-  constructor(private store: Store<fromMembers.State & fromAuth.State>) {}
+  constructor(private store: Store<MembersState>) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean>  {
 
@@ -19,7 +19,7 @@ export class MemberGuard implements CanActivate {
     if (!id) { return of(true); }
 
     // to prevent adding user details in members entities
-    return this.store.select(fromAuth.selectUserId).pipe(
+    return this.store.select(selectAuthenticatedUserId).pipe(
       map(userId => {
         if (userId !== id) {
           this.store.dispatch(MemberActions.loadMember({ id }));

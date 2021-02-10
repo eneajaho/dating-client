@@ -1,7 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { ThemeService } from '@layout/services';
 import { RouterOutlet } from '@angular/router';
-import { routerAnimation } from '@shared/animations';
+import { routerAnimation } from '@shared/animations/router.animation';
 
 @Component({
   selector: 'app-auth-layout',
@@ -11,10 +10,6 @@ import { routerAnimation } from '@shared/animations';
   animations: [ routerAnimation ]
 })
 export class AuthLayoutComponent {
-
-  constructor(private layout: ThemeService) {
-    layout.light();
-  }
 
   prepareRoute(outlet: RouterOutlet): string {
     return outlet?.activatedRouteData?.animation;

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, TemplateRef } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, Optional, TemplateRef } from '@angular/core';
 import { faHome } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -33,6 +33,6 @@ export class NotFoundComponent {
 
   homeIcon = faHome;
 
-  @Input() templateOutlet: TemplateRef<any> | undefined;
+  @Optional() @Input() templateOutlet?: TemplateRef<any>;
 
 }

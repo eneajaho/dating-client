@@ -7,14 +7,14 @@ import * as fromRegisterPage from '@auth/store/reducers/register-page.reducer';
 
 export const authFeatureKey = 'auth';
 
-export interface AuthState {
+interface AuthStateObj {
   [fromAuth.statusFeatureKey]: fromAuth.State;
   [fromLoginPage.loginPageFeatureKey]: fromLoginPage.State;
   [fromRegisterPage.registerPageFeatureKey]: fromRegisterPage.State;
 }
 
-export interface State extends RootState {
-  [authFeatureKey]: AuthState;
+export interface AuthState extends RootState {
+  [authFeatureKey]:  AuthStateObj
 }
 
 export const reducer = combineReducers({
@@ -26,7 +26,7 @@ export const reducer = combineReducers({
 
 /** Auth Selectors */
 /** Auth State */
-export const selectAuthState = createFeatureSelector<State, AuthState>(
+export const selectAuthState = createFeatureSelector<AuthState, AuthStateObj>(
   authFeatureKey
 );
 
@@ -38,7 +38,7 @@ export const selectAuthStatusState = createSelector(
   (state) => state[fromAuth.statusFeatureKey]
 );
 
-export const selectUser = createSelector(
+export const selectAuthenticatedUser = createSelector(
   selectAuthStatusState,
   fromAuth.getAuth
 );
@@ -48,7 +48,7 @@ export const selectAuthToken = createSelector(
   fromAuth.getToken
 );
 
-export const selectUserId = createSelector(
+export const selectAuthenticatedUserId = createSelector(
   selectAuthStatusState,
   fromAuth.getUserId
 );
@@ -66,29 +66,8 @@ export const selectLoginPageState = createSelector(
     (state) => state[fromLoginPage.loginPageFeatureKey]
 );
 
-export const selectLoginPageError = createSelector(
-  selectLoginPageState,
-  fromLoginPage.getError
-);
-
-export const selectLoginPagePending = createSelector(
-  selectLoginPageState,
-  fromLoginPage.getLoading
-);
-
-
 /** Register Page */
 export const selectRegisterPageState = createSelector(
   selectAuthState,
     (state) => state[fromRegisterPage.registerPageFeatureKey]
-);
-
-export const selectRegisterPageError = createSelector(
-  selectRegisterPageState,
-  fromRegisterPage.getError
-);
-
-export const selectRegisterPagePending = createSelector(
-  selectRegisterPageState,
-  fromRegisterPage.getLoading
 );

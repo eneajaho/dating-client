@@ -3,6 +3,7 @@ import { combineLatest } from 'rxjs';
 import { Store } from '@ngrx/store';
 
 import * as fromMembers from '@members/store/reducers';
+import { MembersState } from '@members/store/reducers';
 import { MembersPageActions } from '@members/store/actions';
 import { faFilter } from '@fortawesome/free-solid-svg-icons';
 import { map } from 'rxjs/operators';
@@ -29,7 +30,7 @@ export class MembersComponent {
 
   filterIcon = faFilter;
 
-  constructor(private store: Store<fromMembers.State>) {}
+  constructor(private store: Store<MembersState>) {}
 
   loadMore(): void {
     this.store.dispatch(MembersPageActions.loadMoreMembers());

@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { IQueryParams, Pagination, User } from '@core/models';
+import { Pagination, User } from '@core/models';
 
 export const loadMembersSuccess = createAction(
   '[Members/API] Load Members Success',

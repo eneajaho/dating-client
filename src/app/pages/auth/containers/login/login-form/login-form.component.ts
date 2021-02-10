@@ -13,14 +13,12 @@ export class LoginFormComponent {
   @Input() loading = false;
   @Output() submitted = new EventEmitter<Credentials>();
 
-  form: FormGroup;
+  form: FormGroup = this.fb.group({
+    username: [ '', Validators.required ],
+    password: [ '', [ Validators.required, Validators.minLength(8) ] ]
+  });
 
-  constructor(private fb: FormBuilder) {
-    this.form = this.fb.group({
-      username: [ '', Validators.required ],
-      password: [ '', [ Validators.required, Validators.minLength(8) ] ]
-    });
-  }
+  constructor(private fb: FormBuilder) { }
 
   onSubmit() {
     if (this.loading) { return; }

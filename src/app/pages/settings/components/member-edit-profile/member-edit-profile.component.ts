@@ -6,6 +6,7 @@ import { Store } from '@ngrx/store';
 import { User } from '@core/models';
 
 import * as fromSettings from '@settings/store/reducers';
+import { SettingsState } from '@settings/store/reducers';
 import { SettingsActions } from '@settings/store/actions';
 
 @Component({
@@ -31,7 +32,7 @@ export class MemberEditProfileComponent implements OnInit, OnDestroy {
 
   private destroy$ = new Subject<boolean>();
 
-  constructor(private store: Store<fromSettings.State>, private fb: FormBuilder) {
+  constructor(private store: Store<SettingsState>, private fb: FormBuilder) {
   }
 
   ngOnInit() {

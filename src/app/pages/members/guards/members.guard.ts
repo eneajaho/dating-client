@@ -4,12 +4,13 @@ import { Store } from '@ngrx/store';
 import { map, take, tap } from 'rxjs/operators';
 import { MembersPageActions } from '@members/store/actions';
 import * as fromMembers from '@members/store/reducers';
+import { MembersState } from '@members/store/reducers';
 import { combineLatest } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class MembersGuard implements CanActivate {
 
-  constructor(private store: Store<fromMembers.State>) {}
+  constructor(private store: Store<MembersState>) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     return combineLatest([

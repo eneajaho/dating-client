@@ -5,11 +5,12 @@ import { Observable } from 'rxjs';
 import { map, take } from 'rxjs/operators';
 
 import * as fromAuth from '@auth/store/reducers';
+import { AuthState } from '@auth/store/reducers';
 
 @Injectable({ providedIn: 'root' })
 export class NonAuthGuard implements CanActivate {
 
-  constructor(private store: Store<fromAuth.State>, private router: Router,
+  constructor(private store: Store<AuthState>, private router: Router,
               private ngZone: NgZone) { }
 
   canActivate(): Observable<boolean> {

@@ -1,17 +1,17 @@
 import { combineReducers, createFeatureSelector, createSelector, } from '@ngrx/store';
 import * as fromMembers from '@members/store/reducers/members.reducers';
 import { adapter } from '@members/store/reducers/members.reducers';
-import * as fromAuth from '@auth/store/reducers';
+import { AuthState, selectAuthenticatedUserId } from '@auth/store/reducers';
 
 export const membersFeatureKey = 'members';
 
-export interface MembersState {
+interface MembersStateObj {
   [fromMembers.membersEntityFeatureKey]: fromMembers.State;
 }
 
-// State will extend only fromAuth.State which is also extending RootState,
+// State will extend only AuthState which is also extending RootState,
 // so there is no need to extend RootState
-export interface State extends fromAuth.State {
+export interface MembersState extends AuthState {
   [membersFeatureKey]: MembersState;
 }
 
@@ -20,7 +20,7 @@ export const reducer = combineReducers({
 });
 
 
-export const selectMembersState = createFeatureSelector<State, MembersState>(
+export const selectMembersState = createFeatureSelector<MembersState, MembersStateObj>(
   membersFeatureKey
 );
 
@@ -103,7 +103,7 @@ export const selectMemberError = createSelector(
 
 export const selectIsMyProfile = createSelector(
   selectSelectedMemberId,
-  fromAuth.selectUserId,
+  selectAuthenticatedUserId,
   (selectedMemberId, authUserId) => {
     return selectedMemberId === authUserId;
   }

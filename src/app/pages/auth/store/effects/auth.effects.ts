@@ -5,8 +5,8 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 
 import { tap } from 'rxjs/operators';
 
-import { LocalStorageService } from '@core/services';
-import { AuthActions } from '@auth/store/actions';
+import { LocalStorageService } from '@core/services/local-storage.service';
+import { logout, redirectToAuth } from '@auth/store/actions/auth.actions';
 
 @Injectable()
 export class AuthEffects {
@@ -16,14 +16,14 @@ export class AuthEffects {
 
   RedirectToAuthPage$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(AuthActions.authRedirect),
+      ofType(redirectToAuth),
       tap(() => this.router.navigate([ '/auth' ]))
     ), { dispatch: false }
   );
 
   Logout$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(AuthActions.logout),
+      ofType(logout),
       tap(() => {
         this.local.remove('user');
         this.router.navigate([ '/auth/login' ]);

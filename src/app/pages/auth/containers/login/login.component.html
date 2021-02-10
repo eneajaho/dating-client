@@ -1,10 +1,13 @@
 <h2 class="font-weight-bold mb-3">Login in Dating</h2>
 
 <ng-container *ngIf="vm$ | async as vm" >
-  <app-login-form [loading]="vm.loading" (submitted)="handleLogin($event)">
+  <app-login-form [loading]="vm.loading" (submitted)="onLogin($event)">
     <!--  used content projection-->
     <span id="type">Login now</span>
-    <error-alert [error]="vm.error" (click)="clearErrors()">
+    <error-alert
+      *ngIf="vm.error"
+      [error]="vm.error"
+      (click)="clearErrors()">
     </error-alert>
   </app-login-form>
 </ng-container>

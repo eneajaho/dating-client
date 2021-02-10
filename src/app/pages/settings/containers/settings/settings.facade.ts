@@ -5,6 +5,7 @@ import { map, withLatestFrom } from 'rxjs/operators';
 import { User } from '@core/models';
 import * as fromRoot from '@store/reducers';
 import * as fromSettings from '@settings/store/reducers';
+import { SettingsState } from '@settings/store/reducers';
 import { SettingsActions } from '@settings/store/actions';
 
 @Injectable()
@@ -23,7 +24,7 @@ export class SettingsFacade {
     map(data => this.getPage(data))
   );
 
-  constructor(private store: Store<fromSettings.State>) { }
+  constructor(private store: Store<SettingsState>) { }
 
   loadUserDetails() { this.store.dispatch(SettingsActions.loadAuthDetails()); }
 

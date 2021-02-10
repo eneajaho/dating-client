@@ -3,8 +3,8 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { HttpClient } from '@angular/common/http';
 import { ErrorInterceptorProvider } from './error.interceptor';
-import { AuthActions } from '@auth/store/actions';
 import { cold } from 'jest-marbles';
+import { logout } from '@auth/store/actions/auth.actions';
 
 describe('Error Interceptor', () => {
   let store: MockStore;
@@ -73,7 +73,7 @@ describe('Error Interceptor', () => {
 
         req.flush('Error!!!', { status: 0, statusText: 'ErrorMessage' });
 
-        const expected = cold('a', { a: AuthActions.logout() });
+        const expected = cold('a', { a: logout() });
         expect(store.scannedActions$).toBeObservable(expected);
       });
     });
@@ -90,7 +90,7 @@ describe('Error Interceptor', () => {
 
         req.flush('Error!!!', { status: 401, statusText: 'Unauthorized' });
 
-        const expected = cold('a', { a: AuthActions.logout() });
+        const expected = cold('a', { a: logout() });
         expect(store.scannedActions$).toBeObservable(expected);
       });
 

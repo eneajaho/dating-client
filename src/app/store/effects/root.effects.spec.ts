@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 
 import { RootEffects } from './root.effects';
 import { EffectsModule } from '@ngrx/effects';
-import { LocalStorageService } from '@core/services';
+import { LocalStorageService } from '@core/services/local-storage.service';
 import { LoginResponse } from '@auth/models';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
 

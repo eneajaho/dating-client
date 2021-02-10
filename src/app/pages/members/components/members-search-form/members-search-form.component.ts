@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { FormBuilder, Validators } from '@angular/forms';
-import { fadeIdAnimation } from '@shared/animations';
+import { fadeIdAnimation } from '@shared/animations/fadeIn.animation';
 import { MembersFilter } from '@core/models';
 
 type Sections = 'age' | 'gender' | 'lastActive';

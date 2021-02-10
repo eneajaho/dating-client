@@ -1,4 +1,4 @@
-import { animate, animateChild, group, query, style, transition, trigger } from '@angular/animations';
+import { transition, trigger } from '@angular/animations';
 import { fadeInSteps } from '@shared/animations/fadeIn.animation';
 
 /*export const slideFrom = (side: 'left' | 'right' | 'bottom' | 'top') => {

@@ -2,8 +2,8 @@ import { ChangeDetectionStrategy, Component, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Register } from '@auth/models';
 
-import * as fromAuth from '@auth/store/reducers';
-import { RegisterPageActions } from '@auth/store/actions';
+import { AuthState, selectRegisterPageState } from '@auth/store/reducers';
+import { clearRegisterError, register } from '@auth/store/actions/auth.actions';
 
 @Component({
   selector: 'app-register',
@@ -13,16 +13,16 @@ import { RegisterPageActions } from '@auth/store/actions';
 })
 export class RegisterComponent implements OnDestroy {
 
-  vm$ = this.store.select(fromAuth.selectRegisterPageState);
+  vm$ = this.store.select(selectRegisterPageState);
 
-  constructor(private store: Store<fromAuth.State>) { }
+  constructor(private store: Store<AuthState>) { }
 
   clearErrors(): void {
-    this.store.dispatch(RegisterPageActions.clearRegisterError());
+    this.store.dispatch(clearRegisterError());
   }
 
-  handleRegister(credentials: Register): void {
-    this.store.dispatch(RegisterPageActions.register({ credentials }));
+  onRegister(credentials: Register): void {
+    this.store.dispatch(register({ credentials }));
   }
 
   ngOnDestroy(): void {

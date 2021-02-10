@@ -14,21 +14,18 @@ export class RegisterFormComponent {
   @Input() loading = false;
   @Output() submitted = new EventEmitter<Register>();
 
-  form: FormGroup;
-  bsConfig = { dateInputFormat: 'DD/MM/YYYY', containerClass: 'theme-dark-blue' };
+  form: FormGroup = this.fb.group({
+    username: [ '', Validators.required ],
+    gender: [ 'male', Validators.required ],
+    birthday: [ '', Validators.required ],
+    knownAs: [ '', Validators.required ],
+    city: [ '', Validators.required ],
+    country: [ '', Validators.required ],
+    password: [ '', [ Validators.required, Validators.minLength(8) ] ],
+    confirmPassword: [ '', [ Validators.required, Validators.minLength(8) ] ],
+  }, { validators: passwordValidation });
 
-  constructor(private fb: FormBuilder) {
-    this.form = this.fb.group({
-      username: [ '', Validators.required ],
-      gender: [ 'male', Validators.required ],
-      birthday: [ '', Validators.required ],
-      knownAs: [ '', Validators.required ],
-      city: [ '', Validators.required ],
-      country: [ '', Validators.required ],
-      password: [ '', [ Validators.required, Validators.minLength(8) ] ],
-      confirmPassword: [ '', [ Validators.required, Validators.minLength(8) ] ],
-    }, { validators: passwordValidation });
-  }
+  constructor(private fb: FormBuilder) { }
 
   onSubmit() {
     if (this.form.valid) {

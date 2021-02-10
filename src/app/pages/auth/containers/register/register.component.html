@@ -3,9 +3,13 @@
   <p class="lead">Join Dating now. It's free.</p>
 
   <ng-container *ngIf="vm$ | async as vm">
-    <app-register-form [loading]="vm.loading" (submitted)="handleRegister($event)">
+    <app-register-form [loading]="vm.loading" (submitted)="onRegister($event)">
       <span id="type">Register now</span>
-      <error-alert [error]="vm.error" (click)="clearErrors()"></error-alert>
+      <error-alert
+        *ngIf="vm.error"
+        [error]="vm.error"
+        (click)="clearErrors()">
+      </error-alert>
     </app-register-form>
   </ng-container>
 

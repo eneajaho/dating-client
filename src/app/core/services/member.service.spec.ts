@@ -3,7 +3,7 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { IQueryParams, MembersFilter, Pagination, User } from '@core/models';
 import { API_URL } from '@core/tokens';
 import { HttpErrorResponse } from '@angular/common/http';
-import { MemberService } from '@core/services';
+import { MemberService } from '@core/services/member.service';
 
 describe('MemberService', () => {
   let memberService: MemberService;

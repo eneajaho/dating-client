@@ -8,22 +8,15 @@ import { TagInputModule } from 'ngx-chips';
 
 import { MembersStoreModule } from '@members/store/members-store.module';
 
-import {
-  MemberDetailsComponent,
-  MembersComponent,
-  MembersSearchComponent
-} from '@members/containers';
+import { MemberDetailsComponent, MembersComponent, MembersSearchComponent } from '@members/containers';
 
-import {
-  MemberCardComponent,
-  MemberDetailsCardComponent,
-  MembersSearchFormComponent
-} from '@members/components';
+import { MemberCardComponent, MemberDetailsCardComponent, MembersSearchFormComponent } from '@members/components';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { SettingsStoreModule } from '@settings/store/settings-store.module';
-import { GoBackModule } from '@shared/directives';
-import { TimeAgoModule } from '@shared/pipes';
-import { ErrorAlertModule, SpinnerModule } from '@shared/components';
+import { GoBackModule } from '@shared/directives/go-back/go-back.module';
+import { TimeAgoModule } from '@shared/pipes/time-ago/time-ago.module';
+import { SpinnerModule } from '@shared/components/spinner/spinner.module';
+import { ErrorAlertModule } from '@shared/components/error-alert/error-alert.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CommonModule } from '@angular/common';
 

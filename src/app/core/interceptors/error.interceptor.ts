@@ -10,14 +10,14 @@ import {
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
+import { AuthState } from '@auth/store/reducers';
+import { logout } from '@auth/store/actions/auth.actions';
 
-import * as fromAuth from '@auth/store/reducers';
-import { AuthActions } from '@auth/store/actions';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
 
-  constructor(private store: Store<fromAuth.State>) {}
+  constructor(private store: Store<AuthState>) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<any>> {
     return next.handle(request).pipe(
@@ -29,11 +29,11 @@ export class ErrorInterceptor implements HttpInterceptor {
             if (error?.statusText === 'Unknown Error') {
               return throwError('Server is not responding!');
             }
-            this.store.dispatch(AuthActions.logout());
+            this.store.dispatch(logout());
             return throwError(error.statusText);
           } else if (error.status === 401) {
             if (error.statusText === 'Unauthorized') {
-              this.store.dispatch(AuthActions.logout());
+              this.store.dispatch(logout());
               return throwError('You are not authorized!');
             }
             return throwError(error.statusText);

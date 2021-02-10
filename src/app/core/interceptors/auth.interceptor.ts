@@ -3,16 +3,16 @@ import { HTTP_INTERCEPTORS, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest
 import { Store } from '@ngrx/store';
 import { first, switchMap } from 'rxjs/operators';
 
-import * as fromAuth from '@auth/store/reducers';
 import { Observable } from 'rxjs';
+import { AuthState, selectAuthToken } from '@auth/store/reducers';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
-  constructor(private store: Store<fromAuth.State>) { }
+  constructor(private store: Store<AuthState>) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    return this.store.select(fromAuth.selectAuthToken).pipe(
+    return this.store.select(selectAuthToken).pipe(
       first(),
       switchMap(token => {
         const authRequest = !!token

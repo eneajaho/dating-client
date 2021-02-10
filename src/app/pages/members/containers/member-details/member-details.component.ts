@@ -7,7 +7,9 @@ import { faComment } from '@fortawesome/free-regular-svg-icons';
 import { faArrowLeft, faUserCog } from '@fortawesome/free-solid-svg-icons';
 
 import * as fromMembers from '@members/store/reducers';
+import { MembersState } from '@members/store/reducers';
 import * as fromSettings from '@settings/store/reducers';
+import { SettingsState } from '@settings/store/reducers';
 import * as fromRoot from '@store/reducers';
 import { User } from '@models/User';
 import { SettingsActions } from '@settings/store/actions';
@@ -28,7 +30,7 @@ export class MemberDetailsComponent implements OnInit {
   userEditIcon = faUserCog;
   backIcon = faArrowLeft;
 
-  constructor(private store: Store<fromMembers.State & fromSettings.State>) { }
+  constructor(private store: Store<MembersState & SettingsState>) { }
 
   ngOnInit() {
     this.myProfile$ = this.isMyProfilePage$.pipe(

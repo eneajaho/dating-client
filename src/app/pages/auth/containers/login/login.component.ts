@@ -2,8 +2,8 @@ import { ChangeDetectionStrategy, Component, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Credentials } from '@auth/models';
 
-import * as fromAuth from '@auth/store/reducers';
-import { LoginPageActions } from '@auth/store/actions';
+import { AuthState, selectLoginPageState } from '@auth/store/reducers';
+import { clearLoginError, login } from '@auth/store/actions/auth.actions';
 
 @Component({
   selector: 'auth-login',
@@ -13,16 +13,16 @@ import { LoginPageActions } from '@auth/store/actions';
 })
 export class LoginComponent implements OnDestroy {
 
-  vm$ = this.store.select(fromAuth.selectLoginPageState);
+  vm$ = this.store.select(selectLoginPageState);
 
-  constructor(private store: Store<fromAuth.State>) { }
+  constructor(private store: Store<AuthState>) { }
 
   clearErrors(): void {
-    this.store.dispatch(LoginPageActions.clearLoginError());
+    this.store.dispatch(clearLoginError());
   }
 
-  handleLogin(credentials: Credentials): void {
-    this.store.dispatch(LoginPageActions.login({ credentials }));
+  onLogin(credentials: Credentials): void {
+    this.store.dispatch(login({ credentials }));
   }
 
   ngOnDestroy(): void {

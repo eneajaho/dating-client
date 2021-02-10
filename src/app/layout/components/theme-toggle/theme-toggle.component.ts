@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, Input, HostListener } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostListener } from '@angular/core';
 import { ThemeService } from '@layout/services';
 
 @Component({

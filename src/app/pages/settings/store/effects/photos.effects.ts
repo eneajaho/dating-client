@@ -4,7 +4,7 @@ import { of } from 'rxjs';
 
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 
-import { PhotoService } from '@core/services';
+import { PhotoService } from '@core/services/photo.service';
 import { ToastrService } from 'ngx-toastr';
 import { PhotosActions } from '@settings/store/actions';
 

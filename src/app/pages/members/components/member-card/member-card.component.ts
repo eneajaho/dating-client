@@ -3,7 +3,7 @@ import { User } from '@models/User';
 import { faMapMarkerAlt, } from '@fortawesome/free-solid-svg-icons';
 import { faComment, faHeart } from '@fortawesome/free-regular-svg-icons';
 import { Router } from '@angular/router';
-import { fadeIdAnimation } from '@shared/animations';
+import { fadeIdAnimation } from '@shared/animations/fadeIn.animation';
 
 @Component({
   selector: 'app-member-card',

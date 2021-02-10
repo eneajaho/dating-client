@@ -1,6 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
 import { LoginResponse } from '@auth/models';
-import { AuthActions, AuthApiActions } from '@auth/store/actions';
+import { getUserLocal, loginSuccess, logout } from '@auth/store/actions/auth.actions';
 
 export const statusFeatureKey = 'authStatus';
 
@@ -13,11 +13,11 @@ export const initialState: State = {
 };
 
 export const reducer = createReducer(initialState,
-  on(AuthApiActions.loginSuccess, (state, { user }) => ({ ...state, user })),
+  on(loginSuccess, (state, { user }) => ({ ...state, user })),
 
-  on(AuthActions.logout, () => initialState),
+  on(logout, () => initialState),
 
-  on(AuthActions.getUserLocal, (state, { user }) => ({ ...state, user })),
+  on(getUserLocal, (state, { user }) => ({ ...state, user })),
 );
 
 export const getAuth = (state: State) => state.user;

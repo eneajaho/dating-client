@@ -3,6 +3,7 @@ import { Photo } from '@core/models';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import * as fromSettings from '@settings/store/reducers';
+import { SettingsState } from '@settings/store/reducers';
 import { pluck, tap } from 'rxjs/operators';
 import { faCheck, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { PhotosActions } from '@settings/store/actions';
@@ -27,7 +28,7 @@ export class MemberEditPhotosComponent implements OnInit {
   checkIcon = faCheck;
   deleteIcon = faTrashAlt;
 
-  constructor(private store: Store<fromSettings.State>) { }
+  constructor(private store: Store<SettingsState>) { }
 
   ngOnInit(): void { }
 

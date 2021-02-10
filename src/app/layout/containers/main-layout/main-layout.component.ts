@@ -2,9 +2,10 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Store } from '@ngrx/store';
 
-import { routerAnimation } from '@shared/animations';
-import { AuthActions } from '@auth/store/actions';
-import * as fromAuth from '@auth/store/reducers';
+import { routerAnimation } from '@shared/animations/router.animation';
+
+import { AuthState, selectAuthenticatedUser } from '@auth/store/reducers';
+import { logout } from '@auth/store/actions/auth.actions';
 
 @Component({
   selector: 'main-layout',
@@ -15,16 +16,16 @@ import * as fromAuth from '@auth/store/reducers';
 })
 export class MainLayoutComponent {
 
-  user$ = this.store.select(fromAuth.selectUser);
+  user$ = this.store.select(selectAuthenticatedUser);
 
-  constructor(private store: Store<fromAuth.State>) { }
+  constructor(private store: Store<AuthState>) { }
 
   prepareRoute(outlet: RouterOutlet): string {
     return outlet?.activatedRouteData?.animation ?? '*';
   }
 
   handleLogout(): void {
-    this.store.dispatch(AuthActions.logout());
+    this.store.dispatch(logout());
   }
 
 }

@@ -10,7 +10,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "watch": "ng serve -o --hmr",
-    "bundle:report": "source-map-explorer dist/dating-client/*.js"
+    "bundle:report": "ng build --prod --source-map && source-map-explorer dist/dating-client/*.js"
   },
   "private": true,
   "dependencies": {

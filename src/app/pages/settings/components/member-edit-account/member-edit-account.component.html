@@ -2,7 +2,7 @@
   *Unsaved changes
 </div>
 
-<error-alert [error]="error$ | async"></error-alert>
+<error-alert *ngIf="error$ | async as err" [error]="err"></error-alert>
 
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
   <div class="row">

@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { AuthApiActions, RegisterPageActions } from '@auth/store/actions';
+import { clearRegisterError, register, registerFailure, registerSuccess } from '@auth/store/actions/auth.actions';
 
 export const registerPageFeatureKey = 'registerPage';
 
@@ -15,19 +15,19 @@ export const initialState: State = {
 
 export const reducer = createReducer(initialState,
 
-  on(RegisterPageActions.register, state => ({
+  on(register, state => ({
     ...state, error: null, loading: true
   })),
 
-  on(AuthApiActions.registerSuccess, state => ({
+  on(registerSuccess, state => ({
     ...state, error: null, loading: false
   })),
 
-  on(AuthApiActions.registerFailure, (state, { error }) => ({
+  on(registerFailure, (state, { error }) => ({
     ...state, error, loading: false
   })),
 
-  on(RegisterPageActions.clearRegisterError, state => ({
+  on(clearRegisterError, state => ({
     ...state, error: null, loading: false
   }))
 );

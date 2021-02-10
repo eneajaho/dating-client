@@ -6,8 +6,9 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 
 import { MembersApiActions, MembersPageActions } from '@members/store/actions';
-import { MemberService } from '@core/services';
+import { MemberService } from '@core/services/member.service';
 import * as fromMembers from '@members/store/reducers';
+import { MembersState } from '@members/store/reducers';
 import { IQueryParams, MembersFilter, QueryParams } from '@core/models';
 import { Router } from '@angular/router';
 
@@ -20,7 +21,7 @@ const DEFAULT_PAGINATION_PARAMS = {
 export class MembersEffects {
   constructor(private actions$: Actions, private router: Router,
               private memberService: MemberService,
-              private store: Store<fromMembers.State>) { }
+              private store: Store<MembersState>) { }
 
   FilterMembers$ = createEffect(() =>
     this.actions$.pipe(

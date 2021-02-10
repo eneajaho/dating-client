@@ -4,8 +4,8 @@ import { Actions, createEffect, ofType, ROOT_EFFECTS_INIT } from '@ngrx/effects'
 import { switchMap } from 'rxjs/operators';
 import { of } from 'rxjs';
 
-import { LocalStorageService } from '@core/services';
-import { AuthActions } from '@auth/store/actions';
+import { LocalStorageService } from '@core/services/local-storage.service';
+import { getUserLocal } from '@auth/store/actions/auth.actions';
 
 @Injectable()
 export class RootEffects {
@@ -16,7 +16,7 @@ export class RootEffects {
     this.actions$.pipe(ofType(ROOT_EFFECTS_INIT), switchMap(() => {
       const localUser = this.local.get('user');
       const user = localUser ? JSON.parse(localUser) : null;
-      return of(AuthActions.getUserLocal({ user }));
+      return of(getUserLocal({ user }));
     }))
   );
 }

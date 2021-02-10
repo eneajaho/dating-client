@@ -1,7 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { AuthLayoutComponent } from './containers/auth-layout/auth-layout.component';
+import { LoginComponent } from '@auth/containers/login/login.component';
+import { RegisterComponent } from '@auth/containers/register/register.component';
+import { LoginFormComponent } from '@auth/containers/login/login-form/login-form.component';
+import { RegisterFormComponent } from '@auth/containers/register/register-form/register-form.component';
+import { AuthLayoutComponent } from '@auth/auth-layout/auth-layout.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { ErrorAlertModule } from '@shared/components/error-alert/error-alert.module';
+import { SpinnerModule } from '@shared/components/spinner/spinner.module';
 
 const routes: Routes = [
   {
@@ -11,13 +19,13 @@ const routes: Routes = [
     path: '', component: AuthLayoutComponent, children: [
       {
         path: 'login',
-        loadChildren: async () => (await import('./containers/login/login.module')).LoginModule,
-        data: { animation: 'Login'}
+        component: LoginComponent,
+        data: { animation: 'Login' }
       },
       {
         path: 'register',
-        loadChildren: async () => (await import('./containers/register/register.module')).RegisterModule,
-        data: { animation: 'Register'}
+        component: RegisterComponent,
+        data: { animation: 'Register' }
       }
     ]
   },
@@ -27,8 +35,21 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [ AuthLayoutComponent ],
-  imports: [ RouterModule.forChild(routes) ],
+  declarations: [
+    AuthLayoutComponent,
+    LoginComponent,
+    LoginFormComponent,
+    RegisterComponent,
+    RegisterFormComponent
+  ],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    RouterModule.forChild(routes),
+    ErrorAlertModule,
+    SpinnerModule
+  ],
   exports: [ RouterModule ]
 })
-export class AuthModule { }
+export class AuthModule {
+}

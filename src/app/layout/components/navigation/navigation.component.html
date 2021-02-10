@@ -12,7 +12,7 @@
   <div class="collapse navbar-collapse" [class.show]="showMenu">
 
     <ul class="navbar-nav">
-      <li *ngFor="let item of menuItems"  class="nav-item">
+      <li *ngFor="let item of menuItems" class="nav-item">
         <a class="nav-link" routerLinkActive="active" [routerLink]="item.link">
           <fa-icon [icon]="item.icon" class="mr-1"></fa-icon>
           {{ item.title }}

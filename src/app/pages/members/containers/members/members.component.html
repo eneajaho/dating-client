@@ -14,7 +14,7 @@
   </div>
 
   <ng-container *ngIf="vm$ | async as vm">
-    <error-alert [error]="vm.error" [inline]="true">
+    <error-alert *ngIf="vm.error" [error]="vm.error" [inline]="true">
       <span (click)="retry()">Click here to retry.</span>
     </error-alert>
 

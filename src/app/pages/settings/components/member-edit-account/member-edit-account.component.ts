@@ -1,11 +1,12 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { User } from '@core/models';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { takeUntil } from 'rxjs/operators';
 
 import * as fromSettings from '@settings/store/reducers';
+import { SettingsState } from '@settings/store/reducers';
 import { SettingsActions } from '@settings/store/actions';
 
 @Component({
@@ -30,7 +31,7 @@ export class MemberEditAccountComponent implements OnInit, OnDestroy {
   loading$ = this.store.select(fromSettings.selectUserDetailsSavingChanges);
   error$ = this.store.select(fromSettings.selectUserDetailsError);
 
-  constructor(private store: Store<fromSettings.State>, private fb: FormBuilder) {}
+  constructor(private store: Store<SettingsState>, private fb: FormBuilder) {}
 
   ngOnInit(): void {
     this.getUserDetails();

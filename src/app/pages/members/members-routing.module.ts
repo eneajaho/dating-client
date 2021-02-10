@@ -1,10 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {
-  MemberDetailsComponent,
-  MembersComponent,
-  MembersSearchComponent
-} from '@members/containers';
+import { MemberDetailsComponent, MembersComponent, MembersSearchComponent } from '@members/containers';
 import { MemberGuard, MembersGuard } from '@members/guards';
 
 const routes: Routes = [
