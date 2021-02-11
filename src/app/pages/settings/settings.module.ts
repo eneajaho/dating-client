@@ -75,6 +75,9 @@ const routes: Routes = [
     ErrorAlertModule,
     TagInputModule,
     SpinnerModule,
+  ],
+  providers: [
+    SettingsGuard
   ]
 })
 export class SettingsModule { }

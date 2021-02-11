@@ -1,13 +1,12 @@
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { BehaviorSubject, Subscription } from 'rxjs';
+import { tap } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 import { User } from '@core/models';
 
-import * as fromSettings from '@settings/store/reducers';
-import { SettingsState } from '@settings/store/reducers';
-import { SettingsActions } from '@settings/store/actions';
+import { selectUserSettingsState, SettingsState } from '@settings/store/reducers';
+import { editUserSettings } from '@settings/store/actions/settings.actions';
 
 @Component({
   selector: 'app-member-edit-profile',
@@ -25,46 +24,31 @@ export class MemberEditProfileComponent implements OnInit, OnDestroy {
     introduction: ''
   });
 
-  details?: User = undefined;
-
   formChanged$ = new BehaviorSubject(false);
-  savingChanges$: Observable<boolean> = this.store.select(fromSettings.selectUserDetailsSavingChanges);
 
-  private destroy$ = new Subject<boolean>();
+  vm$ = this.store.select(selectUserSettingsState).pipe(
+    tap(s => this.patchForm(s.user))
+  );
+
+  private sub?: Subscription;
 
   constructor(private store: Store<SettingsState>, private fb: FormBuilder) {
   }
 
   ngOnInit() {
-    this.handleFormChanges();
-    this.updateFormData();
-  }
-
-  handleFormChanges(): void {
-    this.form.valueChanges.pipe(takeUntil(this.destroy$))
-      .subscribe(() => { this.formChanged$.next(this.form.dirty); });
-  }
-
-  updateFormData(): void {
-    this.store.select(fromSettings.selectUserDetails)
-      .pipe(takeUntil(this.destroy$))
-      .subscribe(data => {
-        this.details = data;
-        if (data !== null) {
-          this.patchForm(data);
-        }
-      });
-  }
-
-  onChipChange(): void {
-    this.formChanged$.next(true);
+    this.sub = this.form.valueChanges.subscribe(() => {
+      this.formChanged$.next(this.form.dirty);
+    });
   }
 
   onSubmit() {
+    if (this.form.invalid) {
+      this.form.markAllAsTouched();
+    }
     if (this.form.valid && this.formChanged$.value) {
       const interests = this.joinInterests(this.form.get('interests')?.value);
-      const user = { ...this.details, ...this.form.value, interests };
-      this.store.dispatch(SettingsActions.editAuthDetails({ user }));
+      const userData = { ...this.form.value, interests };
+      this.store.dispatch(editUserSettings({ userData }));
       this.formChanged$.next(false);
     }
   }
@@ -72,16 +56,16 @@ export class MemberEditProfileComponent implements OnInit, OnDestroy {
   private patchForm(user: User) {
     this.form.reset();
 
-    const interests: string[] = user?.interests?.split(/[\s,]+/) ?? [];
+    let { knownAs, city, country, interests, introduction } = user;
 
-    this.form.patchValue({
-      ...user,
-      interests,
+    const splitInterests: string[] = interests?.split(/[\s,]+/) ?? [];
+
+    this.form.setValue({
+      knownAs, city, country, introduction, interests: splitInterests
     });
   }
 
   private joinInterests(interests: any[]) {
-    console.log(interests);
     const newArray: string[] = [];
     for (const interest of interests) {
       if (newArray.includes(interest)) {
@@ -101,9 +85,7 @@ export class MemberEditProfileComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.destroy$.next(true);
-    this.destroy$.complete();
-    this.destroy$.unsubscribe();
+    this.sub?.unsubscribe();
   }
 
 }

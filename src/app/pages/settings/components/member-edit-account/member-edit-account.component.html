@@ -2,53 +2,50 @@
   *Unsaved changes
 </div>
 
-<error-alert *ngIf="error$ | async as err" [error]="err"></error-alert>
+<ng-container *ngIf="vm$ | async as vm">
 
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
-  <div class="row">
-    <div class="col-12 col-md-6">
-      <div class="form-group">
-        <label for="username">Username</label>
-        <input type="text" formControlName="username" autocomplete="username"
-               placeholder="Username" class="form-control" id="username">
-        <div class="alert alert-danger mt-1" *ngIf="required('username')">
-          Username is required!
+  <error-alert *ngIf="vm.error" [error]="vm.error"></error-alert>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="row">
+      <div class="col-12 col-md-6">
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input type="text" formControlName="username" autocomplete="username"
+                 placeholder="Username" class="form-control" id="username">
+          <div class="alert alert-danger mt-1" *ngIf="required('username')">
+            Username is required!
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-6">
+        <div class="form-group">
+          <label for="gender">Gender</label>
+          <select name="gender" id="gender" formControlName="gender" class="form-control">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </select>
         </div>
       </div>
     </div>
-    <div class="col-12 col-md-6">
-      <div class="form-group">
-        <label for="gender">Gender</label>
-        <select name="gender" id="gender" formControlName="gender" class="form-control">
-          <option value="male">Male</option>
-          <option value="female">Female</option>
-        </select>
-      </div>
+
+
+    <!--  <div class="form-group">-->
+    <!--    <label for="birthday">Birthday</label>-->
+    <!--    <input type="text" formControlName="birthday" bsDatepicker-->
+    <!--           placeholder="Birthday" class="form-control" id="birthday">-->
+    <!--    <div class="alert alert-danger mt-1" *ngIf="required('birthday')">-->
+    <!--      Birthday is required!-->
+    <!--    </div>-->
+    <!--  </div>-->
+
+    <div class="submit mt-3">
+      <button [disabled]="!(formChanged$ | async)" type="submit" class="btn btn-primary px-4">
+        <span *ngIf="!vm.savingChanges">Save changes</span>
+        <spinner *ngIf="vm.savingChanges" size="small" color="button"></spinner>
+      </button>
     </div>
-  </div>
 
+  </form>
 
-
-<!--  <div class="form-group">-->
-<!--    <label for="birthday">Birthday</label>-->
-<!--    <input type="text" formControlName="birthday" bsDatepicker-->
-<!--           placeholder="Birthday" class="form-control" id="birthday">-->
-<!--    <div class="alert alert-danger mt-1" *ngIf="required('birthday')">-->
-<!--      Birthday is required!-->
-<!--    </div>-->
-<!--  </div>-->
-
-  <div class="submit mt-3">
-    <button [disabled]="!(formChanged$ | async)" type="submit" class="btn btn-primary px-4">
-
-      <span *ngIf="!(loading$ | async); else loader">
-        Save changes
-      </span>
-
-      <ng-template #loader>
-        <spinner size="small" color="button"></spinner>
-      </ng-template>
-
-    </button>
-  </div>
-</form>
+</ng-container>

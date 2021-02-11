@@ -2,63 +2,63 @@
   *Unsaved changes.
 </div>
 
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
-  <div class="form-group">
-    <label for="knownAs">Known As</label>
-    <input type="text" formControlName="knownAs"
-           placeholder="Known as..." class="form-control" id="knownAs">
-    <error-alert class="mt-1"
-      *ngIf="required('knownAs')"
-      error="You should enter a default name!">
-    </error-alert>
-  </div>
+<ng-container *ngIf="vm$ | async as vm">
 
-  <div class="row">
-    <div class="col-6">
-      <div class="form-group">
-        <label for="city">City</label>
-        <input type="text" formControlName="city"
-               placeholder="City" class="form-control" id="city">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="knownAs">Known As</label>
+      <input type="text" formControlName="knownAs"
+             placeholder="Known as..." class="form-control" id="knownAs">
+      <error-alert class="mt-1"
+                   *ngIf="required('knownAs')"
+                   error="You should enter a default name!">
+      </error-alert>
+    </div>
+
+    <div class="row">
+      <div class="col-6">
+        <div class="form-group">
+          <label for="city">City</label>
+          <input type="text" formControlName="city"
+                 placeholder="City" class="form-control" id="city">
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="form-group">
+          <label for="country">Country</label>
+          <input type="text" formControlName="country"
+                 placeholder="Country" class="form-control" id="country">
+        </div>
       </div>
     </div>
-    <div class="col-6">
-      <div class="form-group">
-        <label for="country">Country</label>
-        <input type="text" formControlName="country"
-               placeholder="Country" class="form-control" id="country">
-      </div>
+
+    <div class="form-group">
+      <label for="interests">Interests</label>
+      <tag-input
+        id="interests" formControlName="interests"
+        [secondaryPlaceholder]="'Add your interests..'"
+        [placeholder]="'+ Add another interest..'"
+        (onAdd)="formChanged$.next(true)"
+        (onRemove)="formChanged$.next(true)"
+        theme='foundation-theme'>
+      </tag-input>
     </div>
-  </div>
 
-  <div class="form-group">
-    <label for="interests">Interests</label>
-    <tag-input id="interests" formControlName="interests"
-               [secondaryPlaceholder]="'Add your interests..'"
-               [placeholder]="'+ Add another interest..'"
-               (onAdd)="onChipChange()"
-               (onRemove)="onChipChange()"
-               [editable]="true" theme='foundation-theme'>
-    </tag-input>
-  </div>
+    <div class="form-group">
+      <label for="introduction">Introduction</label>
+      <textarea placeholder="Introduction" class="form-control" rows="4"
+                id="introduction" formControlName="introduction"></textarea>
+    </div>
 
-  <div class="form-group">
-    <label for="introduction">Introduction</label>
-    <textarea placeholder="Introduction" class="form-control" rows="4"
-              id="introduction" formControlName="introduction"></textarea>
-  </div>
+    <div class="submit mt-3">
+      <button [disabled]="!(formChanged$ | async)" type="submit"
+              class="btn btn-primary px-4">
+        <span *ngIf="!vm.savingChanges">Save changes</span>
+        <spinner *ngIf="vm.savingChanges" size="small" color="button"></spinner>
+      </button>
+    </div>
 
-  <div class="submit mt-3">
-    <button [disabled]="!(formChanged$ | async)" type="submit"
-            class="btn btn-primary px-4">
+  </form>
 
-      <span *ngIf="!(savingChanges$ | async); else loader">
-        Save changes
-      </span>
+</ng-container>
 
-      <ng-template #loader>
-        <spinner size="small" color="button"></spinner>
-      </ng-template>
-
-    </button>
-  </div>
-</form>

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
@@ -6,53 +6,60 @@ import { faComment } from '@fortawesome/free-regular-svg-icons';
 import { faArrowLeft, faUserCog } from '@fortawesome/free-solid-svg-icons';
 
 import { MembersState, selectSelectedMember } from '@members/store/reducers';
-import { selectUserDetails, SettingsState } from '@settings/store/reducers';
+import { selectUserProfileSettings, SettingsState } from '@settings/store/reducers';
 import { User } from '@models/User';
 import { Status } from '@core/models';
 import { ActivatedRoute } from '@angular/router';
-import { loadAuthDetails } from '@settings/store/actions/settings.actions';
+import { loadUserSettings } from '@settings/store/actions/settings.actions';
 import { loadMember } from '@members/store/actions/member.actions';
 import { switchMap, tap } from 'rxjs/operators';
 import { loadEntity } from '@shared/helpers';
+import { fadeIdAnimation } from '@shared/animations/fadeIn.animation';
 
 @Component({
   selector: 'app-member-details',
   templateUrl: './member-details.component.html',
-  styleUrls: [ './member-details.component.scss' ],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  animations: [ fadeIdAnimation ]
 })
 export class MemberDetailsComponent implements OnInit {
 
   userDetails$?: Observable<(User & Status) | undefined>;
-  isLoggedInUserProfile = false;
+  showEditBtn = false;
 
   sendIcon = faComment;
   userEditIcon = faUserCog;
   backIcon = faArrowLeft;
 
   constructor(private store: Store<MembersState & SettingsState>,
-              private route: ActivatedRoute) {}
+              private route: ActivatedRoute, private cdr: ChangeDetectorRef) {}
 
   ngOnInit() {
     this.userDetails$ = this.route.params.pipe(
       // gets the memberId from the router
       switchMap(({ memberId }) => {
         if (memberId === 'profile') {
-          //  it's authenticated user
-          this.isLoggedInUserProfile = true;
+          //  it's authenticated user so show edit profile btn
+          this.setShowEditButton(true);
           // we return the auth user data that are stored in the store
-          return this.store.select(selectUserDetails).pipe(
+          return this.store.select(selectUserProfileSettings).pipe(
             // loadEntity will call the callback func if user isn't loaded
-            tap(user => loadEntity(user, () => this.store.dispatch(loadAuthDetails())))
+            tap(user => loadEntity(user, () => this.store.dispatch(loadUserSettings())))
           );
+
         } else {
           // it's normal user
-          this.isLoggedInUserProfile = false;
+          this.setShowEditButton(false);
           this.store.dispatch(loadMember({ id: +memberId }));
           return this.store.select(selectSelectedMember);
         }
       })
     );
+  }
+
+  private setShowEditButton(show: boolean) {
+    this.showEditBtn = show;
+    this.cdr.detectChanges();
   }
 
 }

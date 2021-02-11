@@ -1,18 +1,17 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { User } from '@core/models';
-import { BehaviorSubject, Subject } from 'rxjs';
+import { BehaviorSubject, Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { takeUntil } from 'rxjs/operators';
+import { tap } from 'rxjs/operators';
 
-import * as fromSettings from '@settings/store/reducers';
-import { SettingsState } from '@settings/store/reducers';
-import { SettingsActions } from '@settings/store/actions';
+import { selectUserSettingsState, SettingsState } from '@settings/store/reducers';
+import { editUserSettings } from '@settings/store/actions/settings.actions';
 
 @Component({
   selector: 'app-member-edit-account',
   templateUrl: './member-edit-account.component.html',
-  styleUrls: [ './member-edit-account.component.scss' ],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MemberEditAccountComponent implements OnInit, OnDestroy {
 
@@ -22,64 +21,46 @@ export class MemberEditAccountComponent implements OnInit, OnDestroy {
     //  birthday: [ '', Validators.required ]
   });
 
-  details?: User = undefined;
-
   formChanged$ = new BehaviorSubject(false);
 
-  private destroy$ = new Subject<boolean>();
+  vm$ = this.store.select(selectUserSettingsState).pipe(
+    tap(s => this.patchForm(s.user))
+  );
 
-  loading$ = this.store.select(fromSettings.selectUserDetailsSavingChanges);
-  error$ = this.store.select(fromSettings.selectUserDetailsError);
+  private sub?: Subscription;
 
-  constructor(private store: Store<SettingsState>, private fb: FormBuilder) {}
+  constructor(private store: Store<SettingsState>, private fb: FormBuilder) {
+  }
 
   ngOnInit(): void {
-    this.getUserDetails();
-    this.handleFormChanges();
-  }
-
-  getUserDetails(): void {
-    this.store.select(fromSettings.selectUserDetails)
-      .pipe(takeUntil(this.destroy$))
-      .subscribe(data => {
-        this.details = data;
-        this.patchForm(data);
-      });
-  }
-
-  handleFormChanges(): void {
-    this.form.valueChanges
-      .pipe(takeUntil(this.destroy$))
-      .subscribe(x => {
-        this.formChanged$.next(this.form.dirty);
-      });
+    this.sub = this.form.valueChanges.subscribe(() => {
+      this.formChanged$.next(this.form.dirty);
+    });
   }
 
   patchForm(user: User): void {
     this.form.reset();
 
-    this.form.patchValue({
-      ...user,
+    this.form.setValue({
       username: user.username,
+      gender: user.gender
     });
   }
 
   onSubmit(): void {
-    if (this.form.valid) {
-      const user = { ...this.details, ...this.form.value };
-      this.store.dispatch(SettingsActions.editAuthDetails({ user }));
-      this.formChanged$.next(false);
+    if (this.form.invalid) {
+      this.form.markAllAsTouched();
     }
+    this.store.dispatch(editUserSettings({ userData: this.form.value }));
+    this.formChanged$.next(false);
   }
 
   required(control: string): boolean {
     return (this.form.get(control)?.touched && this.form.get(control)?.invalid) ?? false;
   }
 
-  ngOnDestroy(): void {
-    this.destroy$.next(true);
-    this.destroy$.complete();
-    this.destroy$.unsubscribe();
+  ngOnDestroy() {
+    this.sub?.unsubscribe();
   }
 
 }
