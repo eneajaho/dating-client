@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { User } from '@core/models';
 
 interface PageDetails {
   profile: string;
@@ -16,7 +15,8 @@ interface PageDetails {
 })
 export class SettingsHeaderComponent {
 
-  @Input() user!: User;
+  @Input() userName?: string;
+  @Input() profilePicture?: string;
 
   @Input()
   set page(name: keyof PageDetails) {
@@ -36,9 +36,9 @@ export class SettingsHeaderComponent {
     photos: 'View, add or remove your photos...'
   };
 
-  profilePicture() {
-    if (this.user?.photoUrl) {
-      return { 'background-image': `url(${ this.user.photoUrl })` };
+  profileImage() {
+    if (this.profilePicture && this.profilePicture !== '') {
+      return { 'background-image': `url(${ this.profilePicture })` };
     }
     return { 'background-image': `url(https://i.imgur.com/bLrOP4M.png)` };
   }

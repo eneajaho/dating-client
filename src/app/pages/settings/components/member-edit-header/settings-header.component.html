@@ -2,13 +2,13 @@
   <div class="col-3">
     <div class="profile-photo cp outline-0 mx-auto"
          routerLink="/settings/photos"
-         [ngStyle]="profilePicture()">
+         [ngStyle]="profileImage()">
     </div>
   </div>
   <div class="col-9">
     <h4 class="main-title text-capitalize">
       <span>
-        {{ user.knownAs }}
+        {{ userName }}
       </span>
       /
       {{ _page.name }} settings
