@@ -3,12 +3,26 @@ import { Photo } from '@core/models';
 
 interface PhotoUploadPayload {
   payload: FormData;
-  userId: number;
 }
 
+export const loadUserProfilePhotos = createAction(
+  '[User Profile Photos Page] Load User Profile Photos',
+  props<{ userId: number }>()
+);
+
+export const loadUserProfilePhotosSuccess = createAction(
+  '[API] Load User Profile Photos Success',
+  props<{ photos: Photo[] }>()
+);
+
+export const loadUserProfilePhotosFailure = createAction(
+  '[API] Load User Profile Photos Failure',
+  props<{ error: string}>()
+);
+
 export const uploadPhoto = createAction(
-  '[User Photo Page] Upload Photo',
-  props<PhotoUploadPayload>()
+  '[User Profile Photos Page] Upload Photo',
+  props<{ payload: FormData }>()
 );
 
 export const uploadPhotoSuccess = createAction(
@@ -24,7 +38,7 @@ export const uploadPhotoFailure = createAction(
 
 export const setMainPhoto = createAction(
   '[User Photos Page] Set Main Photo',
-  props<{ userId: number, photoId: number }>()
+  props<{ photoId: number }>()
 );
 
 export const setMainPhotoSuccess = createAction(
@@ -40,7 +54,7 @@ export const setMainPhotoFailure = createAction(
 
 export const deletePhoto = createAction(
   '[User Photos Page] Delete Photo',
-  props<{ userId: number, photoId: number }>()
+  props<{ photoId: number }>()
 );
 
 export const deletePhotoSuccess = createAction(

@@ -1,31 +1,38 @@
-<app-file-uploader
-  [uploading]="loading$ | async"
-  (uploaded)="handlePhotos($event)">
-</app-file-uploader>
+<ng-container *ngIf="vm$ | async as vm">
 
-<div *ngIf="photos$ | async as photos" class="row mt-4">
+  <app-file-uploader
+    [uploading]="vm.uploading"
+    (uploaded)="handlePhotos($event)">
+  </app-file-uploader>
 
-  <div *ngIf="photos.length === 0" class="col-12">
-    <div class="alert alert-primary text-center">
-      <h4 class="mb-0">Please upload a profile picture..</h4>
+  <error-alert *ngIf="vm.uploadError" [error]="vm.uploadError"></error-alert>
+
+  <error-alert *ngIf="vm.error" [error]="vm.error"></error-alert>
+
+  <div *ngIf="vm.loaded" class="row mt-4">
+
+    <div *ngIf="vm.photos.length === 0" class="col-12">
+      <div class="alert alert-primary text-center">
+        <h4 class="mb-0">Please upload a profile picture..</h4>
+      </div>
     </div>
-  </div>
 
-  <div *ngFor="let photo of photos" class="col-xs-12 col-sm-4 mb-4">
-    <div class="card rounded" [class.border-primary]="photo.isMain" style="border-width: 2px">
-      <div class="card-body photo">
-        <img [src]="photo.url" [alt]="photo.description" class="w-100 rounded">
-        <div class="buttons">
-          <button (click)="setMainPhoto(photo.id)" class="btn btn-sm btn-primary mx-1"
-                  title="Make Profile Picture">
-            <fa-icon [icon]="checkIcon"></fa-icon>
-          </button>
-          <button (click)="deletePhoto(photo.id)" class="btn btn-sm btn-danger mx-1"
-                  title="Delete photo">
-            <fa-icon [icon]="deleteIcon"></fa-icon>
-          </button>
+    <div *ngFor="let photo of vm.photos" class="col-xs-12 col-sm-4 mb-4">
+      <div class="card rounded bw-2" [class.border-primary]="photo.isMain">
+        <div class="card-body photo">
+          <img [src]="photo.url" [alt]="photo.description" class="w-100 rounded">
+          <div class="buttons">
+            <button (click)="setMainPhoto(photo.id)" class="btn btn-sm btn-primary mx-1"
+                    title="Make Profile Picture">
+              <fa-icon [icon]="checkIcon"></fa-icon>
+            </button>
+            <button (click)="deletePhoto(photo.id)" class="btn btn-sm btn-danger mx-1"
+                    title="Delete photo">
+              <fa-icon [icon]="deleteIcon"></fa-icon>
+            </button>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+</ng-container>

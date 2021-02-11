@@ -1,36 +1,36 @@
 import { createAction, props } from '@ngrx/store';
 import { User } from '@core/models';
 
-/** Load User Details */
+/** Load User Profile Settings */
 
-export const loadAuthDetails = createAction(
-  '[Auth Profile Page] Load Auth Details'
+export const loadUserSettings = createAction(
+  '[User Settings Page] Load User Profile Settings'
 );
 
-export const loadAuthDetailsSuccess = createAction(
-  '[Members/API] Load Auth Details Success',
+export const loadUserSettingsSuccess = createAction(
+  '[Members/API] Load User Settings Success',
   props<{ user: User }>()
 );
 
-export const loadAuthDetailsFailure = createAction(
-  '[Members/API] Load Auth Details Failure',
+export const loadUserSettingsFailure = createAction(
+  '[Members/API] Load User Settings Failure',
   props<{ error: string }>()
 );
 
 
-/** Edit User Details */
+/** Edit User Profile Settings */
 
-export const editAuthDetails = createAction(
-  '[Settings Page] Edit Auth Details',
+export const editUserSettings = createAction(
+  '[Settings Page] Edit User Profile Settings',
+  props<{ userData: Partial<User> }>()
+);
+
+export const editUserSettingsSuccess = createAction(
+  '[Members/API] Edit User Profile Settings Success',
   props<{ user: User }>()
 );
 
-export const editAuthDetailsSuccess = createAction(
-  '[Members/API] Edit Auth Details Success',
-  props<{ user: User }>()
-);
-
-export const editAuthDetailsFailure = createAction(
-  '[Members/API] Edit Auth Details Failure',
+export const editUserSettingsFailure = createAction(
+  '[Members/API] Edit User Profile Settings Failure',
   props<{ error: string }>()
 );
