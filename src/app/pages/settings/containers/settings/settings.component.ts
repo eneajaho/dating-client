@@ -1,32 +1,42 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Observable } from 'rxjs';
-import { User } from '@models/User';
 
-import { SettingsFacade } from './settings.facade';
 import { routerAnimation } from '@shared/animations/router.animation';
 import { RouterOutlet } from '@angular/router';
+import { UserSettingsState } from '@settings/store/reducers/settings.reducer';
+import { selectUserSettingsState, SettingsState } from '@settings/store/reducers';
+import { map } from 'rxjs/operators';
+import { selectRouter } from '@store/reducers';
+import { Store } from '@ngrx/store';
+import { loadUserSettings } from '@settings/store/actions/settings.actions';
 
 @Component({
   selector: 'app-account-settings',
   templateUrl: './settings.component.html',
   styleUrls: [ './settings.component.scss' ],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [ SettingsFacade ],
   animations: [ routerAnimation ]
 })
 export class SettingsComponent {
 
-  details$: Observable<User> = this.settings.details$;
-  loading$ = this.settings.loading$;
-  error$ = this.settings.error$;
+  vm$: Observable<UserSettingsState> = this.store.select(selectUserSettingsState);
 
-  showSettings$ = this.settings.showSettings$;
+  page$: Observable<string> = this.store.select(selectRouter).pipe(
+    map(data => this.getPage(data))
+  );
 
-  page$: Observable<string> = this.settings.page$;
+  constructor(private store: Store<SettingsState>) { }
 
-  loadData() { this.settings.loadUserDetails(); }
+  loadUserSettings() {
+    this.store.dispatch(loadUserSettings());
+  }
 
-  constructor(private settings: SettingsFacade) { }
+  private getPage(routerState: { state: any; navigationId?: number; }) {
+    if (!routerState) { return null; }
+    const tags = routerState?.state?.url?.split('/');
+    if (tags[2] !== null && tags[2] !== '' && tags[2] !== undefined) { return tags[2]; }
+    return '';
+  }
 
   prepareRoute(outlet: RouterOutlet): string {
     return outlet?.activatedRouteData?.animation ?? '*';

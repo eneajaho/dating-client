@@ -1,30 +1,29 @@
 <div class="container-fluid mt-5">
-  <div class="row justify-content-center mb-5" style="padding-bottom: 100px">
+  <div *ngIf="vm$ | async as vm" class="row justify-content-center mb-5 pb-100">
 
-    <ng-container *ngIf="loading$ | async">
-      <div class="d-flex justify-content-center align-items-center mt-5 mb-3">
-        <spinner size="medium"></spinner>
+    <div *ngIf="vm.loading" class="flex-center mt-5 mb-3">
+      <spinner size="medium"></spinner>
+    </div>
+
+    <div *ngIf="vm.error" class="col-12 col-sm-10 col-md-6 flex-center my-4">
+      <div class="error alert-error py-4">
+        {{ vm.error }}
+        <span class="retry cp" (click)="loadUserSettings()">Retry?</span>
       </div>
-    </ng-container>
+    </div>
 
-    <ng-container *ngIf="error$ | async as error">
-      <div class="col-12 col-sm-10 col-md-6 justify-content-center align-items-center my-4">
-        <div class="error alert-error py-4">
-          {{ error }}
-          <span class="retry cp" (click)="loadData()">Retry?</span>
-        </div>
-      </div>
-    </ng-container>
+    <div *ngIf="vm.loaded && !vm.error" class="col-xs-12 col-sm-10 col-lg-9">
 
-    <div *ngIf="showSettings$ | async" class="col-xs-12 col-sm-10 col-lg-9">
       <div class="row justify-content-center">
         <div class="col-12">
           <app-settings-header
             [page]="page$ | async"
-            [user]="details$ | async">
+            [profilePicture]="vm.user.photoUrl"
+            [userName]="vm.user.knownAs">
           </app-settings-header>
         </div>
       </div>
+
       <div class="row justify-content-center mt-4">
         <div class="col-3">
           <app-member-edit-navigation></app-member-edit-navigation>
@@ -37,6 +36,8 @@
           </div>
         </div>
       </div>
+
     </div>
+
   </div>
 </div>
