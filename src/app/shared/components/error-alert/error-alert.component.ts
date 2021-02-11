@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 @Component({
   selector: 'error-alert',
   template: `
-    <div class="alert alert-error error cp mb-1"
+    <div *ngIf="error !== null" class="alert alert-error error cp mb-1"
          [ngStyle]="{ display: inline ? 'inline' : 'block' }">
       {{ error }}
       <ng-content></ng-content>
