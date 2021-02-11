@@ -46,7 +46,7 @@ export class MemberEditProfileComponent implements OnInit, OnDestroy {
       this.form.markAllAsTouched();
     }
     if (this.form.valid && this.formChanged$.value) {
-      const interests = this.joinInterests(this.form.get('interests')?.value);
+      const interests = this.joinInterests(this.form.get('interests')?.value).trim();
       const userData = { ...this.form.value, interests };
       this.store.dispatch(editUserSettings({ userData }));
       this.formChanged$.next(false);
@@ -58,7 +58,10 @@ export class MemberEditProfileComponent implements OnInit, OnDestroy {
 
     let { knownAs, city, country, interests, introduction } = user;
 
-    const splitInterests: string[] = interests?.split(/[\s,]+/) ?? [];
+    let splitInterests: string[] = [];
+    if (interests && interests?.length !== 0) {
+      splitInterests = interests.split(/[\s,]+/);
+    }
 
     this.form.setValue({
       knownAs, city, country, introduction, interests: splitInterests
