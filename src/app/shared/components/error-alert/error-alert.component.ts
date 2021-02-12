@@ -4,7 +4,10 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
   selector: 'error-alert',
   template: `
     <div *ngIf="error !== null" class="alert alert-error error cp mb-1"
-         [ngStyle]="{ display: inline ? 'inline' : 'block' }">
+         [ngStyle]="{
+            display: inline ? 'inline' : 'block',
+            textAlign: textCenter ? 'center': 'left'
+          }">
       {{ error }}
       <ng-content></ng-content>
     </div>
@@ -24,5 +27,7 @@ export class ErrorAlertComponent {
    * @default false
    */
   @Input() inline = false;
+
+  @Input() textCenter = false;
 
 }

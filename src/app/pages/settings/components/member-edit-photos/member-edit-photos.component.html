@@ -5,9 +5,17 @@
     (uploaded)="handlePhotos($event)">
   </app-file-uploader>
 
-  <error-alert *ngIf="vm.uploadError" [error]="vm.uploadError"></error-alert>
+  <error-alert
+    *ngIf="vm.uploadError"
+    [error]="vm.uploadError"
+    [textCenter]="true">
+  </error-alert>
 
-  <error-alert *ngIf="vm.error" [error]="vm.error"></error-alert>
+  <error-alert
+    *ngIf="vm.error"
+    [error]="vm.error"
+    [textCenter]="true">
+  </error-alert>
 
   <div *ngIf="vm.loaded" class="row mt-4">
 
@@ -18,7 +26,7 @@
     </div>
 
     <div *ngFor="let photo of vm.photos" class="col-xs-12 col-sm-4 mb-4">
-      <div class="card rounded bw-2" [class.border-primary]="photo.isMain">
+      <div class="card rounded">
         <div class="card-body photo">
           <img [src]="photo.url" [alt]="photo.description" class="w-100 rounded">
           <div class="buttons">
@@ -32,7 +40,9 @@
             </button>
           </div>
         </div>
+        <span *ngIf="photo.isMain" class="current">Current</span>
       </div>
     </div>
   </div>
+
 </ng-container>

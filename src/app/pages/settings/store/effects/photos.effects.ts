@@ -6,9 +6,24 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 
 import { PhotoService } from '@core/services/photo.service';
 import { ToastrService } from 'ngx-toastr';
-import { PhotosActions } from '@settings/store/actions';
-import { selectUserProfileSettings, SettingsState } from '@settings/store/reducers';
+import { selectUserPhotosState, SettingsState } from '@settings/store/reducers';
 import { Store } from '@ngrx/store';
+import {
+  deletePhoto,
+  deletePhotoFailure,
+  deletePhotoSuccess,
+  loadUserProfilePhotos,
+  loadUserProfilePhotosFailure,
+  loadUserProfilePhotosSuccess,
+  setMainPhoto,
+  setMainPhotoFailure,
+  setMainPhotoSuccess,
+  uploadPhoto,
+  uploadPhotoFailure,
+  uploadPhotoSuccess
+} from '@settings/store/actions/photos.actions';
+import { changeUserImageLocally } from '@settings/store/actions/settings.actions';
+import { selectAuthenticatedUserId } from '@auth/store/reducers';
 
 @Injectable()
 export class PhotosEffects {
@@ -18,47 +33,74 @@ export class PhotosEffects {
               private toast: ToastrService) {
   }
 
+  LoadUserPhoto$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(loadUserProfilePhotos),
+      concatMap(action => of(action).pipe(
+        withLatestFrom(this.store.select(selectAuthenticatedUserId)))
+      ),
+      switchMap(([ action, id ]) => {
+        return this.photoService.getUserPhotos(id).pipe(
+          map(photos => loadUserProfilePhotosSuccess({ photos })),
+          catchError(error => of(loadUserProfilePhotosFailure({ error }))),
+        );
+      })
+    ));
+
   UploadPhoto$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(PhotosActions.uploadPhoto),
+      ofType(uploadPhoto),
       concatMap(action => of(action).pipe(
-        withLatestFrom(this.store.select(selectUserProfileSettings)))
+        withLatestFrom(this.store.select(selectAuthenticatedUserId)))
       ),
-      switchMap(([ { payload }, { id: userId } ]) => {
+      switchMap(([ { payload }, userId ]) => {
         return this.photoService.uploadPhoto(payload, userId).pipe(
-          map(photo => PhotosActions.uploadPhotoSuccess({ photo })),
-          catchError(error => of(PhotosActions.uploadPhotoFailure({ error }))),
+          map(photo => uploadPhotoSuccess({ photo })),
+          catchError(error => of(uploadPhotoFailure({ error }))),
         );
       })
     ));
 
   SetMainPhoto$ = createEffect(() => this.actions$.pipe(
-    ofType(PhotosActions.setMainPhoto),
+    ofType(setMainPhoto),
     concatMap(action => of(action).pipe(
-      withLatestFrom(this.store.select(selectUserProfileSettings)))
+      withLatestFrom(this.store.select(selectAuthenticatedUserId)))
     ),
-    switchMap(([ { photoId }, { id: userId } ]) => {
+    switchMap(([ { photoId }, userId ]) => {
       return this.photoService.setMainPhoto(userId, photoId).pipe(
-        map(() => PhotosActions.setMainPhotoSuccess({ photoId })),
+        map(() => {
+          return setMainPhotoSuccess({ photoId });
+        }),
         catchError(error => {
           this.toast.warning(error);
-          return of(PhotosActions.setMainPhotoFailure({ error }));
+          return of(setMainPhotoFailure({ error }));
         })
       );
     })
   ));
 
-  DeletePhoto$ = createEffect(() => this.actions$.pipe(
-    ofType(PhotosActions.deletePhoto),
+  ChangeUserImageLocally$ = createEffect(() => this.actions$.pipe(
+    ofType(setMainPhotoSuccess),
     concatMap(action => of(action).pipe(
-      withLatestFrom(this.store.select(selectUserProfileSettings)))
+      withLatestFrom(this.store.select(selectUserPhotosState)))
     ),
-    switchMap(([ { photoId }, { id: userId } ]) => {
+    switchMap(([ action, photosState ]) => {
+      const photoUrl = photosState.photos.find(p => p.isMain)?.url ?? '';
+      return of(changeUserImageLocally({ photoUrl }));
+    })
+  ));
+
+  DeletePhoto$ = createEffect(() => this.actions$.pipe(
+    ofType(deletePhoto),
+    concatMap(action => of(action).pipe(
+      withLatestFrom(this.store.select(selectAuthenticatedUserId)))
+    ),
+    switchMap(([ { photoId }, userId ]) => {
       return this.photoService.deletePhoto(userId, photoId).pipe(
-        map(() => PhotosActions.deletePhotoSuccess({ photoId })),
+        map(() => deletePhotoSuccess({ photoId })),
         catchError(error => {
           this.toast.warning(error);
-          return of(PhotosActions.deletePhotoFailure({ error }));
+          return of(deletePhotoFailure({ error }));
         })
       );
     })

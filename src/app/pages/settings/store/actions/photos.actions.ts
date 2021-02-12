@@ -1,13 +1,8 @@
 import { createAction, props } from '@ngrx/store';
 import { Photo } from '@core/models';
 
-interface PhotoUploadPayload {
-  payload: FormData;
-}
-
 export const loadUserProfilePhotos = createAction(
-  '[User Profile Photos Page] Load User Profile Photos',
-  props<{ userId: number }>()
+  '[User Profile Photos Page] Load User Profile Photos'
 );
 
 export const loadUserProfilePhotosSuccess = createAction(

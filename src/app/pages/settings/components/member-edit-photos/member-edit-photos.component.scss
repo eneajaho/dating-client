@@ -25,6 +25,21 @@
 
 }
 
+.card {
+  border: none;
+
+  .current {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: #862ed6;
+    color: #d6d6d7;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+  }
+}
+
 .bw-2 {
   border-width: 2px;
 }

@@ -22,5 +22,5 @@ export const reducer = createReducer(initialState,
 
 export const getAuth = (state: State) => state.user;
 export const getToken = (state: State) => state.user?.token;
-export const getUserId = (state: State) => state.user?.id;
+export const getUserId = (state: State) => state.user?.id ?? 0;
 export const isLoggedIn = (state: State) => state.user !== null;

@@ -84,7 +84,7 @@ export const reducer = createReducer(initialState,
   /** Selected Member reducers **/
   on(MemberActions.loadMember, (state, { id }) => {
     return adapter.upsertOne(
-      { photos: [], id, loading: true, error: undefined },
+      { id, loading: true, error: undefined },
       { ...state, selectedMemberId: id }
     );
   }),

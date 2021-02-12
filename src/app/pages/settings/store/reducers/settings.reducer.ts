@@ -1,6 +1,7 @@
 import { createReducer, on } from '@ngrx/store';
 import { Status, User } from '@core/models';
 import {
+  changeUserImageLocally,
   editUserSettings,
   editUserSettingsFailure,
   editUserSettingsSuccess,
@@ -25,7 +26,6 @@ export const initialState: UserSettingsState = {
   error: undefined,
   savingChanges: false,
   user: {
-    photos: [],
     id: 0
   },
 };
@@ -58,6 +58,10 @@ export const settingsReducer = createReducer(initialState,
 
   on(editUserSettingsFailure, (state, { error }) => ({
     ...state, error, savingChanges: false
+  })),
+
+  on(changeUserImageLocally, (state, { photoUrl }) => ({
+    ...state, user: { ...state.user, photoUrl }
   }))
 
 );

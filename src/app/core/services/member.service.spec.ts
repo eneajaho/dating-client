@@ -62,8 +62,8 @@ describe('MemberService', () => {
       totalPages: 5
     };
     const membersList: User[] = [
-      { id: 1, username: 'test1', photos: [] },
-      { id: 2, username: 'test2', photos: [] }
+      { id: 1, username: 'test1' },
+      { id: 2, username: 'test2' }
     ];
     const path = `${ apiUrl }/users`;
 
@@ -114,7 +114,7 @@ describe('MemberService', () => {
   });
 
   describe('getMemberDetails method', () => {
-    const testUser: User = { id: 1, username: 'test', photos: [] };
+    const testUser: User = { id: 1, username: 'test' };
     const path = `${ apiUrl }/users/${ 1 }`;
 
     it('should return a User or empty object', () => {
@@ -156,7 +156,7 @@ describe('MemberService', () => {
   });
 
   describe('editMember method', () => {
-    const testUser: User = { id: 1, username: 'test', photos: [] };
+    const testUser: User = { id: 1, username: 'test' };
     const path = `${ apiUrl }/users/${ testUser.id }`;
 
     it('should return a User', () => {
@@ -172,7 +172,7 @@ describe('MemberService', () => {
 
     it('should return an error message', () => {
       const errorMessage = 'Error!!!';
-      const testUser: User = { id: 1, username: 'test', photos: [] };
+      const testUser: User = { id: 1, username: 'test' };
       memberService.editMember(testUser).subscribe(
         () => {},
         (error: HttpErrorResponse) => {

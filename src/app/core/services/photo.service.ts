@@ -9,6 +9,11 @@ export class PhotoService {
 
   constructor(@Inject(API_URL) private api: string, private http: HttpClient) { }
 
+  getUserPhotos(userId: number): Observable<Photo[]> {
+    const path = `${this.api}/users/${userId}/photos`;
+    return this.http.get<Photo[]>(path);
+  }
+
   uploadPhoto(payload: any, userId: number): Observable<Photo> {
     const path = `${this.api}/users/${userId}/photos`;
     return this.http.post<Photo>(path, payload);

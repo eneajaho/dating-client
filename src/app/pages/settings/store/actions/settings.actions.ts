@@ -34,3 +34,10 @@ export const editUserSettingsFailure = createAction(
   '[Members/API] Edit User Profile Settings Failure',
   props<{ error: string }>()
 );
+
+
+/** Will be dispatched when main user image changes */
+export const changeUserImageLocally = createAction(
+  '[Set Main Photo Action] Change User Image Locally',
+  props<{ photoUrl: string }>()
+);

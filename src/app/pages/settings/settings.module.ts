@@ -16,7 +16,7 @@ import { FileUploaderModule } from '@shared/components/file-uploader/file-upload
 import { ErrorAlertModule } from '@shared/components/error-alert/error-alert.module';
 import { SpinnerModule } from '@shared/components/spinner/spinner.module';
 import { RouterModule, Routes } from '@angular/router';
-import { PreventUnsavedChangesGuard, SettingsGuard } from '@settings/guards';
+import { PreventUnsavedChangesGuard, SettingsGuard, PhotosGuard } from '@settings/guards';
 import { NotFoundComponent } from '@layout/components/not-found.component';
 
 const routes: Routes = [
@@ -42,7 +42,7 @@ const routes: Routes = [
       },
       {
         path: 'photos',
-        canDeactivate: [],
+        canActivate: [ PhotosGuard ],
         component: MemberEditPhotosComponent,
         data: { animation: 'Photos'}
       },
@@ -77,7 +77,8 @@ const routes: Routes = [
     SpinnerModule,
   ],
   providers: [
-    SettingsGuard
+    SettingsGuard,
+    PhotosGuard
   ]
 })
 export class SettingsModule { }

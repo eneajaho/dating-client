@@ -2,7 +2,9 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { selectUserPhotosState, SettingsState } from '@settings/store/reducers';
 import { faCheck, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
-import { deletePhoto, setMainPhoto, uploadPhoto } from '@settings/store/actions/photos.actions';
+import { deletePhoto, loadUserProfilePhotos, setMainPhoto, uploadPhoto } from '@settings/store/actions/photos.actions';
+import { map, tap } from 'rxjs/operators';
+import { loadEntity } from '@shared/helpers';
 
 @Component({
   selector: 'app-member-edit-photos',
@@ -12,7 +14,11 @@ import { deletePhoto, setMainPhoto, uploadPhoto } from '@settings/store/actions/
 })
 export class MemberEditPhotosComponent implements OnInit {
 
-  vm$ = this.store.select(selectUserPhotosState);
+  vm$ = this.store.select(selectUserPhotosState).pipe(
+    tap((state) => loadEntity(state,
+      () => this.store.dispatch(loadUserProfilePhotos()))
+    )
+  );
 
   checkIcon = faCheck;
   deleteIcon = faTrashAlt;

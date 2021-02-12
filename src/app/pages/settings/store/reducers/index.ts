@@ -5,6 +5,7 @@ import { RootState } from '@store/reducers';
 import { settingsReducer, userProfileSettingsFeatureKey, UserSettingsState } from './settings.reducer';
 
 import { photosReducer, userPhotosFeatureKey, UserPhotosState } from './photos.reducer';
+import { AuthState } from '@auth/store/reducers';
 
 export const settingsFeatureKey = 'settings';
 
@@ -13,7 +14,7 @@ interface SettingsFeatureState {
   [userPhotosFeatureKey]: UserPhotosState;
 }
 
-export interface SettingsState extends RootState {
+export interface SettingsState extends AuthState {
   [settingsFeatureKey]: SettingsFeatureState;
 }
 
