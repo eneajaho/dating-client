@@ -45,7 +45,11 @@
                   "with": "src/app/build-specifics/index.prod.ts"
                 }
               ],
-              "optimization": true,
+              "optimization": {
+                "styles": {
+                  "inlineCritical": true
+                }
+              },
               "outputHashing": "all",
               "sourceMap": false,
               "namedChunks": true,
