@@ -21,7 +21,7 @@ export class SettingsComponent {
 
   vm$: Observable<UserSettingsState> = this.store.select(selectUserSettingsState);
 
-  page$: Observable<string> = this.store.select(selectRouter).pipe(
+  page$: Observable<'profile' | 'account' | 'chat' | 'photos'> = this.store.select(selectRouter).pipe(
     map(data => this.getPage(data))
   );
 
@@ -31,11 +31,11 @@ export class SettingsComponent {
     this.store.dispatch(loadUserSettings());
   }
 
-  private getPage(routerState: { state: any; navigationId?: number; }): 'profile' | 'account' | 'chat' | 'photos' | string {
-    if (!routerState) { return ''; }
+  private getPage(routerState: { state: any; navigationId?: number; }): 'profile' | 'account' | 'chat' | 'photos' {
+    if (!routerState) { return 'profile'; }
     const tags = routerState?.state?.url?.split('/');
     if (tags[2] !== null && tags[2] !== '' && tags[2] !== undefined) { return tags[2]; }
-    return '';
+    return 'profile';
   }
 
   prepareRoute(outlet: RouterOutlet): string {

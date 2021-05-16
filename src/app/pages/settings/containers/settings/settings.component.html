@@ -19,7 +19,7 @@
           <app-settings-header
             *ngIf="page$ | async as page"
             [page]="page"
-            [profilePicture]="vm.user.photoUrl"
+            [profilePicture]="vm.user.photoUrl ? vm.user.photoUrl : undefined"
             [userName]="vm.user.knownAs">
           </app-settings-header>
         </div>

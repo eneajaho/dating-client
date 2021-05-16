@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input, Optional, TemplateRef } from '@angular/core';
+import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { faHome } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -31,7 +32,7 @@ import { faHome } from '@fortawesome/free-solid-svg-icons';
 })
 export class NotFoundComponent {
 
-  homeIcon = faHome;
+  homeIcon = faHome as IconProp;
 
   @Optional() @Input() templateOutlet?: TemplateRef<any>;
 

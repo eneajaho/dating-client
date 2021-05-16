@@ -19,7 +19,7 @@ export class SettingsHeaderComponent {
   @Input() profilePicture?: string;
 
   @Input()
-  set page(name: keyof PageDetails) {
+  set page(name: 'profile' | 'account' | 'chat' | 'photos') {
     this._page.name = name;
     this._page.description = this.pageDetails[name];
   }

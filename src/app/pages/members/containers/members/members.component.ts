@@ -7,6 +7,7 @@ import { MembersState } from '@members/store/reducers';
 import { MembersPageActions } from '@members/store/actions';
 import { faFilter } from '@fortawesome/free-solid-svg-icons';
 import { map } from 'rxjs/operators';
+import { IconProp } from '@fortawesome/fontawesome-svg-core';
 
 @Component({
   selector: 'app-members',
@@ -28,7 +29,7 @@ export class MembersComponent {
   pagination$ = this.store.select(fromMembers.selectMembersPagination);
   hasMorePages$ = this.store.select(fromMembers.selectMembersHasMorePages);
 
-  filterIcon = faFilter;
+  filterIcon = faFilter as IconProp;
 
   constructor(private store: Store<MembersState>) {}
 

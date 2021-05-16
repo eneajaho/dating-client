@@ -3,6 +3,7 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { FormBuilder, Validators } from '@angular/forms';
 import { fadeIdAnimation } from '@shared/animations/fadeIn.animation';
 import { MembersFilter } from '@core/models';
+import { IconProp } from '@fortawesome/fontawesome-svg-core';
 
 type Sections = 'age' | 'gender' | 'lastActive';
 
@@ -16,10 +17,10 @@ type Sections = 'age' | 'gender' | 'lastActive';
 export class MembersSearchFormComponent implements OnInit {
 
   @Input() theme = 'dark';
-  @Input() activeFilters: MembersFilter | null = null;
+  @Input() activeFilters: Partial<MembersFilter> | null = null;
   @Output() submitted = new EventEmitter<MembersFilter>();
 
-  searchIcon = faSearch;
+  searchIcon = faSearch as IconProp;
 
   private activeStates: Sections[] = [ 'age', 'gender', 'lastActive' ];
   active: Sections = 'age';

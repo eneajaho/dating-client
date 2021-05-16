@@ -5,6 +5,7 @@ import { faCheck, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { deletePhoto, loadUserProfilePhotos, setMainPhoto, uploadPhoto } from '@settings/store/actions/photos.actions';
 import { map, tap } from 'rxjs/operators';
 import { loadEntity } from '@shared/helpers';
+import { IconProp } from '@fortawesome/fontawesome-svg-core';
 
 @Component({
   selector: 'app-member-edit-photos',
@@ -20,8 +21,8 @@ export class MemberEditPhotosComponent implements OnInit {
     )
   );
 
-  checkIcon = faCheck;
-  deleteIcon = faTrashAlt;
+  checkIcon = faCheck as IconProp;
+  deleteIcon = faTrashAlt as IconProp;
 
   constructor(private store: Store<SettingsState>) { }
 

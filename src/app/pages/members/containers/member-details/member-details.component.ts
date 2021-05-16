@@ -15,6 +15,7 @@ import { loadMember } from '@members/store/actions/member.actions';
 import { switchMap, tap } from 'rxjs/operators';
 import { loadEntity } from '@shared/helpers';
 import { fadeIdAnimation } from '@shared/animations/fadeIn.animation';
+import { IconProp } from '@fortawesome/fontawesome-svg-core';
 
 @Component({
   selector: 'app-member-details',
@@ -27,9 +28,9 @@ export class MemberDetailsComponent implements OnInit {
   userDetails$?: Observable<(User & Status) | undefined>;
   showEditBtn = false;
 
-  sendIcon = faComment;
-  userEditIcon = faUserCog;
-  backIcon = faArrowLeft;
+  sendIcon = faComment as IconProp;
+  userEditIcon = faUserCog as IconProp;
+  backIcon = faArrowLeft as IconProp;
 
   constructor(private store: Store<MembersState & SettingsState>,
               private route: ActivatedRoute, private cdr: ChangeDetectorRef) {}

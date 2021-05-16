@@ -3,6 +3,7 @@ import { User } from '@models/User';
 import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
 import { faCalendarAlt } from '@fortawesome/free-regular-svg-icons';
 import { Status } from '@core/models';
+import { IconProp } from '@fortawesome/fontawesome-svg-core';
 
 @Component({
   selector: 'app-member-details-card',
@@ -16,8 +17,8 @@ export class MemberDetailsCardComponent implements OnChanges {
 
   colors = [ 'primary', 'danger', 'info', 'success' ];
 
-  locationIcon = faMapMarkerAlt;
-  calendarIcon = faCalendarAlt;
+  locationIcon = faMapMarkerAlt as IconProp;
+  calendarIcon = faCalendarAlt as IconProp;
 
   @Input() user!: User & Status;
 

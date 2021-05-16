@@ -14,7 +14,7 @@
     </div>
 
     <div class="lastActive">
-      Active {{ user?.lastActive | timeAgo }}
+      Active {{ user?.lastActive ? user?.lastActive : '' | timeAgo }}
     </div>
 
   </div>

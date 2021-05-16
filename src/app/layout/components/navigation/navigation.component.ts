@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { faCog, faComments, faHeart, faSignOutAlt, faStar, faUser, faUsers } from '@fortawesome/free-solid-svg-icons';
 import { User } from '@models/User';
 
@@ -16,10 +17,10 @@ export interface MenuItem {
 })
 export class NavigationComponent {
 
-  logoutIcon = faSignOutAlt;
-  settingsIcon = faCog;
-  userIcon = faUser;
-  heartIcon = faHeart;
+  logoutIcon = faSignOutAlt as IconProp;
+  settingsIcon = faCog as IconProp;
+  userIcon = faUser as IconProp;
+  heartIcon = faHeart as IconProp;
 
   showMenu = false;
 

@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { faCloudUploadAlt } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -12,7 +13,7 @@ export class FileUploaderComponent {
 
   @Output() uploaded = new EventEmitter<FileList>();
 
-  uploadIcon = faCloudUploadAlt;
+  uploadIcon = faCloudUploadAlt as IconProp;
 
   isHovering = false;
 

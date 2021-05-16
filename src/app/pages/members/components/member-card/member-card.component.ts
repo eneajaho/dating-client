@@ -4,6 +4,7 @@ import { faMapMarkerAlt, } from '@fortawesome/free-solid-svg-icons';
 import { faComment, faHeart } from '@fortawesome/free-regular-svg-icons';
 import { Router } from '@angular/router';
 import { fadeIdAnimation } from '@shared/animations/fadeIn.animation';
+import { IconProp } from '@fortawesome/fontawesome-svg-core';
 
 @Component({
   selector: 'app-member-card',
@@ -18,9 +19,9 @@ export class MemberCardComponent {
 
   constructor(private router: Router) {}
 
-  locationIcon = faMapMarkerAlt;
-  sendIcon = faComment;
-  loveIcon = faHeart;
+  locationIcon = faMapMarkerAlt as IconProp;
+  sendIcon = faComment as IconProp;
+  loveIcon = faHeart as IconProp;
 
   goToMember() {
     this.router.navigate(['/members', this.user?.id]);

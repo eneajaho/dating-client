@@ -6,8 +6,9 @@
           How do you like your soulmate?
         </h1>
         <app-members-search-form
+          *ngIf="theme$ | async as theme"
           [activeFilters]="activeFilters$ | async"
-          [theme]="theme$ | async"
+          [theme]="theme"
           (submitted)="handleSubmit($event)">
         </app-members-search-form>
       </div>
