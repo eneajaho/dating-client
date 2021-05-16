@@ -17,7 +17,8 @@
       <div class="row justify-content-center">
         <div class="col-12">
           <app-settings-header
-            [page]="page$ | async"
+            *ngIf="page$ | async as page"
+            [page]="page"
             [profilePicture]="vm.user.photoUrl"
             [userName]="vm.user.knownAs">
           </app-settings-header>

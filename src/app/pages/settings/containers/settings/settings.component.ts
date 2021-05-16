@@ -31,8 +31,8 @@ export class SettingsComponent {
     this.store.dispatch(loadUserSettings());
   }
 
-  private getPage(routerState: { state: any; navigationId?: number; }) {
-    if (!routerState) { return null; }
+  private getPage(routerState: { state: any; navigationId?: number; }): 'profile' | 'account' | 'chat' | 'photos' | string {
+    if (!routerState) { return ''; }
     const tags = routerState?.state?.url?.split('/');
     if (tags[2] !== null && tags[2] !== '' && tags[2] !== undefined) { return tags[2]; }
     return '';

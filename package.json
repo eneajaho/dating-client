@@ -33,6 +33,7 @@
     "@ngrx/store": "^10.1.2",
     "@ngrx/store-devtools": "^10.1.2",
     "bootstrap": "^4.4.1",
+    "dotenv": "^8.2.0",
     "jest-marbles": "^2.5.1",
     "ngx-bootstrap": "^6.2.0",
     "ngx-chips": "^2.2.0",

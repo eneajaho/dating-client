@@ -29,6 +29,7 @@ export class CoreModule {
       providers: [
         ErrorInterceptorProvider,
         AuthInterceptorProvider,
+        // { provide: ErrorHandler, useClass: MyErrorHandler }
       ]
     };
   }
