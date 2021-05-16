@@ -1,12 +1,7 @@
 import { Injectable } from '@angular/core';
-import { catchError, concatMap, map, switchMap, withLatestFrom } from 'rxjs/operators';
-import { of } from 'rxjs';
-
-import { Actions, createEffect, ofType } from '@ngrx/effects';
-
+import { selectAuthenticatedUserId } from '@auth/store/reducers';
 import { PhotoService } from '@core/services/photo.service';
-import { ToastrService } from 'ngx-toastr';
-import { selectUserPhotosState, SettingsState } from '@settings/store/reducers';
+import { Actions, concatLatestFrom, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import {
   deletePhoto,
@@ -23,50 +18,48 @@ import {
   uploadPhotoSuccess
 } from '@settings/store/actions/photos.actions';
 import { changeUserImageLocally } from '@settings/store/actions/settings.actions';
-import { selectAuthenticatedUserId } from '@auth/store/reducers';
+import { selectUserPhotosState, SettingsState } from '@settings/store/reducers';
+import { ToastrService } from 'ngx-toastr';
+import { of } from 'rxjs';
+import { catchError, map, switchMap } from 'rxjs/operators';
+
+
 
 @Injectable()
 export class PhotosEffects {
-  constructor(private actions$: Actions,
-              private store: Store<SettingsState>,
-              private photoService: PhotoService,
-              private toast: ToastrService) {
-  }
+  constructor(
+    private actions$: Actions,
+    private store: Store<SettingsState>,
+    private photoService: PhotoService,
+    private toast: ToastrService
+  ) { }
 
-  LoadUserPhoto$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(loadUserProfilePhotos),
-      concatMap(action => of(action).pipe(
-        withLatestFrom(this.store.select(selectAuthenticatedUserId)))
-      ),
-      switchMap(([ action, id ]) => {
-        return this.photoService.getUserPhotos(id).pipe(
-          map(photos => loadUserProfilePhotosSuccess({ photos })),
-          catchError(error => of(loadUserProfilePhotosFailure({ error }))),
-        );
-      })
-    ));
+  LoadUserPhoto$ = createEffect(() => this.actions$.pipe(
+    ofType(loadUserProfilePhotos),
+    concatLatestFrom(() => this.store.select(selectAuthenticatedUserId)),
+    switchMap(([action, id]) => {
+      return this.photoService.getUserPhotos(id).pipe(
+        map(photos => loadUserProfilePhotosSuccess({ photos })),
+        catchError(error => of(loadUserProfilePhotosFailure({ error }))),
+      );
+    })
+  ));
 
-  UploadPhoto$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(uploadPhoto),
-      concatMap(action => of(action).pipe(
-        withLatestFrom(this.store.select(selectAuthenticatedUserId)))
-      ),
-      switchMap(([ { payload }, userId ]) => {
-        return this.photoService.uploadPhoto(payload, userId).pipe(
-          map(photo => uploadPhotoSuccess({ photo })),
-          catchError(error => of(uploadPhotoFailure({ error }))),
-        );
-      })
-    ));
+  UploadPhoto$ = createEffect(() => this.actions$.pipe(
+    ofType(uploadPhoto),
+    concatLatestFrom(() => this.store.select(selectAuthenticatedUserId)),
+    switchMap(([{ payload }, userId]) => {
+      return this.photoService.uploadPhoto(payload, userId).pipe(
+        map(photo => uploadPhotoSuccess({ photo })),
+        catchError(error => of(uploadPhotoFailure({ error }))),
+      );
+    })
+  ));
 
   SetMainPhoto$ = createEffect(() => this.actions$.pipe(
     ofType(setMainPhoto),
-    concatMap(action => of(action).pipe(
-      withLatestFrom(this.store.select(selectAuthenticatedUserId)))
-    ),
-    switchMap(([ { photoId }, userId ]) => {
+    concatLatestFrom(() => this.store.select(selectAuthenticatedUserId)),
+    switchMap(([{ photoId }, userId]) => {
       return this.photoService.setMainPhoto(userId, photoId).pipe(
         map(() => {
           return setMainPhotoSuccess({ photoId });
@@ -81,10 +74,8 @@ export class PhotosEffects {
 
   ChangeUserImageLocally$ = createEffect(() => this.actions$.pipe(
     ofType(setMainPhotoSuccess),
-    concatMap(action => of(action).pipe(
-      withLatestFrom(this.store.select(selectUserPhotosState)))
-    ),
-    switchMap(([ action, photosState ]) => {
+    concatLatestFrom(() => this.store.select(selectUserPhotosState)),
+    switchMap(([action, photosState]) => {
       const photoUrl = photosState.photos.find(p => p.isMain)?.url ?? '';
       return of(changeUserImageLocally({ photoUrl }));
     })
@@ -92,10 +83,8 @@ export class PhotosEffects {
 
   DeletePhoto$ = createEffect(() => this.actions$.pipe(
     ofType(deletePhoto),
-    concatMap(action => of(action).pipe(
-      withLatestFrom(this.store.select(selectAuthenticatedUserId)))
-    ),
-    switchMap(([ { photoId }, userId ]) => {
+    concatLatestFrom(() => this.store.select(selectAuthenticatedUserId)),
+    switchMap(([{ photoId }, userId]) => {
       return this.photoService.deletePhoto(userId, photoId).pipe(
         map(() => deletePhotoSuccess({ photoId })),
         catchError(error => {

@@ -101,10 +101,10 @@ export const selectMemberError = createSelector(
   member => member?.error
 );
 
-export const selectIsMyProfile = createSelector(
+export const selectIsMyProfile = (userId: number) => createSelector(
   selectAuthenticatedUserId,
-  (authUserId: number | undefined, props: { userId: number }) => {
-    return authUserId === props.userId;
+  (authUserId: number | undefined) => {
+    return authUserId === userId;
   }
 );
 

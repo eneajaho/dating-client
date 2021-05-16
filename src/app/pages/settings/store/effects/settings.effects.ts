@@ -1,25 +1,25 @@
 import { Injectable } from '@angular/core';
-
-import { Actions, createEffect, ofType } from '@ngrx/effects';
-
-import { catchError, concatMap, exhaustMap, map, switchMap, withLatestFrom } from 'rxjs/operators';
-import { of } from 'rxjs';
-import { ToastrService } from 'ngx-toastr';
-import { MemberService } from '@core/services/member.service';
-import { SettingsActions } from '@settings/store/actions';
-import { selectUserProfileSettings, SettingsState } from '@settings/store/reducers';
 import { AuthState, selectAuthenticatedUserId } from '@auth/store/reducers';
-import { Store } from '@ngrx/store';
-import { loadUserSettings } from '@settings/store/actions/settings.actions';
 import { User } from '@core/models';
+import { MemberService } from '@core/services/member.service';
+import { Actions, concatLatestFrom, createEffect, ofType } from '@ngrx/effects';
+import { Store } from '@ngrx/store';
+import { SettingsActions } from '@settings/store/actions';
+import { loadUserSettings } from '@settings/store/actions/settings.actions';
+import { selectUserProfileSettings, SettingsState } from '@settings/store/reducers';
+import { ToastrService } from 'ngx-toastr';
+import { of } from 'rxjs';
+import { catchError, exhaustMap, map, switchMap } from 'rxjs/operators';
+
 
 @Injectable()
 export class SettingsEffects {
 
-  constructor(private actions$: Actions,
-              private memberService: MemberService,
-              private store: Store<AuthState & SettingsState>,
-              private toast: ToastrService) {
+  constructor(
+    private actions$: Actions,
+    private memberService: MemberService,
+    private store: Store<AuthState & SettingsState>,
+    private toast: ToastrService) {
   }
 
   LoadUserSettings$ = createEffect(() =>
@@ -27,24 +27,22 @@ export class SettingsEffects {
       ofType(loadUserSettings),
       switchMap(() => this.store.select(selectAuthenticatedUserId)),
       switchMap(id => {
-          if (!id) {
-            const error = 'User id doesn\'t exist';
-            return of(SettingsActions.loadUserSettingsFailure({ error }));
-          }
-          return this.memberService.getMemberDetails(id).pipe(
-            map(user => SettingsActions.loadUserSettingsSuccess({ user })),
-            catchError(error => of(SettingsActions.loadUserSettingsFailure({ error }))),
-          );
+        if (!id) {
+          const error = 'User id doesn\'t exist';
+          return of(SettingsActions.loadUserSettingsFailure({ error }));
         }
+        return this.memberService.getMemberDetails(id).pipe(
+          map(user => SettingsActions.loadUserSettingsSuccess({ user })),
+          catchError(error => of(SettingsActions.loadUserSettingsFailure({ error }))),
+        );
+      }
       )
     ));
 
   EditUserProfile$ = createEffect(() => this.actions$.pipe(
     ofType(SettingsActions.editUserSettings),
-    concatMap(action => of(action).pipe(
-      withLatestFrom(this.store.select(selectUserProfileSettings)))
-    ),
-    exhaustMap(([{ userData }, userProfile ]) => {
+    concatLatestFrom(() => this.store.select(selectUserProfileSettings)),
+    exhaustMap(([{ userData }, userProfile]) => {
       const payload: User = { ...userProfile, ...userData };
       return this.memberService.editMember(payload).pipe(
         map(user => {
@@ -57,7 +55,6 @@ export class SettingsEffects {
         }),
       );
     })
-    )
-  );
+  ));
 
 }
