@@ -4,7 +4,7 @@ import { API_URL } from '@core/tokens';
 import { Observable } from 'rxjs';
 import { Credentials, LoginResponse, Register } from '@auth/models';
 
-@Injectable({ providedIn: 'any' })
+@Injectable({ providedIn: 'root' })
 export class AuthService {
 
   constructor(@Inject(API_URL) private api: string, private http: HttpClient) { }
