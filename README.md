@@ -1,4 +1,4 @@
-# DatingYou - [Live app](https://dating-you.netlify.app/) 
+# DatingYou - [Live app](https://dating-you.netlify.app/)
 
 [![CircleCI](https://circleci.com/gh/eneajaho/dating-client.svg?style=svg)](https://circleci.com/gh/eneajaho/dating-client)
 [![Netlify Status](https://api.netlify.com/api/v1/badges/caf7101b-f63f-4f67-94aa-e8eabe906cfa/deploy-status)](https://app.netlify.com/sites/dating-you/deploys)
@@ -23,7 +23,7 @@ ng serve -o
 - NGRX Store (eager & lazy loaded store modules)
 - Authentication & Authorization
 - CRUD & Pagination (server side)
-- Multiple layouts architecture 
+- Multiple layouts architecture
 - Light & Dark Mode
 - Image uploading
 
@@ -45,7 +45,7 @@ ng serve -o
     │   ├── auth
     │   ├── settings
     │   └── members
-    ├── shared                    # Shared folder includes shared utilities in the app. 
+    ├── shared                    # Shared folder includes shared utilities in the app.
     │   ├── components
     │   ├── directives
     │   ├── pipes
@@ -55,12 +55,12 @@ ng serve -o
     │   ├── reducers
     │   └── root-store.module.ts
     ├── app.component.ts
-    ├── app.module.ts  
+    ├── app.module.ts
     └── app-routing.module.ts
-    
+
 ### Feature modules folder structure (auth, members, settings etc.)
-     
-    module                    
+
+    module
     ├── containers
     ├── components
     ├── services
@@ -95,7 +95,7 @@ ng serve -o
     - ~~Test Guards/Interceptors~~
 - ~~Filter functionality~~
 - ~~Stricter type checking~~
-- ~~Upgrade to Angular 11~~
+- ~~Upgrade to Angular 12~~
 
 #### License: MIT
 
