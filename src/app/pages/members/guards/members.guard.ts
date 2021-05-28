@@ -24,7 +24,7 @@ export class MembersGuard implements CanActivate {
         }
       ),
       map(() => true),
-      take(1)
+      // take(1)
     );
   }
 

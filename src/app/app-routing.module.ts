@@ -15,7 +15,9 @@ export const routes: Routes = [
     path: '', redirectTo: 'members', pathMatch: 'full'
   },
   {
-    path: '', component: MainLayoutComponent, children: [
+    path: '',
+    component: MainLayoutComponent,
+    children: [
       {
         path: 'members',
         canActivate: [ AuthGuard ],

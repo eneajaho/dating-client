@@ -22,7 +22,7 @@ export class ErrorInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<any>> {
     return next.handle(request).pipe(
       // TODO: Better Error handling.
-      // Check: https://medium.com/@aleixsuau/error-handling-angular-859d529fa53a
+      // https://medium.com/@aleixsuau/error-handling-angular-859d529fa53a
       catchError((error: any): Observable<never> => {
         if (error instanceof HttpErrorResponse) {
           if (error.status === 0) {

@@ -1,66 +1,49 @@
 import { NgModule } from '@angular/core';
 
-import { MembersRoutingModule } from './members-routing.module';
-import { ReactiveFormsModule } from '@angular/forms';
-import { CarouselModule } from 'ngx-bootstrap/carousel';
-import { TabsModule } from 'ngx-bootstrap/tabs';
-import { TagInputModule } from 'ngx-chips';
-
 import { MembersStoreModule } from '@members/store/members-store.module';
-
-import { MemberDetailsComponent, MembersComponent, MembersSearchComponent } from '@members/containers';
-
-import { MemberCardComponent, MemberDetailsCardComponent, MembersSearchFormComponent } from '@members/components';
-import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { SettingsStoreModule } from '@settings/store/settings-store.module';
-import { GoBackModule } from '@shared/directives/go-back/go-back.module';
-import { TimeAgoModule } from '@shared/pipes/time-ago/time-ago.module';
-import { SpinnerModule } from '@shared/components/spinner/spinner.module';
-import { ErrorAlertModule } from '@shared/components/error-alert/error-alert.module';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { CommonModule } from '@angular/common';
-
+import { RouterModule, Routes } from '@angular/router';
+import { MemberGuard, MembersGuard } from '@members/guards';
 
 /**
  * MembersModule and MembersStoreModule will be lazy loaded.
  * In this way we don't initialize the members store when it is not used.
  **/
 
+const routes: Routes = [
+  {
+    path: 'all',
+    canActivate: [ MembersGuard ],
+    loadChildren: async () =>
+      (await import('./pages/members/all-members.module'))
+        .AllMembersModule
+  },
+  {
+    path: 'search',
+    loadChildren: async () =>
+      (await import('./pages/members-search/members-search.module'))
+        .MembersSearchModule
+  },
+  {
+    path: 'details',
+    canActivate: [ MemberGuard ],
+    loadChildren: async () =>
+      (await import('./pages/member-details/member-details.module'))
+        .SettingsModule
+  }
+];
+
+
 @NgModule({
-  declarations: [
-    MembersComponent,
-    MemberCardComponent,
-    MemberDetailsComponent,
-    MemberDetailsCardComponent,
-
-    MembersSearchComponent,
-    MembersSearchFormComponent,
-  ],
   imports: [
-    MembersRoutingModule,
+    RouterModule.forChild(routes),
     MembersStoreModule,
-
     // for the moment Settings Store is loaded also here because of profile page
     // will be changed later, because another profile page will be created
-    SettingsStoreModule,
-
-    TagInputModule,
-    CarouselModule.forRoot(),
-    TabsModule.forRoot(),
-    BsDropdownModule.forRoot({
-      isAnimated: true,
-      autoClose: true
-    }),
-    GoBackModule,
-    TimeAgoModule,
-    SpinnerModule,
-    FontAwesomeModule,
-    CommonModule,
-    ErrorAlertModule,
-    ReactiveFormsModule,
-  ]
+    SettingsStoreModule
+  ],
+  exports: [ RouterModule ]
 })
-export class MembersModule {
-}
+export class MembersModule { }
 
 

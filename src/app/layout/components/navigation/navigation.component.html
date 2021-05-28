@@ -13,7 +13,7 @@
 
     <ul class="navbar-nav">
       <li *ngFor="let item of menuItems" class="nav-item">
-        <a class="nav-link" routerLinkActive="active" [routerLink]="item.link">
+        <a class="nav-link" routerLinkActive="active" [routerLink]="[ item.link ]">
           <fa-icon [icon]="item.icon" class="mr-1"></fa-icon>
           {{ item.title }}
         </a>
@@ -37,7 +37,7 @@
           </a>
           <ul *dropdownMenu class="dropdown-menu dropdown-menu-right mr-2">
             <li role="menuitem">
-              <a class="dropdown-item" routerLinkActive="active" routerLink="/members/profile">
+              <a class="dropdown-item" routerLinkActive="active" routerLink="/members/details/profile">
                 <fa-icon [icon]="userIcon" class="mr-2"></fa-icon>
                 My Profile
               </a>

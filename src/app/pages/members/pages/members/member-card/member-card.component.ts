@@ -24,7 +24,7 @@ export class MemberCardComponent {
   loveIcon = faHeart as IconProp;
 
   goToMember() {
-    this.router.navigate(['/members', this.user?.id]);
+    this.router.navigate(['/members/details', this.user?.id]);
   }
 
   getBackground() {
