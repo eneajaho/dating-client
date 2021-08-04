@@ -18,22 +18,22 @@ jobs:
 
       # Restore local dependencies from cache
       - restore_cache:
-          key: dating-client-{{ .Branch }}-{{ checksum "package-lock.json" }}
+          key: dating-client-{{ .Branch }}-{{ checksum "yarn.lock" }}
 
       # Install project dependencies
       - run:
           name: Install local dependencies
-          command: npm install
+          command: yarn
 
       # Cache local dependencies if they don't exist
       - save_cache:
-          key: dating-client-{{ .Branch }}-{{ checksum "package-lock.json" }}
+          key: dating-client-{{ .Branch }}-{{ checksum "yarn.lock" }}
           paths:
             - node_modules
 
       # Run all unit test
       - run:
          name: Run unit tests
-         command: npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
+         command: yarn test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
 #      - run: npm run e2e -- --protractor-config=e2e/protractor-ci.conf.js
 
