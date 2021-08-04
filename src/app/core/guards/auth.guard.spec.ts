@@ -1,10 +1,8 @@
 import { TestBed } from '@angular/core/testing';
-
-import { cold } from 'jest-marbles';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
+import { selectLoggedIn } from '@store/auth';
 import { AuthGuard } from './auth.guard';
-import { selectLoggedIn } from '@auth/store/reducers';
-import { redirectToAuth } from '@auth/store/actions/auth.actions';
+
 
 describe('AuthGuard', () => {
   let guard: AuthGuard;

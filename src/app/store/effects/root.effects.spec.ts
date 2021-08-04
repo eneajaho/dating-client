@@ -2,14 +2,14 @@ import { TestBed } from '@angular/core/testing';
 import { Observable } from 'rxjs';
 
 import { RootEffects } from './root.effects';
-import { LoginResponse } from '@auth/models';
+import { AuthUser } from '@auth/models';
 import { MockStore } from '@ngrx/store/testing';
 
 interface LocalServiceMock {
   users: {
-    [userId: string]: LoginResponse
+    [userId: string]: AuthUser
   };
-  get: (user: string) => LoginResponse;
+  get: (user: string) => AuthUser;
 }
 
 describe('RootEffects', () => {
@@ -22,7 +22,7 @@ describe('RootEffects', () => {
   //     user: { id: 1, name: 'Test1', token: 'test' },
   //     user2: { id: 2, name: 'Test2', token: 'test' },
   //   },
-  //   get: (user: string): LoginResponse => {
+  //   get: (user: string): AuthUser => {
   //     const { users } = localServiceMock;
   //     return users[user] ?? null;
   //   }

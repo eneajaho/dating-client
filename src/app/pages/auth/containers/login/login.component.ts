@@ -1,31 +1,36 @@
-import { ChangeDetectionStrategy, Component, OnDestroy } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { Credentials } from '@auth/models';
-
-import { AuthState, selectLoginPageState } from '@auth/store/reducers';
-import { clearLoginError, login } from '@auth/store/actions/auth.actions';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { LoginPageStore } from './login-page.store';
 
 @Component({
   selector: 'auth-login',
-  templateUrl: './login.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  template: `
+    <h2 class="font-weight-bold mb-3">Login in Dating</h2>
+
+    <ng-container *ngIf="store.state$ | async as vm">
+      <app-login-form [loading]="vm.loading" (submitted)="store.login($event)">
+        <error-alert
+          *ngIf="vm.error" [error]="vm.error"
+          (click)="store.setError(null)">
+        </error-alert>
+      </app-login-form>
+    </ng-container>
+
+    <div class="mt-3">
+      <a routerLink="/auth/register" class="text-muted">
+        Not registered yet? Register now!
+      </a>
+    </div>
+  `,
+  styles: [`
+    h2 {
+      color: var(--text-color)
+    }
+  `],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [LoginPageStore]
 })
-export class LoginComponent implements OnDestroy {
+export class LoginComponent {
 
-  vm$ = this.store.select(selectLoginPageState);
-
-  constructor(private store: Store<AuthState>) { }
-
-  clearErrors(): void {
-    this.store.dispatch(clearLoginError());
-  }
-
-  onLogin(credentials: Credentials): void {
-    this.store.dispatch(login({ credentials }));
-  }
-
-  ngOnDestroy(): void {
-    this.clearErrors();
-  }
+  constructor(public store: LoginPageStore) { }
 
 }

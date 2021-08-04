@@ -1,3 +1,3 @@
-export * from './Register';
-export * from './Credentials';
-export * from './LoginResponse';
+export * from './RegisterUserPayload';
+export * from './LoginPayload';
+export * from './AuthUser';

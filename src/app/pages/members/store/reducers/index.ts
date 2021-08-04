@@ -1,7 +1,8 @@
+import { RootState } from '@store/reducers';
 import { combineReducers, createFeatureSelector, createSelector, } from '@ngrx/store';
 import * as fromMembers from '@members/store/reducers/members.reducers';
 import { adapter } from '@members/store/reducers/members.reducers';
-import { AuthState, selectAuthenticatedUserId } from '@auth/store/reducers';
+import { selectAuthUserId } from '@store/auth';
 
 export const membersFeatureKey = 'members';
 
@@ -11,7 +12,7 @@ interface MembersFeatureState {
 
 // State will extend only AuthState which is also extending RootState,
 // so there is no need to extend RootState
-export interface MembersState extends AuthState {
+export interface MembersState extends RootState {
   [membersFeatureKey]: MembersFeatureState;
 }
 
@@ -102,7 +103,7 @@ export const selectMemberError = createSelector(
 );
 
 export const selectIsMyProfile = (userId: number) => createSelector(
-  selectAuthenticatedUserId,
+  selectAuthUserId,
   (authUserId: number | undefined) => {
     return authUserId === userId;
   }

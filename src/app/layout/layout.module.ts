@@ -2,10 +2,10 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
-import { EmptyLayoutComponent, MainLayoutComponent } from '@layout/containers';
-import { NavigationComponent } from '@layout/components/navigation/navigation.component';
-import { ThemeToggleComponent } from '@layout/components/theme-toggle/theme-toggle.component';
-import { NotFoundComponent } from '@layout/components/not-found.component';
+import { EmptyLayoutComponent, MainLayoutComponent } from './containers';
+import { NavigationComponent } from './components/navigation/navigation.component';
+import { ThemeToggleComponent } from './components/theme-toggle/theme-toggle.component';
+import { NotFoundComponent } from './components/not-found.component';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';

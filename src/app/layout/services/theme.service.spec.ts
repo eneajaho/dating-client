@@ -37,7 +37,7 @@ describe('ThemeService', () => {
     it('should toggle the theme between light and dark', done => {
       // by default we set the theme to dark
       // if we call toggle() method then the theme should be set to light
-      spyOn(themeService, 'activeTheme').and.returnValue(Themes.Dark);
+      jest.spyOn(themeService, 'activeTheme').mockReturnValue(Themes.Dark);
       themeService.toggle();
       themeService.theme$.subscribe(theme => {
         expect(theme).toBe(Themes.Light);

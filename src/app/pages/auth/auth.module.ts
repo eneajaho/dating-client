@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { LoginComponent } from '@auth/containers/login/login.component';
 import { RegisterComponent } from '@auth/containers/register/register.component';
-import { LoginFormComponent } from '@auth/containers/login/login-form/login-form.component';
+import { LoginFormComponent } from '@pages/auth/containers/login/login-form.component';
 import { RegisterFormComponent } from '@auth/containers/register/register-form/register-form.component';
 import { AuthLayoutComponent } from '@auth/auth-layout/auth-layout.component';
 import { ReactiveFormsModule } from '@angular/forms';

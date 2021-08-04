@@ -12,6 +12,10 @@ export const routes: Routes = [
     loadChildren: async () => (await import('@auth/auth.module')).AuthModule
   },
   {
+    path: 'errors',
+    loadChildren: () => import('./pages/errors/errors.module').then(m => m.ErrorsModule)
+  },
+  {
     path: '', redirectTo: 'members', pathMatch: 'full'
   },
   {
@@ -34,9 +38,10 @@ export const routes: Routes = [
         path: '**',
         component: NotFoundComponent,
         data: { animation: '404'}
-      }
+      },
     ]
-  }
+  },
+
 ];
 
 @NgModule({

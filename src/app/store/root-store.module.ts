@@ -6,19 +6,13 @@ import { StoreRouterConnectingModule } from '@ngrx/router-store';
 
 import { CustomSerializer, metaReducers, ROOT_REDUCERS } from '@store/reducers';
 import { RootEffects } from '@store/effects/root.effects';
-import { AuthStoreModule } from '@auth/store/auth-store.module';
 import { extModules } from '../build-specifics';
+import { AuthEffects } from './auth/auth.effects';
 
 @NgModule({
   imports: [
-    /**
-    * AuthModule is lazy-loaded
-    * AuthStoreModule is eagerly loaded
-    */
-    AuthStoreModule,
-
     StoreModule.forRoot(ROOT_REDUCERS, { metaReducers }),
-    EffectsModule.forRoot([ RootEffects ]),
+    EffectsModule.forRoot([ RootEffects, AuthEffects ]),
     StoreRouterConnectingModule.forRoot({ serializer: CustomSerializer }),
 
     // Instrumentation must be imported after importing StoreModule

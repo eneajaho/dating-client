@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { AuthInterceptorProvider } from '@core/interceptors/auth.interceptor';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
-import { selectAuthToken } from '@auth/store/reducers';
+import { selectAuthToken } from '@store/auth';
 import { HttpClient } from '@angular/common/http';
 
 describe('Auth Interceptor', () => {

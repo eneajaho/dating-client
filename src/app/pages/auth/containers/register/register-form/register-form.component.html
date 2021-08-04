@@ -94,23 +94,9 @@
   </div>
 
   <div class="submit">
-    <button [disabled]="loading" type="submit"
-            class="btn auth-btn btn-primary">
-
-      <span *ngIf="!loading; else loader">
-        <ng-content select="#type"></ng-content>
-      </span>
-
-      <ng-template #loader>
-        <spinner color="button" size="small"></spinner>
-      </ng-template>
-
+    <button [disabled]="loading" type="submit" class="btn auth-btn btn-primary">
+      <span *ngIf="!loading">Register now</span>
+      <spinner *ngIf="loading" color="button" size="small"></spinner>
     </button>
   </div>
 </form>
-
-<style>
-  .i-am, .custom-control-label {
-    color: var(--text-color);
-  }
-</style>

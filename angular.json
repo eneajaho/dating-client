@@ -30,7 +30,6 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": [],
             "vendorChunk": true,
             "extractLicenses": false,
             "buildOptimizer": false,
@@ -73,7 +72,14 @@
                 }
               ]
             },
-            "development": {}
+            "development": {
+              "vendorChunk": true,
+              "sourceMap": true,
+              "namedChunks": true,
+              "extractLicenses": false,
+              "buildOptimizer": false,
+              "optimization": false
+            }
           },
           "defaultConfiguration": "production"
         },

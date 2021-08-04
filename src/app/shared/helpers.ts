@@ -1,4 +1,4 @@
-import { Status } from '@core/models'
+import { Status } from '@core/models';
 
 /**
  * @param entity Can be any object that also extends Status

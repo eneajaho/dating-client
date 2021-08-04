@@ -1,32 +1,46 @@
-import { ChangeDetectionStrategy, Component, OnDestroy } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { Register } from '@auth/models';
-
-import { AuthState, selectRegisterPageState } from '@auth/store/reducers';
-import { clearRegisterError, register } from '@auth/store/actions/auth.actions';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { RegisterPageStore } from './register-page.store';
 
 @Component({
   selector: 'app-register',
-  templateUrl: './register.component.html',
+  template: `
+    <div class="register-container">
+      <h3 class="mb-3">Relationships matter. <br>Build yours.</h3>
+      <p class="lead">Join Dating now. It's free.</p>
+
+      <ng-container *ngIf="store.state$ | async as vm">
+        <app-register-form [loading]="vm.loading" (submitted)="store.register($event)">
+          <span id="type">Register now</span>
+          <error-alert
+            *ngIf="vm.error" [error]="vm.error"
+            (click)="store.setError(null)">
+          </error-alert>
+        </app-register-form>
+      </ng-container>
+
+      <div class="mt-3">
+        <a routerLink="/auth/login" class="text-muted">
+          Already have an account? Sign in.
+        </a>
+      </div>
+    </div>
+  `,
+  styles: [ `
+    .register-container {
+      overflow-y: scroll;
+      overflow-x: hidden;
+      max-height: 100vh;
+      padding: 25px 4px;
+    }
+
+    h3, p {
+      color: var(--text-color)
+    }
+  `],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class RegisterComponent implements OnDestroy {
+export class RegisterComponent {
 
-  vm$ = this.store.select(selectRegisterPageState);
-
-  constructor(private store: Store<AuthState>) { }
-
-  clearErrors(): void {
-    this.store.dispatch(clearRegisterError());
-  }
-
-  onRegister(credentials: Register): void {
-    this.store.dispatch(register({ credentials }));
-  }
-
-  ngOnDestroy(): void {
-    this.clearErrors();
-  }
-
+  constructor(public store: RegisterPageStore) { }
 
 }

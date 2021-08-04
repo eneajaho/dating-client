@@ -2,15 +2,18 @@ import { ActionReducer, ActionReducerMap, createFeatureSelector, MetaReducer } f
 import { environment } from '../../../environments/environment';
 import { routerReducer, RouterReducerState } from '@ngrx/router-store';
 import { RouterStateUrl } from '@store/reducers/custom-route-serializer';
+import * as fromAuth from '@store/auth/auth.reducer';
 
 export { CustomSerializer } from './custom-route-serializer';
 
 export interface RootState {
   router: RouterReducerState<RouterStateUrl>;
+  [ fromAuth.authStateKey ]: fromAuth.AuthState;
 }
 
 export const ROOT_REDUCERS: ActionReducerMap<RootState> = {
-  router: routerReducer
+  router: routerReducer,
+  [ fromAuth.authStateKey ]: fromAuth.reducer
 };
 
 export function logger(reducer: ActionReducer<RootState>): ActionReducer<RootState> {
@@ -30,6 +33,11 @@ export const metaReducers: MetaReducer<RootState>[] = !environment.production ? 
 export const selectRouter = createFeatureSelector<RootState, RouterReducerState<RouterStateUrl>>(
   'router'
 );
+
+export const selectAuthState = createFeatureSelector<RootState, fromAuth.AuthState>(
+  fromAuth.authStateKey
+);
+
 
 
 

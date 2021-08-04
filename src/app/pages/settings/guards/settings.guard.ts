@@ -16,7 +16,7 @@ export class SettingsGuard implements CanActivate {
   canActivate(next: ActivatedRouteSnapshot): Observable<boolean> {
     return this.store.select(selectUserSettingsState).pipe(
       map((userSettings) => {
-        loadEntity(userSettings, () => this.store.dispatch(loadUserSettings()))
+        loadEntity(userSettings, () => this.store.dispatch(loadUserSettings()));
         return true;
       })
     );

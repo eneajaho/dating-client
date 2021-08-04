@@ -8,7 +8,7 @@ export const setMembersFilter = createAction(
 
 export const loadMembers = createAction(
   '[Members Page] Load Members',
-  props<Partial<IQueryParams & MembersFilter>>()
+  props<{ filters: Partial<IQueryParams & MembersFilter> }>()
 );
 
 export const loadMoreMembers = createAction(

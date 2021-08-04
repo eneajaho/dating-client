@@ -1,4 +1,4 @@
-export interface Register {
+export interface RegisterUserPayload {
   username: string;
   gender: string;
   birthday: Date;

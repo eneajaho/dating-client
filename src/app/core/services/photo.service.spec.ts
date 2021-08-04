@@ -25,10 +25,8 @@ describe('PhotoService', () => {
     httpMock = TestBed.inject(HttpTestingController);
   });
 
-  afterEach(() => {
-    // After every test, assert that there are no more pending requests.
-    httpMock.verify();
-  });
+  // After every test, assert that there are no more pending requests.
+  afterEach(() => httpMock.verify());
 
   it('should be created', () => {
     expect(photoService).toBeTruthy();
@@ -45,7 +43,7 @@ describe('PhotoService', () => {
     const userId = 1;
     const path = `${ apiUrl }/users/${ userId }/photos`;
 
-    it('should return a photo, empty object or null', () => {
+    it('should return a photo, empty object or null', (done) => {
       photoService.uploadPhoto(testPhoto, userId).subscribe(res => {
         expect(res).toEqual(testPhoto);
       });
@@ -57,6 +55,7 @@ describe('PhotoService', () => {
 
       photoService.uploadPhoto(null, userId).subscribe(res => {
         expect(res).toEqual(null);
+        done();
       });
 
       // get all pending requests that match the given URL

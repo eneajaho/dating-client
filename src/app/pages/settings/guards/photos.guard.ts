@@ -16,7 +16,7 @@ export class PhotosGuard implements CanActivate {
   canActivate(next: ActivatedRouteSnapshot): Observable<boolean> {
     return this.store.select(selectUserPhotosState).pipe(
       map((userPhotos) => {
-        loadEntity(userPhotos, () => this.store.dispatch(loadUserProfilePhotos()))
+        loadEntity(userPhotos, () => this.store.dispatch(loadUserProfilePhotos()));
         return true;
       })
     );

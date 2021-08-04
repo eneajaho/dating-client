@@ -5,7 +5,7 @@ import { switchMap } from 'rxjs/operators';
 import { of } from 'rxjs';
 
 import { LocalStorageService } from '@core/services/local-storage.service';
-import { getUserLocal } from '@auth/store/actions/auth.actions';
+import { getUserLocal } from '@store/auth/auth.actions';
 
 @Injectable()
 export class RootEffects {

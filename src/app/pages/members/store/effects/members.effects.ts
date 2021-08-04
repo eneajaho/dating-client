@@ -28,15 +28,14 @@ export class MembersEffects {
     ofType(MembersPageActions.setMembersFilter),
     switchMap(({ filters }) => {
       this.router.navigate(['/members/all']);
-      return of(MembersPageActions.loadMembers(filters));
-    }
-    )
+      return of(MembersPageActions.loadMembers({ filters }));
+    })
   ));
 
   LoadMembers$ = createEffect(() => this.actions$.pipe(
     ofType(MembersPageActions.loadMembers),
-    switchMap((params: Partial<IQueryParams & MembersFilter>) => {
-      const payload = { ...DEFAULT_PAGINATION_PARAMS, ...params };
+    switchMap(({ filters }: { filters: Partial<IQueryParams & MembersFilter>}) => {
+      const payload = { ...DEFAULT_PAGINATION_PARAMS, ...filters };
       return this.memberService.getMembers(payload).pipe(
         map(({ result, pagination }) =>
           MembersApiActions.loadMembersSuccess({ members: result, pagination })

@@ -10,7 +10,7 @@ import { combineLatest } from 'rxjs';
 @Injectable({ providedIn: 'root' })
 export class MembersGuard implements CanActivate {
 
-  constructor(private store: Store<MembersState>) {}
+  constructor(private store: Store<MembersState>) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     return combineLatest([
@@ -18,13 +18,11 @@ export class MembersGuard implements CanActivate {
       this.store.select(fromMembers.selectMembersLoading)
     ]).pipe(
       tap(([ loaded, loading ]) => {
-          if (!loaded && !loading) {
-            this.store.dispatch(MembersPageActions.loadMembers({}));
-          }
+        if (!loaded && !loading) {
+          this.store.dispatch(MembersPageActions.loadMembers({ filters: {} }));
         }
-      ),
-      map(() => true),
-      // take(1)
+      }),
+      map(() => true)
     );
   }
 

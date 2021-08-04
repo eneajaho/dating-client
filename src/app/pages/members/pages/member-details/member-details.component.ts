@@ -32,8 +32,11 @@ export class MemberDetailsComponent implements OnInit {
   userEditIcon = faUserCog as IconProp;
   backIcon = faArrowLeft as IconProp;
 
-  constructor(private store: Store<MembersState & SettingsState>,
-              private route: ActivatedRoute, private cdr: ChangeDetectorRef) {}
+  constructor(
+    private store: Store<MembersState & SettingsState>,
+    private route: ActivatedRoute,
+    private cdr: ChangeDetectorRef
+  ) { }
 
   ngOnInit() {
     this.userDetails$ = this.route.params.pipe(

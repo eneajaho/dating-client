@@ -56,7 +56,7 @@ export class MemberEditProfileComponent implements OnInit, OnDestroy {
   private patchForm(user: User) {
     this.form.reset();
 
-    let { knownAs, city, country, interests, introduction } = user;
+    const { knownAs, city, country, interests, introduction } = user;
 
     let splitInterests: string[] = [];
     if (interests && interests?.length !== 0) {

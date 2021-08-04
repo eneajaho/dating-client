@@ -38,7 +38,7 @@ export class MembersComponent {
   }
 
   retry(): void {
-    this.store.dispatch(MembersPageActions.loadMembers({}));
+    this.store.dispatch(MembersPageActions.loadMembers({ filters: {} }));
   }
 
 

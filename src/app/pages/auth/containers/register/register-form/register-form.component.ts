@@ -1,17 +1,22 @@
+import { RegisterUserPayload } from './../../../models/RegisterUserPayload';
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
-import { Register } from '@auth/models';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { passwordValidation } from '../validators';
+import { passwordValidation } from '../password-validation.directive';
 
 @Component({
   selector: 'app-register-form',
   templateUrl: './register-form.component.html',
+  styles: [`
+    .i-am, .custom-control-label {
+      color: var(--text-color);
+    }
+  `],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RegisterFormComponent {
 
   @Input() loading = false;
-  @Output() submitted = new EventEmitter<Register>();
+  @Output() submitted = new EventEmitter<RegisterUserPayload>();
 
   form: FormGroup = this.fb.group({
     username: [ '', Validators.required ],

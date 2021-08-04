@@ -2,7 +2,7 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { TestBed } from '@angular/core/testing';
 import { API_URL } from '@core/tokens';
 import { AuthService } from '@auth/services/auth.service';
-import { Credentials, LoginResponse, Register } from '@auth/models';
+import { LoginPayload, AuthUser, RegisterUserPayload } from '@auth/models';
 
 describe('Auth Service', () => {
   let authService: AuthService;
@@ -30,14 +30,14 @@ describe('Auth Service', () => {
 
 
   describe('register method', () => {
-    const credentials: Register = {
+    const payload: RegisterUserPayload = {
       username: 'test', birthday: new Date(),
       city: 'T', country: 'T', gender: 'Male',
       knownAs: 'T', password: 'TTTTT'
     };
 
     it('should return Observable<unknown>', () => {
-      authService.register(credentials).subscribe(res => {
+      authService.register(payload).subscribe(res => {
         expect(res).toBe({});
       });
 
@@ -52,8 +52,8 @@ describe('Auth Service', () => {
   });
 
   describe('login method', () => {
-    const credentials: Credentials = { username: 'test',  password: 'TTTTT' };
-    const response: LoginResponse = { id: 1, name: 't', token: 't' };
+    const credentials: LoginPayload = { username: 'test',  password: 'TTTTT' };
+    const response: AuthUser = { id: 1, name: 't', token: 't' };
     it('should return Observable<LoginResponse>', () => {
       authService.login(credentials).subscribe(res => {
         expect(res).toBe(response);

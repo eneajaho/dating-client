@@ -40,7 +40,7 @@ export const initialState: UserPhotosState = {
   loaded: false,
   loading: false,
   error: undefined
-}
+};
 
 export const photosReducer = createReducer(initialState,
 
@@ -79,7 +79,7 @@ export const photosReducer = createReducer(initialState,
     const updatedPhotos = state.photos.map(photo => ({
       ...photo, isMain: photo.id === photoId
     }));
-    return { ...state, savingChanges: false, photos: updatedPhotos }
+    return { ...state, savingChanges: false, photos: updatedPhotos };
   }),
 
   on(setMainPhotoFailure, (state, { error }) => ({

@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
-import { selectLoggedIn } from '@auth/store/reducers';
+import { selectLoggedIn } from '@store/auth';
 import { NonAuthGuard } from './non-auth.guard';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Router } from '@angular/router';
@@ -40,7 +40,7 @@ describe('NonAuth Guard', () => {
     store.overrideSelector(selectLoggedIn, true);
     store.refreshState();
 
-    const navigateSpy = spyOn(router, 'navigateByUrl');
+    const navigateSpy = jest.spyOn(router, 'navigateByUrl');
 
     guard.canActivate().subscribe(() => done());
 
