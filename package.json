@@ -12,6 +12,11 @@
     "watch": "ng serve -o --hmr",
     "bundle:report": "ng build --prod --source-map && source-map-explorer dist/dating-client/*.js"
   },
+  "engines": {
+    "node": "^12.20.0 || >=14.0.0",
+    "yarn": ">=1.22.4 <2",
+    "npm": "Please use yarn instead of NPM to install dependencies"
+  },
   "private": true,
   "dependencies": {
     "@angular/animations": "^12.2.0",
