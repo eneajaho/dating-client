@@ -3,7 +3,7 @@ jobs:
   build:
     working_directory: ~/dating-client
     docker:
-      - image: circleci/node:10-browsers
+      - image: circleci/node:14-browsers
 
     parallelism: 1
 
