@@ -65,7 +65,7 @@ describe('MemberService', () => {
       { id: 1, username: 'test1' },
       { id: 2, username: 'test2' }
     ];
-    const path = `${ apiUrl }/users`;
+    const path = `${apiUrl}/users`;
 
     it('should return a paginated result of users', () => {
       memberService.getMembers(filters).subscribe(res => {
@@ -84,13 +84,13 @@ describe('MemberService', () => {
       const pathWithParams = path + '?' + params.toString();
 
       const requests = httpMock.match(pathWithParams);
-      expect(requests[0].request.urlWithParams).toBe(pathWithParams);
-      expect(requests[0]?.request?.method).toEqual('GET');
+      expect(requests[ 0 ].request.urlWithParams).toBe(pathWithParams);
+      expect(requests[ 0 ]?.request?.method).toEqual('GET');
 
       const headers = { Pagination: JSON.stringify(pagination) };
 
-      requests[0].flush(membersList, { headers });
-      requests[1].flush({}, { headers });
+      requests[ 0 ].flush(membersList, { headers });
+      requests[ 1 ].flush({}, { headers });
     });
 
     it('should return an error message', () => {
@@ -115,7 +115,7 @@ describe('MemberService', () => {
 
   describe('getMemberDetails method', () => {
     const testUser: User = { id: 1, username: 'test' };
-    const path = `${ apiUrl }/users/${ 1 }`;
+    const path = `${apiUrl}/users/${1}`;
 
     it('should return a User or empty object', () => {
       memberService.getMemberDetails(1).subscribe(res => {
@@ -129,10 +129,10 @@ describe('MemberService', () => {
 
       const requests = httpMock.match(path);
 
-      expect(requests[0].request.method).toEqual('GET');
+      expect(requests[ 0 ].request.method).toEqual('GET');
 
-      requests[0].flush(testUser);
-      requests[1].flush({});
+      requests[ 0 ].flush(testUser);
+      requests[ 1 ].flush({});
     });
 
     it('should return an error message', () => {
@@ -157,7 +157,7 @@ describe('MemberService', () => {
 
   describe('editMember method', () => {
     const testUser: User = { id: 1, username: 'test' };
-    const path = `${ apiUrl }/users/${ testUser.id }`;
+    const path = `${apiUrl}/users/${testUser.username}`;
 
     it('should return a User', () => {
       memberService.editMember(testUser).subscribe(res => {
@@ -174,7 +174,7 @@ describe('MemberService', () => {
       const errorMessage = 'Error!!!';
       const testUser: User = { id: 1, username: 'test' };
       memberService.editMember(testUser).subscribe(
-        () => {},
+        () => { },
         (error: HttpErrorResponse) => {
           expect(error.status).toEqual(404);
           expect(error.statusText).toEqual('Not Found');

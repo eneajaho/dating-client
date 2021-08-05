@@ -37,6 +37,7 @@ import { RegisterPageStore } from './register-page.store';
       color: var(--text-color)
     }
   `],
+  providers: [ RegisterPageStore ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RegisterComponent {
