@@ -41,5 +41,4 @@ export class MembersComponent {
     this.store.dispatch(MembersPageActions.loadMembers({ filters: {} }));
   }
 
-
 }

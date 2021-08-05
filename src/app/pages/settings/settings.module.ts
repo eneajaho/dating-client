@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { SettingsComponent } from '@settings/containers';
 import {
   MemberEditAccountComponent,
   MemberEditNavigationComponent,
@@ -18,12 +17,13 @@ import { SpinnerModule } from '@shared/components/spinner/spinner.module';
 import { RouterModule, Routes } from '@angular/router';
 import { PreventUnsavedChangesGuard, SettingsGuard, PhotosGuard } from '@settings/guards';
 import { NotFoundComponent } from '@layout/components/not-found.component';
+import { SettingsLayoutComponent } from './settings-layout.component';
 
 const routes: Routes = [
   {
     path: '',
     canActivate: [ SettingsGuard ],
-    component: SettingsComponent,
+    component: SettingsLayoutComponent,
     children: [
       {
         path: '', redirectTo: 'profile', pathMatch: 'full'
@@ -56,7 +56,7 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
-    SettingsComponent,
+    SettingsLayoutComponent,
     SettingsHeaderComponent,
     MemberEditNavigationComponent,
     MemberEditAccountComponent,
