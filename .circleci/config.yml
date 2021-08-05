@@ -33,7 +33,7 @@ jobs:
 
       # Run all unit test
       - run:
-         name: Run unit tests
-         command: yarn test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
+          name: Run unit tests
+          command: yarn test --no-watch --no-progress --browsers=ChromeHeadlessCI --ignore-engines
 #      - run: npm run e2e -- --protractor-config=e2e/protractor-ci.conf.js
 
