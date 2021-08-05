@@ -1,4 +1,4 @@
-import { API_URL } from './../../core/tokens/api.token';
+import { API_URL } from '@core/tokens';
 import { HttpClient } from '@angular/common/http';
 import { Component, Inject, OnInit } from '@angular/core';
 

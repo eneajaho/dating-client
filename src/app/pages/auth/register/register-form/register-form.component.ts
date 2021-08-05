@@ -1,4 +1,4 @@
-import { RegisterUserPayload } from './../../../models/RegisterUserPayload';
+import { RegisterUserPayload } from './../../models/RegisterUserPayload';
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { passwordValidation } from '../password-validation.directive';

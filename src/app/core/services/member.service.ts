@@ -13,9 +13,7 @@ export class MemberService {
   constructor(@Inject(API_URL) private api: string, private http: HttpClient) { }
 
   getMembers(filters: Partial<IQueryParams & MembersFilter>): Observable<PaginatedResult<User[]>> {
-    // console.log(filters);
     const params = this.createParamsFromFilter(filters);
-
     const path = `${this.api}/users`;
     return this.http.get<User[]>(path, { observe: 'response', params }).pipe(
       map((res: HttpResponse<any>) => {
@@ -32,7 +30,7 @@ export class MemberService {
   }
 
   editMember(user: User): Observable<User> {
-    const path = `${this.api}/users/${user.id}`;
+    const path = `${this.api}/users/${user.username}`;
     return this.http.put<User>(path, user);
   }
 

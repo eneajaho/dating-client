@@ -1,18 +1,17 @@
-import { ToastrService } from 'ngx-toastr';
 import {
-  HTTP_INTERCEPTORS,
   HttpErrorResponse,
   HttpEvent,
   HttpHandler,
   HttpInterceptor,
   HttpRequest,
-  HttpStatusCode
+  HttpStatusCode, HTTP_INTERCEPTORS
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { makeFirstLetterLowercase } from '@shared/utils';
-import { Observable, tap, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
 import { NavigationExtras, Router } from '@angular/router';
+import { makeFirstLetterLowercase } from '@shared/utils';
+import { ToastrService } from 'ngx-toastr';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 
 @Injectable()
@@ -26,7 +25,6 @@ export class ErrorInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<any>> {
     return next.handle(request).pipe(
-      tap(x => console.log('testing interceptor', x)),
       // TODO: Better Error handling.
       // https://medium.com/@aleixsuau/error-handling-angular-859d529fa53a
       catchError((error: Error | HttpErrorResponse): Observable<never> => {
@@ -37,11 +35,11 @@ export class ErrorInterceptor implements HttpInterceptor {
             case HttpStatusCode.BadRequest:
               if (error.error?.errors) {
                 const { errors } = error.error; // { fieldKey: errorMessage }
-                const modalStateErrors: { [key: string]: string[] }[] = [];
+                const modalStateErrors: { [ key: string ]: string[] }[] = [];
                 for (const err in errors) {
                   if (errors.hasOwnProperty(err)) {
                     modalStateErrors.push({
-                      [makeFirstLetterLowercase(err)]: errors[err]
+                      [ makeFirstLetterLowercase(err) ]: errors[ err ]
                     });
                   }
                 }

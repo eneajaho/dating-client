@@ -5,7 +5,7 @@ import { AuthService } from '@pages/auth/services/auth.service';
 import { registerUserSuccess } from '@store/auth/auth.actions';
 import { Observable } from 'rxjs';
 import { switchMap, tap } from 'rxjs/operators';
-import { RegisterUserPayload } from './../../models/RegisterUserPayload';
+import { RegisterUserPayload } from '@auth/models';
 import * as fromAuth from '@store/auth/auth.reducer';
 
 export interface RegisterPageState {

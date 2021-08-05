@@ -2,9 +2,9 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { LoginPageStore } from './login-page.store';
 
 @Component({
-  selector: 'auth-login',
+  selector: 'app-auth-login',
   template: `
-    <h2 class="font-weight-bold mb-3">Login in Dating</h2>
+    <h2 class="font-weight-bold mb-3">Login</h2>
 
     <ng-container *ngIf="store.state$ | async as vm">
       <app-login-form [loading]="vm.loading" (submitted)="store.login($event)">
