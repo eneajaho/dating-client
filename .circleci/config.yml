@@ -23,7 +23,7 @@ jobs:
       # Install project dependencies
       - run:
           name: Install local dependencies
-          command: yarn
+          command: yarn --ignore-engines
 
       # Cache local dependencies if they don't exist
       - save_cache:
